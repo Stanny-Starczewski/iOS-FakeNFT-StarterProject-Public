@@ -25,7 +25,8 @@ final class CartViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupView() {
-        view.backgroundColor = .systemGray
+        view.backgroundColor = .appWhite
+        title = "Корзина"
     }
 }
 

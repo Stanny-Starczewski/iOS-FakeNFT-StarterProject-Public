@@ -25,7 +25,8 @@ final class CatalogViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupView() {
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .appWhite
+        title = "Каталог"
     }
 }
 

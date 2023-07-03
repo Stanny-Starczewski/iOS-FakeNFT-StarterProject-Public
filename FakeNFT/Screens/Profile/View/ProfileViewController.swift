@@ -25,7 +25,8 @@ final class ProfileViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupView() {
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .appWhite
+        title = "Профиль"
     }
 }
 

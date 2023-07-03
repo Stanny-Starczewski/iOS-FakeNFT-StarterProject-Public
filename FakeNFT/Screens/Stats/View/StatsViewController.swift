@@ -25,7 +25,8 @@ final class StatsViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupView() {
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = .appWhite
+        title = "Статистика"
     }
 }
 
