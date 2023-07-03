@@ -1,7 +1,16 @@
 import UIKit
 
-final class ScreenFactory: ScreenFactoryProtocol {
+final class ScreenFactory {
+    private let serviceFactory: ServiceFactoryProtocol
+    
+    init(serviceFactory: ServiceFactoryProtocol) {
+        self.serviceFactory = serviceFactory
+    }
+}
 
+// MARK: - ScreenFactoryProtocol
+
+extension ScreenFactory: ScreenFactoryProtocol {
     func makeProfileScreen() -> UIViewController {
         let presenter = ProfilePresenter()
         let vc = ProfileViewController(presenter: presenter)
@@ -17,7 +26,9 @@ final class ScreenFactory: ScreenFactoryProtocol {
     }
     
     func makeCartScreen() -> UIViewController {
-        let presenter = CartPresenter()
+        let presenter = CartPresenter(
+            alertFactory: serviceFactory.makeAlertFactory()
+        )
         let vc = CartViewController(presenter: presenter)
         presenter.view = vc
         return vc
@@ -29,5 +40,4 @@ final class ScreenFactory: ScreenFactoryProtocol {
         presenter.view = vc
         return vc
     }
-    
 }
