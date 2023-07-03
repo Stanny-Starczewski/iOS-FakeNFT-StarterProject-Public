@@ -19,21 +19,42 @@ extension UIColor {
         }
         self.init(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: CGFloat(alpha) / 255)
     }
-
-    // Ниже приведены примеры цветов, настоящие цвета надо взять из фигмы
-
-    // Primary Colors
-    static let primary = UIColor(red: 0 / 255, green: 122 / 255, blue: 255 / 255, alpha: 1.0)
-
-    // Secondary Colors
-    static let secondary = UIColor(red: 255 / 255, green: 193 / 255, blue: 7 / 255, alpha: 1.0)
-
-    // Background Colors
-    static let background = UIColor.white
-
-    // Text Colors
-    static let textPrimary = UIColor.black
-    static let textSecondary = UIColor.gray
-    static let textOnPrimary = UIColor.white
-    static let textOnSecondary = UIColor.black
+    
+    // MARK: - Changeable colors
+    
+    static var appBlack: UIColor {
+        UIColor { (traits) -> UIColor in
+            traits.userInterfaceStyle == .light ?
+            UIColor(red: 0.10, green: 0.11, blue: 0.13, alpha: 1.00) :
+            UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
+        }
+    }
+    
+    static var appWhite: UIColor {
+        UIColor { (traits) -> UIColor in
+            traits.userInterfaceStyle == .light ?
+            UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00) :
+            UIColor(red: 0.10, green: 0.11, blue: 0.13, alpha: 1.00)
+        }
+    }
+    
+    static var appLightGrey: UIColor {
+        UIColor { (traits) -> UIColor in
+            traits.userInterfaceStyle == .light ?
+            UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.00) :
+            UIColor(red: 0.17, green: 0.17, blue: 0.18, alpha: 1.00)
+        }
+    }
+    
+    // MARK: - Universal colors
+    
+    static let customGrey = UIColor(red: 0.38, green: 0.36, blue: 0.36, alpha: 1.00)
+    static let customRed = UIColor(red: 0.96, green: 0.42, blue: 0.42, alpha: 1.00)
+    static let customBackground = UIColor(red: 0.10, green: 0.11, blue: 0.13, alpha: 1.00)
+    static let customGreen = UIColor(red: 0.11, green: 0.62, blue: 0.00, alpha: 1.00)
+    static let customBlue = UIColor(red: 0.04, green: 0.52, blue: 1.00, alpha: 1.00)
+    static let customBlack = UIColor(red: 0.10, green: 0.11, blue: 0.13, alpha: 1.00)
+    static let customWhite = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
+    static let customYellow = UIColor(red: 1.00, green: 0.94, blue: 0.05, alpha: 1.00)
+    
 }
