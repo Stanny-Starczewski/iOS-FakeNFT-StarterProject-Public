@@ -5,6 +5,6 @@ final class FakeNFTUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        // TODO: - Не забудьте написать UI-тесты
+        // MARK: - Не забудьте написать UI-тесты
     }
 }
