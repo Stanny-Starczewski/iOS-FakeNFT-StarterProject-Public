@@ -6,8 +6,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let screenFactory: ScreenFactoryProtocol = ScreenFactory()
+        let serviceFactory: ServiceFactoryProtocol = ServiceFactory()
+        let screenFactory: ScreenFactoryProtocol = ScreenFactory(serviceFactory: serviceFactory)
         let tabBarController = TabBarController(screenFactory: screenFactory)
+        
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         return true
