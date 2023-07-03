@@ -6,7 +6,7 @@
 //
 import Foundation
 import Kingfisher
-import MapKit
+
 
 final class StatUserPageModel {
     let defaultNetworkClient = DefaultNetworkClient()
