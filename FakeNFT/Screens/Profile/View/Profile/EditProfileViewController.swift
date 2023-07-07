@@ -145,12 +145,12 @@ final class EditProfileViewController: UIViewController {
     // MARK: - Actions
     
     @objc
-    func closeDidTap(_ sender: UIButton) {
+    private func closeDidTap(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
     @objc
-    func changeAvatarDidTap(_ sender: UITapGestureRecognizer) {
+    private func changeAvatarDidTap(_ sender: UITapGestureRecognizer) {
         loadImageLabel.isHidden = false
     }
     

@@ -4,12 +4,18 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let presenter: ProfilePresenterProtocol
+    var presenter: ProfilePresenterProtocol?
     
     private lazy var assetLabel: [String] = [
         "Мои NFT",
         "Избранные NFT",
         "О разработчике"
+    ]
+    
+    private lazy var assetViewController: [UIViewController] = [
+        MyNFTViewController(),
+        FavoritesViewController(),
+        AboutViewController()
     ]
     
     //MARK: - Layout elements
@@ -24,9 +30,9 @@ final class ProfileViewController: UIViewController {
     private lazy var avatarImage: UIImageView = {
         let profilePhoto = UIImage(named: "ProfilePhoto")
         let avatarImage = UIImageView(image: profilePhoto)
-                avatarImage.translatesAutoresizingMaskIntoConstraints = false
-                avatarImage.layer.cornerRadius = 35
-                avatarImage.layer.masksToBounds = true
+        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        avatarImage.layer.cornerRadius = 35
+        avatarImage.layer.masksToBounds = true
         return avatarImage
     }()
     
@@ -105,12 +111,12 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc
-    func websiteDidTap(_ sender: UITapGestureRecognizer) {
+    private func websiteDidTap(_ sender: UITapGestureRecognizer) {
     }
     
     // MARK: - Setup UI
     
-    func setupNavBar() {
+    private func setupNavBar() {
         navigationController?.navigationBar.tintColor = .appBlack
         navigationItem.rightBarButtonItem = editButton
     }
@@ -171,11 +177,10 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileAssetsCell.reuseIdentifier)  as! ProfileAssetsCell
-
-        cell.backgroundColor = .white
+        
+        cell.backgroundColor = .appWhite
         cell.assetLabel.text = assetLabel[indexPath.row]
-        cell.assetValue.text = ""
-        cell.selectionStyle = .none
+        cell.assetValueLabel.text = ""
         return cell
     }
     
@@ -188,6 +193,7 @@ extension ProfileViewController: UITableViewDataSource {
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: - Navigation to other screens
+        tableView.deselectRow(at: indexPath, animated: true)
+        navigationController?.pushViewController(assetViewController[indexPath.row], animated: true)
     }
 }

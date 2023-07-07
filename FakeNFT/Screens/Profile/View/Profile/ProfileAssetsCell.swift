@@ -23,7 +23,7 @@ final class ProfileAssetsCell: UITableViewCell {
         return assetLabel
     }()
     
-    var assetValue: UILabel = {
+    var assetValueLabel: UILabel = {
         var assetValue = UILabel()
         assetValue.translatesAutoresizingMaskIntoConstraints = false
         assetValue.font = .boldSystemFont(ofSize: 17)
@@ -58,7 +58,7 @@ final class ProfileAssetsCell: UITableViewCell {
         backgroundColor = .appWhite
         
         addSubview(assetLabel)
-        addSubview(assetValue)
+        addSubview(assetValueLabel)
         addSubview(forwardButton)
         
     }
@@ -71,8 +71,8 @@ final class ProfileAssetsCell: UITableViewCell {
             assetLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             assetLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            assetValue.centerYAnchor.constraint(equalTo: centerYAnchor),
-            assetValue.leadingAnchor.constraint(equalTo: assetLabel.trailingAnchor, constant: 8),
+            assetValueLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            assetValueLabel.leadingAnchor.constraint(equalTo: assetLabel.trailingAnchor, constant: 8),
             
             forwardButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             forwardButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
