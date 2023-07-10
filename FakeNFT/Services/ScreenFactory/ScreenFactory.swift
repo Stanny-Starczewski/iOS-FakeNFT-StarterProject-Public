@@ -11,7 +11,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeCatalogScreen() -> UIViewController {
         let presenter = CatalogPresenter()
-        let vc = CatalogViewController(presenter: presenter)
+        let vc = CatalogViewController(presenter: presenter, viewModel: CollectionViewModel(provider: MockCatalogueProvider()))
         presenter.view = vc
         return vc
     }
