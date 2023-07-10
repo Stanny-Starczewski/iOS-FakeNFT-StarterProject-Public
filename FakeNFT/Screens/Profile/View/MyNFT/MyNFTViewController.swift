@@ -6,19 +6,29 @@
 //
 
 import UIKit
+import Kingfisher
 
-final class MyNFTViewController: UIViewController {
+protocol MyNFTViewControllerProtocol: AnyObject {
+    var presenter: MyNFTPresenterProtocol? { get set }
+//    func updateProfileDetails(profile: ProfileResult)
+    func showNoInternetView()
+}
+
+final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
     // MARK: - Properties
     
-    var presenter: MyNFTPresenter?
+    var presenter: MyNFTPresenterProtocol?
     
-    private var nftImage: [String] = Array(0..<3).map{ "\($0)" }
-    private var nftName: [String] = [ "Lilo", "Spring", "April"]
-    private var nftPrice: [String] = [ "1,78 ETH", "1,99 ETH", "2,99 ETH" ]
-    private var nftRating: [Int] = [ 3, 4, 5 ]
-    
+//    private var nftImage: [String] = Array(0..<3).map{ "\($0)" }
+//    private var nftName: [String] = [ "Lilo", "Spring", "April"]
+//    private var nftPrice: [String] = [ "1,78 ETH", "1,99 ETH", "2,99 ETH" ]
+//    private var nftRating: [Int] = [ 3, 4, 5 ]
+//
     private var nftIDs = true
+//
+    private(set) var myNFTs: [NFTNetworkModel]?
+    
     
     //MARK: - Layout elements
     
@@ -56,13 +66,14 @@ final class MyNFTViewController: UIViewController {
         emptyLabel.textColor = .appBlack
         return emptyLabel
     }()
-    
+
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        presenter?.viewDidLoad()
     }
     
     // MARK: - Actions
@@ -78,6 +89,16 @@ final class MyNFTViewController: UIViewController {
     }
     
     // MARK: - Methods
+    func updateNFT(nfts: [NFTNetworkModel]) {
+        self.myNFTs = nfts
+        myNFTTable.reloadData()
+        UIBlockingProgressHUD.dismiss()
+    }
+    
+    func showNoInternetView() {
+        navigationController?.pushViewController(NoInternetViewController(), animated: true)
+        self.navigationController?.navigationBar.isHidden = true
+    }
     
     private func setupNavBar(emptyNFTs: Bool) {
         navigationController?.navigationBar.tintColor = .appBlack
@@ -129,18 +150,25 @@ final class MyNFTViewController: UIViewController {
 
 extension MyNFTViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        guard let myNFTs = myNFTs else { return 0 }
+        return myNFTs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: MyNFTCell.reuseIdentifier)  as! MyNFTCell
         
-        let image = UIImage(named: nftImage[indexPath.row])
-        cell.myNFTImage.image = image
-        cell.myNFTRating.setStarsRating(rating: nftRating[indexPath.row])
-        cell.myNFTNameLabel.text = nftName[indexPath.row]
-        cell.myNFTPriceValueLabel.text = nftPrice[indexPath.row]
+        let myNFT = myNFTs?[indexPath.row]
+        cell.myNFTImage.kf.setImage(with: URL(string: myNFT?.images[0] ?? ""))
+        cell.myNFTNameLabel.text = myNFT?.name
+        cell.myNFTRating.setStarsRating(rating: myNFT?.rating ?? 3)
+        cell.myNFTPriceValueLabel.text = "\(myNFT?.price ?? 0) ETH"
+        
+//        let image = UIImage(named: nftImage[indexPath.row])
+//        cell.myNFTImage.image = image
+//        cell.myNFTRating.setStarsRating(rating: nftRating[indexPath.row])
+//        cell.myNFTNameLabel.text = nftName[indexPath.row]
+//        cell.myNFTPriceValueLabel.text = nftPrice[indexPath.row]
         cell.selectionStyle = .none
         return cell
     }

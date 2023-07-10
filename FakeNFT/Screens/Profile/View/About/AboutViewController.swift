@@ -49,6 +49,7 @@ final class AboutViewController: UIViewController {
     private func setupNavBar() {
         navigationController?.navigationBar.tintColor = .appBlack
         navigationItem.leftBarButtonItem = backButton
+        navigationItem.title = "О разработчике"
     }
     
     private func setupView() {

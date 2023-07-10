@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Kingfisher
+
+
 
 final class EditProfileViewController: UIViewController {
     
     // MARK: - Properties
     
-    
+
     //MARK: - Layout elements
     
     private lazy var closeButton: UIButton = {
@@ -140,6 +143,7 @@ final class EditProfileViewController: UIViewController {
         
         setupView()
         setConstraints()
+        
     }
     
     // MARK: - Actions
@@ -152,6 +156,20 @@ final class EditProfileViewController: UIViewController {
     @objc
     private func changeAvatarDidTap(_ sender: UITapGestureRecognizer) {
         loadImageLabel.isHidden = false
+    }
+    
+    
+    func updateEditProfileDetails(profile: ProfileResult)  {
+    
+//        avatarImage.kf.setImage(
+//            with: profile?.avatarURL,
+//            placeholder: UIImage(named: "ProfilePhoto"),
+//            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
+        
+        nameTextField.text = profile.name
+        descriptionTextField.text = profile.description
+        websiteTextField.text = profile.website
+        
     }
     
     // MARK: - Setup UI
@@ -244,4 +262,10 @@ extension EditProfileViewController: UITextFieldDelegate {
         }
         super.touchesBegan(touches, with: event)
     }
+}
+
+// MARK: - UITextViewDelegate
+
+extension EditProfileViewController: UITextViewDelegate {
+    
 }

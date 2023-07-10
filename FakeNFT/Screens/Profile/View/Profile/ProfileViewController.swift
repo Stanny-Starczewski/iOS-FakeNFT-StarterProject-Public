@@ -1,7 +1,14 @@
 import UIKit
+import Kingfisher
 
-final class ProfileViewController: UIViewController {
-    
+protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfilePresenterProtocol? { get set }
+    func updateProfileScreen(profile: ProfileResult)
+    func showNoInternetView()
+}
+
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+
     // MARK: - Properties
     
     var presenter: ProfilePresenterProtocol?
@@ -39,7 +46,7 @@ final class ProfileViewController: UIViewController {
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "Joaquin Phoenix"
+        nameLabel.text = "" //"Joaquin Phoenix"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 22)
         nameLabel.textColor = .appBlack
         return nameLabel
@@ -50,10 +57,11 @@ final class ProfileViewController: UIViewController {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 18
-        descriptionLabel.attributedText = NSAttributedString(string: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.", attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle : paragraphStyle])
+        descriptionLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle : paragraphStyle]) //"Description"
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)
         descriptionLabel.textColor = .appBlack
+        descriptionLabel.textAlignment = .left
         return descriptionLabel
     }()
     
@@ -63,7 +71,7 @@ final class ProfileViewController: UIViewController {
         let tapAction = UITapGestureRecognizer(target: self, action:#selector(websiteDidTap(_:)))
         websiteLabel.isUserInteractionEnabled = true
         websiteLabel.addGestureRecognizer(tapAction)
-        websiteLabel.attributedText = NSAttributedString(string: "JoaquinPhoenix.com", attributes: [.kern: 0.24])
+        websiteLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.24]) //"JoaquinPhoenix.com"
         websiteLabel.font = UIFont.systemFont(ofSize: 15)
         websiteLabel.textColor = .customBlue
         return websiteLabel
@@ -99,12 +107,14 @@ final class ProfileViewController: UIViewController {
         setupNavBar()
         setupView()
         setConstraints()
+        presenter?.viewDidLoad()
     }
     
     // MARK: - Actions
     
     @objc
     private func didTapEditButton() {
+        
         let editProfileViewController = EditProfileViewController()
         editProfileViewController.modalPresentationStyle = .popover
         self.present(editProfileViewController, animated: true)
@@ -112,6 +122,29 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func websiteDidTap(_ sender: UITapGestureRecognizer) {
+    }
+    
+    // MARK: - Methods
+    
+    func updateProfileScreen(profile: ProfileResult) {
+        
+        avatarImage.kf.setImage(
+            with: profile.avatarURL,
+            placeholder: UIImage(named: "ProfilePhoto"),
+            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
+        
+        nameLabel.text = profile.name
+        descriptionLabel.text = profile.description
+        websiteLabel.text = profile.website
+        let nftsCountLabel = profileAssetsTable.cellForRow(at: [0,0]) as? ProfileAssetsCell
+        nftsCountLabel?.assetValueLabel.text = profile.nfts
+        let likesCountLabel = profileAssetsTable.cellForRow(at: [0,1]) as? ProfileAssetsCell
+        likesCountLabel?.assetValueLabel.text = profile.likes
+    }
+    
+    func showNoInternetView() {
+        navigationController?.pushViewController(NoInternetViewController(), animated: true)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: - Setup UI
@@ -159,12 +192,6 @@ final class ProfileViewController: UIViewController {
             
         ])
     }
-}
-
-// MARK: - ProfileViewProtocol
-
-extension ProfileViewController: ProfileViewProtocol {
-    
 }
 
 // MARK: - UITableViewDataSource
