@@ -1,5 +1,9 @@
 import Foundation
 
+protocol CartPresenterProtocol {
+    func didSortButtonTapped()
+}
+
 final class CartPresenter {
     weak var view: CartViewProtocol?
     
