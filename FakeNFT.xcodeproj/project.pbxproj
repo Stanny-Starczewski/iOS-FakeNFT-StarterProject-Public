@@ -150,6 +150,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A7130DA2A5D5B4800242454 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				0AAF02FF2A529E1100924CE0 /* View */,
+				0AAF03002A529E1800924CE0 /* Presenter */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
 		0A97E15A2A52D5E7006A576E /* AlertFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,8 +224,7 @@
 		0AAF02E12A52964700924CE0 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				0AAF02FF2A529E1100924CE0 /* View */,
-				0AAF03002A529E1800924CE0 /* Presenter */,
+				0A7130DA2A5D5B4800242454 /* Cart */,
 			);
 			path = Cart;
 			sourceTree = "<group>";

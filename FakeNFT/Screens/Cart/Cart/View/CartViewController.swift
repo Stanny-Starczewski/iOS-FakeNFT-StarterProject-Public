@@ -187,7 +187,6 @@ extension CartViewController {
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-//            bottomView.heightAnchor.constraint(equalToConstant: 76),
             
             bottomStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 16),
             bottomStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 16),
