@@ -81,6 +81,7 @@ final class CartItemCell: UITableViewCell {
     
     private func setupCell() {
         selectionStyle = .none
+        backgroundColor = .appWhite
         contentView.addSubview(wrapperView)
         wrapperView.addSubview(itemImageView)
         wrapperView.addSubview(itemNameLabel)
