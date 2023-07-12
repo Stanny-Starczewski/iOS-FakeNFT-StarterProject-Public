@@ -8,6 +8,12 @@
 import Foundation
 import Kingfisher
 
+enum SortType: String {
+    case byName = "BYNAME"
+    case byCount = "BYCOUNT"
+}
+
+
 struct Nft: Codable {
     let createdAt: String
     let name: String

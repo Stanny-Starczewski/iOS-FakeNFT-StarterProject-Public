@@ -45,12 +45,26 @@
 		3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39029D2453B0081F015 /* ExampleRequest.swift */; };
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
 		3FC8C39729D24D9D0081F015 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3FC8C39629D24D9D0081F015 /* .swiftlint.yml */; };
-		881425112A52C08300AADB89 /* StatUserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425102A52C08300AADB89 /* StatUserPage.swift */; };
 		881425132A52E0B300AADB89 /* Models&Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425122A52E0B300AADB89 /* Models&Structs.swift */; };
 		881425152A52E5AA00AADB89 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425142A52E5AA00AADB89 /* CurrencyService.swift */; };
 		881425182A52E71E00AADB89 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425172A52E71E00AADB89 /* Protocols.swift */; };
 		8814251A2A52E7B800AADB89 /* NFTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425192A52E7B800AADB89 /* NFTModels.swift */; };
 		8814251C2A52E97500AADB89 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814251B2A52E97500AADB89 /* Config.swift */; };
+		8868BADE2A5EB1EB003EB22C /* StatUserCollectionPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BADD2A5EB1EB003EB22C /* StatUserCollectionPageModel.swift */; };
+		8868BAE02A5EB259003EB22C /* StatUserCollectionPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BADF2A5EB259003EB22C /* StatUserCollectionPageViewModel.swift */; };
+		8868BAE22A5EB2A3003EB22C /* StatUserCollectionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAE12A5EB2A3003EB22C /* StatUserCollectionPageViewController.swift */; };
+		8868BAE42A5EB2D0003EB22C /* StatNFTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAE32A5EB2D0003EB22C /* StatNFTCell.swift */; };
+		8868BAE72A5EB447003EB22C /* UserViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAE62A5EB447003EB22C /* UserViewCellViewModel.swift */; };
+		8868BAE92A5EB47C003EB22C /* UserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAE82A5EB47C003EB22C /* UserViewCell.swift */; };
+		8868BAEC2A5EB5A5003EB22C /* StatUserPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAEB2A5EB5A5003EB22C /* StatUserPageModel.swift */; };
+		8868BAEE2A5EB5FC003EB22C /* StatUserPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAED2A5EB5FC003EB22C /* StatUserPageViewModel.swift */; };
+		8868BAF02A5EB624003EB22C /* StatUserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAEF2A5EB624003EB22C /* StatUserPageViewController.swift */; };
+		8868BAF32A5EB706003EB22C /* StatPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAF22A5EB706003EB22C /* StatPageModel.swift */; };
+		8868BAF52A5EB7AD003EB22C /* StatPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAF42A5EB7AD003EB22C /* StatPageViewModel.swift */; };
+		8868BAF72A5EB8B9003EB22C /* StatPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAF62A5EB8B9003EB22C /* StatPageViewController.swift */; };
+		8868BAF92A5EBA39003EB22C /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAF82A5EBA39003EB22C /* RatingView.swift */; };
+		8868BAFB2A5EBAAA003EB22C /* WebViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAFA2A5EBAAA003EB22C /* WebViewService.swift */; };
+		8868BAFD2A5EBAF7003EB22C /* AlertMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868BAFC2A5EBAF7003EB22C /* AlertMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,12 +125,26 @@
 		3FC8C39029D2453B0081F015 /* ExampleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRequest.swift; sourceTree = "<group>"; };
 		3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
 		3FC8C39629D24D9D0081F015 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		881425102A52C08300AADB89 /* StatUserPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserPage.swift; sourceTree = "<group>"; };
 		881425122A52E0B300AADB89 /* Models&Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models&Structs.swift"; sourceTree = "<group>"; };
 		881425142A52E5AA00AADB89 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		881425172A52E71E00AADB89 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		881425192A52E7B800AADB89 /* NFTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModels.swift; sourceTree = "<group>"; };
 		8814251B2A52E97500AADB89 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		8868BADD2A5EB1EB003EB22C /* StatUserCollectionPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserCollectionPageModel.swift; sourceTree = "<group>"; };
+		8868BADF2A5EB259003EB22C /* StatUserCollectionPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserCollectionPageViewModel.swift; sourceTree = "<group>"; };
+		8868BAE12A5EB2A3003EB22C /* StatUserCollectionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserCollectionPageViewController.swift; sourceTree = "<group>"; };
+		8868BAE32A5EB2D0003EB22C /* StatNFTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatNFTCell.swift; sourceTree = "<group>"; };
+		8868BAE62A5EB447003EB22C /* UserViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCellViewModel.swift; sourceTree = "<group>"; };
+		8868BAE82A5EB47C003EB22C /* UserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCell.swift; sourceTree = "<group>"; };
+		8868BAEB2A5EB5A5003EB22C /* StatUserPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserPageModel.swift; sourceTree = "<group>"; };
+		8868BAED2A5EB5FC003EB22C /* StatUserPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserPageViewModel.swift; sourceTree = "<group>"; };
+		8868BAEF2A5EB624003EB22C /* StatUserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserPageViewController.swift; sourceTree = "<group>"; };
+		8868BAF22A5EB706003EB22C /* StatPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatPageModel.swift; sourceTree = "<group>"; };
+		8868BAF42A5EB7AD003EB22C /* StatPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatPageViewModel.swift; sourceTree = "<group>"; };
+		8868BAF62A5EB8B9003EB22C /* StatPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatPageViewController.swift; sourceTree = "<group>"; };
+		8868BAF82A5EBA39003EB22C /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		8868BAFA2A5EBAAA003EB22C /* WebViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewService.swift; sourceTree = "<group>"; };
+		8868BAFC2A5EBAF7003EB22C /* AlertMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +222,10 @@
 		0AAF02E22A52964D00924CE0 /* Stats */ = {
 			isa = PBXGroup;
 			children = (
+				8868BAE52A5EB423003EB22C /* StatUserView */,
+				8868BAF12A5EB6E8003EB22C /* StatPage */,
+				8868BAEA2A5EB57E003EB22C /* StatUserPage */,
+				8868BADC2A5EB1D0003EB22C /* StatUserCollection */,
 				0AAF02FD2A529DFD00924CE0 /* View */,
 				0AAF02FE2A529E0300924CE0 /* Presenter */,
 			);
@@ -239,7 +271,6 @@
 		0AAF02FD2A529DFD00924CE0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				881425102A52C08300AADB89 /* StatUserPage.swift */,
 				0AAF030B2A529F0900924CE0 /* StatsViewProtocol.swift */,
 				0AAF02E92A5296DB00924CE0 /* StatsViewController.swift */,
 			);
@@ -347,6 +378,8 @@
 			children = (
 				0AAF030F2A529FEC00924CE0 /* ScreenFactory */,
 				3FC8C38F29D245250081F015 /* Requests */,
+				8868BAFA2A5EBAAA003EB22C /* WebViewService.swift */,
+				8868BAFC2A5EBAF7003EB22C /* AlertMaker.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -382,6 +415,7 @@
 				881425142A52E5AA00AADB89 /* CurrencyService.swift */,
 				881425192A52E7B800AADB89 /* NFTModels.swift */,
 				8814251B2A52E97500AADB89 /* Config.swift */,
+				8868BAF82A5EBA39003EB22C /* RatingView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -420,6 +454,46 @@
 				3FC8C39029D2453B0081F015 /* ExampleRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		8868BADC2A5EB1D0003EB22C /* StatUserCollection */ = {
+			isa = PBXGroup;
+			children = (
+				8868BADD2A5EB1EB003EB22C /* StatUserCollectionPageModel.swift */,
+				8868BADF2A5EB259003EB22C /* StatUserCollectionPageViewModel.swift */,
+				8868BAE12A5EB2A3003EB22C /* StatUserCollectionPageViewController.swift */,
+				8868BAE32A5EB2D0003EB22C /* StatNFTCell.swift */,
+			);
+			path = StatUserCollection;
+			sourceTree = "<group>";
+		};
+		8868BAE52A5EB423003EB22C /* StatUserView */ = {
+			isa = PBXGroup;
+			children = (
+				8868BAE62A5EB447003EB22C /* UserViewCellViewModel.swift */,
+				8868BAE82A5EB47C003EB22C /* UserViewCell.swift */,
+			);
+			path = StatUserView;
+			sourceTree = "<group>";
+		};
+		8868BAEA2A5EB57E003EB22C /* StatUserPage */ = {
+			isa = PBXGroup;
+			children = (
+				8868BAEB2A5EB5A5003EB22C /* StatUserPageModel.swift */,
+				8868BAED2A5EB5FC003EB22C /* StatUserPageViewModel.swift */,
+				8868BAEF2A5EB624003EB22C /* StatUserPageViewController.swift */,
+			);
+			path = StatUserPage;
+			sourceTree = "<group>";
+		};
+		8868BAF12A5EB6E8003EB22C /* StatPage */ = {
+			isa = PBXGroup;
+			children = (
+				8868BAF22A5EB706003EB22C /* StatPageModel.swift */,
+				8868BAF42A5EB7AD003EB22C /* StatPageViewModel.swift */,
+				8868BAF62A5EB8B9003EB22C /* StatPageViewController.swift */,
+			);
+			path = StatPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -589,13 +663,15 @@
 				0AAF02E62A5296AD00924CE0 /* CatalogViewController.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
 				0AAF02F42A5299BB00924CE0 /* ScreenFactory.swift in Sources */,
-				881425112A52C08300AADB89 /* StatUserPage.swift in Sources */,
 				0AAF02DE2A5291CA00924CE0 /* TabBarController.swift in Sources */,
+				8868BADE2A5EB1EB003EB22C /* StatUserCollectionPageModel.swift in Sources */,
+				8868BAE72A5EB447003EB22C /* UserViewCellViewModel.swift in Sources */,
 				0AAF03042A529E7100924CE0 /* CartPresenter.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				0AAF02F02A5297F100924CE0 /* ProfilePresenterProtocol.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
 				0AAF02E42A52967C00924CE0 /* ProfileViewController.swift in Sources */,
+				8868BAF92A5EBA39003EB22C /* RatingView.swift in Sources */,
 				881425152A52E5AA00AADB89 /* CurrencyService.swift in Sources */,
 				0AAF03062A529E9D00924CE0 /* CartViewProtocol.swift in Sources */,
 				8814251A2A52E7B800AADB89 /* NFTModels.swift in Sources */,
@@ -603,10 +679,14 @@
 				0AAF030C2A529F0900924CE0 /* StatsViewProtocol.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
+				8868BAFD2A5EBAF7003EB22C /* AlertMaker.swift in Sources */,
 				0AAF02EE2A5297E300924CE0 /* ProfileViewProtocol.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
+				8868BAEC2A5EB5A5003EB22C /* StatUserPageModel.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
+				8868BAE02A5EB259003EB22C /* StatUserCollectionPageViewModel.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
+				8868BAF32A5EB706003EB22C /* StatPageModel.swift in Sources */,
 				0AAF02F82A529BC300924CE0 /* CatalogViewProtocol.swift in Sources */,
 				0AAF02EA2A5296DB00924CE0 /* StatsViewController.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
@@ -614,13 +694,21 @@
 				0AAF03022A529E5800924CE0 /* CartPresenterProtocol.swift in Sources */,
 				0AAF02EC2A5297AD00924CE0 /* ProfilePresenter.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
+				8868BAE22A5EB2A3003EB22C /* StatUserCollectionPageViewController.swift in Sources */,
 				881425132A52E0B300AADB89 /* Models&Structs.swift in Sources */,
+				8868BAFB2A5EBAAA003EB22C /* WebViewService.swift in Sources */,
 				881425182A52E71E00AADB89 /* Protocols.swift in Sources */,
 				8814251C2A52E97500AADB89 /* Config.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
+				8868BAEE2A5EB5FC003EB22C /* StatUserPageViewModel.swift in Sources */,
 				0AAF02F62A529AF100924CE0 /* CatalogPresenter.swift in Sources */,
+				8868BAF02A5EB624003EB22C /* StatUserPageViewController.swift in Sources */,
+				8868BAE92A5EB47C003EB22C /* UserViewCell.swift in Sources */,
+				8868BAE42A5EB2D0003EB22C /* StatNFTCell.swift in Sources */,
+				8868BAF52A5EB7AD003EB22C /* StatPageViewModel.swift in Sources */,
 				0AAF02FA2A529BCD00924CE0 /* CatalogPresenterProtocol.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
+				8868BAF72A5EB8B9003EB22C /* StatPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
