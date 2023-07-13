@@ -1,5 +1,14 @@
 import UIKit
 
+protocol ScreenFactoryProtocol {
+    func makeProfileScreen() -> UIViewController
+    func makeCatalogScreen() -> UIViewController
+    func makeCartScreen() -> UIViewController
+    func makeRemoveItemScreen(with item: NFTItem?) -> UIViewController
+    func makePaymentMethodsScreen() -> UIViewController
+    func makeStatsScreen() -> UIViewController
+}
+
 final class ScreenFactory {
     private let serviceFactory: ServiceFactoryProtocol
     
@@ -38,6 +47,13 @@ extension ScreenFactory: ScreenFactoryProtocol {
     func makeRemoveItemScreen(with item: NFTItem? = nil) -> UIViewController {
         let presenter = RemoveItemPresenter()
         let vc = RemoveItemViewController(presenter: presenter)
+        presenter.view = vc
+        return vc
+    }
+    
+    func makePaymentMethodsScreen() -> UIViewController {
+        let presenter = PaymentMethodsPresenter()
+        let vc = PaymentMethodsViewController(presenter: presenter)
         presenter.view = vc
         return vc
     }

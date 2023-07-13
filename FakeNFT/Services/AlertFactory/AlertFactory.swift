@@ -1,5 +1,9 @@
 import UIKit
 
+protocol AlertFactoryProtocol {
+    func makeSortingAlert() -> UIAlertController
+}
+
 final class AlertFactory: AlertFactoryProtocol {
     func makeSortingAlert() -> UIAlertController {
         let sortAlert = UIAlertController(
