@@ -90,6 +90,8 @@ final class CartViewController: UIViewController {
         return stackView
     }()
     
+    // MARK: - Properties
+    
     private let presenter: CartPresenterProtocol
     
     // MARK: - Life Cycle
@@ -138,7 +140,7 @@ final class CartViewController: UIViewController {
     
     @objc
     private func sortButtonTapped() {
-        presenter.didSortButtonTapped()
+        presenter.didSortButton()
     }
 }
 
@@ -147,6 +149,12 @@ final class CartViewController: UIViewController {
 extension CartViewController: CartViewProtocol {
     func showViewController(_ vc: UIViewController) {
         present(vc, animated: true)
+    }
+}
+
+extension CartViewController: CartItemCellDelegate {
+    func didDeleteItemButtonTapped() {
+        presenter.didDeleteItem()
     }
 }
 
@@ -164,6 +172,7 @@ extension CartViewController: UITableViewDataSource {
                 for: indexPath
             ) as? CartItemCell
         else { return UITableViewCell() }
+        cell.delegate = self
         return cell
     }
 }

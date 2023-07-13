@@ -1,8 +1,16 @@
 import UIKit
 
+protocol CartItemCellDelegate: AnyObject {
+    func didDeleteItemButtonTapped()
+}
+
 final class CartItemCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     static let reuseIdentifier = String(describing: CartItemCell.self)
+    
+    weak var delegate: CartItemCellDelegate?
     
     // MARK: - UI
     
@@ -61,11 +69,12 @@ final class CartItemCell: UITableViewCell {
     private lazy var deleteItemButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage(named: "icon-cart-delete"), for: .normal)
+        button.addTarget(self, action: #selector(deleteItemButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    // MARK: - Init
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -89,6 +98,13 @@ final class CartItemCell: UITableViewCell {
         wrapperView.addSubview(priceDescriptionLabel)
         wrapperView.addSubview(priceLabel)
         wrapperView.addSubview(deleteItemButton)
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func deleteItemButtonTapped() {
+        delegate?.didDeleteItemButtonTapped()
     }
     
 }
