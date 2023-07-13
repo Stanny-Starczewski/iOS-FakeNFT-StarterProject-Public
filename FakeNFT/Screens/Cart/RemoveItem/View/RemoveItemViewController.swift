@@ -52,7 +52,7 @@ final class RemoveItemViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle(Constants.backButtonText, for: .normal)
         button.backgroundColor = .appBlack
-        button.tintColor = .customWhite
+        button.tintColor = .appWhite
         button.layer.cornerRadius = 12
         button.titleLabel?.font = .regular17
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
