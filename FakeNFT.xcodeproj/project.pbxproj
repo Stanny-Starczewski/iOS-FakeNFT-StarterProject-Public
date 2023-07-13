@@ -12,6 +12,8 @@
 		0A7130D72A5D5A8500242454 /* NFTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130D22A5D5A8500242454 /* NFTModels.swift */; };
 		0A7130D82A5D5A8500242454 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130D32A5D5A8500242454 /* CurrencyService.swift */; };
 		0A7130D92A5D5A8500242454 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130D42A5D5A8500242454 /* Config.swift */; };
+		0A7130DF2A5DC71F00242454 /* RemoveItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130DE2A5DC71F00242454 /* RemoveItemViewController.swift */; };
+		0A7130E12A5DC74A00242454 /* RemoveItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130E02A5DC74A00242454 /* RemoveItemPresenter.swift */; };
 		0A97E15C2A52D5F3006A576E /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15B2A52D5F3006A576E /* AlertFactory.swift */; };
 		0A97E15E2A52D631006A576E /* AlertFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15D2A52D631006A576E /* AlertFactoryProtocol.swift */; };
 		0A97E1602A52D6C8006A576E /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */; };
@@ -78,6 +80,8 @@
 		0A7130D22A5D5A8500242454 /* NFTModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFTModels.swift; sourceTree = "<group>"; };
 		0A7130D32A5D5A8500242454 /* CurrencyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		0A7130D42A5D5A8500242454 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		0A7130DE2A5DC71F00242454 /* RemoveItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveItemViewController.swift; sourceTree = "<group>"; };
+		0A7130E02A5DC74A00242454 /* RemoveItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveItemPresenter.swift; sourceTree = "<group>"; };
 		0A97E15B2A52D5F3006A576E /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		0A97E15D2A52D631006A576E /* AlertFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactoryProtocol.swift; sourceTree = "<group>"; };
 		0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
@@ -159,6 +163,31 @@
 			path = Cart;
 			sourceTree = "<group>";
 		};
+		0A7130DB2A5D5B8900242454 /* RemoveItem */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130DC2A5D5B9F00242454 /* View */,
+				0A7130DD2A5D5BA700242454 /* Presenter */,
+			);
+			path = RemoveItem;
+			sourceTree = "<group>";
+		};
+		0A7130DC2A5D5B9F00242454 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130DE2A5DC71F00242454 /* RemoveItemViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A7130DD2A5D5BA700242454 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130E02A5DC74A00242454 /* RemoveItemPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		0A97E15A2A52D5E7006A576E /* AlertFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +253,7 @@
 		0AAF02E12A52964700924CE0 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				0A7130DB2A5D5B8900242454 /* RemoveItem */,
 				0A7130DA2A5D5B4800242454 /* Cart */,
 			);
 			path = Cart;
@@ -659,8 +689,10 @@
 				0AAF02F62A529AF100924CE0 /* CatalogPresenter.swift in Sources */,
 				0A97E15C2A52D5F3006A576E /* AlertFactory.swift in Sources */,
 				0AAF02FA2A529BCD00924CE0 /* CatalogPresenterProtocol.swift in Sources */,
+				0A7130DF2A5DC71F00242454 /* RemoveItemViewController.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
 				0A7130D72A5D5A8500242454 /* NFTModels.swift in Sources */,
+				0A7130E12A5DC74A00242454 /* RemoveItemPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

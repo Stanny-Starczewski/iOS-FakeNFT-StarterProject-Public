@@ -27,9 +27,17 @@ extension ScreenFactory: ScreenFactoryProtocol {
     
     func makeCartScreen() -> UIViewController {
         let presenter = CartPresenter(
-            alertFactory: serviceFactory.makeAlertFactory()
+            alertFactory: serviceFactory.makeAlertFactory(),
+            screenFactory: self
         )
         let vc = CartViewController(presenter: presenter)
+        presenter.view = vc
+        return vc
+    }
+    
+    func makeRemoveItemScreen(with item: NFTItem? = nil) -> UIViewController {
+        let presenter = RemoveItemPresenter()
+        let vc = RemoveItemViewController(presenter: presenter)
         presenter.view = vc
         return vc
     }
