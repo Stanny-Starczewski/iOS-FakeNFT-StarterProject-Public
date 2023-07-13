@@ -1,8 +1,9 @@
 import Foundation
 
 protocol CartPresenterProtocol {
-    func didSortButton()
-    func didDeleteItem()
+    func didSortButtonTapped()
+    func didDeleteItemTapped()
+    func didPaymentButtonTapped()
 }
 
 final class CartPresenter {
@@ -21,14 +22,20 @@ final class CartPresenter {
 // MARK: - CartPresenterProtocol
 
 extension CartPresenter: CartPresenterProtocol {
-    func didSortButton() {
+    func didSortButtonTapped() {
         let sortAlert = alertFactory.makeSortingAlert()
         view?.showViewController(sortAlert)
     }
     
-    func didDeleteItem() {
+    func didDeleteItemTapped() {
         let removeItemViewController = screenFactory.makeRemoveItemScreen(with: nil)
         removeItemViewController.modalPresentationStyle = .fullScreen
         view?.showViewController(removeItemViewController)
+    }
+    
+    func didPaymentButtonTapped() {
+        let paymentMethodsViewController = screenFactory.makePaymentMethodsScreen()
+        paymentMethodsViewController.modalPresentationStyle = .fullScreen
+        view?.showViewController(paymentMethodsViewController)
     }
 }

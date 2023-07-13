@@ -68,7 +68,7 @@ final class CartItemCell: UITableViewCell {
     
     private lazy var deleteItemButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage(named: "icon-cart-delete"), for: .normal)
+        button.setBackgroundImage(UIImage(named: "icon-cart-delete")?.withTintColor(.appBlack), for: .normal)
         button.addTarget(self, action: #selector(deleteItemButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

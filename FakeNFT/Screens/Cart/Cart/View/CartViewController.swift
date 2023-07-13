@@ -74,10 +74,11 @@ final class CartViewController: UIViewController {
     private lazy var paymentButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .appBlack
-        button.tintColor = .customWhite
         button.layer.cornerRadius = 16
         button.setTitle(Constants.paymentButtonText, for: .normal)
         button.titleLabel?.font = .bold17
+        button.tintColor = .appWhite
+        button.addTarget(self, action: #selector(paymentButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -138,9 +139,16 @@ final class CartViewController: UIViewController {
         tableView.delegate = self
     }
     
+    // MARK: - Actions
+    
     @objc
     private func sortButtonTapped() {
-        presenter.didSortButton()
+        presenter.didSortButtonTapped()
+    }
+    
+    @objc
+    private func paymentButtonTapped() {
+        presenter.didPaymentButtonTapped()
     }
 }
 
@@ -154,7 +162,7 @@ extension CartViewController: CartViewProtocol {
 
 extension CartViewController: CartItemCellDelegate {
     func didDeleteItemButtonTapped() {
-        presenter.didDeleteItem()
+        presenter.didDeleteItemTapped()
     }
 }
 
