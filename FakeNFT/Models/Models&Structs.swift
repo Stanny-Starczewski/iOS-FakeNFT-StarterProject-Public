@@ -23,7 +23,6 @@ struct Nft: Codable {
     }
 }
 
-
 struct User: Codable {
     let avatar: String
     let name: String

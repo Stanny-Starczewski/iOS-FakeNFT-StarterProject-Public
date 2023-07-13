@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct NFTCollection: Decodable {
     let createdAt: String
     let name: String
@@ -28,7 +27,6 @@ struct NFTCollectionListItem {
     let cover: String
     let nftsCount: Int
 }
-
 
 struct NFTCollectionNFTItem {
     let id: Int
@@ -56,4 +54,3 @@ struct NFTLiked: Codable {
 struct NFTsInCart: Codable {
     let nfts: [Int]
 }
-
