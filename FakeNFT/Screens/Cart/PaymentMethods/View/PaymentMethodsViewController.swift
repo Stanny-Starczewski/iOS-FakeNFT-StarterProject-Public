@@ -1,3 +1,10 @@
+//
+//  PaymentMethodsViewController.swift
+//  FakeNFT
+//
+//  Created by Anton Vikhlyaev on 14.07.2023.
+//
+
 import UIKit
 
 protocol PaymentMethodsViewProtocol: AnyObject {
@@ -9,8 +16,12 @@ final class PaymentMethodsViewController: UIViewController {
     // MARK: - Constants
     
     private struct Constants {
+        static let bottomViewCornerRadius: CGFloat = 12
         static let backButtonImage = UIImage(named: "icon-back")
         static let titleLabelText = "Выберите способ оплаты"
+        static let paymentButtonText = "Оплатить"
+        static let descriptionLabelText = "Совершая покупку, вы соглашаетесь с условиями"
+        static let agreementLinkLabelText = "Пользовательского соглашения"
     }
     
     // MARK: - Properties
@@ -34,6 +45,7 @@ final class PaymentMethodsViewController: UIViewController {
         label.textAlignment = .center
         label.textColor = .appBlack
         label.font = .bold17
+        label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -43,6 +55,7 @@ final class PaymentMethodsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.bounces = false
         collectionView.allowsMultipleSelection = false
+        collectionView.backgroundColor = .appWhite
         collectionView.register(PaymentMethodsCell.self, forCellWithReuseIdentifier: PaymentMethodsCell.reuseIdentifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -50,24 +63,41 @@ final class PaymentMethodsViewController: UIViewController {
     
     private lazy var bottomView: UIView = {
         let view = UIView()
+        view.backgroundColor = .appLightGrey
+        view.layer.cornerRadius = Constants.bottomViewCornerRadius
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
+        label.text = Constants.descriptionLabelText
+        label.font = .regular13
+        label.textColor = .appBlack
+        label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var agreementLinkLabel: UILabel = {
         let label = UILabel()
+        label.text = Constants.agreementLinkLabelText
+        label.font = .regular13
+        label.textColor = .customBlue
+        label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var paymentButton: UIButton = {
         let button = UIButton(type: .system)
+        button.backgroundColor = .appBlack
+        button.layer.cornerRadius = 16
+        button.setTitle(Constants.paymentButtonText, for: .normal)
+        button.titleLabel?.font = .bold17
+        button.tintColor = .appWhite
+        button.addTarget(self, action: #selector(paymentButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -113,6 +143,11 @@ final class PaymentMethodsViewController: UIViewController {
     @objc
     private func backButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc
+    private func paymentButtonTapped() {
+        print(#function)
     }
 }
 
@@ -199,7 +234,25 @@ extension PaymentMethodsViewController {
             collectionView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 29),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            collectionView.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: -16),
+            
+            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomView.heightAnchor.constraint(equalToConstant: 186),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            agreementLinkLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            agreementLinkLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            agreementLinkLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            paymentButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            paymentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            paymentButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            paymentButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }
