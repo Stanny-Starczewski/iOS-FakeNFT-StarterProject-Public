@@ -65,6 +65,13 @@ extension ScreenFactory: ScreenFactoryProtocol {
         return vc
     }
     
+    func makePaymentResultScreen() -> UIViewController {
+        let presenter = PaymentResultPresenter()
+        let vc = PaymentResultViewController(presenter: presenter)
+        presenter.view = vc
+        return vc
+    }
+    
     func makeStatsScreen() -> UIViewController {
         let presenter = StatsPresenter()
         let vc = StatsViewController(presenter: presenter)
