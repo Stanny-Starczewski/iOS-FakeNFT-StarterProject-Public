@@ -21,7 +21,7 @@ final class StatNFTCell: UICollectionViewCell {
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "like"), for: .normal)
+        button.setImage(UIImage(named: "noLikeIcon"), for: .normal)
         
         button.tintColor = .appLightGrey
         button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
@@ -32,8 +32,8 @@ final class StatNFTCell: UICollectionViewCell {
     
     private lazy var bucketButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "bucket"), for: .normal)
-        button.tintColor = UIColor.appWhite
+        button.setImage(UIImage(named: "addToCart"), for: .normal)
+        button.tintColor = UIColor.appBlack
         button.addTarget(self, action: #selector(bucketTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -93,6 +93,9 @@ extension StatNFTCell {
 private extension StatNFTCell {
     @objc func likeTapped() {
         print("likeTapped")
+        nft?.
+        likeButton.setImage(UIImage(named: "likeIcon"), for: .normal)
+       
     }
     
     @objc func bucketTapped() {

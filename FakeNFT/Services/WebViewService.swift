@@ -60,6 +60,7 @@ final class WebViewService: UIViewController {
 
         webView.navigationDelegate = self
         webView.addSubview(progressView)
+        webView.backgroundColor = .appWhite
         view.addSubview(webView)
 
         setupView()
@@ -100,7 +101,6 @@ final class WebViewService: UIViewController {
             webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-
             progressView.leadingAnchor.constraint(equalTo: webView.leadingAnchor),
             progressView.trailingAnchor.constraint(equalTo: webView.trailingAnchor)
         ])
