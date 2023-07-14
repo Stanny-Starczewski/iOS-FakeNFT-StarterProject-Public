@@ -52,7 +52,7 @@ extension ScreenFactory: ScreenFactoryProtocol {
     }
     
     func makePaymentMethodsScreen() -> UIViewController {
-        let presenter = PaymentMethodsPresenter()
+        let presenter = PaymentMethodsPresenter(currencyService: FakeConvertService())
         let vc = PaymentMethodsViewController(presenter: presenter)
         presenter.view = vc
         return vc
