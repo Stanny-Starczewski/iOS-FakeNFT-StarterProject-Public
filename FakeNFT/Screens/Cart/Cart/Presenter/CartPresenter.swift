@@ -1,3 +1,10 @@
+//
+//  CartPresenter.swift
+//  FakeNFT
+//
+//  Created by Anton Vikhlyaev on 14.07.2023.
+//
+
 import Foundation
 
 protocol CartPresenterProtocol {

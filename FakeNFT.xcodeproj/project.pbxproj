@@ -17,6 +17,8 @@
 		0A7130E32A60001D00242454 /* PaymentMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130E22A60001D00242454 /* PaymentMethodsViewController.swift */; };
 		0A7130E52A60007900242454 /* PaymentMethodsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130E42A60007900242454 /* PaymentMethodsPresenter.swift */; };
 		0A7130ED2A60496300242454 /* PaymentMethodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130EC2A60496300242454 /* PaymentMethodsCell.swift */; };
+		0A7130F02A61B28100242454 /* PaymentResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130EF2A61B28100242454 /* PaymentResultViewController.swift */; };
+		0A7130F32A61B29500242454 /* PaymentResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130F22A61B29500242454 /* PaymentResultPresenter.swift */; };
 		0A97E15C2A52D5F3006A576E /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15B2A52D5F3006A576E /* AlertFactory.swift */; };
 		0A97E1602A52D6C8006A576E /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */; };
 		0A97E1652A52DB24006A576E /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E1642A52DB24006A576E /* CartItemCell.swift */; };
@@ -85,6 +87,8 @@
 		0A7130E22A60001D00242454 /* PaymentMethodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewController.swift; sourceTree = "<group>"; };
 		0A7130E42A60007900242454 /* PaymentMethodsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsPresenter.swift; sourceTree = "<group>"; };
 		0A7130EC2A60496300242454 /* PaymentMethodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsCell.swift; sourceTree = "<group>"; };
+		0A7130EF2A61B28100242454 /* PaymentResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResultViewController.swift; sourceTree = "<group>"; };
+		0A7130F22A61B29500242454 /* PaymentResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResultPresenter.swift; sourceTree = "<group>"; };
 		0A97E15B2A52D5F3006A576E /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		0A97E1642A52DB24006A576E /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
@@ -222,6 +226,31 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		0A7130F12A61B28500242454 /* PaymentResult */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130F52A61B29F00242454 /* View */,
+				0A7130F42A61B29A00242454 /* Presenter */,
+			);
+			path = PaymentResult;
+			sourceTree = "<group>";
+		};
+		0A7130F42A61B29A00242454 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130F22A61B29500242454 /* PaymentResultPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0A7130F52A61B29F00242454 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130EF2A61B28100242454 /* PaymentResultViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0A97E15A2A52D5E7006A576E /* AlertFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +317,7 @@
 				0A7130DA2A5D5B4800242454 /* Cart */,
 				0A7130DB2A5D5B8900242454 /* RemoveItem */,
 				0A7130E62A6012BF00242454 /* PaymentMethods */,
+				0A7130F12A61B28500242454 /* PaymentResult */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -686,6 +716,7 @@
 			files = (
 				0A7130D52A5D5A8500242454 /* Models&Structs.swift in Sources */,
 				0AAF030A2A529EFA00924CE0 /* StatsPresenterProtocol.swift in Sources */,
+				0A7130F32A61B29500242454 /* PaymentResultPresenter.swift in Sources */,
 				0A7130D62A5D5A8500242454 /* Protocols.swift in Sources */,
 				0AAF02E62A5296AD00924CE0 /* CatalogViewController.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
@@ -724,6 +755,7 @@
 				0A7130DF2A5DC71F00242454 /* RemoveItemViewController.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
 				0A7130D72A5D5A8500242454 /* NFTModels.swift in Sources */,
+				0A7130F02A61B28100242454 /* PaymentResultViewController.swift in Sources */,
 				0A7130E12A5DC74A00242454 /* RemoveItemPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
