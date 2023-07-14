@@ -1,3 +1,10 @@
+//
+//  CartViewController.swift
+//  FakeNFT
+//
+//  Created by Anton Vikhlyaev on 14.07.2023.
+//
+
 import UIKit
 
 protocol CartViewProtocol: AnyObject {
@@ -12,12 +19,24 @@ final class CartViewController: UIViewController {
         static let bottomViewCornerRadius: CGFloat = 12
         static let iconSort = UIImage(named: "icon-sort")
         static let paymentButtonText = "К оплате"
+        static let emptyCartLabelText = "Корзина пуста"
     }
     
     // MARK: - UI
     
+    private lazy var emptyCartLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constants.emptyCartLabelText
+        label.textAlignment = .center
+        label.textColor = .appBlack
+        label.font = .bold17
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
+        tableView.isHidden = true
         tableView.backgroundColor = .appWhite
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(
@@ -36,6 +55,7 @@ final class CartViewController: UIViewController {
     
     private lazy var bottomView: UIView = {
         let view = UIView()
+        view.isHidden = true
         view.backgroundColor = .appLightGrey
         view.layer.cornerRadius = Constants.bottomViewCornerRadius
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -118,6 +138,7 @@ final class CartViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .appWhite
+        view.addSubview(emptyCartLabel)
         view.addSubview(tableView)
         view.addSubview(bottomView)
         bottomView.addSubview(bottomStackView)
@@ -200,6 +221,10 @@ extension CartViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emptyCartLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            emptyCartLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
