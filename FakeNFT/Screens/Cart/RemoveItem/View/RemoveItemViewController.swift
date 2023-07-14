@@ -103,7 +103,7 @@ final class RemoveItemViewController: UIViewController {
     
     private func applyBlur() {
         view.backgroundColor = .clear
-        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurEffect = UIBlurEffect(style: .prominent)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         view.addSubview(blurEffectView)
