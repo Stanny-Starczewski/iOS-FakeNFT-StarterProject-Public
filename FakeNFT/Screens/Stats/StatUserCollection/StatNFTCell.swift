@@ -23,7 +23,7 @@ final class StatNFTCell: UICollectionViewCell {
         let button = UIButton()
         button.setImage(UIImage(named: "like"), for: .normal)
         
-        button.tintColor = UIColor.appWhite
+        button.tintColor = .appLightGrey
         button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -44,13 +44,13 @@ final class StatNFTCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 12
         view.clipsToBounds = true
-        view.backgroundColor = UIColor.appBlack
+        view.backgroundColor = .appWhite
         return view
     }()
     private var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = UIColor.appBlack
+        label.textColor = .appBlack
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -58,7 +58,7 @@ final class StatNFTCell: UICollectionViewCell {
     private var priceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = UIColor.appBlack
+        label.textColor = .appBlack
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
