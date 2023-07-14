@@ -29,7 +29,7 @@ extension CartPresenter: CartPresenterProtocol {
     
     func didDeleteItemTapped() {
         let removeItemViewController = screenFactory.makeRemoveItemScreen(with: nil)
-        removeItemViewController.modalPresentationStyle = .fullScreen
+        removeItemViewController.modalPresentationStyle = .overFullScreen
         view?.showViewController(removeItemViewController)
     }
     
