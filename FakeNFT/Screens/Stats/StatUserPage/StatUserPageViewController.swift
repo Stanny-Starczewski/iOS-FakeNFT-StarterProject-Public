@@ -24,7 +24,7 @@ final class StatUserPageViewController: UIViewController {
         }
         viewModel.getUser(userId: userId)
         setupAppearance()
-        view.backgroundColor = UIColor.appWhite
+        view.backgroundColor = .appWhite
     }
 
     init(userId: String) {
@@ -37,7 +37,8 @@ final class StatUserPageViewController: UIViewController {
     }
     private lazy var nameView: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.appBlack
+        label.textColor = .appBlack
+        label.font = .bold22
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -53,7 +54,8 @@ final class StatUserPageViewController: UIViewController {
     private lazy var descriptionView: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = UIColor.appBlack
+        label.textColor = .appBlack
+        label.font = .regular13
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -61,8 +63,8 @@ final class StatUserPageViewController: UIViewController {
     private lazy var siteButton: UIButton = {
         let button = UIButton()
         button.setTitle("Перейти на сайт пользователя", for: .normal)
-        button.setTitleColor(UIColor.appBlack, for: .normal)
-
+        button.setTitleColor(.appBlack, for: .normal)
+        button.titleLabel?.font = .regular15
         button.layer.cornerRadius = 17
         button.clipsToBounds = true
         button.tintColor = .clear
@@ -77,6 +79,7 @@ final class StatUserPageViewController: UIViewController {
         let label = UILabel()
         label.text = "Коллекция NFT"
         label.textColor = UIColor.appBlack
+        label.font = .bold17
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
@@ -147,9 +150,11 @@ final class StatUserPageViewController: UIViewController {
              }
          }
         nameView.text = user.name
+        nameView.font = .bold22
         descriptionView.text = user.description
         collectionButtonLabel.text = "Коллекция NFT (\(user.nfts.count))"
         collectionButtonLabel.tintColor = UIColor.appBlack
+        collectionButtonLabel.font = .bold17
     }
 
     @objc
@@ -168,6 +173,7 @@ final class StatUserPageViewController: UIViewController {
         let collectionViewModel = StatUserCollectionPageViewModel(model: collectionModel, ids: viewModel.user?.nfts.compactMap({Int($0)}))
         let viewController = StatUserCollectionPageViewController(viewModel: collectionViewModel)
         viewController.title = "Коллекция NFT"
+        
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationItem.backBarButtonItem = backButton

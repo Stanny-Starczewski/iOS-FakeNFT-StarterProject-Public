@@ -29,7 +29,7 @@ final class StatUserCollectionPageViewController: UIViewController {
         viewModel.getUserNfts { [weak self] active in
             self?.showLoader(isShow: active)
         }
-        view.backgroundColor = UIColor.customBackground
+        view.backgroundColor = .appBlack
         setupCollectionView()
     }
     

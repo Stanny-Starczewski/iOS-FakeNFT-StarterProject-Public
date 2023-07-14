@@ -5,7 +5,7 @@ final class StatsViewController: UINavigationController {
         super.viewDidLoad()
 
         view.backgroundColor = .appWhite
-        navigationBar.tintColor = .appBlack
+        navigationBar.tintColor = .appWhite
 
         let rootController = StatPageViewController()
         pushViewController(rootController, animated: false)

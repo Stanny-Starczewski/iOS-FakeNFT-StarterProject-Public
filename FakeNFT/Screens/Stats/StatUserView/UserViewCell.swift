@@ -40,6 +40,7 @@ final class UserViewCell: UITableViewCell {
     private lazy var nameView: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.appBlack
+        label.font = .bold22
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,6 +48,7 @@ final class UserViewCell: UITableViewCell {
     private lazy var countView: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.appBlack
+        label.font = .bold17
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,7 +62,7 @@ final class UserViewCell: UITableViewCell {
 
     private lazy var backView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.appLightGrey
+        view.backgroundColor = .appWhite
         view.layer.cornerRadius = 12
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false

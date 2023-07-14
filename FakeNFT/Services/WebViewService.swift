@@ -22,7 +22,7 @@ final class WebViewService: UIViewController {
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .bar)
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.progressTintColor = .customBlue
+        progressView.progressTintColor = .appWhite
         progressView.trackTintColor = .appLightGrey
         progressView.setProgress(0.0, animated: false)
         return progressView
