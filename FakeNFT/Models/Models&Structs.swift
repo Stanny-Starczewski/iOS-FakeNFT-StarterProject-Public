@@ -35,7 +35,7 @@ struct User: Codable {
     let name: String
     let description: String
     let website: String
-    let nfts: [Int]
+    let nfts: [String]
     let rating: String
     let id: String
 }
