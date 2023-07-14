@@ -11,11 +11,9 @@ protocol CartItemCellDelegate: AnyObject {
     func didDeleteItemButtonTapped()
 }
 
-final class CartItemCell: UITableViewCell {
+final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Properties
-    
-    static let reuseIdentifier = String(describing: CartItemCell.self)
     
     weak var delegate: CartItemCellDelegate?
     

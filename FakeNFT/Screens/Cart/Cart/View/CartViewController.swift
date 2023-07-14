@@ -45,10 +45,7 @@ final class CartViewController: UIViewController {
             bottom: 20,
             right: 0
         )
-        tableView.register(
-            CartItemCell.self,
-            forCellReuseIdentifier: CartItemCell.reuseIdentifier
-        )
+        tableView.register(CartItemCell.self)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -164,7 +161,10 @@ final class CartViewController: UIViewController {
     
     @objc
     private func sortButtonTapped() {
-        presenter.didSortButtonTapped()
+//        presenter.didSortButtonTapped()
+        let vc = ScreenFactory(serviceFactory: ServiceFactory()).makePaymentResultScreen()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     @objc
@@ -195,12 +195,7 @@ extension CartViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: CartItemCell.reuseIdentifier,
-                for: indexPath
-            ) as? CartItemCell
-        else { return UITableViewCell() }
+        let cell: CartItemCell = tableView.dequeueReusableCell()
         cell.delegate = self
         return cell
     }
