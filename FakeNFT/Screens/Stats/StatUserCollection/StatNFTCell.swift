@@ -93,7 +93,6 @@ extension StatNFTCell {
 private extension StatNFTCell {
     @objc func likeTapped() {
         print("likeTapped")
-        nft?.
         likeButton.setImage(UIImage(named: "likeIcon"), for: .normal)
        
     }
