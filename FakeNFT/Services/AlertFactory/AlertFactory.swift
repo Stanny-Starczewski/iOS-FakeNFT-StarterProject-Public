@@ -12,26 +12,35 @@ protocol AlertFactoryProtocol {
 }
 
 final class AlertFactory: AlertFactoryProtocol {
+    
+    private struct Constants {
+        static let sortingAlertTitle = "Сортировка"
+        static let sortingAlertAtPriceText = "По цене"
+        static let sortingAlertAtRatingText = "По рейтингу"
+        static let sortingAlertAtNameText = "По названию"
+        static let sortingAlertCloseText = "Закрыть"
+    }
+    
     func makeSortingAlert() -> UIAlertController {
         let sortAlert = UIAlertController(
-            title: "Сортировка",
+            title: Constants.sortingAlertTitle,
             message: nil,
             preferredStyle: .actionSheet
         )
         let atPriceAction = UIAlertAction(
-            title: "По цене",
+            title: Constants.sortingAlertAtPriceText,
             style: .default
         )
         let atRatingAction = UIAlertAction(
-            title: "По рейтингу",
+            title: Constants.sortingAlertAtRatingText,
             style: .default
         )
         let atNameAction = UIAlertAction(
-            title: "По названию",
+            title: Constants.sortingAlertAtNameText,
             style: .default
         )
         let closeAction = UIAlertAction(
-            title: "Закрыть",
+            title: Constants.sortingAlertCloseText,
             style: .cancel
         )
         sortAlert.addAction(atPriceAction)
