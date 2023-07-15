@@ -19,6 +19,8 @@
 		0A7130ED2A60496300242454 /* PaymentMethodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130EC2A60496300242454 /* PaymentMethodsCell.swift */; };
 		0A7130F02A61B28100242454 /* PaymentResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130EF2A61B28100242454 /* PaymentResultViewController.swift */; };
 		0A7130F32A61B29500242454 /* PaymentResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130F22A61B29500242454 /* PaymentResultPresenter.swift */; };
+		0A7130F92A62D62900242454 /* AgreementWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130F82A62D62900242454 /* AgreementWebViewController.swift */; };
+		0A7130FE2A62EDB500242454 /* AgreementWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130FD2A62EDB500242454 /* AgreementWebPresenter.swift */; };
 		0A97E15C2A52D5F3006A576E /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15B2A52D5F3006A576E /* AlertFactory.swift */; };
 		0A97E1602A52D6C8006A576E /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */; };
 		0A97E1652A52DB24006A576E /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E1642A52DB24006A576E /* CartItemCell.swift */; };
@@ -89,6 +91,8 @@
 		0A7130EC2A60496300242454 /* PaymentMethodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsCell.swift; sourceTree = "<group>"; };
 		0A7130EF2A61B28100242454 /* PaymentResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResultViewController.swift; sourceTree = "<group>"; };
 		0A7130F22A61B29500242454 /* PaymentResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResultPresenter.swift; sourceTree = "<group>"; };
+		0A7130F82A62D62900242454 /* AgreementWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementWebViewController.swift; sourceTree = "<group>"; };
+		0A7130FD2A62EDB500242454 /* AgreementWebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementWebPresenter.swift; sourceTree = "<group>"; };
 		0A97E15B2A52D5F3006A576E /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		0A97E1642A52DB24006A576E /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
@@ -251,6 +255,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0A7130FA2A62ED9F00242454 /* AgreementWeb */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130FC2A62EDA900242454 /* Presenter */,
+				0A7130FB2A62EDA400242454 /* View */,
+			);
+			path = AgreementWeb;
+			sourceTree = "<group>";
+		};
+		0A7130FB2A62EDA400242454 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130F82A62D62900242454 /* AgreementWebViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A7130FC2A62EDA900242454 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0A7130FD2A62EDB500242454 /* AgreementWebPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		0A97E15A2A52D5E7006A576E /* AlertFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +347,7 @@
 				0A7130DB2A5D5B8900242454 /* RemoveItem */,
 				0A7130E62A6012BF00242454 /* PaymentMethods */,
 				0A7130F12A61B28500242454 /* PaymentResult */,
+				0A7130FA2A62ED9F00242454 /* AgreementWeb */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -721,6 +751,7 @@
 				0AAF02E62A5296AD00924CE0 /* CatalogViewController.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
 				0AAF02F42A5299BB00924CE0 /* ScreenFactory.swift in Sources */,
+				0A7130FE2A62EDB500242454 /* AgreementWebPresenter.swift in Sources */,
 				0AAF02DE2A5291CA00924CE0 /* TabBarController.swift in Sources */,
 				0AAF03042A529E7100924CE0 /* CartPresenter.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
@@ -728,6 +759,7 @@
 				0AAF02F02A5297F100924CE0 /* ProfilePresenterProtocol.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
 				0AAF02E42A52967C00924CE0 /* ProfileViewController.swift in Sources */,
+				0A7130F92A62D62900242454 /* AgreementWebViewController.swift in Sources */,
 				0AAF03082A529EF300924CE0 /* StatsPresenter.swift in Sources */,
 				0AAF030C2A529F0900924CE0 /* StatsViewProtocol.swift in Sources */,
 				0A97E1652A52DB24006A576E /* CartItemCell.swift in Sources */,
