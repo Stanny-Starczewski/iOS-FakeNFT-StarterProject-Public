@@ -93,6 +93,7 @@
 		0A7130F22A61B29500242454 /* PaymentResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResultPresenter.swift; sourceTree = "<group>"; };
 		0A7130F82A62D62900242454 /* AgreementWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementWebViewController.swift; sourceTree = "<group>"; };
 		0A7130FD2A62EDB500242454 /* AgreementWebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementWebPresenter.swift; sourceTree = "<group>"; };
+		0A7130FF2A63102300242454 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A97E15B2A52D5F3006A576E /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		0A97E1642A52DB24006A576E /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
@@ -348,6 +349,7 @@
 				0A7130E62A6012BF00242454 /* PaymentMethods */,
 				0A7130F12A61B28500242454 /* PaymentResult */,
 				0A7130FA2A62ED9F00242454 /* AgreementWeb */,
+				0A7130FF2A63102300242454 /* README.md */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
