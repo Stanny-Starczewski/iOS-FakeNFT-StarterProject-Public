@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PaymentMethodsViewProtocol: AnyObject {
-    
+    func showViewController(_ vc: UIViewController)
 }
 
 final class PaymentMethodsViewController: UIViewController {
@@ -86,6 +86,8 @@ final class PaymentMethodsViewController: UIViewController {
         label.font = .regular13
         label.textColor = .customBlue
         label.numberOfLines = 1
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(gestureRecognizer)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -101,6 +103,8 @@ final class PaymentMethodsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(agreementLinkLabelTapped))
     
     // MARK: - Life Cycle
     
@@ -149,18 +153,24 @@ final class PaymentMethodsViewController: UIViewController {
     private func paymentButtonTapped() {
         print(#function)
     }
+    
+    @objc
+    private func agreementLinkLabelTapped() {
+        presenter.didAgreementLinkLabelTapped()
+    }
 }
 
 // MARK: - PaymentMethodsViewProtocol
 
 extension PaymentMethodsViewController: PaymentMethodsViewProtocol {
-    
+    func showViewController(_ vc: UIViewController) {
+        present(vc, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension PaymentMethodsViewController: UICollectionViewDataSource {
-    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -181,7 +191,6 @@ extension PaymentMethodsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension PaymentMethodsViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -194,7 +203,6 @@ extension PaymentMethodsViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 
 extension PaymentMethodsViewController: UICollectionViewDelegate {
- 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard
             let cell = collectionView.cellForItem(at: indexPath) as? PaymentMethodsCell
@@ -208,13 +216,11 @@ extension PaymentMethodsViewController: UICollectionViewDelegate {
         else { return }
         cell.setSelected(false)
     }
-    
 }
 
 // MARK: - Setting Constraints
 
 extension PaymentMethodsViewController {
-    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 9),

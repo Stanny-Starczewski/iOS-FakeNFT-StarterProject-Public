@@ -10,6 +10,7 @@ import Foundation
 protocol PaymentMethodsPresenterProtocol {
     var numberOfItemsInSection: Int { get }
     func getCurrency(at indexPath: IndexPath) -> Cryptocurrency
+    func didAgreementLinkLabelTapped()
 }
 
 final class PaymentMethodsPresenter {
@@ -20,22 +21,23 @@ final class PaymentMethodsPresenter {
     
     private let currencyService: CryptoConverterProtocol
     
+    private let screenFactory: ScreenFactoryProtocol
+    
     // MARK: - Data Store
     
     private lazy var currencies: [Cryptocurrency] = currencyService.getCryptocurrencies()
     
     // MARK: - Life Cycle
     
-    init(currencyService: CryptoConverterProtocol) {
+    init(currencyService: CryptoConverterProtocol, screenFactory: ScreenFactoryProtocol) {
         self.currencyService = currencyService
+        self.screenFactory = screenFactory
     }
-    
 }
 
 // MARK: - PaymentMethodsPresenterProtocol
 
 extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
-    
     var numberOfItemsInSection: Int {
         currencies.count
     }
@@ -44,4 +46,9 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
         currencies[indexPath.item]
     }
     
+    func didAgreementLinkLabelTapped() {
+        let agreementWebViewController = screenFactory.makeAgreementWebScreen()
+        agreementWebViewController.modalPresentationStyle = .fullScreen
+        view?.showViewController(agreementWebViewController)
+    }
 }
