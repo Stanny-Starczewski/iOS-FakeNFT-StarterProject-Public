@@ -13,6 +13,7 @@ protocol ScreenFactoryProtocol {
     func makeCartScreen() -> UIViewController
     func makeRemoveItemScreen(with item: NFTItem?) -> UIViewController
     func makePaymentMethodsScreen() -> UIViewController
+    func makeAgreementWebScreen() -> UIViewController
     func makeStatsScreen() -> UIViewController
 }
 
@@ -59,7 +60,10 @@ extension ScreenFactory: ScreenFactoryProtocol {
     }
     
     func makePaymentMethodsScreen() -> UIViewController {
-        let presenter = PaymentMethodsPresenter(currencyService: FakeConvertService())
+        let presenter = PaymentMethodsPresenter(
+            currencyService: FakeConvertService(),
+            screenFactory: self
+        )
         let vc = PaymentMethodsViewController(presenter: presenter)
         presenter.view = vc
         return vc
@@ -68,6 +72,13 @@ extension ScreenFactory: ScreenFactoryProtocol {
     func makePaymentResultScreen() -> UIViewController {
         let presenter = PaymentResultPresenter()
         let vc = PaymentResultViewController(presenter: presenter)
+        presenter.view = vc
+        return vc
+    }
+    
+    func makeAgreementWebScreen() -> UIViewController {
+        let presenter = AgreementWebPresenter()
+        let vc = AgreementWebViewController(presenter: presenter)
         presenter.view = vc
         return vc
     }
