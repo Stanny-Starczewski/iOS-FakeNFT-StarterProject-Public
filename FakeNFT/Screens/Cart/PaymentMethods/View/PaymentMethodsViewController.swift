@@ -56,7 +56,7 @@ final class PaymentMethodsViewController: UIViewController {
         collectionView.bounces = false
         collectionView.allowsMultipleSelection = false
         collectionView.backgroundColor = .appWhite
-        collectionView.register(PaymentMethodsCell.self, forCellWithReuseIdentifier: PaymentMethodsCell.reuseIdentifier)
+        collectionView.register(PaymentMethodsCell.self)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -172,12 +172,7 @@ extension PaymentMethodsViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: PaymentMethodsCell.reuseIdentifier,
-                for: indexPath
-            ) as? PaymentMethodsCell
-        else { return UICollectionViewCell() }
+        let cell: PaymentMethodsCell = collectionView.dequeueReusableCell(indexPath: indexPath)
         cell.configure(with: presenter.getCurrency(at: indexPath))
         return cell
     }

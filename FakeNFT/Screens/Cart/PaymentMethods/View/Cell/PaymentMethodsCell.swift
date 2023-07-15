@@ -7,11 +7,7 @@
 
 import UIKit
 
-final class PaymentMethodsCell: UICollectionViewCell {
-    
-    // MARK: - Properties
-    
-    static let reuseIdentifier = String(describing: PaymentMethodsCell.self)
+final class PaymentMethodsCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - UI
     
