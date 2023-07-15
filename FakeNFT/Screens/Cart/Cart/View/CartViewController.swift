@@ -36,7 +36,6 @@ final class CartViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
-        tableView.isHidden = true
         tableView.backgroundColor = .appWhite
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(
@@ -52,7 +51,6 @@ final class CartViewController: UIViewController {
     
     private lazy var bottomView: UIView = {
         let view = UIView()
-        view.isHidden = true
         view.backgroundColor = .appLightGrey
         view.layer.cornerRadius = Constants.bottomViewCornerRadius
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -127,7 +125,6 @@ final class CartViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setConstraints()
-        setupNavigationController()
         setDelegates()
     }
     
@@ -135,10 +132,15 @@ final class CartViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .appWhite
-        view.addSubview(emptyCartLabel)
-        view.addSubview(tableView)
-        view.addSubview(bottomView)
-        bottomView.addSubview(bottomStackView)
+        
+        if presenter.isEmptyCart {
+            view.addSubview(emptyCartLabel)
+        } else {
+            setupNavigationController()
+            view.addSubview(tableView)
+            view.addSubview(bottomView)
+            bottomView.addSubview(bottomStackView)
+        }
     }
     
     private func setupNavigationController() {
@@ -161,10 +163,7 @@ final class CartViewController: UIViewController {
     
     @objc
     private func sortButtonTapped() {
-//        presenter.didSortButtonTapped()
-        let vc = ScreenFactory(serviceFactory: ServiceFactory()).makePaymentResultScreen()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        presenter.didSortButtonTapped()
     }
     
     @objc
@@ -181,6 +180,8 @@ extension CartViewController: CartViewProtocol {
     }
 }
 
+// MARK: - CartItemCellDelegate
+
 extension CartViewController: CartItemCellDelegate {
     func didDeleteItemButtonTapped() {
         presenter.didDeleteItemTapped()
@@ -191,11 +192,11 @@ extension CartViewController: CartItemCellDelegate {
 
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        presenter.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CartItemCell = tableView.dequeueReusableCell()
+        let cell = presenter.cellForRow(at: indexPath)
         cell.delegate = self
         return cell
     }
@@ -211,24 +212,28 @@ extension CartViewController: UITableViewDelegate {
 
 extension CartViewController {
     private func setConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            emptyCartLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            emptyCartLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            
-            bottomStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 16),
-            bottomStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 16),
-            bottomStackView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -16),
-            bottomStackView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -16)
-        ])
+        if presenter.isEmptyCart {
+            NSLayoutConstraint.activate([
+                emptyCartLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                emptyCartLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                
+                bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+                
+                bottomStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 16),
+                bottomStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 16),
+                bottomStackView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -16),
+                bottomStackView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -16)
+            ])
+        }
     }
 }

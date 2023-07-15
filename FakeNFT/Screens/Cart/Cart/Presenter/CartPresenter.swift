@@ -8,17 +8,31 @@
 import Foundation
 
 protocol CartPresenterProtocol {
+    var isEmptyCart: Bool { get }
+    func numberOfRowsInSection(_ section: Int) -> Int
+    func cellForRow(at indexPath: IndexPath) -> CartItemCell
     func didSortButtonTapped()
     func didDeleteItemTapped()
     func didPaymentButtonTapped()
 }
 
 final class CartPresenter {
+    
+    // MARK: - Properties
+    
     weak var view: CartViewProtocol?
+    
+    // MARK: - Services
     
     private let alertFactory: AlertFactoryProtocol
     
     private let screenFactory: ScreenFactoryProtocol
+    
+    // MARK: - Data Store
+    
+    private lazy var cart: [NFTItem] = []
+    
+    // MARK: - Life Cycle
     
     init(alertFactory: AlertFactoryProtocol, screenFactory: ScreenFactoryProtocol) {
         self.alertFactory = alertFactory
@@ -29,6 +43,23 @@ final class CartPresenter {
 // MARK: - CartPresenterProtocol
 
 extension CartPresenter: CartPresenterProtocol {
+    
+    var isEmptyCart: Bool {
+//        cart.isEmpty
+        false
+    }
+    
+    func numberOfRowsInSection(_ section: Int) -> Int {
+//        cart.count
+        3
+    }
+    
+    func cellForRow(at indexPath: IndexPath) -> CartItemCell {
+        let cell = CartItemCell()
+//        cell.configure(with: cart[indexPath.row])
+        return cell
+    }
+    
     func didSortButtonTapped() {
         let sortAlert = alertFactory.makeSortingAlert()
         view?.showViewController(sortAlert)

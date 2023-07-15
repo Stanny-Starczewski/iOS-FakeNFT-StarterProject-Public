@@ -105,6 +105,12 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
         wrapperView.addSubview(deleteItemButton)
     }
     
+    // MARK: - Configure
+    
+    func configure(with item: NFTItem) {
+        
+    }
+    
     // MARK: - Actions
     
     @objc
