@@ -1,5 +1,5 @@
 //
-//  ScreenFactory.swift
+//  ScreenAssembly.swift
 //  FakeNFT
 //
 //  Created by Anton Vikhlyaev on 14.07.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ScreenFactoryProtocol {
+protocol ScreenAssemblyProtocol {
     func makeProfileScreen() -> UIViewController
     func makeCatalogScreen() -> UIViewController
     func makeCartScreen() -> UIViewController
@@ -17,17 +17,17 @@ protocol ScreenFactoryProtocol {
     func makeStatsScreen() -> UIViewController
 }
 
-final class ScreenFactory {
-    private let serviceFactory: ServiceFactoryProtocol
+final class ScreenAssembly {
+    private let serviceAssembly: ServiceAssemblyProtocol
     
-    init(serviceFactory: ServiceFactoryProtocol) {
-        self.serviceFactory = serviceFactory
+    init(serviceAssembly: ServiceAssemblyProtocol) {
+        self.serviceAssembly = serviceAssembly
     }
 }
 
-// MARK: - ScreenFactoryProtocol
+// MARK: - ScreenAssemblyProtocol
 
-extension ScreenFactory: ScreenFactoryProtocol {
+extension ScreenAssembly: ScreenAssemblyProtocol {
     func makeProfileScreen() -> UIViewController {
         let presenter = ProfilePresenter()
         let vc = ProfileViewController(presenter: presenter)
@@ -44,8 +44,8 @@ extension ScreenFactory: ScreenFactoryProtocol {
     
     func makeCartScreen() -> UIViewController {
         let presenter = CartPresenter(
-            alertFactory: serviceFactory.makeAlertFactory(),
-            screenFactory: self
+            alertAssembly: serviceAssembly.makeAlertAssembly(),
+            screenAssembly: self
         )
         let vc = CartViewController(presenter: presenter)
         presenter.view = vc
@@ -62,7 +62,7 @@ extension ScreenFactory: ScreenFactoryProtocol {
     func makePaymentMethodsScreen() -> UIViewController {
         let presenter = PaymentMethodsPresenter(
             currencyService: FakeConvertService(),
-            screenFactory: self
+            screenAssembly: self
         )
         let vc = PaymentMethodsViewController(presenter: presenter)
         presenter.view = vc

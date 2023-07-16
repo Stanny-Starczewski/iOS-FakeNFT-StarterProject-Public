@@ -21,9 +21,10 @@
 		0A7130F32A61B29500242454 /* PaymentResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130F22A61B29500242454 /* PaymentResultPresenter.swift */; };
 		0A7130F92A62D62900242454 /* AgreementWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130F82A62D62900242454 /* AgreementWebViewController.swift */; };
 		0A7130FE2A62EDB500242454 /* AgreementWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7130FD2A62EDB500242454 /* AgreementWebPresenter.swift */; };
-		0A97E15C2A52D5F3006A576E /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15B2A52D5F3006A576E /* AlertFactory.swift */; };
-		0A97E1602A52D6C8006A576E /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */; };
 		0A97E1652A52DB24006A576E /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97E1642A52DB24006A576E /* CartItemCell.swift */; };
+		0AAC05322A6455600045E919 /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAC052E2A6455600045E919 /* ServiceAssembly.swift */; };
+		0AAC05332A6455600045E919 /* ScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAC05302A6455600045E919 /* ScreenAssembly.swift */; };
+		0AAC05352A6456050045E919 /* AlertAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAC05342A6456050045E919 /* AlertAssembly.swift */; };
 		0AAF02DE2A5291CA00924CE0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02DD2A5291CA00924CE0 /* TabBarController.swift */; };
 		0AAF02E42A52967C00924CE0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02E32A52967C00924CE0 /* ProfileViewController.swift */; };
 		0AAF02E62A5296AD00924CE0 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02E52A5296AD00924CE0 /* CatalogViewController.swift */; };
@@ -32,7 +33,6 @@
 		0AAF02EC2A5297AD00924CE0 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02EB2A5297AD00924CE0 /* ProfilePresenter.swift */; };
 		0AAF02EE2A5297E300924CE0 /* ProfileViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02ED2A5297E300924CE0 /* ProfileViewProtocol.swift */; };
 		0AAF02F02A5297F100924CE0 /* ProfilePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02EF2A5297F100924CE0 /* ProfilePresenterProtocol.swift */; };
-		0AAF02F42A5299BB00924CE0 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F32A5299BB00924CE0 /* ScreenFactory.swift */; };
 		0AAF02F62A529AF100924CE0 /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F52A529AF100924CE0 /* CatalogPresenter.swift */; };
 		0AAF02F82A529BC300924CE0 /* CatalogViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F72A529BC300924CE0 /* CatalogViewProtocol.swift */; };
 		0AAF02FA2A529BCD00924CE0 /* CatalogPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F92A529BCD00924CE0 /* CatalogPresenterProtocol.swift */; };
@@ -94,9 +94,10 @@
 		0A7130F82A62D62900242454 /* AgreementWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementWebViewController.swift; sourceTree = "<group>"; };
 		0A7130FD2A62EDB500242454 /* AgreementWebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementWebPresenter.swift; sourceTree = "<group>"; };
 		0A7130FF2A63102300242454 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0A97E15B2A52D5F3006A576E /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
-		0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		0A97E1642A52DB24006A576E /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
+		0AAC052E2A6455600045E919 /* ServiceAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
+		0AAC05302A6455600045E919 /* ScreenAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenAssembly.swift; sourceTree = "<group>"; };
+		0AAC05342A6456050045E919 /* AlertAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAssembly.swift; sourceTree = "<group>"; };
 		0AAF02DD2A5291CA00924CE0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0AAF02E32A52967C00924CE0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0AAF02E52A5296AD00924CE0 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		0AAF02EB2A5297AD00924CE0 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		0AAF02ED2A5297E300924CE0 /* ProfileViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewProtocol.swift; sourceTree = "<group>"; };
 		0AAF02EF2A5297F100924CE0 /* ProfilePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterProtocol.swift; sourceTree = "<group>"; };
-		0AAF02F32A5299BB00924CE0 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		0AAF02F52A529AF100924CE0 /* CatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenter.swift; sourceTree = "<group>"; };
 		0AAF02F72A529BC300924CE0 /* CatalogViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewProtocol.swift; sourceTree = "<group>"; };
 		0AAF02F92A529BCD00924CE0 /* CatalogPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -281,28 +281,22 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		0A97E15A2A52D5E7006A576E /* AlertFactory */ = {
-			isa = PBXGroup;
-			children = (
-				0A97E15B2A52D5F3006A576E /* AlertFactory.swift */,
-			);
-			path = AlertFactory;
-			sourceTree = "<group>";
-		};
-		0A97E1632A52D721006A576E /* ServiceFactory */ = {
-			isa = PBXGroup;
-			children = (
-				0A97E15F2A52D6C8006A576E /* ServiceFactory.swift */,
-			);
-			path = ServiceFactory;
-			sourceTree = "<group>";
-		};
 		0A97E1662A52DB2B006A576E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				0A97E1642A52DB24006A576E /* CartItemCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		0AAC052A2A6455600045E919 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				0AAC052E2A6455600045E919 /* ServiceAssembly.swift */,
+				0AAC05342A6456050045E919 /* AlertAssembly.swift */,
+				0AAC05302A6455600045E919 /* ScreenAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		0AAF02DB2A52911100924CE0 /* Supporting Files */ = {
@@ -434,14 +428,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		0AAF030F2A529FEC00924CE0 /* ScreenFactory */ = {
-			isa = PBXGroup;
-			children = (
-				0AAF02F32A5299BB00924CE0 /* ScreenFactory.swift */,
-			);
-			path = ScreenFactory;
-			sourceTree = "<group>";
-		};
 		3F478ECD29DB473000F6D39E /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				0AAF02DC2A52912300924CE0 /* App */,
+				0AAC052A2A6455600045E919 /* Assembly */,
 				3F478ECD29DB473000F6D39E /* DesignSystem */,
 				3F6806CE29CBBD1B00B4F915 /* Foundation */,
 				3F6806C929CBBCAF00B4F915 /* Models */,
@@ -505,9 +492,6 @@
 		3F6806C629CBBC4E00B4F915 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0A97E1632A52D721006A576E /* ServiceFactory */,
-				0A97E15A2A52D5E7006A576E /* AlertFactory */,
-				0AAF030F2A529FEC00924CE0 /* ScreenFactory */,
 				3FC8C38F29D245250081F015 /* Requests */,
 			);
 			path = Services;
@@ -750,9 +734,9 @@
 				0AAF030A2A529EFA00924CE0 /* StatsPresenterProtocol.swift in Sources */,
 				0A7130F32A61B29500242454 /* PaymentResultPresenter.swift in Sources */,
 				0A7130D62A5D5A8500242454 /* Protocols.swift in Sources */,
+				0AAC05322A6455600045E919 /* ServiceAssembly.swift in Sources */,
 				0AAF02E62A5296AD00924CE0 /* CatalogViewController.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
-				0AAF02F42A5299BB00924CE0 /* ScreenFactory.swift in Sources */,
 				0A7130FE2A62EDB500242454 /* AgreementWebPresenter.swift in Sources */,
 				0AAF02DE2A5291CA00924CE0 /* TabBarController.swift in Sources */,
 				0AAF03042A529E7100924CE0 /* CartPresenter.swift in Sources */,
@@ -766,7 +750,6 @@
 				0AAF030C2A529F0900924CE0 /* StatsViewProtocol.swift in Sources */,
 				0A97E1652A52DB24006A576E /* CartItemCell.swift in Sources */,
 				0A7130E52A60007900242454 /* PaymentMethodsPresenter.swift in Sources */,
-				0A97E1602A52D6C8006A576E /* ServiceFactory.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				0AAF02EE2A5297E300924CE0 /* ProfileViewProtocol.swift in Sources */,
@@ -775,6 +758,7 @@
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				0AAF02F82A529BC300924CE0 /* CatalogViewProtocol.swift in Sources */,
 				0AAF02EA2A5296DB00924CE0 /* StatsViewController.swift in Sources */,
+				0AAC05352A6456050045E919 /* AlertAssembly.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				0A7130E32A60001D00242454 /* PaymentMethodsViewController.swift in Sources */,
 				0AAF02E82A5296C200924CE0 /* CartViewController.swift in Sources */,
@@ -784,13 +768,13 @@
 				0A7130ED2A60496300242454 /* PaymentMethodsCell.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				0AAF02F62A529AF100924CE0 /* CatalogPresenter.swift in Sources */,
-				0A97E15C2A52D5F3006A576E /* AlertFactory.swift in Sources */,
 				0AAF02FA2A529BCD00924CE0 /* CatalogPresenterProtocol.swift in Sources */,
 				0A7130DF2A5DC71F00242454 /* RemoveItemViewController.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
 				0A7130D72A5D5A8500242454 /* NFTModels.swift in Sources */,
 				0A7130F02A61B28100242454 /* PaymentResultViewController.swift in Sources */,
 				0A7130E12A5DC74A00242454 /* RemoveItemPresenter.swift in Sources */,
+				0AAC05332A6455600045E919 /* ScreenAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,9 +24,9 @@ final class CartPresenter {
     
     // MARK: - Services
     
-    private let alertFactory: AlertFactoryProtocol
+    private let alertAssembly: AlertAssemblyProtocol
     
-    private let screenFactory: ScreenFactoryProtocol
+    private let screenAssembly: ScreenAssemblyProtocol
     
     // MARK: - Data Store
     
@@ -34,9 +34,9 @@ final class CartPresenter {
     
     // MARK: - Life Cycle
     
-    init(alertFactory: AlertFactoryProtocol, screenFactory: ScreenFactoryProtocol) {
-        self.alertFactory = alertFactory
-        self.screenFactory = screenFactory
+    init(alertAssembly: AlertAssemblyProtocol, screenAssembly: ScreenAssemblyProtocol) {
+        self.alertAssembly = alertAssembly
+        self.screenAssembly = screenAssembly
     }
 }
 
@@ -61,18 +61,18 @@ extension CartPresenter: CartPresenterProtocol {
     }
     
     func didSortButtonTapped() {
-        let sortAlert = alertFactory.makeSortingAlert()
+        let sortAlert = alertAssembly.makeSortingAlert()
         view?.showViewController(sortAlert)
     }
     
     func didDeleteItemTapped() {
-        let removeItemViewController = screenFactory.makeRemoveItemScreen(with: nil)
+        let removeItemViewController = screenAssembly.makeRemoveItemScreen(with: nil)
         removeItemViewController.modalPresentationStyle = .overFullScreen
         view?.showViewController(removeItemViewController)
     }
     
     func didPaymentButtonTapped() {
-        let paymentMethodsViewController = screenFactory.makePaymentMethodsScreen()
+        let paymentMethodsViewController = screenAssembly.makePaymentMethodsScreen()
         paymentMethodsViewController.modalPresentationStyle = .fullScreen
         view?.showViewController(paymentMethodsViewController)
     }

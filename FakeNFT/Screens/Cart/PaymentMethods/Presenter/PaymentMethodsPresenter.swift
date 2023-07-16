@@ -21,7 +21,7 @@ final class PaymentMethodsPresenter {
     
     private let currencyService: CryptoConverterProtocol
     
-    private let screenFactory: ScreenFactoryProtocol
+    private let screenAssembly: ScreenAssemblyProtocol
     
     // MARK: - Data Store
     
@@ -29,9 +29,9 @@ final class PaymentMethodsPresenter {
     
     // MARK: - Life Cycle
     
-    init(currencyService: CryptoConverterProtocol, screenFactory: ScreenFactoryProtocol) {
+    init(currencyService: CryptoConverterProtocol, screenAssembly: ScreenAssemblyProtocol) {
         self.currencyService = currencyService
-        self.screenFactory = screenFactory
+        self.screenAssembly = screenAssembly
     }
 }
 
@@ -47,7 +47,7 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
     }
     
     func didAgreementLinkLabelTapped() {
-        let agreementWebViewController = screenFactory.makeAgreementWebScreen()
+        let agreementWebViewController = screenAssembly.makeAgreementWebScreen()
         agreementWebViewController.modalPresentationStyle = .fullScreen
         view?.showViewController(agreementWebViewController)
     }

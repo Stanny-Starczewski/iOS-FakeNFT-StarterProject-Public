@@ -1,5 +1,5 @@
 //
-//  AlertFactory.swift
+//  AlertAssembly.swift
 //  FakeNFT
 //
 //  Created by Anton Vikhlyaev on 14.07.2023.
@@ -7,11 +7,13 @@
 
 import UIKit
 
-protocol AlertFactoryProtocol {
+protocol AlertAssemblyProtocol {
     func makeSortingAlert() -> UIAlertController
 }
 
-final class AlertFactory: AlertFactoryProtocol {
+final class AlertAssembly: AlertAssemblyProtocol {
+    
+    // MARK: - Constants
     
     private struct Constants {
         static let sortingAlertTitle = "Сортировка"
@@ -20,6 +22,8 @@ final class AlertFactory: AlertFactoryProtocol {
         static let sortingAlertAtNameText = "По названию"
         static let sortingAlertCloseText = "Закрыть"
     }
+    
+    // MARK: - Methods
     
     func makeSortingAlert() -> UIAlertController {
         let sortAlert = UIAlertController(
