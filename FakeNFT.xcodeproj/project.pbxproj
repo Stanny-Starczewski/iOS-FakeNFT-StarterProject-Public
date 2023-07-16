@@ -289,6 +289,31 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		0AA3BB2C2A645CDC00A3FA10 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3F6806CF29CBBDB100B4F915 /* Network */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0AA3BB2D2A645CEC00A3FA10 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F478ECD29DB473000F6D39E /* DesignSystem */,
+				3F6806CE29CBBD1B00B4F915 /* Foundation */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0AA3BB2E2A645D1300A3FA10 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F68069F29CBBAF200B4F915 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0AAC052A2A6455600045E919 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,7 +327,6 @@
 		0AAF02DB2A52911100924CE0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3F68069F29CBBAF200B4F915 /* Assets.xcassets */,
 				3F6806A129CBBAF200B4F915 /* LaunchScreen.storyboard */,
 				3F6806A429CBBAF200B4F915 /* Info.plist */,
 			);
@@ -463,11 +487,12 @@
 			children = (
 				0AAF02DC2A52912300924CE0 /* App */,
 				0AAC052A2A6455600045E919 /* Assembly */,
-				3F478ECD29DB473000F6D39E /* DesignSystem */,
-				3F6806CE29CBBD1B00B4F915 /* Foundation */,
+				0AA3BB2C2A645CDC00A3FA10 /* Core */,
 				3F6806C929CBBCAF00B4F915 /* Models */,
-				3F6806C729CBBC5B00B4F915 /* Screens */,
+				3F6806C729CBBC5B00B4F915 /* Presentation */,
 				3F6806C629CBBC4E00B4F915 /* Services */,
+				0AA3BB2E2A645D1300A3FA10 /* Resources */,
+				0AA3BB2D2A645CEC00A3FA10 /* Extensions */,
 				0AAF02DB2A52911100924CE0 /* Supporting Files */,
 			);
 			path = FakeNFT;
@@ -497,7 +522,7 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		3F6806C729CBBC5B00B4F915 /* Screens */ = {
+		3F6806C729CBBC5B00B4F915 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				0AAF02E22A52964D00924CE0 /* Stats */,
@@ -507,7 +532,7 @@
 				3F6806C829CBBC8100B4F915 /* ProductDetails */,
 				0AAF02DD2A5291CA00924CE0 /* TabBarController.swift */,
 			);
-			path = Screens;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		3F6806C829CBBC8100B4F915 /* ProductDetails */ = {
@@ -535,21 +560,20 @@
 		3F6806CE29CBBD1B00B4F915 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				3F6806CF29CBBDB100B4F915 /* NetworkClient */,
 				3F6806D629CBC50A00B4F915 /* CellsReusingUtils.swift */,
 				3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		3F6806CF29CBBDB100B4F915 /* NetworkClient */ = {
+		3F6806CF29CBBDB100B4F915 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				3F6806D029CBBE6B00B4F915 /* NetworkClient.swift */,
 				3F6806D229CBBE9600B4F915 /* NetworkRequest.swift */,
 				3F6806D429CBBEC700B4F915 /* NetworkTask.swift */,
 			);
-			path = NetworkClient;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		3F6806D829CC979D00B4F915 /* Network */ = {
