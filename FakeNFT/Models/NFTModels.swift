@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NFTCollection: Decodable {
+struct NftCollection: Decodable {
     let createdAt: String
     let name: String
     let cover: String
@@ -16,19 +16,19 @@ struct NFTCollection: Decodable {
     let author: Int
     let id: String
 }
-struct NFTCollectionAuthor: Codable {
+struct NftCollectionAuthor: Codable {
     let name: String
     let website: String
 }
 
-struct NFTCollectionListItem {
+struct NftCollectionListItem {
     let id: Int
     let name: String
     let cover: String
     let nftsCount: Int
 }
 
-struct NFTCollectionNFTItem {
+struct NftCollectionNFTItem {
     let id: Int
     let image: String
     let rating: Int
@@ -38,7 +38,7 @@ struct NFTCollectionNFTItem {
     let inCart: Bool
 }
 
-struct NFTItem: Codable {
+struct NftItem: Codable {
     let createdAt: String
     let name: String
     let images: [String]
@@ -47,10 +47,10 @@ struct NFTItem: Codable {
     let price: Double
     let id: String
 }
-struct NFTLiked: Codable {
+struct NftLiked: Codable {
     let likes: [Int]
 }
 
-struct NFTsInCart: Codable {
-    let nfts: [Int]
+struct NftsInCart: Codable {
+    let nfts: [String]
 }

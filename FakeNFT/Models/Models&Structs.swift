@@ -51,7 +51,7 @@ struct Currency: Codable {
 }
 
 struct Order: Codable {
-    let nfts: [Int]
+    let nfts: [String]
     let id: String
 }
 
