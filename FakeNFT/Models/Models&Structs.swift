@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Kingfisher
 
 struct Nft: Codable {
     let createdAt: String

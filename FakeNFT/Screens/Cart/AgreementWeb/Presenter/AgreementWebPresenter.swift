@@ -14,12 +14,6 @@ protocol AgreementWebPresenterProtocol {
 
 final class AgreementWebPresenter {
     
-    private struct Constants {
-        static var url: URL? {
-            URL(string: "https://yandex.ru/legal/practicum_termsofuse/")
-        }
-    }
-    
     // MARK: - Properties
     
     weak var view: AgreementWebViewProtocol?
@@ -36,7 +30,7 @@ final class AgreementWebPresenter {
 extension AgreementWebPresenter: AgreementWebPresenterProtocol {
     
     func viewIsReady() {
-        guard let url = Constants.url else { return }
+        guard let url = URL(string: Config.userAgreementUrl) else { return }
         let request = URLRequest(url: url)
         view?.load(on: request)
         didUpdateProgressValue(0)
