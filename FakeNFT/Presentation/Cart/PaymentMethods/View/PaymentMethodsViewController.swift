@@ -156,7 +156,7 @@ final class PaymentMethodsViewController: UIViewController {
     
     @objc
     private func agreementLinkLabelTapped() {
-        presenter.didAgreementLinkLabelTapped()
+        presenter.didTapAgreementLinkLabel()
     }
 }
 

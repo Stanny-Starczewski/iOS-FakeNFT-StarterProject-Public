@@ -107,7 +107,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Configure
     
-    func configure(with item: NFTItem) {
+    func configure(with item: NftItem) {
         
     }
     

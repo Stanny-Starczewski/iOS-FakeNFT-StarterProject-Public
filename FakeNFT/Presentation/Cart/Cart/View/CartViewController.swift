@@ -126,6 +126,7 @@ final class CartViewController: UIViewController {
         setupView()
         setConstraints()
         setDelegates()
+        let cartNetwork = NetworkService(client: DefaultNetworkClient())
     }
     
     // MARK: - Setup UI
@@ -163,12 +164,12 @@ final class CartViewController: UIViewController {
     
     @objc
     private func sortButtonTapped() {
-        presenter.didSortButtonTapped()
+        presenter.didTapSortButton()
     }
     
     @objc
     private func paymentButtonTapped() {
-        presenter.didPaymentButtonTapped()
+        presenter.didTapPaymentButton()
     }
 }
 
@@ -184,7 +185,7 @@ extension CartViewController: CartViewProtocol {
 
 extension CartViewController: CartItemCellDelegate {
     func didDeleteItemButtonTapped() {
-        presenter.didDeleteItemTapped()
+        presenter.didTapDeleteItem()
     }
 }
 

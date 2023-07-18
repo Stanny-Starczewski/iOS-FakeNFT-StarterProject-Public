@@ -11,9 +11,9 @@ protocol CartPresenterProtocol {
     var isEmptyCart: Bool { get }
     func numberOfRowsInSection(_ section: Int) -> Int
     func cellForRow(at indexPath: IndexPath) -> CartItemCell
-    func didSortButtonTapped()
-    func didDeleteItemTapped()
-    func didPaymentButtonTapped()
+    func didTapSortButton()
+    func didTapDeleteItem()
+    func didTapPaymentButton()
 }
 
 final class CartPresenter {
@@ -30,7 +30,7 @@ final class CartPresenter {
     
     // MARK: - Data Store
     
-    private lazy var cart: [NFTItem] = []
+    private lazy var cart: [NftItem] = []
     
     // MARK: - Life Cycle
     
@@ -60,18 +60,18 @@ extension CartPresenter: CartPresenterProtocol {
         return cell
     }
     
-    func didSortButtonTapped() {
+    func didTapSortButton() {
         let sortAlert = alertAssembly.makeSortingAlert()
         view?.showViewController(sortAlert)
     }
     
-    func didDeleteItemTapped() {
+    func didTapDeleteItem() {
         let removeItemViewController = screenAssembly.makeRemoveItemScreen(with: nil)
         removeItemViewController.modalPresentationStyle = .overFullScreen
         view?.showViewController(removeItemViewController)
     }
     
-    func didPaymentButtonTapped() {
+    func didTapPaymentButton() {
         let paymentMethodsViewController = screenAssembly.makePaymentMethodsScreen()
         paymentMethodsViewController.modalPresentationStyle = .fullScreen
         view?.showViewController(paymentMethodsViewController)

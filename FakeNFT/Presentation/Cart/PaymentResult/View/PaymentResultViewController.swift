@@ -133,12 +133,12 @@ final class PaymentResultViewController: UIViewController {
     
     @objc
     private func positiveResultButtonTapped() {
-        presenter.didPositiveResultButtonTapped()
+        presenter.didTapPositiveResultButton()
     }
     
     @objc
     private func negativeResultButtonTapped() {
-        presenter.didNegativeResultButtonTapped()
+        presenter.didTapNegativeResultButton()
     }
 }
 

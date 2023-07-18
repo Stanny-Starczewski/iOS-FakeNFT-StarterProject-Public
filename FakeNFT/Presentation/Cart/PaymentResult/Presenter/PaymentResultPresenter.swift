@@ -9,8 +9,8 @@ import Foundation
 
 protocol PaymentResultPresenterProtocol {
     var isSuccessfulPayment: Bool { get }
-    func didPositiveResultButtonTapped()
-    func didNegativeResultButtonTapped()
+    func didTapPositiveResultButton()
+    func didTapNegativeResultButton()
 }
 
 final class PaymentResultPresenter {
@@ -29,11 +29,11 @@ extension PaymentResultPresenter: PaymentResultPresenterProtocol {
         false
     }
     
-    func didPositiveResultButtonTapped() {
+    func didTapPositiveResultButton() {
         print(#function)
     }
     
-    func didNegativeResultButtonTapped() {
+    func didTapNegativeResultButton() {
         print(#function)
     }
 }

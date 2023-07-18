@@ -47,6 +47,7 @@ struct NftItem: Codable {
     let price: Double
     let id: String
 }
+
 struct NftLiked: Codable {
     let likes: [Int]
 }
