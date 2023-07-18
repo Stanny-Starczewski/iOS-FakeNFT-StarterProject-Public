@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import SafariServices
 
 protocol PaymentMethodsPresenterProtocol {
     var numberOfItemsInSection: Int { get }
     func getCurrency(at indexPath: IndexPath) -> Cryptocurrency
-    func didAgreementLinkLabelTapped()
+    func didTapAgreementLinkLabel()
 }
 
 final class PaymentMethodsPresenter {
@@ -46,9 +47,9 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
         currencies[indexPath.item]
     }
     
-    func didAgreementLinkLabelTapped() {
-        let agreementWebViewController = screenAssembly.makeAgreementWebScreen()
-        agreementWebViewController.modalPresentationStyle = .fullScreen
-        view?.showViewController(agreementWebViewController)
+    func didTapAgreementLinkLabel() {
+        guard let url = URL(string: Config.userAgreementUrl) else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        view?.showViewController(safariViewController)
     }
 }
