@@ -17,11 +17,20 @@ protocol ScreenAssemblyProtocol {
 }
 
 final class ScreenAssembly {
+    
+    // MARK: - Profirties
+    
     private let serviceAssembly: ServiceAssemblyProtocol
     
-    init(serviceAssembly: ServiceAssemblyProtocol) {
+    private let alertAssembly: AlertAssemblyProtocol
+    
+    // MARK: - Life Cycle
+    
+    init(serviceAssembly: ServiceAssemblyProtocol, alertAssembly: AlertAssemblyProtocol) {
         self.serviceAssembly = serviceAssembly
+        self.alertAssembly = alertAssembly
     }
+    
 }
 
 // MARK: - ScreenAssemblyProtocol
@@ -43,8 +52,9 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     
     func makeCartScreen() -> UIViewController {
         let presenter = CartPresenter(
-            alertAssembly: serviceAssembly.makeAlertAssembly(),
-            screenAssembly: self
+            alertAssembly: alertAssembly,
+            screenAssembly: self,
+            networkService: serviceAssembly.makeNetworkService()
         )
         let vc = CartViewController(presenter: presenter)
         presenter.view = vc
