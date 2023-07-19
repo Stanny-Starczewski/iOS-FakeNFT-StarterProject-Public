@@ -15,7 +15,7 @@ protocol CartPresenterProtocol {
     func numberOfRowsInSection(_ section: Int) -> Int
     func cellForRow(at indexPath: IndexPath) -> CartItemCell
     func didTapSortButton()
-    func didTapDeleteItem()
+    func didTapDeleteItem(at indexPath: IndexPath)
     func didTapPaymentButton()
 }
 
@@ -35,11 +35,7 @@ final class CartPresenter {
     
     // MARK: - Data Store
     
-    private lazy var nftItems: [NftItem] = [] {
-        didSet {
-            view?.updateUI()
-        }
-    }
+    private lazy var nftItems: [NftItem] = []
     
     // MARK: - Life Cycle
     
@@ -76,6 +72,7 @@ extension CartPresenter: CartPresenterProtocol {
             switch result {
             case .success(let nftItems):
                 self?.nftItems = nftItems
+                self?.view?.updateUI()
                 UIBlockingProgressHUD.dismiss()
             case .failure(let error):
                 print(error)
@@ -98,8 +95,9 @@ extension CartPresenter: CartPresenterProtocol {
         view?.showViewController(sortAlert)
     }
     
-    func didTapDeleteItem() {
-        let removeItemViewController = screenAssembly.makeRemoveItemScreen(with: nil)
+    func didTapDeleteItem(at indexPath: IndexPath) {
+        let nftItem = nftItems[indexPath.row]
+        let removeItemViewController = screenAssembly.makeRemoveItemScreen(with: nftItem, delegate: self)
         removeItemViewController.modalPresentationStyle = .overFullScreen
         view?.showViewController(removeItemViewController)
     }
@@ -108,5 +106,15 @@ extension CartPresenter: CartPresenterProtocol {
         let paymentMethodsViewController = screenAssembly.makePaymentMethodsScreen()
         paymentMethodsViewController.modalPresentationStyle = .fullScreen
         view?.showViewController(paymentMethodsViewController)
+    }
+}
+
+// MARK: - RemoveItemDelegate
+
+extension CartPresenter: RemoveItemDelegate {
+    func didDeleteItem(_ item: NftItem) {
+        guard let deletedItemIndex = nftItems.firstIndex(of: item) else { return }
+        nftItems.remove(at: deletedItemIndex)
+        view?.updateUI()
     }
 }

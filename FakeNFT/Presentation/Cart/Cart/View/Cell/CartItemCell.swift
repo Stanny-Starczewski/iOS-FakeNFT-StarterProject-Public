@@ -9,12 +9,14 @@ import UIKit
 import Kingfisher
 
 protocol CartItemCellDelegate: AnyObject {
-    func didDeleteItemButtonTapped()
+    func didDeleteItemButtonTapped(at indexPath: IndexPath)
 }
 
 final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Properties
+    
+    var currentIndexPath: IndexPath?
     
     weak var delegate: CartItemCellDelegate?
     
@@ -28,7 +30,6 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var itemImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Pumpkin")
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 12
         imageView.layer.masksToBounds = true
@@ -38,7 +39,6 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var itemNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Pumpkin"
         label.numberOfLines = 1
         label.font = .bold17
         label.textColor = .appBlack
@@ -64,7 +64,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "1,78 ETH"
+        label.text = "0 ETH"
         label.numberOfLines = 1
         label.font = .bold17
         label.textColor = .appBlack
@@ -126,7 +126,8 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     @objc
     private func deleteItemButtonTapped() {
-        delegate?.didDeleteItemButtonTapped()
+        guard let currentIndexPath else { return }
+        delegate?.didDeleteItemButtonTapped(at: currentIndexPath)
     }
     
 }

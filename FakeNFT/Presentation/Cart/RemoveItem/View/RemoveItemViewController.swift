@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RemoveItemViewProtocol: AnyObject {
-    
+    func showItemImage(_ image: UIImage)
 }
 
 final class RemoveItemViewController: UIViewController {
@@ -25,7 +25,6 @@ final class RemoveItemViewController: UIViewController {
     
     private lazy var itemImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Pumpkin")
         imageView.layer.cornerRadius = 12
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,9 +93,9 @@ final class RemoveItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         setConstraints()
+        presenter.viewIsReady()
     }
     
     // MARK: - Setup UI
@@ -120,7 +119,8 @@ final class RemoveItemViewController: UIViewController {
     
     @objc
     private func deleteButtonTapped() {
-        print("delete")
+        presenter.didTapDeleteButton()
+        dismiss(animated: true)
     }
     
     @objc
@@ -132,7 +132,9 @@ final class RemoveItemViewController: UIViewController {
 // MARK: - RemoveItemViewProtocol
 
 extension RemoveItemViewController: RemoveItemViewProtocol {
-    
+    func showItemImage(_ image: UIImage) {
+        itemImageView.image = image
+    }
 }
 
 // MARK: - Setting Constraints

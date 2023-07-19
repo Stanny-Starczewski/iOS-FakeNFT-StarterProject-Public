@@ -173,7 +173,7 @@ final class CartViewController: UIViewController {
 
 extension CartViewController: CartViewProtocol {
     func updateUI() {
-        tableView.reloadData()
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         quantityLabel.text = "\(presenter.count) NFT"
         amountLabel.text = String(format: "%.2f ETH", presenter.amount)
     }
@@ -186,8 +186,8 @@ extension CartViewController: CartViewProtocol {
 // MARK: - CartItemCellDelegate
 
 extension CartViewController: CartItemCellDelegate {
-    func didDeleteItemButtonTapped() {
-        presenter.didTapDeleteItem()
+    func didDeleteItemButtonTapped(at indexPath: IndexPath) {
+        presenter.didTapDeleteItem(at: indexPath)
     }
 }
 
@@ -201,6 +201,7 @@ extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = presenter.cellForRow(at: indexPath)
         cell.delegate = self
+        cell.currentIndexPath = indexPath
         return cell
     }
 }
