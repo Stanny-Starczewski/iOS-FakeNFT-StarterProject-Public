@@ -38,7 +38,7 @@ struct NftCollectionNFTItem {
     let inCart: Bool
 }
 
-struct NftItem: Codable {
+struct NftItem: Codable, Hashable {
     let createdAt: String
     let name: String
     let images: [String]
