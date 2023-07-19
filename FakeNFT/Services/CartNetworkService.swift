@@ -9,7 +9,7 @@ import Foundation
 
 protocol CartNetworkServiceProtocol {
     func getCart(_ completion: @escaping (Result<[NftItem], Error>) -> Void)
-    func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Result<[NftItem], Error>) -> Void)
+    func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Error?) -> Void)
 }
 
 final class CartNetworkService {
@@ -85,26 +85,17 @@ extension CartNetworkService: CartNetworkServiceProtocol {
         }
     }
     
-    func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Result<[NftItem], Error>) -> Void) {
+    func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Error?) -> Void) {
         let request = ChangeOrdersRequest(dto: nftsInCart)
-        client.send(request: request, type: NftsInCart.self) { [weak self] result in
+        client.send(request: request) { result in
             switch result {
-            case .success(let nftsInCart):
-                self?.fetchCart(nftsInCart: nftsInCart) { result in
-                    switch result {
-                    case .success(let nftItems):
-                        DispatchQueue.main.async {
-                            completion(.success(nftItems))
-                        }
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
-                    }
+            case .success:
+                DispatchQueue.main.async {
+                    completion(nil)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    completion(.failure(error))
+                    completion(error)
                 }
             }
         }

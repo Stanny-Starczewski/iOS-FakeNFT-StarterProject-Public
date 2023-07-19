@@ -53,13 +53,8 @@ final class CartPresenter {
     
     private func updateCart() {
         let nftInCart = NftsInCart(nfts: nftItems.map { $0.id })
-        networkService.updateCart(nftsInCart: nftInCart) { [weak self] result in
-            switch result {
-            case .success(let nftItems):
-                self?.nftItems = nftItems
-                self?.view?.updateUI()
-                UIBlockingProgressHUD.dismiss()
-            case .failure(let error):
+        networkService.updateCart(nftsInCart: nftInCart) { error in
+            if let error {
                 print(error)
             }
         }
