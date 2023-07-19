@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol CartItemCellDelegate: AnyObject {
     func didDeleteItemButtonTapped()
@@ -47,7 +48,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var ratingImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "icon-stars-3")
+        imageView.image = UIImage(named: "icon-stars-0")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -108,7 +109,17 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     // MARK: - Configure
     
     func configure(with item: NftItem) {
-        
+        itemNameLabel.text = item.name
+        priceLabel.text = String(format: "%.2f ETH", item.price)
+        ratingImageView.image = UIImage(named: "icon-stars-\(Int(item.rating))")
+        guard
+            let imageUrlString = item.images.first,
+            let imageUrl = URL(string: imageUrlString)
+        else { return }
+        itemImageView.kf.indicatorType = .activity
+        itemImageView.kf.setImage(with: imageUrl) { [weak self] _ in
+            self?.itemImageView.kf.indicatorType = .none
+        }
     }
     
     // MARK: - Actions

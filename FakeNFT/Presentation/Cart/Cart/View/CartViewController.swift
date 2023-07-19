@@ -8,6 +8,7 @@
 import UIKit
 
 protocol CartViewProtocol: AnyObject {
+    func updateUI()
     func showViewController(_ vc: UIViewController)
 }
 
@@ -60,7 +61,7 @@ final class CartViewController: UIViewController {
     
     private lazy var quantityLabel: UILabel = {
         let label = UILabel()
-        label.text = "3 NFT"
+        label.text = "0 NFT"
         label.font = .regular15
         label.textColor = .appBlack
         label.numberOfLines = 1
@@ -70,7 +71,7 @@ final class CartViewController: UIViewController {
     
     private lazy var amountLabel: UILabel = {
         let label = UILabel()
-        label.text = "5,34 ETH"
+        label.text = "0 ETH"
         label.font = .bold17
         label.textColor = .customGreen
         label.numberOfLines = 1
@@ -126,22 +127,18 @@ final class CartViewController: UIViewController {
         setupView()
         setConstraints()
         setDelegates()
-        let cartNetwork = NetworkService(client: DefaultNetworkClient())
+        setupNavigationController()
+        presenter.viewIsReady()
     }
     
     // MARK: - Setup UI
     
     private func setupView() {
         view.backgroundColor = .appWhite
-        
-        if presenter.isEmptyCart {
-            view.addSubview(emptyCartLabel)
-        } else {
-            setupNavigationController()
-            view.addSubview(tableView)
-            view.addSubview(bottomView)
-            bottomView.addSubview(bottomStackView)
-        }
+        view.addSubview(emptyCartLabel)
+        view.addSubview(tableView)
+        view.addSubview(bottomView)
+        bottomView.addSubview(bottomStackView)
     }
     
     private func setupNavigationController() {
@@ -157,7 +154,6 @@ final class CartViewController: UIViewController {
     
     private func setDelegates() {
         tableView.dataSource = self
-        tableView.delegate = self
     }
     
     // MARK: - Actions
@@ -176,6 +172,12 @@ final class CartViewController: UIViewController {
 // MARK: - CartViewProtocol
 
 extension CartViewController: CartViewProtocol {
+    func updateUI() {
+        tableView.reloadData()
+        quantityLabel.text = "\(presenter.count) NFT"
+        amountLabel.text = String(format: "%.2f ETH", presenter.amount)
+    }
+    
     func showViewController(_ vc: UIViewController) {
         present(vc, animated: true)
     }
@@ -203,38 +205,28 @@ extension CartViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - UITableViewDelegate
-
-extension CartViewController: UITableViewDelegate {
-    
-}
-
 // MARK: - Setting Constraints
 
 extension CartViewController {
     private func setConstraints() {
-        if presenter.isEmptyCart {
-            NSLayoutConstraint.activate([
-                emptyCartLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                emptyCartLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                
-                bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-                
-                bottomStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 16),
-                bottomStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 16),
-                bottomStackView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -16),
-                bottomStackView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -16)
-            ])
-        }
+        NSLayoutConstraint.activate([
+            emptyCartLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            emptyCartLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            
+            bottomStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 16),
+            bottomStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 16),
+            bottomStackView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -16),
+            bottomStackView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -16)
+        ])
     }
 }

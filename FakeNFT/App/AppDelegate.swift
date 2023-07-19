@@ -7,7 +7,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         let serviceAssembly: ServiceAssemblyProtocol = ServiceAssembly()
-        let screenAssembly: ScreenAssemblyProtocol = ScreenAssembly(serviceAssembly: serviceAssembly)
+        let alertAssembly: AlertAssemblyProtocol = AlertAssembly()
+        let screenAssembly: ScreenAssemblyProtocol = ScreenAssembly(
+            serviceAssembly: serviceAssembly,
+            alertAssembly: alertAssembly
+        )
         let tabBarController = TabBarController(screenAssembly: screenAssembly)
         
         window?.rootViewController = tabBarController

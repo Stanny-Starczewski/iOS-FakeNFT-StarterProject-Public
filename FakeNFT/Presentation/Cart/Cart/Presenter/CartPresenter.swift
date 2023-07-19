@@ -9,6 +9,9 @@ import Foundation
 
 protocol CartPresenterProtocol {
     var isEmptyCart: Bool { get }
+    var count: Int { get }
+    var amount: Double { get }
+    func viewIsReady()
     func numberOfRowsInSection(_ section: Int) -> Int
     func cellForRow(at indexPath: IndexPath) -> CartItemCell
     func didTapSortButton()
@@ -28,15 +31,26 @@ final class CartPresenter {
     
     private let screenAssembly: ScreenAssemblyProtocol
     
+    private let networkService: CartNetworkServiceProtocol
+    
     // MARK: - Data Store
     
-    private lazy var cart: [NftItem] = []
+    private lazy var nftItems: [NftItem] = [] {
+        didSet {
+            view?.updateUI()
+        }
+    }
     
     // MARK: - Life Cycle
     
-    init(alertAssembly: AlertAssemblyProtocol, screenAssembly: ScreenAssemblyProtocol) {
+    init(
+        alertAssembly: AlertAssemblyProtocol,
+        screenAssembly: ScreenAssemblyProtocol,
+        networkService: CartNetworkServiceProtocol
+    ) {
         self.alertAssembly = alertAssembly
         self.screenAssembly = screenAssembly
+        self.networkService = networkService
     }
 }
 
@@ -45,18 +59,37 @@ final class CartPresenter {
 extension CartPresenter: CartPresenterProtocol {
     
     var isEmptyCart: Bool {
-//        cart.isEmpty
-        false
+        nftItems.isEmpty
+    }
+    
+    var count: Int {
+        nftItems.count
+    }
+    
+    var amount: Double {
+        nftItems.reduce(0) { $0 + $1.price }
+    }
+    
+    func viewIsReady() {
+        UIBlockingProgressHUD.show()
+        networkService.fetchCart { [weak self] result in
+            switch result {
+            case .success(let nftItems):
+                self?.nftItems = nftItems
+                UIBlockingProgressHUD.dismiss()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func numberOfRowsInSection(_ section: Int) -> Int {
-//        cart.count
-        3
+        nftItems.count
     }
     
     func cellForRow(at indexPath: IndexPath) -> CartItemCell {
         let cell = CartItemCell()
-//        cell.configure(with: cart[indexPath.row])
+        cell.configure(with: nftItems[indexPath.row])
         return cell
     }
     
