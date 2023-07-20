@@ -8,6 +8,7 @@
 import UIKit
 
 protocol PaymentMethodsViewProtocol: AnyObject {
+    func updateUI()
     func showViewController(_ vc: UIViewController)
 }
 
@@ -100,6 +101,7 @@ final class PaymentMethodsViewController: UIViewController {
         button.titleLabel?.font = .bold17
         button.tintColor = .appWhite
         button.addTarget(self, action: #selector(paymentButtonTapped), for: .touchUpInside)
+        button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -122,6 +124,7 @@ final class PaymentMethodsViewController: UIViewController {
         setupView()
         setConstraints()
         setDelegates()
+        presenter.viewIsReady()
     }
     
     // MARK: - Setup UI
@@ -151,7 +154,7 @@ final class PaymentMethodsViewController: UIViewController {
     
     @objc
     private func paymentButtonTapped() {
-        print(#function)
+        presenter.didTapPaymentButton()
     }
     
     @objc
@@ -163,6 +166,10 @@ final class PaymentMethodsViewController: UIViewController {
 // MARK: - PaymentMethodsViewProtocol
 
 extension PaymentMethodsViewController: PaymentMethodsViewProtocol {
+    func updateUI() {
+        collectionView.reloadSections(IndexSet(integer: 0))
+    }
+    
     func showViewController(_ vc: UIViewController) {
         present(vc, animated: true)
     }
@@ -207,7 +214,9 @@ extension PaymentMethodsViewController: UICollectionViewDelegate {
         guard
             let cell = collectionView.cellForItem(at: indexPath) as? PaymentMethodsCell
         else { return }
+        paymentButton.isEnabled = true
         cell.setSelected(true)
+        presenter.didSelectItem(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

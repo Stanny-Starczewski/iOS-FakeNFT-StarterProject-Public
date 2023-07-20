@@ -65,10 +65,10 @@ final class PaymentMethodsCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - Configure
     
-    func configure(with currency: Cryptocurrency) {
-        currencyNameLabel.text = currency.name
-        currencyShortNameLabel.text = currency.shortname.rawValue
-        currencyImageView.image = UIImage(named: "icon-\(currency.shortname.rawValue.lowercased())")
+    func configure(with currency: Currency) {
+        currencyNameLabel.text = currency.title
+        currencyShortNameLabel.text = currency.name
+        currencyImageView.image = UIImage(named: "icon-\(currency.name.lowercased())")
     }
     
     func setSelected(_ selected: Bool) {
