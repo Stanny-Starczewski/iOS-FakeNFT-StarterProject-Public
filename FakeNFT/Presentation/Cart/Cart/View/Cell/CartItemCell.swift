@@ -129,7 +129,6 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
         guard let currentIndexPath else { return }
         delegate?.didDeleteItemButtonTapped(at: currentIndexPath)
     }
-    
 }
 
 // MARK: - Setting Constraints

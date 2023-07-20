@@ -9,6 +9,8 @@ import UIKit
 
 protocol AlertAssemblyProtocol {
     func makeSortingAlert() -> UIAlertController
+    func makeErrorAlert(with message: String) -> UIAlertController
+    func makeRepaymentAlert(with message: String, _ handler: @escaping () -> Void) -> UIAlertController
 }
 
 final class AlertAssembly: AlertAssemblyProtocol {
@@ -52,5 +54,31 @@ final class AlertAssembly: AlertAssemblyProtocol {
         sortAlert.addAction(atNameAction)
         sortAlert.addAction(closeAction)
         return sortAlert
+    }
+    
+    func makeErrorAlert(with message: String) -> UIAlertController {
+        let errorAlert = UIAlertController(
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        errorAlert.addAction(okAction)
+        return errorAlert
+    }
+    
+    func makeRepaymentAlert(with message: String, _ handler: @escaping () -> Void) -> UIAlertController {
+        let repaymentAlert = UIAlertController(
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
+        )
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let tryAgainAction = UIAlertAction(title: "Try Again", style: .default) { _ in
+            handler()
+        }
+        repaymentAlert.addAction(cancelAction)
+        repaymentAlert.addAction(tryAgainAction)
+        return repaymentAlert
     }
 }

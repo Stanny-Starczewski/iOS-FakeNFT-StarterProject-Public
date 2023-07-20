@@ -72,7 +72,8 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     func makePaymentMethodsScreen() -> UIViewController {
         let presenter = PaymentMethodsPresenter(
             networkService: serviceAssembly.makeNetworkService(),
-            screenAssembly: self
+            screenAssembly: self,
+            alertAssembly: alertAssembly
         )
         let vc = PaymentMethodsViewController(presenter: presenter)
         presenter.view = vc

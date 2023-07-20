@@ -27,9 +27,9 @@ final class PaymentMethodsPresenter {
     
     private let screenAssembly: ScreenAssemblyProtocol
     
-    private var selectedCurrency: Currency?
+    private let alertAssembly: AlertAssemblyProtocol
     
-    private var repaymentAttempts = 1
+    private var selectedCurrency: Currency?
     
     // MARK: - Data Store
     
@@ -37,9 +37,14 @@ final class PaymentMethodsPresenter {
     
     // MARK: - Life Cycle
     
-    init(networkService: CartNetworkServiceProtocol, screenAssembly: ScreenAssemblyProtocol) {
+    init(
+        networkService: CartNetworkServiceProtocol,
+        screenAssembly: ScreenAssemblyProtocol,
+        alertAssembly: AlertAssemblyProtocol
+    ) {
         self.networkService = networkService
         self.screenAssembly = screenAssembly
+        self.alertAssembly = alertAssembly
     }
 }
 
@@ -53,13 +58,15 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
     func viewIsReady() {
         UIBlockingProgressHUD.show()
         networkService.getCurrencies { [weak self] result in
+            guard let self else { return }
             switch result {
             case .success(let currencies):
-                self?.currencies = currencies
-                self?.view?.updateUI()
+                self.currencies = currencies
+                self.view?.updateUI()
                 UIBlockingProgressHUD.dismiss()
             case .failure(let error):
-                print(error)
+                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                self.view?.showViewController(alert)
             }
         }
     }
@@ -91,7 +98,8 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
                 paymentResultViewController.modalPresentationStyle = .fullScreen
                 view?.showViewController(paymentResultViewController)
             case .failure(let error):
-                print(error)
+                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                self.view?.showViewController(alert)
             }
         }
     }
@@ -101,11 +109,9 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
 
 extension PaymentMethodsPresenter: PaymentResultDelegate {
     func didTapTryAgain() {
-        if repaymentAttempts > 0 {
-            didTapPaymentButton()
-            repaymentAttempts -= 1
-        } else {
-            print("OVER")
+        let alert = alertAssembly.makeRepaymentAlert(with: "Your payment did not go through") { [weak self] in
+            self?.didTapPaymentButton()
         }
+        view?.showViewController(alert)
     }
 }

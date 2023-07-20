@@ -130,8 +130,8 @@ final class PaymentResultViewController: UIViewController {
     
     @objc
     private func failureResultButtonTapped() {
-        presenter.didTapFailureResultButton()
         dismiss(animated: true)
+        presenter.didTapFailureResultButton()
     }
 }
 
