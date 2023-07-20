@@ -13,6 +13,7 @@ protocol ScreenAssemblyProtocol {
     func makeCartScreen() -> UIViewController
     func makeRemoveItemScreen(with item: NftItem, delegate: RemoveItemDelegate) -> UIViewController
     func makePaymentMethodsScreen() -> UIViewController
+    func makePaymentResultScreen(isSuccess: Bool, delegate: PaymentResultDelegate) -> UIViewController
     func makeStatsScreen() -> UIViewController
 }
 
@@ -70,7 +71,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     
     func makePaymentMethodsScreen() -> UIViewController {
         let presenter = PaymentMethodsPresenter(
-            currencyService: FakeConvertService(),
+            networkService: serviceAssembly.makeNetworkService(),
             screenAssembly: self
         )
         let vc = PaymentMethodsViewController(presenter: presenter)
@@ -78,8 +79,8 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         return vc
     }
     
-    func makePaymentResultScreen() -> UIViewController {
-        let presenter = PaymentResultPresenter()
+    func makePaymentResultScreen(isSuccess: Bool, delegate: PaymentResultDelegate) -> UIViewController {
+        let presenter = PaymentResultPresenter(isSuccess: isSuccess, delegate: delegate)
         let vc = PaymentResultViewController(presenter: presenter)
         presenter.view = vc
         return vc
