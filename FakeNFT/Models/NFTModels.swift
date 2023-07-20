@@ -54,3 +54,39 @@ struct NFTLiked: Codable {
 struct NFTsInCart: Codable {
     let nfts: [Int]
 }
+
+struct NFTModel: Decodable {
+     let id: String
+     let createdAt: String
+     let name: String
+     let images: [String]
+     let rating: Int
+     let description: String
+     let price: Double
+     let author: String
+ }
+
+struct NFTViewModel {
+    let id: String
+    let name: String
+    let imageURL: URL
+    let rating: Int
+    let price: Double
+    let isOrdered: Bool
+    let isLiked: Bool
+}
+
+struct AuthorModel: Decodable {
+    let id: String
+    let name: String
+    let website: String
+}
+
+struct FavoritesModel: Decodable {
+    let likes: [String]
+}
+
+struct OrderModel: Decodable { 
+    let id: String
+    let nfts: [String]
+}

@@ -1,6 +1,6 @@
 import Foundation
 
-final class CollectionViewModel {
+final class CatalogueViewModel {
     
     // MARK: - Properties
 
