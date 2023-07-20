@@ -10,6 +10,8 @@ import Foundation
 protocol CartNetworkServiceProtocol {
     func getCart(_ completion: @escaping (Result<[NftItem], Error>) -> Void)
     func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Error?) -> Void)
+    func getCurrencies(_ completion: @escaping (Result<[Currency], Error>) -> Void)
+    func paymentWithIdCurrency(id: String, _ completion: @escaping (Result<PaymentStatus, Error>) -> Void)
 }
 
 final class CartNetworkService {
@@ -96,6 +98,38 @@ extension CartNetworkService: CartNetworkServiceProtocol {
             case .failure(let error):
                 DispatchQueue.main.async {
                     completion(error)
+                }
+            }
+        }
+    }
+    
+    func getCurrencies(_ completion: @escaping (Result<[Currency], Error>) -> Void) {
+        let request = GetCurrenciesRequest()
+        client.send(request: request, type: [Currency].self) { result in
+            switch result {
+            case .success(let currencies):
+                DispatchQueue.main.async {
+                    completion(.success(currencies))
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func paymentWithIdCurrency(id: String, _ completion: @escaping (Result<PaymentStatus, Error>) -> Void) {
+        let request = PaymentWithIdCurrencyRequest(id: id)
+        client.send(request: request, type: PaymentStatus.self) { result in
+            switch result {
+            case .success(let paymentStatus):
+                DispatchQueue.main.async {
+                    completion(.success(paymentStatus))
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
                 }
             }
         }
