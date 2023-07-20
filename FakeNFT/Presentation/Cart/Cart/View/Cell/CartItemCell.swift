@@ -138,8 +138,8 @@ extension CartItemCell {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            wrapperView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            wrapperView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            wrapperView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            wrapperView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             wrapperView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             
             itemImageView.topAnchor.constraint(equalTo: wrapperView.topAnchor),
