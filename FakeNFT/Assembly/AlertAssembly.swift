@@ -8,9 +8,20 @@
 import UIKit
 
 protocol AlertAssemblyProtocol {
-    func makeSortingAlert() -> UIAlertController
-    func makeErrorAlert(with message: String) -> UIAlertController
-    func makeRepaymentAlert(with message: String, _ handler: @escaping () -> Void) -> UIAlertController
+    func makeSortingAlert(
+        priceAction: @escaping () -> Void,
+        ratingAction: @escaping () -> Void,
+        nameAction: @escaping () -> Void
+    ) -> UIAlertController
+    
+    func makeErrorAlert(
+        with message: String
+    ) -> UIAlertController
+    
+    func makeRepaymentAlert(
+        with message: String,
+        _ handler: @escaping () -> Void
+    ) -> UIAlertController
 }
 
 final class AlertAssembly: AlertAssemblyProtocol {
@@ -27,28 +38,43 @@ final class AlertAssembly: AlertAssemblyProtocol {
     
     // MARK: - Methods
     
-    func makeSortingAlert() -> UIAlertController {
+    func makeSortingAlert(
+        priceAction: @escaping () -> Void,
+        ratingAction: @escaping () -> Void,
+        nameAction: @escaping () -> Void
+    ) -> UIAlertController {
         let sortAlert = UIAlertController(
             title: Constants.sortingAlertTitle,
             message: nil,
             preferredStyle: .actionSheet
         )
+        
         let atPriceAction = UIAlertAction(
             title: Constants.sortingAlertAtPriceText,
             style: .default
-        )
+        ) { _ in
+            priceAction()
+        }
+        
         let atRatingAction = UIAlertAction(
             title: Constants.sortingAlertAtRatingText,
             style: .default
-        )
+        ) { _ in
+            ratingAction()
+        }
+        
         let atNameAction = UIAlertAction(
             title: Constants.sortingAlertAtNameText,
             style: .default
-        )
+        ) { _ in
+            nameAction()
+        }
+        
         let closeAction = UIAlertAction(
             title: Constants.sortingAlertCloseText,
             style: .cancel
         )
+        
         sortAlert.addAction(atPriceAction)
         sortAlert.addAction(atRatingAction)
         sortAlert.addAction(atNameAction)

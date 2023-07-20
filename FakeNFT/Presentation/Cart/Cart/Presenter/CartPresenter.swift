@@ -106,7 +106,20 @@ extension CartPresenter: CartPresenterProtocol {
     }
     
     func didTapSortButton() {
-        let sortAlert = alertAssembly.makeSortingAlert()
+        let sortAlert = alertAssembly.makeSortingAlert { [weak self] in
+            guard let self else { return }
+            self.nftItems.sort { $0.price < $1.price }
+            self.view?.updateUI()
+        } ratingAction: { [weak self] in
+            guard let self else { return }
+            self.nftItems.sort { $0.rating < $1.rating }
+            self.view?.updateUI()
+        } nameAction: { [weak self] in
+            guard let self else { return }
+            self.nftItems.sort { $0.name < $1.name }
+            self.view?.updateUI()
+        }
+
         view?.showViewController(sortAlert)
     }
     
