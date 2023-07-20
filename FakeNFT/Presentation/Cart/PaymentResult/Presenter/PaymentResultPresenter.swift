@@ -8,32 +8,49 @@
 import Foundation
 
 protocol PaymentResultPresenterProtocol {
-    var isSuccessfulPayment: Bool { get }
-    func didTapPositiveResultButton()
-    func didTapNegativeResultButton()
+    func viewIsReady()
+    func didTapSuccessResultButton()
+    func didTapFailureResultButton()
+}
+
+protocol PaymentResultDelegate: AnyObject {
+    func didTapTryAgain()
 }
 
 final class PaymentResultPresenter {
     
     // MARK: - Properties
     
+    private weak var delegate: PaymentResultDelegate?
+    
+    private var isSuccess: Bool
+    
     weak var view: PaymentResultViewProtocol?
     
+    // MARK: - Life Cycle
+    
+    init(isSuccess: Bool, delegate: PaymentResultDelegate) {
+        self.isSuccess = isSuccess
+        self.delegate = delegate
+    }
 }
 
 // MARK: - PaymentResultPresenterProtocol
 
 extension PaymentResultPresenter: PaymentResultPresenterProtocol {
-    
-    var isSuccessfulPayment: Bool {
-        false
+    func viewIsReady() {
+        if isSuccess {
+            view?.showSuccess()
+        } else {
+            view?.showFailure()
+        }
     }
     
-    func didTapPositiveResultButton() {
-        print(#function)
+    func didTapSuccessResultButton() {
+        view?.dismissViewControllers()
     }
     
-    func didTapNegativeResultButton() {
-        print(#function)
+    func didTapFailureResultButton() {
+        delegate?.didTapTryAgain()
     }
 }

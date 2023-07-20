@@ -8,7 +8,9 @@
 import UIKit
 
 protocol PaymentResultViewProtocol: AnyObject {
-    
+    func showSuccess()
+    func showFailure()
+    func dismissViewControllers()
 }
 
 final class PaymentResultViewController: UIViewController {
@@ -26,7 +28,7 @@ final class PaymentResultViewController: UIViewController {
     
     // MARK: - UI
     
-    private lazy var positiveResultImageView: UIImageView = {
+    private lazy var successResultImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = false
         imageView.image = Constants.positiveResultImage
@@ -34,7 +36,7 @@ final class PaymentResultViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var positiveResultLabel: UILabel = {
+    private lazy var successResultLabel: UILabel = {
         let label = UILabel()
         label.isHidden = false
         label.text = Constants.positiveResultLabelText
@@ -46,7 +48,7 @@ final class PaymentResultViewController: UIViewController {
         return label
     }()
     
-    private lazy var positiveResultButton: UIButton = {
+    private lazy var successResultButton: UIButton = {
         let button = UIButton(type: .system)
         button.isHidden = false
         button.setTitle(Constants.positiveResultButtonText, for: .normal)
@@ -54,12 +56,12 @@ final class PaymentResultViewController: UIViewController {
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .bold17
         button.tintColor = .appWhite
-        button.addTarget(self, action: #selector(positiveResultButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(successResultButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private lazy var negativeResultImageView: UIImageView = {
+    private lazy var failureResultImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = false
         imageView.image = Constants.negativeResultImage
@@ -67,7 +69,7 @@ final class PaymentResultViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var negativeResultLabel: UILabel = {
+    private lazy var failureResultLabel: UILabel = {
         let label = UILabel()
         label.isHidden = false
         label.text = Constants.negativeResultLabelText
@@ -79,7 +81,7 @@ final class PaymentResultViewController: UIViewController {
         return label
     }()
     
-    private lazy var negativeResultButton: UIButton = {
+    private lazy var failureResultButton: UIButton = {
         let button = UIButton(type: .system)
         button.isHidden = false
         button.setTitle(Constants.negativeResultButtonText, for: .normal)
@@ -87,7 +89,7 @@ final class PaymentResultViewController: UIViewController {
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .bold17
         button.tintColor = .appWhite
-        button.addTarget(self, action: #selector(negativeResultButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(failureResultButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -110,81 +112,79 @@ final class PaymentResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setConstraints()
+        presenter.viewIsReady()
     }
     
     // MARK: - Setup UI
     
     private func setupView() {
         view.backgroundColor = .appWhite
-        
-        if presenter.isSuccessfulPayment {
-            view.addSubview(positiveResultImageView)
-            view.addSubview(positiveResultLabel)
-            view.addSubview(positiveResultButton)
-        } else {
-            view.addSubview(negativeResultImageView)
-            view.addSubview(negativeResultLabel)
-            view.addSubview(negativeResultButton)
-        }
     }
     
     // MARK: - Actions
     
     @objc
-    private func positiveResultButtonTapped() {
-        presenter.didTapPositiveResultButton()
+    private func successResultButtonTapped() {
+        presenter.didTapSuccessResultButton()
     }
     
     @objc
-    private func negativeResultButtonTapped() {
-        presenter.didTapNegativeResultButton()
+    private func failureResultButtonTapped() {
+        presenter.didTapFailureResultButton()
+        dismiss(animated: true)
     }
 }
 
 // MARK: - PaymentResultViewProtocol
 
 extension PaymentResultViewController: PaymentResultViewProtocol {
-    
-}
-
-// MARK: - Setting Constraints
-
-extension PaymentResultViewController {
-    private func setConstraints() {
-        if presenter.isSuccessfulPayment {
-            NSLayoutConstraint.activate([
-                positiveResultImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 196),
-                positiveResultImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                positiveResultImageView.widthAnchor.constraint(equalToConstant: 278),
-                positiveResultImageView.heightAnchor.constraint(equalToConstant: 278),
-                
-                positiveResultLabel.topAnchor.constraint(equalTo: positiveResultImageView.bottomAnchor, constant: 20),
-                positiveResultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
-                positiveResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
-                
-                positiveResultButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                positiveResultButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                positiveResultButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-                positiveResultButton.heightAnchor.constraint(equalToConstant: 60)
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                negativeResultImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 196),
-                negativeResultImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                negativeResultImageView.widthAnchor.constraint(equalToConstant: 287),
-                negativeResultImageView.heightAnchor.constraint(equalToConstant: 287),
-                
-                negativeResultLabel.topAnchor.constraint(equalTo: negativeResultImageView.bottomAnchor, constant: 20),
-                negativeResultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
-                negativeResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
-                
-                negativeResultButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                negativeResultButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                negativeResultButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-                negativeResultButton.heightAnchor.constraint(equalToConstant: 60)
-            ])
-        }
+    func showSuccess() {
+        view.addSubview(successResultImageView)
+        view.addSubview(successResultLabel)
+        view.addSubview(successResultButton)
         
+        NSLayoutConstraint.activate([
+            successResultImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 196),
+            successResultImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            successResultImageView.widthAnchor.constraint(equalToConstant: 278),
+            successResultImageView.heightAnchor.constraint(equalToConstant: 278),
+            
+            successResultLabel.topAnchor.constraint(equalTo: successResultImageView.bottomAnchor, constant: 20),
+            successResultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            successResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            
+            successResultButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            successResultButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            successResultButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            successResultButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    func showFailure() {
+        view.addSubview(failureResultImageView)
+        view.addSubview(failureResultLabel)
+        view.addSubview(failureResultButton)
+        
+        NSLayoutConstraint.activate([
+            failureResultImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 196),
+            failureResultImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            failureResultImageView.widthAnchor.constraint(equalToConstant: 287),
+            failureResultImageView.heightAnchor.constraint(equalToConstant: 287),
+            
+            failureResultLabel.topAnchor.constraint(equalTo: failureResultImageView.bottomAnchor, constant: 20),
+            failureResultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
+            failureResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
+            
+            failureResultButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            failureResultButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            failureResultButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            failureResultButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    func dismissViewControllers() {
+        let tabBarController = view.window?.rootViewController as? TabBarController
+        tabBarController?.selectedIndex = 1
+        view.window?.rootViewController?.dismiss(animated: true)
     }
 }
