@@ -69,3 +69,31 @@ struct PutOrderRequest: NetworkRequest {
         self.nftIds = nftIds
     }
 }
+
+struct GetFavoritesRequest: NetworkRequest {
+    var endpoint: URL? {
+        return URL(string: Config.baseUrl + "/profile/1")
+    }
+}
+
+struct PutFavoritesRequest: NetworkRequest {
+    var endpoint: URL? {
+        return URL(string: Config.baseUrl + "/profile/1")
+    }
+    
+    var httpMethod: HttpMethod = .put
+    
+    var body: Data? {
+        try? JSONEncoder().encode(Body(likes: likes))
+    }
+    
+    private struct Body: Codable {
+        let likes: [String]
+    }
+    
+    private let likes: [String]
+    
+    init(likes: [String]) {
+        self.likes = likes
+    }
+}

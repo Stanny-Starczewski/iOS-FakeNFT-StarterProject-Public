@@ -11,6 +11,7 @@ final class CatalogViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
+        tableView.delegate = self
         return tableView
     }()
     
@@ -21,15 +22,15 @@ final class CatalogViewController: UIViewController {
         action: #selector(sortCollections)
     )
     
-    private var collectionViewModel: CollectionViewModel?
+    private var catalogueViewModel: CatalogueViewModel?
     private var setupManager = SetupManager.shared
     private let presenter: CatalogPresenterProtocol
     
     // MARK: - Life Cycle
     
-    init(presenter: CatalogPresenterProtocol, viewModel: CollectionViewModel) {
+    init(presenter: CatalogPresenterProtocol, viewModel: CatalogueViewModel) {
         self.presenter = presenter
-        self.collectionViewModel = viewModel
+        self.catalogueViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,8 +41,8 @@ final class CatalogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if collectionViewModel == nil {
-            collectionViewModel = CollectionViewModel(provider: MockCatalogueProvider())
+        if catalogueViewModel == nil {
+            catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider()) // 1
         }
         
         bindViewModel()
@@ -51,15 +52,15 @@ final class CatalogViewController: UIViewController {
         setupNavBar()
         
         UIProgressHUD.show()
-        collectionViewModel?.getCollections()
+        catalogueViewModel?.getCollections()
     }
     
-    func initialise(viewModel: CollectionViewModel) {
-        self.collectionViewModel = viewModel
+    func initialise(viewModel: CatalogueViewModel) {
+        self.catalogueViewModel = viewModel
     }
     
     private func bindViewModel() {
-        guard let viewModel = collectionViewModel else { return }
+        guard let viewModel = catalogueViewModel else { return }
         viewModel.$collections.bind { [weak self] _ in
             guard let self = self else { return }
             self.tableView.reloadData()
@@ -80,7 +81,7 @@ final class CatalogViewController: UIViewController {
             guard let self = self else { return }
             
             UIView.animate(withDuration: 0.3) {
-                self.collectionViewModel?.setSortType(sortType: SortType.sortByName)
+                self.catalogueViewModel?.setSortType(sortType: SortType.sortByName)
                 self.view.layoutIfNeeded()
             }
         }
@@ -90,7 +91,7 @@ final class CatalogViewController: UIViewController {
             guard let self = self else { return }
             
             UIView.animate(withDuration: 0.3) {
-                self.collectionViewModel?.setSortType(sortType: SortType.sortByCount)
+                self.catalogueViewModel?.setSortType(sortType: SortType.sortByCount)
                 self.view.layoutIfNeeded()
             }
         }
@@ -120,6 +121,7 @@ extension CatalogViewController {
         view.backgroundColor = .appWhite
         title = "Каталог"
         view.addSubview(tableView)
+        tabBarController?.tabBar.barTintColor = .appWhite // 1
     }
 }
 // MARK: - Setting Constraints
@@ -145,15 +147,27 @@ extension CatalogViewController {
 }
 extension CatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        collectionViewModel?.collections.count ?? 0
+        catalogueViewModel?.collections.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CollectionListCell = tableView.dequeueReusableCell()
         
-        guard let collectionItem = collectionViewModel?.collections[indexPath.row] else { return UITableViewCell() }
+        guard let collectionItem = catalogueViewModel?.collections[indexPath.row] else { return UITableViewCell() }
         cell.config(collectionItem: collectionItem)
         
         return cell
+    }
+}
+
+extension CatalogViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let collection = catalogueViewModel?.collections[indexPath.row] else { return }
+        
+        let collectionVM = CollectionViewModel(collectionModel: collection)
+        let collectionVC = CollectionViewController(viewModel: collectionVM)
+        
+        collectionVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(collectionVC, animated: true)
     }
 }
