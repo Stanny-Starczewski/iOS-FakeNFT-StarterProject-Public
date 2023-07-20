@@ -1,5 +1,5 @@
 import UIKit
-import Kingfisher // add NFTCollectionCell
+import Kingfisher 
 
 protocol CollectionNFTCellDelegate: AnyObject {
     func nftCellDidTapLike(_ cell: CollectionNFTCell)
