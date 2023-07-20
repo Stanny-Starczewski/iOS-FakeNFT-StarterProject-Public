@@ -10,6 +10,7 @@ import UIKit
 protocol CartViewProtocol: AnyObject {
     func updateUI()
     func showViewController(_ vc: UIViewController)
+    func showEmptyCart()
 }
 
 final class CartViewController: UIViewController {
@@ -172,6 +173,13 @@ final class CartViewController: UIViewController {
 // MARK: - CartViewProtocol
 
 extension CartViewController: CartViewProtocol {
+    func showEmptyCart() {
+        bottomView.isHidden = true
+        tableView.isHidden = true
+        emptyCartLabel.isHidden = false
+        navigationItem.rightBarButtonItem = nil
+    }
+    
     func updateUI() {
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         quantityLabel.text = "\(presenter.count) NFT"

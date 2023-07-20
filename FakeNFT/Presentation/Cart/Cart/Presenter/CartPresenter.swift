@@ -86,8 +86,13 @@ extension CartPresenter: CartPresenterProtocol {
             switch result {
             case .success(let nftItems):
                 self.nftItems = nftItems
-                self.view?.updateUI()
-                UIBlockingProgressHUD.dismiss()
+                if nftItems.isEmpty {
+                    view?.showEmptyCart()
+                    UIBlockingProgressHUD.dismiss()
+                } else {
+                    self.view?.updateUI()
+                    UIBlockingProgressHUD.dismiss()
+                }
             case .failure(let error):
                 let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
