@@ -268,16 +268,9 @@
 		0AAF02FB2A529BDE00924CE0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AAF02F72A529BC300924CE0 /* CatalogViewProtocol.swift */,
-				0AAF02E52A5296AD00924CE0 /* CatalogViewController.swift */,
-				29A1963A2A5A63CE00B7BAB6 /* CatalogViewCell.swift */,
-				29A1964C2A5BBC4300B7BAB6 /* CatalogueViewModel.swift */,
+				2958DABD2A68FD25001D4B5A /* Catalogue */,
+				2958DABE2A68FD32001D4B5A /* Collection */,
 				29A196502A5BDF1400B7BAB6 /* Observation.swift */,
-				2958DA9F2A64FAA0001D4B5A /* CollectionNFTCell.swift */,
-				2958DAA12A64FC36001D4B5A /* RatingStackView.swift */,
-				2958DAA32A64FD0C001D4B5A /* AboutAuthorViewController.swift */,
-				2958DAA52A650302001D4B5A /* CollectionViewController.swift */,
-				2958DAA92A65B7C7001D4B5A /* CollectionViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -343,6 +336,29 @@
 				2958DABB2A68E802001D4B5A /* RequestsMap.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		2958DABD2A68FD25001D4B5A /* Catalogue */ = {
+			isa = PBXGroup;
+			children = (
+				0AAF02F72A529BC300924CE0 /* CatalogViewProtocol.swift */,
+				0AAF02E52A5296AD00924CE0 /* CatalogViewController.swift */,
+				29A1963A2A5A63CE00B7BAB6 /* CatalogViewCell.swift */,
+				29A1964C2A5BBC4300B7BAB6 /* CatalogueViewModel.swift */,
+			);
+			path = Catalogue;
+			sourceTree = "<group>";
+		};
+		2958DABE2A68FD32001D4B5A /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				2958DA9F2A64FAA0001D4B5A /* CollectionNFTCell.swift */,
+				2958DAA12A64FC36001D4B5A /* RatingStackView.swift */,
+				2958DAA32A64FD0C001D4B5A /* AboutAuthorViewController.swift */,
+				2958DAA52A650302001D4B5A /* CollectionViewController.swift */,
+				2958DAA92A65B7C7001D4B5A /* CollectionViewModel.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		29A1963C2A5A6DDB00B7BAB6 /* Services */ = {

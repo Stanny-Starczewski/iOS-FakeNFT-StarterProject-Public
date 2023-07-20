@@ -42,7 +42,7 @@ final class CatalogViewController: UIViewController {
         super.viewDidLoad()
         
         if catalogueViewModel == nil {
-            catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider()) // 1
+            catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider())
         }
         
         bindViewModel()
@@ -121,7 +121,7 @@ extension CatalogViewController {
         view.backgroundColor = .appWhite
         title = "Каталог"
         view.addSubview(tableView)
-        tabBarController?.tabBar.barTintColor = .appWhite // 1
+        tabBarController?.tabBar.barTintColor = .appWhite
     }
 }
 // MARK: - Setting Constraints
