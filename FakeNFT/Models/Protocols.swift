@@ -47,9 +47,9 @@ protocol CatalogViewModelProtocol {
     var updateLoadingStatus: (() -> Void)? { get set }
     var isLoading: Bool { get set }
     var nftCollection: [NFTCollection]? { get }
-    var NFTCollectionsList: [NFTCollectionListItem]? { get }
+    var ntfCollectionsList: [NFTCollectionListItem]? { get }
     var model: CatalogModelProtocol { get }
-    var NFTCollectionsCount: Int? { get }
+    var nftCollectionsCount: Int? { get }
     func getNFTCollections()
     func getCellViewModel(at indexPath: IndexPath) -> NFTCollectionListItem?
     func sortNFTCollections(by: SortAttribute)

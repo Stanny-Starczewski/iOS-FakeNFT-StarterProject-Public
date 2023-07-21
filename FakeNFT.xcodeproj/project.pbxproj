@@ -16,9 +16,6 @@
 		0AAF02EE2A5297E300924CE0 /* ProfileViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02ED2A5297E300924CE0 /* ProfileViewProtocol.swift */; };
 		0AAF02F02A5297F100924CE0 /* ProfilePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02EF2A5297F100924CE0 /* ProfilePresenterProtocol.swift */; };
 		0AAF02F42A5299BB00924CE0 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F32A5299BB00924CE0 /* ScreenFactory.swift */; };
-		0AAF02F62A529AF100924CE0 /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F52A529AF100924CE0 /* CatalogPresenter.swift */; };
-		0AAF02F82A529BC300924CE0 /* CatalogViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F72A529BC300924CE0 /* CatalogViewProtocol.swift */; };
-		0AAF02FA2A529BCD00924CE0 /* CatalogPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF02F92A529BCD00924CE0 /* CatalogPresenterProtocol.swift */; };
 		0AAF03022A529E5800924CE0 /* CartPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF03012A529E5800924CE0 /* CartPresenterProtocol.swift */; };
 		0AAF03042A529E7100924CE0 /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF03032A529E7100924CE0 /* CartPresenter.swift */; };
 		0AAF03062A529E9D00924CE0 /* CartViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF03052A529E9D00924CE0 /* CartViewProtocol.swift */; };
@@ -102,9 +99,6 @@
 		0AAF02ED2A5297E300924CE0 /* ProfileViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewProtocol.swift; sourceTree = "<group>"; };
 		0AAF02EF2A5297F100924CE0 /* ProfilePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterProtocol.swift; sourceTree = "<group>"; };
 		0AAF02F32A5299BB00924CE0 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
-		0AAF02F52A529AF100924CE0 /* CatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenter.swift; sourceTree = "<group>"; };
-		0AAF02F72A529BC300924CE0 /* CatalogViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewProtocol.swift; sourceTree = "<group>"; };
-		0AAF02F92A529BCD00924CE0 /* CatalogPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenterProtocol.swift; sourceTree = "<group>"; };
 		0AAF03012A529E5800924CE0 /* CartPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenterProtocol.swift; sourceTree = "<group>"; };
 		0AAF03032A529E7100924CE0 /* CartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
 		0AAF03052A529E9D00924CE0 /* CartViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewProtocol.swift; sourceTree = "<group>"; };
@@ -224,7 +218,6 @@
 				29A1963F2A5A8F3500B7BAB6 /* Helpers */,
 				29A1963C2A5A6DDB00B7BAB6 /* Services */,
 				0AAF02FB2A529BDE00924CE0 /* View */,
-				0AAF02FC2A529BE600924CE0 /* Presenter */,
 			);
 			path = Catalog;
 			sourceTree = "<group>";
@@ -273,15 +266,6 @@
 				29A196502A5BDF1400B7BAB6 /* Observation.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		0AAF02FC2A529BE600924CE0 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				0AAF02F92A529BCD00924CE0 /* CatalogPresenterProtocol.swift */,
-				0AAF02F52A529AF100924CE0 /* CatalogPresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		0AAF02FD2A529DFD00924CE0 /* View */ = {
@@ -341,7 +325,6 @@
 		2958DABD2A68FD25001D4B5A /* Catalogue */ = {
 			isa = PBXGroup;
 			children = (
-				0AAF02F72A529BC300924CE0 /* CatalogViewProtocol.swift */,
 				0AAF02E52A5296AD00924CE0 /* CatalogViewController.swift */,
 				29A1963A2A5A63CE00B7BAB6 /* CatalogViewCell.swift */,
 				29A1964C2A5BBC4300B7BAB6 /* CatalogueViewModel.swift */,
@@ -736,7 +719,6 @@
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
-				0AAF02F82A529BC300924CE0 /* CatalogViewProtocol.swift in Sources */,
 				2958DAA22A64FC36001D4B5A /* RatingStackView.swift in Sources */,
 				0AAF02EA2A5296DB00924CE0 /* StatsViewController.swift in Sources */,
 				29A1963E2A5A6DF500B7BAB6 /* CatalogFactory.swift in Sources */,
@@ -753,8 +735,6 @@
 				29A196452A5A98C000B7BAB6 /* Icons.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				29A1964D2A5BBC4300B7BAB6 /* CatalogueViewModel.swift in Sources */,
-				0AAF02F62A529AF100924CE0 /* CatalogPresenter.swift in Sources */,
-				0AAF02FA2A529BCD00924CE0 /* CatalogPresenterProtocol.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
 				2958DAA62A650302001D4B5A /* CollectionViewController.swift in Sources */,
 			);

@@ -27,7 +27,6 @@ final class CollectionListCell: UITableViewCell, ReuseIdentifying {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
         setupView()
         setupConstraints()
     }
@@ -39,6 +38,7 @@ final class CollectionListCell: UITableViewCell, ReuseIdentifying {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageCategoryView.kf.cancelDownloadTask()
+        imageCategoryView.image = nil
     }
 }
 // MARK: - EXTENSIONS
@@ -49,6 +49,7 @@ extension CollectionListCell {
     private func setupView() {
         addSubview(imageCategoryView)
         addSubview(collectionName)
+        selectionStyle = .none
     }
     
     private func setupConstraints() {

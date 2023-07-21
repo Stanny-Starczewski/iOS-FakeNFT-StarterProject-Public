@@ -24,12 +24,10 @@ final class CatalogViewController: UIViewController {
     
     private var catalogueViewModel: CatalogueViewModel?
     private var setupManager = SetupManager.shared
-    private let presenter: CatalogPresenterProtocol
     
     // MARK: - Life Cycle
     
-    init(presenter: CatalogPresenterProtocol, viewModel: CatalogueViewModel) {
-        self.presenter = presenter
+    init(viewModel: CatalogueViewModel) {
         self.catalogueViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -107,12 +105,6 @@ final class CatalogViewController: UIViewController {
 }
 
 // MARK: - EXTENSIONS
-
-// MARK: - CatalogViewProtocol
-
-extension CatalogViewController: CatalogViewProtocol {
-    
-}
 
 // MARK: - Setup UI
 

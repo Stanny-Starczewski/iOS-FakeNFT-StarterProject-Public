@@ -133,7 +133,6 @@ final class CollectionViewModel {
                 case .success:
                     self.replaceNFT(nft: nftItem, isLiked: nftItem.isLiked, isOrdered: !nftItem.isOrdered)
                     self.loadingInProgress = false
-                    break
                 case .failure(let error):
                     self.orderItems = orderItemsBeforeAdding
                     self.loadingInProgress = false
