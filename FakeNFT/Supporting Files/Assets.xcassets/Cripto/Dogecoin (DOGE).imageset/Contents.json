@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "Dogecoin (DOGE)@1x.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "Dogecoin (DOGE)@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Dogecoin (DOGE)@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "Dogecoin (DOGE).svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

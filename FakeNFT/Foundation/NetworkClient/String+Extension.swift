@@ -2,6 +2,9 @@ import Foundation
 
 extension String {
     var encodeUrl: String {
-        return self.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        guard let encodedString = self.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) else {
+            return ""
+        }
+        return encodedString
     }
 }

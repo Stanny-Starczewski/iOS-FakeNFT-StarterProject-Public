@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "Shiba Inu (SHIB)@1x.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "Shiba Inu (SHIB)@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Shiba Inu (SHIB)@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "Shiba Inu (SHIB).svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -14,6 +14,7 @@ final class CatalogueViewModel {
     private let provider: CatalogueProviderProtocol
     private let setupManager = SetupManager.shared
     weak var delegate: CatalogueViewModelDelegate?
+    private var catalogueViewModel: CatalogueViewModel?
     
     private var sort: SortType? {
         didSet {
@@ -32,11 +33,11 @@ final class CatalogueViewModel {
     // MARK: - Functions
     
     private func setFilterByCount() {
-        collections = collections.sorted(by: { $0.nfts.count < $1.nfts.count })
+        collections.sort(by: { $0.nfts.count > $1.nfts.count })
     }
     
     private func setFilterByName() {
-        collections = collections.sorted(by: { $0.name < $1.name })
+        collections.sort(by: { $0.name > $1.name })
     }
     
     func setSortType(sortType: SortType) {
@@ -66,7 +67,7 @@ final class CatalogueViewModel {
             self.delegate?.didSelectSortType(.sortByCount)
         }
         
-        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancel = UIAlertAction(title: "Закрыть", style: .cancel)
         
         actionSheet.addAction(sortByName)
         actionSheet.addAction(sortByCount)
@@ -87,7 +88,7 @@ final class CatalogueViewModel {
                         self.setSortType(sortType: SortType.getTypeByString(stringType: sortType))
                     }
                 case .failure(let error):
-                    self.collections = []
+                    self.collections.removeAll()
                     print(error.localizedDescription)
                 }
             }

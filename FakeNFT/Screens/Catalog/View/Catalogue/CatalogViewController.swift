@@ -8,6 +8,7 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         let tableView = UITableView()
         tableView.register(CollectionListCell.self)
         tableView.rowHeight = 187
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -50,10 +51,6 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         catalogueViewModel.getCollections()
     }
     
-    func initialise(viewModel: CatalogueViewModel) {
-        self.catalogueViewModel = viewModel
-    }
-    
     private func bindViewModel() {
         catalogueViewModel.$collections.bind { [weak self] _ in
             guard let self = self else { return }
@@ -90,7 +87,6 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
 extension CatalogViewController {
     private func setupView() {
         view.backgroundColor = .appWhite
-        title = "Каталог"
         view.addSubview(tableView)
         tabBarController?.tabBar.barTintColor = .appWhite
     }

@@ -5,7 +5,7 @@ excluded:
   - DerivedData
   - vendor
 
-warning_threshold: 3
+warning_threshold: 1
 
 analyzer_rules:
   - unused_import

@@ -53,7 +53,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
     
     private lazy var cartButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage.Icons.filledTrash, for: .normal)
+        button.setImage(UIImage.Icons.filledBasket, for: .normal)
         button.addTarget(self, action: #selector(didTapCartButton), for: .touchUpInside)
         return button
     }()
@@ -85,7 +85,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
         
         ratingStackView.setupRating(rating: model.rating)
         
-        let orderIcon = model.isOrdered ? UIImage.Icons.filledTrash : UIImage.Icons.emptyTrash
+        let orderIcon = model.isOrdered ? UIImage.Icons.filledBasket : UIImage.Icons.emptyBasket
         cartButton.setImage(orderIcon, for: .normal)
         
         let heathIcon = model.isLiked ? UIImage.Icons.activeLike : UIImage.Icons.inactiveLike
