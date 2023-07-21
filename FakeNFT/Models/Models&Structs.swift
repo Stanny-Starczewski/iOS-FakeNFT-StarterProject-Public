@@ -1,9 +1,3 @@
-//
-//  Models&Structs.swift
-//  FakeNFT
-//
-//  Created by Alexander Farizanov on 03.07.2023.
-//
 
 import Foundation
 import Kingfisher

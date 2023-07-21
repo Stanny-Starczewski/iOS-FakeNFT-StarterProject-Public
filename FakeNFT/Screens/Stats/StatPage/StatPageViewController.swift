@@ -52,7 +52,6 @@ final class StatPageViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.translatesAutoresizingMaskIntoConstraints = false
-        //table.backgroundColor = .appWhite
         table.backgroundColor = .appLightGrey
         return table
     }()
