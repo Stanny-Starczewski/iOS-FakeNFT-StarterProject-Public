@@ -1,6 +1,6 @@
 import UIKit
 
-final class CatalogViewController: UIViewController {
+final class CatalogViewController: UIViewController, CatalogueViewModelDelegate {
     
     // MARK: - UI Lazy properties
     
@@ -18,13 +18,13 @@ final class CatalogViewController: UIViewController {
     private lazy var sortButton = UIBarButtonItem(
         image: UIImage.Icons.filter,
         style: .plain,
-        target: self,
-        action: #selector(sortCollections)
+        target: catalogueViewModel,
+        action: #selector(CatalogueViewModel.sortCollections)
     )
     
-    private var catalogueViewModel: CatalogueViewModel?
+    private var catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider())
     private var setupManager = SetupManager.shared
-    
+
     // MARK: - Life Cycle
     
     init(viewModel: CatalogueViewModel) {
@@ -38,11 +38,8 @@ final class CatalogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if catalogueViewModel == nil {
-            catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider())
-        }
-        
+        catalogueViewModel.delegate = self
+
         bindViewModel()
 
         setupView()
@@ -50,7 +47,7 @@ final class CatalogViewController: UIViewController {
         setupNavBar()
         
         UIProgressHUD.show()
-        catalogueViewModel?.getCollections()
+        catalogueViewModel.getCollections()
     }
     
     func initialise(viewModel: CatalogueViewModel) {
@@ -58,8 +55,7 @@ final class CatalogViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        guard let viewModel = catalogueViewModel else { return }
-        viewModel.$collections.bind { [weak self] _ in
+        catalogueViewModel.$collections.bind { [weak self] _ in
             guard let self = self else { return }
             self.tableView.reloadData()
             UIProgressHUD.dismiss()
@@ -68,39 +64,22 @@ final class CatalogViewController: UIViewController {
     
     // MARK: - Actions
 
-    @objc
-    private func sortCollections() {
-        let actionSheet = UIAlertController(title: "Сортировка",
-                                            message: nil,
-                                            preferredStyle: .actionSheet)
-        
-        let sortByName = UIAlertAction(title: "По названию",
-                                       style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            
-            UIView.animate(withDuration: 0.3) {
-                self.catalogueViewModel?.setSortType(sortType: SortType.sortByName)
-                self.view.layoutIfNeeded()
-            }
-        }
-        
-        let sortByCount = UIAlertAction(title: "По количеству NFT",
-                                        style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            
-            UIView.animate(withDuration: 0.3) {
-                self.catalogueViewModel?.setSortType(sortType: SortType.sortByCount)
-                self.view.layoutIfNeeded()
-            }
-        }
-        
-        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
-        
-        actionSheet.addAction(sortByName)
-        actionSheet.addAction(sortByCount)
-        actionSheet.addAction(cancel)
-        
+    func presentSortActionSheet(_ actionSheet: UIAlertController) {
         present(actionSheet, animated: true)
+    }
+    
+    func didSelectSortType(_ sortType: SortType) {
+        catalogueViewModel.setSortType(sortType: sortType)
+        switch sortType {
+        case .sortByName:
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        case .sortByCount:
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
 }
 
@@ -139,13 +118,13 @@ extension CatalogViewController {
 }
 extension CatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        catalogueViewModel?.collections.count ?? 0
+        catalogueViewModel.collections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CollectionListCell = tableView.dequeueReusableCell()
         
-        guard let collectionItem = catalogueViewModel?.collections[indexPath.row] else { return UITableViewCell() }
+        let collectionItem = catalogueViewModel.collections[indexPath.row]
         cell.config(collectionItem: collectionItem)
         
         return cell
@@ -154,7 +133,7 @@ extension CatalogViewController: UITableViewDataSource {
 
 extension CatalogViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let collection = catalogueViewModel?.collections[indexPath.row] else { return }
+        let collection = catalogueViewModel.collections[indexPath.row]
         
         let collectionVM = CollectionViewModel(collectionModel: collection)
         let collectionVC = CollectionViewController(viewModel: collectionVM)
