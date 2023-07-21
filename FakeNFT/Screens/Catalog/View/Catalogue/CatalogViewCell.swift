@@ -54,12 +54,14 @@ extension CollectionListCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            imageCategoryView.topAnchor.constraint(equalTo: topAnchor),
+            imageCategoryView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             imageCategoryView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageCategoryView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageCategoryView.heightAnchor.constraint(equalToConstant: 140),
+            imageCategoryView.bottomAnchor.constraint(equalTo: collectionName.topAnchor, constant: -4),
             collectionName.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionName.topAnchor.constraint(equalTo: imageCategoryView.bottomAnchor, constant: 4)
+            collectionName.heightAnchor.constraint(equalToConstant: 22),
+            collectionName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1)
         ])
     }
 }
