@@ -49,6 +49,7 @@
 		881425182A52E71E00AADB89 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425172A52E71E00AADB89 /* Protocols.swift */; };
 		8814251A2A52E7B800AADB89 /* NFTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425192A52E7B800AADB89 /* NFTModels.swift */; };
 		8814251C2A52E97500AADB89 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814251B2A52E97500AADB89 /* Config.swift */; };
+		A3A2CDFA2A6834DB00627603 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CDF92A6834DB00627603 /* EditProfilePresenter.swift */; };
 		A3F5E1932A59804D00BB5812 /* GetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */; };
 		A3F5E1952A5ADB7200BB5812 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */; };
 		A3F5E1982A5AE67300BB5812 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */; };
@@ -128,6 +129,7 @@
 		881425172A52E71E00AADB89 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		881425192A52E7B800AADB89 /* NFTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModels.swift; sourceTree = "<group>"; };
 		8814251B2A52E97500AADB89 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		A3A2CDF92A6834DB00627603 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileRequest.swift; sourceTree = "<group>"; };
 		A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				0AAF02EB2A5297AD00924CE0 /* ProfilePresenter.swift */,
 				A3FE08392A58611E0078D7BE /* MyNFTPresenter.swift */,
+				A3A2CDF92A6834DB00627603 /* EditProfilePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				A3FE08452A58755A0078D7BE /* StarRatingStack.swift in Sources */,
 				A3FE08362A58458D0078D7BE /* EditProfileViewController.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
+				A3A2CDFA2A6834DB00627603 /* EditProfilePresenter.swift in Sources */,
 				0AAF02E82A5296C200924CE0 /* CartViewController.swift in Sources */,
 				A3F5E19C2A5B218700BB5812 /* GetNFTByIdRequest.swift in Sources */,
 				0AAF03022A529E5800924CE0 /* CartPresenterProtocol.swift in Sources */,

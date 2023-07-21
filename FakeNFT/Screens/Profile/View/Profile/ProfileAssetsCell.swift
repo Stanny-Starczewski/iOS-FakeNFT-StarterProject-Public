@@ -13,7 +13,7 @@ final class ProfileAssetsCell: UITableViewCell {
     
     static let reuseIdentifier = "ProfileAssetsCell"
     
-    //MARK: - Layout elements
+    // MARK: - Layout elements
     
     var assetLabel: UILabel = {
         var assetLabel = UILabel()
@@ -41,6 +41,7 @@ final class ProfileAssetsCell: UITableViewCell {
     }()
     
     // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

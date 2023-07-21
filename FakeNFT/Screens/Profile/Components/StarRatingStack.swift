@@ -9,7 +9,7 @@ import UIKit
 
 class StarRatingController: UIStackView {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     var starsRating = 0
     
@@ -26,7 +26,7 @@ class StarRatingController: UIStackView {
             image.image = UIImage(named: "Star Empty")
             image.tag = starTag
             self.addArrangedSubview(image)
-            starTag = starTag + 1
+            starTag += 1
         }
     }
     
@@ -34,16 +34,16 @@ class StarRatingController: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
-    func setStarsRating(rating: Int){
+    func setStarsRating(rating: Int) {
         self.starsRating = rating
         let stackSubViews = self.subviews
         for subView in stackSubViews {
-            if let image = subView as? UIImageView{
+            if let image = subView as? UIImageView {
                 if image.tag > starsRating {
                     image.image = UIImage(named: "Star Empty")
-                }else{
+                } else {
                     image.image = UIImage(named: "Star Filled")
                 }
             }

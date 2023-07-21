@@ -8,14 +8,17 @@
 import UIKit
 import Kingfisher
 
+protocol EditProfileViewControllerProtocol: AnyObject {
 
+}
 
-final class EditProfileViewController: UIViewController {
+final class EditProfileViewController: UIViewController, EditProfileViewControllerProtocol {
     
     // MARK: - Properties
     
+    var presenter: EditProfilePresenterProtocol?
 
-    //MARK: - Layout elements
+    // MARK: - Layout elements
     
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton()
@@ -45,7 +48,7 @@ final class EditProfileViewController: UIViewController {
         changeAvatarLabel.font = .systemFont(ofSize: 10)
         changeAvatarLabel.textColor = .appWhite
         changeAvatarLabel.textAlignment = .center
-        let tapAction = UITapGestureRecognizer(target: self, action:#selector(changeAvatarDidTap(_:)))
+        let tapAction = UITapGestureRecognizer(target: self, action: #selector(changeAvatarDidTap(_:)))
         changeAvatarLabel.isUserInteractionEnabled = true
         changeAvatarLabel.addGestureRecognizer(tapAction)
         return changeAvatarLabel
@@ -67,7 +70,7 @@ final class EditProfileViewController: UIViewController {
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.attributedText = NSAttributedString(string:"Имя", attributes: [.kern: 0.35])
+        nameLabel.attributedText = NSAttributedString(string: "Имя", attributes: [.kern: 0.35])
         nameLabel.font = UIFont.boldSystemFont(ofSize: 22)
         nameLabel.textColor = .appBlack
         return nameLabel
@@ -91,7 +94,7 @@ final class EditProfileViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.attributedText = NSAttributedString(string:"Описание", attributes: [.kern: 0.35])
+        descriptionLabel.attributedText = NSAttributedString(string: "Описание", attributes: [.kern: 0.35])
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 22)
         descriptionLabel.textColor = .appBlack
         return descriptionLabel
@@ -115,7 +118,7 @@ final class EditProfileViewController: UIViewController {
     private lazy var websiteLabel: UILabel = {
         let websiteLabel = UILabel()
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
-        websiteLabel.attributedText = NSAttributedString(string:"Сайт", attributes: [.kern: 0.35])
+        websiteLabel.attributedText = NSAttributedString(string: "Сайт", attributes: [.kern: 0.35])
         websiteLabel.font = UIFont.boldSystemFont(ofSize: 22)
         websiteLabel.textColor = .appBlack
         return websiteLabel
@@ -143,6 +146,7 @@ final class EditProfileViewController: UIViewController {
         
         setupView()
         setConstraints()
+        configureView()
         
     }
     
@@ -158,8 +162,13 @@ final class EditProfileViewController: UIViewController {
         loadImageLabel.isHidden = false
     }
     
+    private func configureView() {
+        guard let models = presenter?.fetchModel() else { return }
+        print(models)
+        updateEditProfileDetails(profile: models)
+    }
     
-    func updateEditProfileDetails(profile: ProfileResult)  {
+    func updateEditProfileDetails(profile: Profile) {
     
 //        avatarImage.kf.setImage(
 //            with: profile?.avatarURL,

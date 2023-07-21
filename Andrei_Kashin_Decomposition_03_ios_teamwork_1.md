@@ -1,5 +1,9 @@
 # 03_ios_teamwork_1
 
+# Архитектура MVP
+
+# Вестка кодом
+
 # Ссылки
 [Доска с задачами] (https://github.com/users/NutsCraker/projects/1/views/4)
 

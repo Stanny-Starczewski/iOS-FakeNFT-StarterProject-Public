@@ -13,7 +13,7 @@ final class MyNFTCell: UITableViewCell {
     
     static let reuseIdentifier = "MyNFTCell"
     
-    //MARK: - Layout elements
+    // MARK: - Layout elements
     
     var myNFTImage: UIImageView = {
         let image = UIImage(named: "0")
@@ -122,7 +122,6 @@ final class MyNFTCell: UITableViewCell {
         
         myNFTPriceStack.addArrangedSubview(myNFTPriceLabel)
         myNFTPriceStack.addArrangedSubview(myNFTPriceValueLabel)
-        
         
     }
     

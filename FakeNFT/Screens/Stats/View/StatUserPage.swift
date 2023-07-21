@@ -7,7 +7,6 @@
 import Foundation
 import Kingfisher
 
-
 final class StatUserPageModel {
     let defaultNetworkClient = DefaultNetworkClient()
 

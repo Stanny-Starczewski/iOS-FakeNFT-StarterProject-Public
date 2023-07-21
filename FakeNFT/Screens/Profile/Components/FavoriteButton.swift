@@ -9,7 +9,7 @@ import UIKit
 
 final class FavoriteButton: UIButton {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     var nftID: String?
     
@@ -31,4 +31,3 @@ final class FavoriteButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

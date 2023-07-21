@@ -9,7 +9,7 @@ import UIKit
 
 final class NoInternetViewController: UIViewController {
     
-    //MARK: - Layout elements
+    // MARK: - Layout elements
     
     private lazy var noInternetLabel: UILabel = {
         let noInternetLabel = UILabel()

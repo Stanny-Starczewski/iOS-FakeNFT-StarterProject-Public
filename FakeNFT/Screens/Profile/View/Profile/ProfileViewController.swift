@@ -25,7 +25,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         AboutViewController()
     ]
     
-    //MARK: - Layout elements
+    // MARK: - Layout elements
     
     private lazy var editButton = UIBarButtonItem(
         image: UIImage(named: "Edit"),
@@ -46,7 +46,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "" //"Joaquin Phoenix"
+        nameLabel.text = "" // "Joaquin Phoenix"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 22)
         nameLabel.textColor = .appBlack
         return nameLabel
@@ -57,7 +57,8 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 18
-        descriptionLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle : paragraphStyle]) //"Description"
+        descriptionLabel.attributedText = NSAttributedString(string: "",
+                                                             attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle: paragraphStyle]) 
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)
         descriptionLabel.textColor = .appBlack
@@ -68,10 +69,10 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     private lazy var websiteLabel: UILabel = {
         let websiteLabel = UILabel()
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
-        let tapAction = UITapGestureRecognizer(target: self, action:#selector(websiteDidTap(_:)))
+        let tapAction = UITapGestureRecognizer(target: self, action: #selector(websiteDidTap(_:)))
         websiteLabel.isUserInteractionEnabled = true
         websiteLabel.addGestureRecognizer(tapAction)
-        websiteLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.24]) //"JoaquinPhoenix.com"
+        websiteLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.24]) // "JoaquinPhoenix.com"
         websiteLabel.font = UIFont.systemFont(ofSize: 15)
         websiteLabel.textColor = .customBlue
         return websiteLabel
@@ -136,9 +137,9 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         nameLabel.text = profile.name
         descriptionLabel.text = profile.description
         websiteLabel.text = profile.website
-        let nftsCountLabel = profileAssetsTable.cellForRow(at: [0,0]) as? ProfileAssetsCell
+        let nftsCountLabel = profileAssetsTable.cellForRow(at: [0, 0]) as? ProfileAssetsCell
         nftsCountLabel?.assetValueLabel.text = profile.nfts
-        let likesCountLabel = profileAssetsTable.cellForRow(at: [0,1]) as? ProfileAssetsCell
+        let likesCountLabel = profileAssetsTable.cellForRow(at: [0, 1]) as? ProfileAssetsCell
         likesCountLabel?.assetValueLabel.text = profile.likes
     }
     
@@ -203,12 +204,12 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProfileAssetsCell.reuseIdentifier)  as! ProfileAssetsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProfileAssetsCell.reuseIdentifier)  as? ProfileAssetsCell
         
-        cell.backgroundColor = .appWhite
-        cell.assetLabel.text = assetLabel[indexPath.row]
-        cell.assetValueLabel.text = ""
-        return cell
+        cell?.backgroundColor = .appWhite
+        cell?.assetLabel.text = assetLabel[indexPath.row]
+        cell?.assetValueLabel.text = ""
+        return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

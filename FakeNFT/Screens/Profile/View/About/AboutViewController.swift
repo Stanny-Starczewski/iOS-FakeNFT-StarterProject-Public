@@ -9,7 +9,7 @@ import UIKit
 
 final class AboutViewController: UIViewController {
     
-    //MARK: - Layout elements
+    // MARK: - Layout elements
     
     private lazy var backButton = UIBarButtonItem(
         image: UIImage(named: "Backward"),
@@ -65,4 +65,3 @@ final class AboutViewController: UIViewController {
         ])
     }
 }
-

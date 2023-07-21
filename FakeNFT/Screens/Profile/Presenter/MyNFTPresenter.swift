@@ -39,8 +39,6 @@ struct NFTNetworkModelResult {
     let id: String
 }
 
-
-
 final class MyNFTPresenter {
     
     // MARK: - Properties
@@ -54,6 +52,7 @@ final class MyNFTPresenter {
     private(set) var authors: [String: String] = [:]
     
     // MARK: - Methods
+    
     func getMyNFTs(nftIDs: [String]) {
         var loadedNFTs: [NFTNetworkModel] = []
         
@@ -67,7 +66,7 @@ final class MyNFTPresenter {
                             self.getAuthors(nfts: loadedNFTs)
                             self.myNFTs? = loadedNFTs
                         }
-                    case .failure(_):
+                    case .failure:
                         self.view?.showNoInternetView()
                         UIBlockingProgressHUD.dismiss()
                     }
@@ -76,7 +75,7 @@ final class MyNFTPresenter {
         }
     }
     
-    func getAuthors(nfts: [NFTNetworkModel]){
+    func getAuthors(nfts: [NFTNetworkModel]) {
         var authorsSet: Set<String> = []
         nfts.forEach { nft in
             authorsSet.insert(nft.author)
@@ -97,7 +96,6 @@ final class MyNFTPresenter {
         semaphore.wait()
     }
 }
-    
 
 // MARK: - MyNFTPresenterProtocol
 

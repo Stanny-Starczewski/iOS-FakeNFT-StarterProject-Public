@@ -30,4 +30,11 @@ final class ScreenFactory: ScreenFactoryProtocol {
         return vc
     }
     
+//    func makeMyNFTScreen() -> UIViewController {
+//        let presenter = MyNFTPresenter()
+//        let vc = MyNFTViewController(presenter: presenter)
+//        presenter.view = vc
+//        return vc
+//    }
+    
 }

@@ -40,7 +40,6 @@ protocol CollectionModelProtocol {
     func toggleNFTLikeInProfile(id: Int, completion: @escaping (Result<Profile, Error>) -> Void)
 }
 
-
 protocol CatalogViewModelProtocol {
     var onNFTCollectionsUpdate: (() -> Void)? { get set }
     var showAlertClosure: (() -> Void)? { get set }

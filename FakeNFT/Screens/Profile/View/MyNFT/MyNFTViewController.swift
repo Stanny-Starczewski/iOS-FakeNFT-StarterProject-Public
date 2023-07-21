@@ -9,8 +9,7 @@ import UIKit
 import Kingfisher
 
 protocol MyNFTViewControllerProtocol: AnyObject {
-    var presenter: MyNFTPresenterProtocol? { get set }
-//    func updateProfileDetails(profile: ProfileResult)
+  //  var presenter: MyNFTPresenterProtocol? { get set }
     func showNoInternetView()
 }
 
@@ -18,7 +17,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
     // MARK: - Properties
     
-    var presenter: MyNFTPresenterProtocol?
+    private var presenter: MyNFTPresenterProtocol?
     
 //    private var nftImage: [String] = Array(0..<3).map{ "\($0)" }
 //    private var nftName: [String] = [ "Lilo", "Spring", "April"]
@@ -29,8 +28,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
 //
     private(set) var myNFTs: [NFTNetworkModel]?
     
-    
-    //MARK: - Layout elements
+    // MARK: - Layout elements
     
     private lazy var backButton = UIBarButtonItem(
         image: UIImage(named: "Backward"),
@@ -69,6 +67,15 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
 
     // MARK: - Life Cycle
     
+//    init(presenter: MyNFTPresenterProtocol) {
+//        self.presenter = presenter
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,6 +96,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     }
     
     // MARK: - Methods
+    
     func updateNFT(nfts: [NFTNetworkModel]) {
         self.myNFTs = nfts
         myNFTTable.reloadData()
@@ -156,21 +164,21 @@ extension MyNFTViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: MyNFTCell.reuseIdentifier)  as! MyNFTCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyNFTCell.reuseIdentifier) as? MyNFTCell
         
         let myNFT = myNFTs?[indexPath.row]
-        cell.myNFTImage.kf.setImage(with: URL(string: myNFT?.images[0] ?? ""))
-        cell.myNFTNameLabel.text = myNFT?.name
-        cell.myNFTRating.setStarsRating(rating: myNFT?.rating ?? 3)
-        cell.myNFTPriceValueLabel.text = "\(myNFT?.price ?? 0) ETH"
+        cell?.myNFTImage.kf.setImage(with: URL(string: myNFT?.images[0] ?? ""))
+        cell?.myNFTNameLabel.text = myNFT?.name
+        cell?.myNFTRating.setStarsRating(rating: myNFT?.rating ?? 3)
+        cell?.myNFTPriceValueLabel.text = "\(myNFT?.price ?? 0) ETH"
         
 //        let image = UIImage(named: nftImage[indexPath.row])
 //        cell.myNFTImage.image = image
 //        cell.myNFTRating.setStarsRating(rating: nftRating[indexPath.row])
 //        cell.myNFTNameLabel.text = nftName[indexPath.row]
 //        cell.myNFTPriceValueLabel.text = nftPrice[indexPath.row]
-        cell.selectionStyle = .none
-        return cell
+        cell?.selectionStyle = .none
+        return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
