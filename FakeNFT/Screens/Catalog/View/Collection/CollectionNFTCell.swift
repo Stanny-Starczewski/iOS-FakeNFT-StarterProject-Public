@@ -9,6 +9,8 @@ protocol CollectionNFTCellDelegate: AnyObject {
 final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
     weak var delegate: CollectionNFTCellDelegate?
     
+    // MARK: - UI Lazy properties
+
     private lazy var nftImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
@@ -35,19 +37,17 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
         return label
     }()
     
-    private let priceValue: UILabel = {
+    private lazy var priceValue: UILabel = {
         let label = UILabel()
         label.font = .medium10
         return label
     }()
     
     private lazy var nameAndPriceVerticalStackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [nftLabel, priceValue])
         stackView.axis = .vertical
         stackView.spacing = 4
         stackView.alignment = .leading
-        stackView.addArrangedSubview(nftLabel)
-        stackView.addArrangedSubview(priceValue)
         return stackView
     }()
     
@@ -59,14 +59,21 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
     }()
     
     private lazy var priceAndCartButtonHorizontalStackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [nameAndPriceVerticalStackView, cartButton])
         stackView.axis = .horizontal
         stackView.distribution = .fill
-        stackView.addArrangedSubview(nameAndPriceVerticalStackView)
-        stackView.addArrangedSubview(cartButton)
         return stackView
     }()
     
+    private lazy var numberFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.locale = Locale.current
+        return numberFormatter
+    }()
+    
+    // MARK: - Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -76,12 +83,18 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Functions
+
     func configure(with model: NFTViewModel, delegate: CollectionNFTCellDelegate) {
         self.delegate = delegate
         
         nftImageView.kf.setImage(with: model.imageURL)
         nftLabel.text = model.name
-        priceValue.text = "\(model.price) ETH"
+        var formatPrice = "\(model.price) ETH"
+        if let price = numberFormatter.string(from: NSNumber(value: model.price)) {
+            formatPrice = price
+        }
+        priceValue.text = "\(String(describing: formatPrice)) ETH"
         
         ratingStackView.setupRating(rating: model.rating)
         
@@ -103,6 +116,10 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
     }
 }
 
+// MARK: - EXTENSIONS
+
+// MARK: - Setup UI
+
 private extension CollectionNFTCell {
     func setupView() {
         contentView.backgroundColor = .white
@@ -114,12 +131,14 @@ private extension CollectionNFTCell {
         setupConstraints()
     }
     
+    // MARK: - Setting Constraints
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             nftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             nftImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             nftImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            nftImageView.heightAnchor.constraint(equalToConstant: 108),
+            nftImageView.widthAnchor.constraint(equalTo: nftImageView.heightAnchor, multiplier: 1.0 / 1.0),
             
             heartButton.topAnchor.constraint(equalTo: nftImageView.topAnchor),
             heartButton.trailingAnchor.constraint(equalTo: nftImageView.trailingAnchor),
