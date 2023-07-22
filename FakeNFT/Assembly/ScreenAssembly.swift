@@ -55,7 +55,8 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         let presenter = CartPresenter(
             alertAssembly: alertAssembly,
             screenAssembly: self,
-            networkService: serviceAssembly.makeNetworkService()
+            networkService: serviceAssembly.makeNetworkService(),
+            cartSortService: serviceAssembly.makeCartSortService()
         )
         let vc = CartViewController(presenter: presenter)
         presenter.view = vc

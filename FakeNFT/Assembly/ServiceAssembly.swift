@@ -9,6 +9,7 @@ import Foundation
 
 protocol ServiceAssemblyProtocol {
     func makeNetworkService() -> CartNetworkServiceProtocol
+    func makeCartSortService() -> CartSortServiceProtocol
 }
 
 final class ServiceAssembly: ServiceAssemblyProtocol {
@@ -17,4 +18,7 @@ final class ServiceAssembly: ServiceAssemblyProtocol {
         CartNetworkService()
     }
     
+    func makeCartSortService() -> CartSortServiceProtocol {
+        CartSortService()
+    }
 }

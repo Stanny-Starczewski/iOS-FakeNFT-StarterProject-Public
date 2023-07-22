@@ -28,10 +28,9 @@ final class CartPresenter {
     // MARK: - Services
     
     private let alertAssembly: AlertAssemblyProtocol
-    
     private let screenAssembly: ScreenAssemblyProtocol
-    
     private let networkService: CartNetworkServiceProtocol
+    private let cartSortService: CartSortServiceProtocol
     
     // MARK: - Data Store
     
@@ -42,11 +41,13 @@ final class CartPresenter {
     init(
         alertAssembly: AlertAssemblyProtocol,
         screenAssembly: ScreenAssemblyProtocol,
-        networkService: CartNetworkServiceProtocol
+        networkService: CartNetworkServiceProtocol,
+        cartSortService: CartSortServiceProtocol
     ) {
         self.alertAssembly = alertAssembly
         self.screenAssembly = screenAssembly
         self.networkService = networkService
+        self.cartSortService = cartSortService
     }
     
     // MARK: - Methods
@@ -59,6 +60,35 @@ final class CartPresenter {
                 let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
+        }
+    }
+    
+    private func sortByPrice() {
+        nftItems.sort { $0.price < $1.price }
+        view?.updateUI()
+        cartSortService.saveSortType(.byPrice)
+    }
+    
+    private func sortByRating() {
+        nftItems.sort { $0.rating < $1.rating }
+        view?.updateUI()
+        cartSortService.saveSortType(.byRating)
+    }
+    
+    private func sortByName() {
+        nftItems.sort { $0.name < $1.name }
+        view?.updateUI()
+        cartSortService.saveSortType(.byName)
+    }
+    
+    private func applySortType() {
+        switch cartSortService.loadSortType() {
+        case .byPrice:
+            sortByPrice()
+        case .byRating:
+            sortByRating()
+        case .byName:
+            sortByName()
         }
     }
 }
@@ -90,7 +120,7 @@ extension CartPresenter: CartPresenterProtocol {
                     view?.showEmptyCart()
                     UIBlockingProgressHUD.dismiss()
                 } else {
-                    self.view?.updateUI()
+                    applySortType()
                     UIBlockingProgressHUD.dismiss()
                 }
             case .failure(let error):
@@ -112,17 +142,11 @@ extension CartPresenter: CartPresenterProtocol {
     
     func didTapSortButton() {
         let sortAlert = alertAssembly.makeSortingAlert { [weak self] in
-            guard let self else { return }
-            self.nftItems.sort { $0.price < $1.price }
-            self.view?.updateUI()
+            self?.sortByPrice()
         } ratingAction: { [weak self] in
-            guard let self else { return }
-            self.nftItems.sort { $0.rating < $1.rating }
-            self.view?.updateUI()
+            self?.sortByRating()
         } nameAction: { [weak self] in
-            guard let self else { return }
-            self.nftItems.sort { $0.name < $1.name }
-            self.view?.updateUI()
+            self?.sortByName()
         }
 
         view?.showViewController(sortAlert)
@@ -151,4 +175,12 @@ extension CartPresenter: RemoveItemDelegate {
         updateCart()
         view?.updateUI()
     }
+}
+
+// MARK: - SortType
+
+enum SortType: Int {
+    case byName
+    case byPrice
+    case byRating
 }
