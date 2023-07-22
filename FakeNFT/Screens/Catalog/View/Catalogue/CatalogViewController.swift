@@ -2,7 +2,7 @@ import UIKit
 
 final class CatalogViewController: UIViewController, CatalogueViewModelDelegate {
     
-    // MARK: - UI Lazy properties
+    // MARK: - Properties
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
