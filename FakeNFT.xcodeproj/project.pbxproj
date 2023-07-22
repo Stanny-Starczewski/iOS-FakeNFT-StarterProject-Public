@@ -267,6 +267,7 @@
 			children = (
 				2958DABD2A68FD25001D4B5A /* Catalogue */,
 				2958DABE2A68FD32001D4B5A /* Collection */,
+				29E5FF6A2A6B8A910040C318 /* Author */,
 				29A196502A5BDF1400B7BAB6 /* Observation.swift */,
 				29E5FF662A6B4EC20040C318 /* AlertPresenter.swift */,
 			);
@@ -340,12 +341,10 @@
 		2958DABE2A68FD32001D4B5A /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				2958DA9F2A64FAA0001D4B5A /* CollectionNFTCell.swift */,
-				2958DAA12A64FC36001D4B5A /* RatingStackView.swift */,
-				2958DAA32A64FD0C001D4B5A /* AuthorViewController.swift */,
-				29E5FF682A6B66C60040C318 /* AuthorViewModel.swift */,
 				2958DAA52A650302001D4B5A /* CollectionViewController.swift */,
+				2958DA9F2A64FAA0001D4B5A /* CollectionNFTCell.swift */,
 				2958DAA92A65B7C7001D4B5A /* CollectionViewModel.swift */,
+				2958DAA12A64FC36001D4B5A /* RatingStackView.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -380,6 +379,15 @@
 				29A196732A5C7F8300B7BAB6 /* CatalogueDecomposition.md */,
 			);
 			path = mdFiles;
+			sourceTree = "<group>";
+		};
+		29E5FF6A2A6B8A910040C318 /* Author */ = {
+			isa = PBXGroup;
+			children = (
+				2958DAA32A64FD0C001D4B5A /* AuthorViewController.swift */,
+				29E5FF682A6B66C60040C318 /* AuthorViewModel.swift */,
+			);
+			path = Author;
 			sourceTree = "<group>";
 		};
 		3F478ECD29DB473000F6D39E /* DesignSystem */ = {
