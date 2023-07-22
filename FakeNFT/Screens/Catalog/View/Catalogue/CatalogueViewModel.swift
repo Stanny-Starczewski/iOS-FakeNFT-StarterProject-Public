@@ -11,6 +11,7 @@ final class CatalogueViewModel {
     // MARK: - Properties
 
     @Observable private(set) var collections: [NFTCollection] = []
+    @Observable private(set) var errorDescription: String = ""
     private let provider: CatalogueProviderProtocol
     private let setupManager = SetupManager.shared
     weak var delegate: CatalogueViewModelDelegate?
@@ -24,7 +25,7 @@ final class CatalogueViewModel {
         }
     }
     
-    // MARK: - Life Cycle
+    // MARK: - Initialization
     
     init(provider: CatalogueProviderProtocol) {
         self.provider = provider
@@ -89,7 +90,7 @@ final class CatalogueViewModel {
                     }
                 case .failure(let error):
                     self.collections.removeAll()
-                    print(error.localizedDescription)
+                    self.errorDescription = error.localizedDescription
                 }
             }
         }

@@ -25,9 +25,10 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
     
     private var catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider())
     private var setupManager = SetupManager.shared
-
-    // MARK: - Life Cycle
+    private var alertPresenter: AlertPresenterProtocol?
     
+    // MARK: - Initialization
+
     init(viewModel: CatalogueViewModel) {
         self.catalogueViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -37,29 +38,38 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         catalogueViewModel.delegate = self
 
-        bindViewModel()
+        observeViewModel()
 
         setupView()
-        setupConstraints()
         setupNavBar()
         
         UIProgressHUD.show()
         catalogueViewModel.getCollections()
+        
+        alertPresenter = AlertPresenter(delegate: self)
     }
     
-    private func bindViewModel() {
-        catalogueViewModel.$collections.bind { [weak self] _ in
+    private func observeViewModel() {
+        catalogueViewModel.$collections.observe { [weak self] _ in
             guard let self = self else { return }
             self.tableView.reloadData()
             UIProgressHUD.dismiss()
         }
+        catalogueViewModel.$errorDescription.observe { [weak self] _ in
+            UIProgressHUD.dismiss()
+            self?.alertPresenter?.preparingAlertWithRepeat(alertText: self?.catalogueViewModel.errorDescription ?? "") {
+                self?.catalogueViewModel.getCollections()
+            }
+        }
     }
     
-    // MARK: - Actions
+    // MARK: - Functions
 
     func presentSortActionSheet(_ actionSheet: UIAlertController) {
         present(actionSheet, animated: true)
@@ -67,15 +77,8 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
     
     func didSelectSortType(_ sortType: SortType) {
         catalogueViewModel.setSortType(sortType: sortType)
-        switch sortType {
-        case .sortByName:
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-            }
-        case .sortByCount:
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-            }
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
 }
@@ -89,6 +92,7 @@ extension CatalogViewController {
         view.backgroundColor = .appWhite
         view.addSubview(tableView)
         tabBarController?.tabBar.barTintColor = .appWhite
+        setupConstraints()
     }
 }
 // MARK: - Setting Constraints
@@ -98,7 +102,7 @@ extension CatalogViewController {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -120),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -138,3 +142,9 @@ extension CatalogViewController: UITableViewDelegate {
         navigationController?.pushViewController(collectionVC, animated: true)
     }
 }
+
+extension CatalogViewController: AlertPresenterDelegate {
+     func showAlert(alert: UIAlertController) {
+         present(alert, animated: true)
+     }
+ }

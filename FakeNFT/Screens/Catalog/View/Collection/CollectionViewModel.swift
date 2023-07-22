@@ -1,6 +1,9 @@
 import Foundation 
 
 final class CollectionViewModel {
+    
+    // MARK: - Properties
+
     var numberOfItems: Int {
         nftItems.count
     }
@@ -10,17 +13,24 @@ final class CollectionViewModel {
     @Observable private(set) var nftItems: [NFTViewModel] = []
     @Observable private(set) var authorModel: AuthorModel = AuthorModel(id: "", name: "", website: "")
     @Observable private(set) var loadingInProgress: Bool = false
+    @Observable private(set) var mainLoadErrorDescription: String = ""
+    @Observable private(set) var addToCartErrorDescription: String = ""
+    @Observable private(set) var addToFavoritesErrorDescription: String = ""
     
     private var orderItems: [String] = []
     private var likedItems: [String] = []
     
     private let collectionDataProvider: CollectionDataProviderProtocol
     
+    // MARK: - Initialization
+
     init(collectionModel: NFTCollection, collectionDataProvider: CollectionDataProviderProtocol = CollectionDataProvider()) {
         self.collectionDataProvider = collectionDataProvider
         self.collectionModel = collectionModel
     }
     
+    // MARK: - Functions
+
     func loadNFTForCollection() {
         loadingInProgress = true
         
@@ -31,7 +41,7 @@ final class CollectionViewModel {
                 case .success(let orderModel):
                     self.orderItems = orderModel.nfts
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self.mainLoadErrorDescription = error.localizedDescription
                 }
             }
         }
@@ -43,13 +53,14 @@ final class CollectionViewModel {
                 case .success(let favoritesModel):
                     self.likedItems = favoritesModel.likes
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self.mainLoadErrorDescription = error.localizedDescription
                 }
             }
         }
         
-        var countNFTDidLoad = 0
+        let group = DispatchGroup()
         collectionModel.nfts.forEach { id in
+            group.enter()
             collectionDataProvider.getNFT(by: id, completion: { [weak self] result in
                 guard let self else { return }
                 DispatchQueue.main.async {
@@ -57,18 +68,18 @@ final class CollectionViewModel {
                     case .success(let nftModel):
                         if let nftViewModel = self.convertToViewModel(from: nftModel) {
                             self.nftItems.append(nftViewModel)
-                            
-                            countNFTDidLoad += 1
-                            if countNFTDidLoad == self.collectionModel.nfts.count {
-                                self.loadingInProgress = false
-                            }
+                            group.leave()
                         }
                     case .failure(let error):
                         self.loadingInProgress = false
-                        print(error.localizedDescription)
+                        self.mainLoadErrorDescription = error.localizedDescription
+                        group.leave()
                     }
                 }
             })
+        }
+        group.notify(queue: .main) { [weak self] in
+            self?.loadingInProgress = false
         }
     }
     
@@ -108,7 +119,7 @@ final class CollectionViewModel {
                 case .success(let authorModel):
                     self.authorModel = authorModel
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self.mainLoadErrorDescription = error.localizedDescription
                 }
             }
         }
@@ -136,7 +147,7 @@ final class CollectionViewModel {
                 case .failure(let error):
                     self.orderItems = orderItemsBeforeAdding
                     self.loadingInProgress = false
-                    print(error.localizedDescription)
+                    self.addToCartErrorDescription = error.localizedDescription
                 }
             }
         }
@@ -164,7 +175,7 @@ final class CollectionViewModel {
                 case .failure(let error):
                     self.likedItems = favoritesBeforeAdding
                     self.loadingInProgress = false
-                    print(error.localizedDescription)
+                    self.addToFavoritesErrorDescription = error.localizedDescription
                 }
             }
         }

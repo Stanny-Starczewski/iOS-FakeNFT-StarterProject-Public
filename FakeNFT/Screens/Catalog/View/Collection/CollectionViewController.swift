@@ -2,6 +2,9 @@ import UIKit
 import Kingfisher
 
 final class CollectionViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    // MARK: - UI properties
+
     private lazy var backButton = UIBarButtonItem(
         image: UIImage.Icons.backward,
         style: .plain,
@@ -79,6 +82,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
     }()
     
     private var viewModel: CollectionViewModel
+    private var alertPresenter: AlertPresenter
     
     private let collectionConfig = UICollectionView.Config(
         cellCount: 3,
@@ -89,26 +93,32 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         height: 192,
         cellSpacing: 8
     )
-    
-    init(viewModel: CollectionViewModel) {
+        
+    // MARK: - Initialization
+
+    init(viewModel: CollectionViewModel, alertPresenter: AlertPresenter = AlertPresenter()) {
         self.viewModel = viewModel
+        self.alertPresenter = alertPresenter
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         bindViewModel()
         setupValuesForUIElements()
-        
+        alertPresenter.delegate = self
         viewModel.loadNFTForCollection()
         viewModel.getAuthorURL()
     }
     
+    // MARK: - Functions
+
     @objc
     private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
@@ -116,20 +126,20 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
     
     @objc
     private func didTapAuthorLink() {
-        let aboutAuthorScreen = AboutAuthorViewController()
+        let aboutAuthorViewModel = AuthorViewModel(authorPageURL: viewModel.authorModel.website)
+        let aboutAuthorScreen = AuthorViewController(viewModel: aboutAuthorViewModel)
         aboutAuthorScreen.modalPresentationStyle = .fullScreen
-        aboutAuthorScreen.inialise(authorPageURL: viewModel.authorModel.website)
         
         navigationController?.pushViewController(aboutAuthorScreen, animated: true)
     }
     
     private func bindViewModel() {
-        viewModel.$nftItems.bind { [weak self] _ in
+        viewModel.$nftItems.observe { [weak self] _ in
             guard let self = self else { return }
             self.nftCollectionView.reloadData()
         }
         
-        viewModel.$loadingInProgress.bind { _ in
+        viewModel.$loadingInProgress.observe { _ in
             if self.viewModel.loadingInProgress {
                 UIProgressHUD.show()
             } else {
@@ -137,16 +147,37 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
             }
         }
         
-        viewModel.$authorModel.bind { [weak self] _ in
+        viewModel.$authorModel.observe { [weak self] _ in
             guard let self = self else { return }
             self.authorLink.text = viewModel.authorModel.name
+        }
+        viewModel.$mainLoadErrorDescription.observe { [weak self] _ in
+            guard let self = self else { return }
+            self.alertPresenter.preparingAlertWithRepeat(alertText: viewModel.mainLoadErrorDescription) {
+                self.viewModel.loadNFTForCollection()
+                self.viewModel.getAuthorURL()
+            }
+        }
+        
+        viewModel.$addToCartErrorDescription.observe { [weak self] _ in
+            guard let self = self else { return }
+            self.alertPresenter.preparingDataAndDisplay(alertText: viewModel.addToCartErrorDescription)
+        }
+        
+        viewModel.$addToFavoritesErrorDescription.observe { [weak self] _ in
+            guard let self = self else { return }
+            self.alertPresenter.preparingDataAndDisplay(alertText: viewModel.addToFavoritesErrorDescription)
         }
     }
 }
 
+// MARK: - EXTENSIONS
+
+// MARK: - Setup UI
+
 private extension CollectionViewController {
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .appWhite
         
         [coverImage, collectionNameLabel, fullDescriptionVerticalStackView, nftCollectionView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -171,12 +202,16 @@ private extension CollectionViewController {
         nftDescriptionLabel.text = viewModel.collectionModel.description
     }
     
+    // MARK: - Setting Navigation Bar
+    
     func setupNavBar() {
         navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .appBlack
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
+    // MARK: - Setting Constraints
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             coverImage.topAnchor.constraint(equalTo: view.topAnchor),
@@ -265,3 +300,9 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         collectionConfig.cellSpacing
     }
 }
+
+extension CollectionViewController: AlertPresenterDelegate {
+     func showAlert(alert: UIAlertController) {
+         present(alert, animated: true)
+     }
+ }

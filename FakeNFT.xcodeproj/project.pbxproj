@@ -26,7 +26,7 @@
 		2958DA972A64D4D2001D4B5A /* CatalogueDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DA962A64D4D2001D4B5A /* CatalogueDataProvider.swift */; };
 		2958DAA02A64FAA0001D4B5A /* CollectionNFTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DA9F2A64FAA0001D4B5A /* CollectionNFTCell.swift */; };
 		2958DAA22A64FC36001D4B5A /* RatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DAA12A64FC36001D4B5A /* RatingStackView.swift */; };
-		2958DAA42A64FD0C001D4B5A /* AboutAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DAA32A64FD0C001D4B5A /* AboutAuthorViewController.swift */; };
+		2958DAA42A64FD0C001D4B5A /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DAA32A64FD0C001D4B5A /* AuthorViewController.swift */; };
 		2958DAA62A650302001D4B5A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DAA52A650302001D4B5A /* CollectionViewController.swift */; };
 		2958DAAA2A65B7C7001D4B5A /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DAA92A65B7C7001D4B5A /* CollectionViewModel.swift */; };
 		2958DAAC2A65C00F001D4B5A /* CollectionDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958DAAB2A65C00F001D4B5A /* CollectionDataProvider.swift */; };
@@ -45,6 +45,8 @@
 		29A196512A5BDF1400B7BAB6 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A196502A5BDF1400B7BAB6 /* Observation.swift */; };
 		29A196742A5C7F8300B7BAB6 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 29A196722A5C7F8200B7BAB6 /* Readme.md */; };
 		29A196752A5C7F8300B7BAB6 /* CatalogueDecomposition.md in Resources */ = {isa = PBXBuildFile; fileRef = 29A196732A5C7F8300B7BAB6 /* CatalogueDecomposition.md */; };
+		29E5FF672A6B4EC20040C318 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E5FF662A6B4EC20040C318 /* AlertPresenter.swift */; };
+		29E5FF692A6B66C60040C318 /* AuthorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E5FF682A6B66C60040C318 /* AuthorViewModel.swift */; };
 		3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F478ECE29DB474E00F6D39E /* Colors.swift */; };
 		3F478ED129DB476500F6D39E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F478ED029DB476500F6D39E /* Fonts.swift */; };
 		3F603CCD29DB4A53000C43D7 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 3F603CCC29DB4A53000C43D7 /* ProgressHUD */; };
@@ -109,7 +111,7 @@
 		2958DA962A64D4D2001D4B5A /* CatalogueDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueDataProvider.swift; sourceTree = "<group>"; };
 		2958DA9F2A64FAA0001D4B5A /* CollectionNFTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionNFTCell.swift; sourceTree = "<group>"; };
 		2958DAA12A64FC36001D4B5A /* RatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStackView.swift; sourceTree = "<group>"; };
-		2958DAA32A64FD0C001D4B5A /* AboutAuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAuthorViewController.swift; sourceTree = "<group>"; };
+		2958DAA32A64FD0C001D4B5A /* AuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		2958DAA52A650302001D4B5A /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		2958DAA92A65B7C7001D4B5A /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		2958DAAB2A65C00F001D4B5A /* CollectionDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataProvider.swift; sourceTree = "<group>"; };
@@ -128,6 +130,8 @@
 		29A196502A5BDF1400B7BAB6 /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		29A196722A5C7F8200B7BAB6 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		29A196732A5C7F8300B7BAB6 /* CatalogueDecomposition.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CatalogueDecomposition.md; sourceTree = "<group>"; };
+		29E5FF662A6B4EC20040C318 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		29E5FF682A6B66C60040C318 /* AuthorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewModel.swift; sourceTree = "<group>"; };
 		3F478ECE29DB474E00F6D39E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3F478ED029DB476500F6D39E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3F68069329CBBAF100B4F915 /* FakeNFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeNFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +268,7 @@
 				2958DABD2A68FD25001D4B5A /* Catalogue */,
 				2958DABE2A68FD32001D4B5A /* Collection */,
 				29A196502A5BDF1400B7BAB6 /* Observation.swift */,
+				29E5FF662A6B4EC20040C318 /* AlertPresenter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -337,7 +342,8 @@
 			children = (
 				2958DA9F2A64FAA0001D4B5A /* CollectionNFTCell.swift */,
 				2958DAA12A64FC36001D4B5A /* RatingStackView.swift */,
-				2958DAA32A64FD0C001D4B5A /* AboutAuthorViewController.swift */,
+				2958DAA32A64FD0C001D4B5A /* AuthorViewController.swift */,
+				29E5FF682A6B66C60040C318 /* AuthorViewModel.swift */,
 				2958DAA52A650302001D4B5A /* CollectionViewController.swift */,
 				2958DAA92A65B7C7001D4B5A /* CollectionViewModel.swift */,
 			);
@@ -715,19 +721,21 @@
 				29A1964F2A5BDBD700B7BAB6 /* SetupManager.swift in Sources */,
 				0AAF02EE2A5297E300924CE0 /* ProfileViewProtocol.swift in Sources */,
 				29A196432A5A945000B7BAB6 /* UICollectionView+Extensions.swift in Sources */,
-				2958DAA42A64FD0C001D4B5A /* AboutAuthorViewController.swift in Sources */,
+				2958DAA42A64FD0C001D4B5A /* AuthorViewController.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				2958DAA22A64FC36001D4B5A /* RatingStackView.swift in Sources */,
 				0AAF02EA2A5296DB00924CE0 /* StatsViewController.swift in Sources */,
 				29A1963E2A5A6DF500B7BAB6 /* CatalogFactory.swift in Sources */,
+				29E5FF692A6B66C60040C318 /* AuthorViewModel.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				0AAF02E82A5296C200924CE0 /* CartViewController.swift in Sources */,
 				0AAF03022A529E5800924CE0 /* CartPresenterProtocol.swift in Sources */,
 				0AAF02EC2A5297AD00924CE0 /* ProfilePresenter.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				2958DAAA2A65B7C7001D4B5A /* CollectionViewModel.swift in Sources */,
+				29E5FF672A6B4EC20040C318 /* AlertPresenter.swift in Sources */,
 				29A1964B2A5BA3C800B7BAB6 /* Collection.swift in Sources */,
 				881425132A52E0B300AADB89 /* Models&Structs.swift in Sources */,
 				881425182A52E71E00AADB89 /* Protocols.swift in Sources */,
