@@ -61,10 +61,11 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
             guard let self else { return }
             switch result {
             case .success(let currencies):
+                UIBlockingProgressHUD.dismiss()
                 self.currencies = currencies
                 self.view?.updateUI()
-                UIBlockingProgressHUD.dismiss()
             case .failure(let error):
+                UIBlockingProgressHUD.dismiss()
                 let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
