@@ -39,7 +39,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
     private lazy var authorTitle: UILabel = {
         let label = UILabel()
         label.font = .regular13
-        label.text = "Автор коллекции:"
+        label.text = Names.nftCollectionAuthor
         return label
     }()
     

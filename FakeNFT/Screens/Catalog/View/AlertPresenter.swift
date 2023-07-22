@@ -13,21 +13,21 @@ struct AlertPresenter: AlertPresenterProtocol {
     weak var delegate: AlertPresenterDelegate?
     
     func preparingDataAndDisplay(alertText: String) {
-        let alert = UIAlertController(title: "Произошла ошибка!",
+        let alert = UIAlertController(title: Names.errorMessageTitle,
                                       message: alertText,
                                       preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default)
+        let alertAction = UIAlertAction(title: Names.errorAlertOk, style: .default)
         
         alert.addAction(alertAction)
         delegate?.showAlert(alert: alert)
     }
     
     func preparingAlertWithRepeat(alertText: String, handler: @escaping () -> Void ) {
-        let alert = UIAlertController(title: "Произошла ошибка!",
+        let alert = UIAlertController(title: Names.errorMessageTitleRepeat,
                                       message: alertText,
                                       preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ок", style: .default)
-        let alertRepeatAction = UIAlertAction(title: "Повторить", style: .default) { _ in
+        let alertAction = UIAlertAction(title: Names.errorAlertOk, style: .default)
+        let alertRepeatAction = UIAlertAction(title: Names.errorAlertRepeat, style: .default) { _ in
             handler()
         }
         

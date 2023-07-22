@@ -3,7 +3,6 @@ import UIKit
 extension UIImage {
     enum Icons {
         static let backward = UIImage(named: "Backward")
-        static let edit = UIImage(named: "Edit")
         static let filter = UIImage(named: "Filter")
         static let filledBasket = UIImage(named: "FilledBasket")
         static let emptyBasket = UIImage(named: "EmptyBasket")

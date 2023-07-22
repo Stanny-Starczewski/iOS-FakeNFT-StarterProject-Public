@@ -56,19 +56,19 @@ final class CatalogueViewModel {
     
     @objc
     internal func sortCollections() {
-        let actionSheet = UIAlertController(title: "Сортировка", message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: Names.sorting, message: nil, preferredStyle: .actionSheet)
         
-        let sortByName = UIAlertAction(title: "По названию", style: .default) { [weak self] _ in
+        let sortByName = UIAlertAction(title: Names.sortByName, style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.delegate?.didSelectSortType(.sortByName)
         }
         
-        let sortByCount = UIAlertAction(title: "По количеству NFT", style: .default) { [weak self] _ in
+        let sortByCount = UIAlertAction(title: Names.sortByNFTCount, style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.delegate?.didSelectSortType(.sortByCount)
         }
         
-        let cancel = UIAlertAction(title: "Закрыть", style: .cancel)
+        let cancel = UIAlertAction(title: Names.close, style: .cancel)
         
         actionSheet.addAction(sortByName)
         actionSheet.addAction(sortByCount)
