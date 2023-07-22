@@ -7,7 +7,7 @@ final class SetupManager {
 
     var sortCollectionsType: String? {
         get {
-            userDefaults.string(forKey: Keys.sortType.rawValue)
+            return userDefaults.string(forKey: Keys.sortType.rawValue)
         }
         set {
             userDefaults.set(newValue, forKey: Keys.sortType.rawValue)
