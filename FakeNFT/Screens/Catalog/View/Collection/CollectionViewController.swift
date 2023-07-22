@@ -139,6 +139,24 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
             self.nftCollectionView.reloadData()
         }
         
+        viewModel.$loadingState.observe { [weak self] loadingState in
+            guard let self = self else { return }
+            
+            switch loadingState {
+            case .loading:
+                UIProgressHUD.show()
+            case .loaded:
+                UIProgressHUD.dismiss()
+            case .failed:
+                self.alertPresenter.preparingAlertWithRepeat(alertText: viewModel.mainLoadErrorDescription) {
+                    self.viewModel.loadNFTForCollection()
+                    self.viewModel.getAuthorURL()
+                }
+            default:
+                break 
+            }
+        }
+        
         viewModel.$loadingInProgress.observe { _ in
             if self.viewModel.loadingInProgress {
                 UIProgressHUD.show()

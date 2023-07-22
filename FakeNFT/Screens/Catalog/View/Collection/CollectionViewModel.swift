@@ -2,6 +2,13 @@ import Foundation
 
 final class CollectionViewModel {
     
+    enum LoadingState {
+        case idle
+        case loading
+        case loaded
+        case failed
+    }
+    
     // MARK: - Properties
 
     var numberOfItems: Int {
@@ -16,6 +23,7 @@ final class CollectionViewModel {
     @Observable private(set) var mainLoadErrorDescription: String = ""
     @Observable private(set) var addToCartErrorDescription: String = ""
     @Observable private(set) var addToFavoritesErrorDescription: String = ""
+    @Observable private(set) var loadingState: LoadingState = .idle
     
     private var orderItems: [String] = []
     private var likedItems: [String] = []
@@ -33,6 +41,7 @@ final class CollectionViewModel {
 
     func loadNFTForCollection() {
         loadingInProgress = true
+        loadingState = .loading
         
         collectionDataProvider.getOrder { [weak self] result in
             guard let self else { return }
@@ -80,6 +89,7 @@ final class CollectionViewModel {
         }
         group.notify(queue: .main) { [weak self] in
             self?.loadingInProgress = false
+            self?.loadingState = .loaded
         }
     }
     
@@ -108,7 +118,7 @@ final class CollectionViewModel {
                                            price: nft.price,
                                            isOrdered: isOrdered,
                                            isLiked: isLiked)
-        
+        loadingState = .loading
     }
     
     func getAuthorURL() {
@@ -144,8 +154,10 @@ final class CollectionViewModel {
                 case .success:
                     self.replaceNFT(nft: nftItem, isLiked: nftItem.isLiked, isOrdered: !nftItem.isOrdered)
                     self.loadingInProgress = false
+                    self.loadingState = .loaded
                 case .failure(let error):
                     self.orderItems = orderItemsBeforeAdding
+                    self.loadingState = .failed
                     self.loadingInProgress = false
                     self.addToCartErrorDescription = error.localizedDescription
                 }
