@@ -1,10 +1,5 @@
 import Foundation
 
-enum ResultModel<T> {
-    case success(T)
-    case failure(Error)
-}
-
 final class CollectionDataProvider: CollectionDataProviderProtocol {
     private let networkClient: NetworkClient
     
@@ -12,10 +7,15 @@ final class CollectionDataProvider: CollectionDataProviderProtocol {
         self.networkClient = networkClient
     }
     
-    func getOrder(completion: @escaping (ResultModel<OrderModel>) -> Void) {
+    func getOrder(completion: @escaping (Result<OrderModel, Error>) -> Void) {
         let getOrderRequest = GetOrderRequest()
         networkClient.send(request: getOrderRequest, type: OrderModel.self) { result in
-            self.handleResult(result, completion: completion)
+            switch result {
+            case .success(let order):
+                completion(.success(order))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
     
@@ -31,24 +31,47 @@ final class CollectionDataProvider: CollectionDataProviderProtocol {
         }
     }
     
-    func getNFT(by id: String, completion: @escaping (ResultModel<NFTModel>) -> Void) {
+    func getNFT(by id: String, completion: @escaping (Result<NFTModel, Error>) -> Void) {
         let getNFTByIdRequest = GetNFTByIdRequest(id: id)
         networkClient.send(request: getNFTByIdRequest, type: NFTModel.self) { result in
-            self.handleResult(result, completion: completion)
+            switch result {
+            case .success(let nft):
+                DispatchQueue.main.async {
+                    completion(.success(nft))
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
         }
     }
-    
-    func getAuthor(by id: String, completion: @escaping (ResultModel<AuthorModel>) -> Void) {
+
+    func getAuthor(by id: String, completion: @escaping (Result<AuthorModel, Error>) -> Void) {
         let getUserByIdRequest = GetUserByIdRequest(id: id)
         networkClient.send(request: getUserByIdRequest, type: AuthorModel.self) { result in
-            self.handleResult(result, completion: completion)
+            switch result {
+            case .success(let author):
+                DispatchQueue.main.async {
+                    completion(.success(author))
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
         }
     }
     
-    func getFavorites(completion: @escaping (ResultModel<FavoritesModel>) -> Void) {
+    func getFavorites(completion: @escaping (Result<FavoritesModel, Error>) -> Void) {
         let getFavoritesRequest = GetFavoritesRequest()
         networkClient.send(request: getFavoritesRequest, type: FavoritesModel.self) { result in
-            self.handleResult(result, completion: completion)
+            switch result {
+            case .success(let favoritesModel):
+                completion(.success(favoritesModel))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
     
@@ -61,15 +84,6 @@ final class CollectionDataProvider: CollectionDataProviderProtocol {
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-    
-    private func handleResult<T>(_ result: Result<T, Error>, completion: @escaping (ResultModel<T>) -> Void) {
-        switch result {
-        case .success(let value):
-            completion(.success(value))
-        case .failure(let error):
-            completion(.failure(error))
         }
     }
 }
