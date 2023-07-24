@@ -7,16 +7,19 @@ final class CollectionDataProvider: CollectionDataProviderProtocol {
         self.networkClient = networkClient
     }
     
+    // MARK: - Private Helpers
+    
+    private func handleResult<T>(_ result: Result<T, Error>, completion: @escaping (Result<T, Error>) -> Void) {
+        DispatchQueue.main.async {
+            completion(result)
+        }
+    }
+    
+    // MARK: - CollectionDataProviderProtocol
+    
     func getOrder(completion: @escaping (Result<OrderModel, Error>) -> Void) {
         let getOrderRequest = GetOrderRequest()
-        networkClient.send(request: getOrderRequest, type: OrderModel.self) { result in
-            switch result {
-            case .success(let order):
-                completion(.success(order))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        networkClient.send(request: getOrderRequest, type: OrderModel.self, onResponse: completion)
     }
     
     func updateOrder(with nftIds: [String], completion: @escaping (Result<Void, Error>) -> Void) {
@@ -24,55 +27,26 @@ final class CollectionDataProvider: CollectionDataProviderProtocol {
         networkClient.send(request: putOrderRequest, type: OrderModel.self) { result in
             switch result {
             case .success:
-                completion(.success(()))
+                self.handleResult(.success(()), completion: completion)
             case .failure(let error):
-                completion(.failure(error))
+                self.handleResult(.failure(error), completion: completion)
             }
         }
     }
     
     func getNFT(by id: String, completion: @escaping (Result<NFTModel, Error>) -> Void) {
         let getNFTByIdRequest = GetNFTByIdRequest(id: id)
-        networkClient.send(request: getNFTByIdRequest, type: NFTModel.self) { result in
-            switch result {
-            case .success(let nft):
-                DispatchQueue.main.async {
-                    completion(.success(nft))
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }
+        networkClient.send(request: getNFTByIdRequest, type: NFTModel.self, onResponse: completion)
     }
 
     func getAuthor(by id: String, completion: @escaping (Result<AuthorModel, Error>) -> Void) {
         let getUserByIdRequest = GetUserByIdRequest(id: id)
-        networkClient.send(request: getUserByIdRequest, type: AuthorModel.self) { result in
-            switch result {
-            case .success(let author):
-                DispatchQueue.main.async {
-                    completion(.success(author))
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }
+        networkClient.send(request: getUserByIdRequest, type: AuthorModel.self, onResponse: completion)
     }
     
     func getFavorites(completion: @escaping (Result<FavoritesModel, Error>) -> Void) {
         let getFavoritesRequest = GetFavoritesRequest()
-        networkClient.send(request: getFavoritesRequest, type: FavoritesModel.self) { result in
-            switch result {
-            case .success(let favoritesModel):
-                completion(.success(favoritesModel))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        networkClient.send(request: getFavoritesRequest, type: FavoritesModel.self, onResponse: completion)
     }
     
     func updateFavorites(with favoritesIDs: [String], completion: @escaping (Result<Void, Error>) -> Void) {
@@ -80,9 +54,9 @@ final class CollectionDataProvider: CollectionDataProviderProtocol {
         networkClient.send(request: putFavoritesRequest, type: FavoritesModel.self) { result in
             switch result {
             case .success:
-                completion(.success(()))
+                self.handleResult(.success(()), completion: completion)
             case .failure(let error):
-                completion(.failure(error))
+                self.handleResult(.failure(error), completion: completion)
             }
         }
     }

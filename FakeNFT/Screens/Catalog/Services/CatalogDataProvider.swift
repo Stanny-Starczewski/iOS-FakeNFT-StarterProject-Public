@@ -21,7 +21,7 @@ final class CatalogueDataProvider: CatalogueProviderProtocol {
         }
     }
     
-    // MARK: - Private
+    // MARK: - Private func
     
     private func handleCollectionsResult(_ result: Result<[NFTCollection], Error>, completion: @escaping CollectionsCompletionHandler) {
         switch result {
