@@ -9,10 +9,10 @@ import UIKit
 import Kingfisher
 
 protocol EditProfileViewControllerProtocol: AnyObject {
-
+    func setData(profile: Profile)
 }
 
-final class EditProfileViewController: UIViewController, EditProfileViewControllerProtocol {
+final class EditProfileViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -146,7 +146,7 @@ final class EditProfileViewController: UIViewController, EditProfileViewControll
         
         setupView()
         setConstraints()
-        configureView()
+        presenter?.setData()
         
     }
     
@@ -160,25 +160,6 @@ final class EditProfileViewController: UIViewController, EditProfileViewControll
     @objc
     private func changeAvatarDidTap(_ sender: UITapGestureRecognizer) {
         loadImageLabel.isHidden = false
-    }
-    
-    private func configureView() {
-        guard let models = presenter?.fetchModel() else { return }
-        print(models)
-        updateEditProfileDetails(profile: models)
-    }
-    
-    func updateEditProfileDetails(profile: Profile) {
-    
-//        avatarImage.kf.setImage(
-//            with: profile?.avatarURL,
-//            placeholder: UIImage(named: "ProfilePhoto"),
-//            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
-        
-        nameTextField.text = profile.name
-        descriptionTextField.text = profile.description
-        websiteTextField.text = profile.website
-        
     }
     
     // MARK: - Setup UI
@@ -277,4 +258,19 @@ extension EditProfileViewController: UITextFieldDelegate {
 
 extension EditProfileViewController: UITextViewDelegate {
     
+}
+
+extension EditProfileViewController: EditProfileViewControllerProtocol {
+    func setData(profile: Profile) {
+        
+        //        avatarImage.kf.setImage(
+        //            with: profile?.avatarURL,
+        //            placeholder: UIImage(named: "ProfilePhoto"),
+        //            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
+        
+        nameTextField.text = profile.name
+        descriptionTextField.text = profile.description
+        websiteTextField.text = profile.website
+        
+    }
 }

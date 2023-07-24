@@ -12,33 +12,6 @@ protocol MyNFTPresenterProtocol {
     func viewDidLoad()
 }
 
-struct NFTNetworkModel: Codable {
-    let createdAt: String
-    let name: String
-    let images: [String]
-    let rating: Int
-    let description: String
-    let price: Float
-    let author: String
-    let id: String
-}
-
-struct AuthorNetworkModel: Codable {
-    let name: String
-    let id: String
-}
-
-struct NFTNetworkModelResult {
-    let createdAt: String
-    let name: String
-    let images: [String]
-    let rating: Int
-    let description: String
-    let price: Float
-    let author: String
-    let id: String
-}
-
 final class MyNFTPresenter {
     
     // MARK: - Properties
@@ -102,7 +75,7 @@ final class MyNFTPresenter {
 extension MyNFTPresenter: MyNFTPresenterProtocol {
     
     func viewDidLoad() {
-      //  getProfileData()
+        getMyNFTs(nftIDs: [])
     }
     
 }

@@ -38,7 +38,7 @@ struct NFTCollectionNFTItem {
     let inCart: Bool
 }
 
-struct NFTItem: Codable {
+struct NftItem: Codable, Equatable {
     let createdAt: String
     let name: String
     let images: [String]
@@ -47,10 +47,27 @@ struct NFTItem: Codable {
     let price: Double
     let id: String
 }
-struct NFTLiked: Codable {
+
+struct NftLiked: Codable {
     let likes: [Int]
 }
 
-struct NFTsInCart: Codable {
-    let nfts: [Int]
+struct NftsInCart: Codable {
+    let nfts: [String]
+}
+
+struct NFTNetworkModel: Codable {
+    let createdAt: String
+    let name: String
+    let images: [String]
+    let rating: Int
+    let description: String
+    let price: Float
+    let author: String
+    let id: String
+}
+
+struct AuthorNetworkModel: Codable {
+    let name: String
+    let id: String
 }

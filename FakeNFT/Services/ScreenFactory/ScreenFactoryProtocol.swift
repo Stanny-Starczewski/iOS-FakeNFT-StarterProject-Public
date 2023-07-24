@@ -1,9 +1,10 @@
-import UIKit
-
-protocol ScreenFactoryProtocol {
-    func makeProfileScreen() -> UIViewController
-    func makeCatalogScreen() -> UIViewController
-    func makeCartScreen() -> UIViewController
-    func makeStatsScreen() -> UIViewController
- //   func makeMyNFTScreen() -> UIViewController
-}
+// import UIKit
+//
+// protocol ScreenFactoryProtocol {
+//    func makeProfileScreen() -> UIViewController
+////    func makeEditProfileScreen(profileData: Profile) -> UIViewController
+//    func makeCatalogScreen() -> UIViewController
+//    func makeCartScreen() -> UIViewController
+//    func makeStatsScreen() -> UIViewController
+// //   func makeMyNFTScreen() -> UIViewController
+// }

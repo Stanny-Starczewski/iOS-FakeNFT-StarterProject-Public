@@ -1,24 +1,15 @@
 import Foundation
 
 protocol ProfilePresenterProtocol {
-    var view: ProfileViewControllerProtocol? { get set }
+   // var view: ProfileViewControllerProtocol? { get set }
     func viewDidLoad()
-}
-
-struct ProfileResult {
-    let name: String
-    let avatarURL: URL
-    let description: String
-    let website: String
-    let nfts: String
-    let likes: String
-    let id: String
+    func didTapEditButton()
 }
 
 final class ProfilePresenter {
     
     weak var view: ProfileViewControllerProtocol?
-    private(set) var profile: ProfileResult?
+    private var profile: Profile?
     
     // MARK: - Methods
     
@@ -32,18 +23,9 @@ final class ProfilePresenter {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let profile):
-                    let profileResult = ProfileResult(
-                        name: profile.name,
-                        avatarURL: URL(string: profile.avatar)!,
-                        description: profile.description,
-                        website: profile.website,
-                        nfts: "(\(String(profile.nfts.count)))",
-                        likes: "(\(String(profile.likes.count)))",
-                        id: profile.id
-                    )
-                    self?.view?.updateProfileScreen(profile: profileResult)
+                    self?.profile = profile
+                    self?.view?.updateProfileScreen(profile: profile)
                     print(profile)
-                    
                 case .failure(let error):
                     print(error)
                     self?.view?.showNoInternetView()
@@ -51,6 +33,12 @@ final class ProfilePresenter {
                 UIBlockingProgressHUD.dismiss()
             }
         }
+    }
+    
+    func didTapEditButton() {
+        let editProfileViewController = EditProfileViewController()
+//        self.navigationController?.pushViewController(editProfileViewController, animated: true)
+        view?.showViewController(editProfileViewController)
     }
 }
 

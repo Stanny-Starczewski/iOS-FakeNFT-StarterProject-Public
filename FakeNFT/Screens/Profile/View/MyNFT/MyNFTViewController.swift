@@ -19,14 +19,14 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
     private var presenter: MyNFTPresenterProtocol?
     
-//    private var nftImage: [String] = Array(0..<3).map{ "\($0)" }
-//    private var nftName: [String] = [ "Lilo", "Spring", "April"]
-//    private var nftPrice: [String] = [ "1,78 ETH", "1,99 ETH", "2,99 ETH" ]
-//    private var nftRating: [Int] = [ 3, 4, 5 ]
+    private var nftImage: [String] = Array(0..<3).map { "\($0)" }
+    private var nftName: [String] = [ "Lilo", "Spring", "April"]
+    private var nftPrice: [String] = [ "1,78 ETH", "1,99 ETH", "2,99 ETH" ]
+    private var nftRating: [Int] = [ 3, 4, 5 ]
 //
     private var nftIDs = true
 //
-    private(set) var myNFTs: [NFTNetworkModel]?
+//    private(set) var myNFTs: []
     
     // MARK: - Layout elements
     
@@ -81,6 +81,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         
         setupView()
         presenter?.viewDidLoad()
+      //  updateNFT(nfts: [])
     }
     
     // MARK: - Actions
@@ -98,7 +99,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     // MARK: - Methods
     
     func updateNFT(nfts: [NFTNetworkModel]) {
-        self.myNFTs = nfts
+   //     self.myNFTs = nfts
         myNFTTable.reloadData()
         UIBlockingProgressHUD.dismiss()
     }
@@ -158,25 +159,26 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
 
 extension MyNFTViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let myNFTs = myNFTs else { return 0 }
-        return myNFTs.count
+//        guard let myNFTs = myNFTs else { return 0 }
+//        return myNFTs.count
+        3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: MyNFTCell.reuseIdentifier) as? MyNFTCell
         
-        let myNFT = myNFTs?[indexPath.row]
-        cell?.myNFTImage.kf.setImage(with: URL(string: myNFT?.images[0] ?? ""))
-        cell?.myNFTNameLabel.text = myNFT?.name
-        cell?.myNFTRating.setStarsRating(rating: myNFT?.rating ?? 3)
-        cell?.myNFTPriceValueLabel.text = "\(myNFT?.price ?? 0) ETH"
+//        let myNFT = myNFTs?[indexPath.row]
+//        cell?.myNFTImage.kf.setImage(with: URL(string: myNFT?.images[0] ?? ""))
+//        cell?.myNFTNameLabel.text = myNFT?.name
+//        cell?.myNFTRating.setStarsRating(rating: myNFT?.rating ?? 3)
+//        cell?.myNFTPriceValueLabel.text = "\(myNFT?.price ?? 0) ETH"
         
-//        let image = UIImage(named: nftImage[indexPath.row])
-//        cell.myNFTImage.image = image
-//        cell.myNFTRating.setStarsRating(rating: nftRating[indexPath.row])
-//        cell.myNFTNameLabel.text = nftName[indexPath.row]
-//        cell.myNFTPriceValueLabel.text = nftPrice[indexPath.row]
+        let image = UIImage(named: nftImage[indexPath.row])
+        cell?.myNFTImage.image = image
+        cell?.myNFTRating.setStarsRating(rating: nftRating[indexPath.row])
+        cell?.myNFTNameLabel.text = nftName[indexPath.row]
+        cell?.myNFTPriceValueLabel.text = nftPrice[indexPath.row]
         cell?.selectionStyle = .none
         return cell ?? UITableViewCell()
     }

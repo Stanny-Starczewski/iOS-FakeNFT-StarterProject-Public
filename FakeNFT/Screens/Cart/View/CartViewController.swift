@@ -1,6 +1,6 @@
 import UIKit
 
-final class CartViewController: UIViewController {
+ final class CartViewController: UIViewController {
     
     private let presenter: CartPresenterProtocol
     
@@ -28,20 +28,20 @@ final class CartViewController: UIViewController {
         view.backgroundColor = .appWhite
         title = "Корзина"
     }
-}
+ }
 
-// MARK: - CartViewProtocol
+ // MARK: - CartViewProtocol
 
-extension CartViewController: CartViewProtocol {
+ extension CartViewController: CartViewProtocol {
     
-}
+ }
 
-// MARK: - Setting Constraints
+ // MARK: - Setting Constraints
 
-extension CartViewController {
+ extension CartViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             
         ])
     }
-}
+ }

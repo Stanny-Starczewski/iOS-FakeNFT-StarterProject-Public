@@ -8,21 +8,22 @@
 import Foundation
 
 protocol EditProfilePresenterProtocol: AnyObject {
-    func fetchModel() -> Profile
+    init(view: EditProfileViewControllerProtocol, profile: Profile)
+    func setData()
 }
 
 final class EditProfilePresenter: EditProfilePresenterProtocol {
     
-    private var profileResult: Profile
-    private var editProfileViewController: EditProfileViewControllerProtocol?
+    var profile: Profile
+    weak var view: EditProfileViewControllerProtocol?
     
-    init(profileResult: Profile, editProfileViewController: EditProfileViewControllerProtocol? = nil) {
-        self.profileResult = profileResult
-        self.editProfileViewController = editProfileViewController
+    init(view: EditProfileViewControllerProtocol, profile: Profile) {
+        self.view = view
+        self.profile = profile
+
     }
     
-    func fetchModel() -> Profile {
-        return profileResult
+    public func setData() {
+        self.view?.setData(profile: profile)
     }
-    
 }

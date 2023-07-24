@@ -35,12 +35,12 @@ final class TabBarController: UITabBarController {
         }
     }
     
-    private let screenFactory: ScreenFactoryProtocol
+    private let screenAssembly: ScreenAssemblyProtocol
     
     // MARK: - Life Cycle
     
-    init(screenFactory: ScreenFactoryProtocol) {
-        self.screenFactory = screenFactory
+    init(screenAssembly: ScreenAssemblyProtocol) {
+        self.screenAssembly = screenAssembly
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -73,16 +73,16 @@ final class TabBarController: UITabBarController {
         viewControllers = dataSource.map {
             switch $0 {
             case .profile:
-                let profileScreen = screenFactory.makeProfileScreen()
+                let profileScreen = screenAssembly.makeProfileScreen()
                 return wrapInNavigationController(profileScreen)
             case .catalog:
-                let catalogScreen = screenFactory.makeCatalogScreen()
+                let catalogScreen = screenAssembly.makeCatalogScreen()
                 return wrapInNavigationController(catalogScreen)
             case .cart:
-                let cartScreen = screenFactory.makeCartScreen()
+                let cartScreen = screenAssembly.makeCartScreen()
                 return wrapInNavigationController(cartScreen)
             case .stats:
-                let statsScreen = screenFactory.makeStatsScreen()
+                let statsScreen = screenAssembly.makeStatsScreen()
                 return wrapInNavigationController(statsScreen)
             }
         }

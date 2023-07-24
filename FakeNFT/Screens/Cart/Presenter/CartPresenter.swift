@@ -1,13 +1,13 @@
 import Foundation
 
-final class CartPresenter {
+ final class CartPresenter {
     
     weak var view: CartViewProtocol?
     
-}
+ }
 
-// MARK: - CartPresenterProtocol
+ // MARK: - CartPresenterProtocol
 
-extension CartPresenter: CartPresenterProtocol {
+ extension CartPresenter: CartPresenterProtocol {
     
-}
+ }

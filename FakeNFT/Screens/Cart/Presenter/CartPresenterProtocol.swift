@@ -1,5 +1,5 @@
 import Foundation
 
-protocol CartPresenterProtocol {
+ protocol CartPresenterProtocol {
     
-}
+ }

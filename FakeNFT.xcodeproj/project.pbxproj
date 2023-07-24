@@ -50,6 +50,11 @@
 		8814251A2A52E7B800AADB89 /* NFTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425192A52E7B800AADB89 /* NFTModels.swift */; };
 		8814251C2A52E97500AADB89 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814251B2A52E97500AADB89 /* Config.swift */; };
 		A3A2CDFA2A6834DB00627603 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CDF92A6834DB00627603 /* EditProfilePresenter.swift */; };
+		A3A2CE0A2A6E7C4100627603 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE092A6E7C4100627603 /* FavoritesCell.swift */; };
+		A3A2CE0D2A6EA50400627603 /* ScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE0C2A6EA50400627603 /* ScreenAssembly.swift */; };
+		A3A2CE0F2A6EA59500627603 /* AlertAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE0E2A6EA59500627603 /* AlertAssembly.swift */; };
+		A3A2CE112A6EA5BF00627603 /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */; };
+		A3A2CE142A6EAFC100627603 /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE132A6EAFC100627603 /* WebsiteViewController.swift */; };
 		A3F5E1932A59804D00BB5812 /* GetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */; };
 		A3F5E1952A5ADB7200BB5812 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */; };
 		A3F5E1982A5AE67300BB5812 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */; };
@@ -130,6 +135,11 @@
 		881425192A52E7B800AADB89 /* NFTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModels.swift; sourceTree = "<group>"; };
 		8814251B2A52E97500AADB89 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A3A2CDF92A6834DB00627603 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
+		A3A2CE092A6E7C4100627603 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesCell.swift; path = ../../../../../../../../.Trash/FakeNFT/FakeNFT/Screens/Profile/View/Favorites/FavoritesCell.swift; sourceTree = "<group>"; };
+		A3A2CE0C2A6EA50400627603 /* ScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenAssembly.swift; path = ../../../../../ScreenAssembly.swift; sourceTree = "<group>"; };
+		A3A2CE0E2A6EA59500627603 /* AlertAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertAssembly.swift; path = ../../../../../AlertAssembly.swift; sourceTree = "<group>"; };
+		A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceAssembly.swift; path = ../../../../../ServiceAssembly.swift; sourceTree = "<group>"; };
+		A3A2CE132A6EAFC100627603 /* WebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebsiteViewController.swift; path = ../../../../../../../../WebsiteViewController.swift; sourceTree = "<group>"; };
 		A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileRequest.swift; sourceTree = "<group>"; };
 		A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +253,7 @@
 		0AAF02F22A5298AF00924CE0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A3A2CE122A6EAF8D00627603 /* ProfileWebsite */,
 				A3F5E1962A5AE5FF00BB5812 /* NoInternet */,
 				A3FE08492A5881AF0078D7BE /* About */,
 				A3FE083E2A586AF90078D7BE /* Profile */,
@@ -349,6 +360,7 @@
 		3F68069529CBBAF100B4F915 /* FakeNFT */ = {
 			isa = PBXGroup;
 			children = (
+				A3A2CE0B2A6EA4E300627603 /* Assembly */,
 				0AAF02DC2A52912300924CE0 /* App */,
 				3F478ECD29DB473000F6D39E /* DesignSystem */,
 				3F6806CE29CBBD1B00B4F915 /* Foundation */,
@@ -459,6 +471,24 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		A3A2CE0B2A6EA4E300627603 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				A3A2CE0C2A6EA50400627603 /* ScreenAssembly.swift */,
+				A3A2CE0E2A6EA59500627603 /* AlertAssembly.swift */,
+				A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		A3A2CE122A6EAF8D00627603 /* ProfileWebsite */ = {
+			isa = PBXGroup;
+			children = (
+				A3A2CE132A6EAFC100627603 /* WebsiteViewController.swift */,
+			);
+			path = ProfileWebsite;
+			sourceTree = "<group>";
+		};
 		A3F5E1962A5AE5FF00BB5812 /* NoInternet */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				A3FE08402A586C1B0078D7BE /* FavoritesViewController.swift */,
+				A3A2CE092A6E7C4100627603 /* FavoritesCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -678,9 +709,11 @@
 				A3FE08342A583B130078D7BE /* ProfileAssetsCell.swift in Sources */,
 				0AAF030E2A529FAC00924CE0 /* ScreenFactoryProtocol.swift in Sources */,
 				0AAF030A2A529EFA00924CE0 /* StatsPresenterProtocol.swift in Sources */,
+				A3A2CE0D2A6EA50400627603 /* ScreenAssembly.swift in Sources */,
 				A3FE08482A58773F0078D7BE /* FavoriteButton.swift in Sources */,
 				0AAF02E62A5296AD00924CE0 /* CatalogViewController.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
+				A3A2CE0F2A6EA59500627603 /* AlertAssembly.swift in Sources */,
 				A3FE083A2A58611E0078D7BE /* MyNFTPresenter.swift in Sources */,
 				A3FE08412A586C1B0078D7BE /* FavoritesViewController.swift in Sources */,
 				0AAF02F42A5299BB00924CE0 /* ScreenFactory.swift in Sources */,
@@ -712,7 +745,10 @@
 				A3FE08362A58458D0078D7BE /* EditProfileViewController.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				A3A2CDFA2A6834DB00627603 /* EditProfilePresenter.swift in Sources */,
+				A3A2CE112A6EA5BF00627603 /* ServiceAssembly.swift in Sources */,
+				A3A2CE142A6EAFC100627603 /* WebsiteViewController.swift in Sources */,
 				0AAF02E82A5296C200924CE0 /* CartViewController.swift in Sources */,
+				A3A2CE0A2A6E7C4100627603 /* FavoritesCell.swift in Sources */,
 				A3F5E19C2A5B218700BB5812 /* GetNFTByIdRequest.swift in Sources */,
 				0AAF03022A529E5800924CE0 /* CartPresenterProtocol.swift in Sources */,
 				0AAF02EC2A5297AD00924CE0 /* ProfilePresenter.swift in Sources */,

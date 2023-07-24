@@ -1,5 +1,5 @@
 import Foundation
 
-protocol CartViewProtocol: AnyObject {
-    
-}
+ protocol CartViewProtocol: AnyObject {
+
+ }

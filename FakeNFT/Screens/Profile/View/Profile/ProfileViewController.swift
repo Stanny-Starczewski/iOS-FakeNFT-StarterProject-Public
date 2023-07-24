@@ -2,16 +2,17 @@ import UIKit
 import Kingfisher
 
 protocol ProfileViewControllerProtocol: AnyObject {
-    var presenter: ProfilePresenterProtocol? { get set }
-    func updateProfileScreen(profile: ProfileResult)
+  //  var presenter: ProfilePresenterProtocol? { get set }
+    func updateProfileScreen(profile: Profile)
     func showNoInternetView()
+    func showViewController(_ vc: UIViewController)
 }
 
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
 
     // MARK: - Properties
     
-    var presenter: ProfilePresenterProtocol?
+    private var presenter: ProfilePresenterProtocol?
     
     private lazy var assetLabel: [String] = [
         "Мои NFT",
@@ -19,11 +20,11 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         "О разработчике"
     ]
     
-    private lazy var assetViewController: [UIViewController] = [
-        MyNFTViewController(),
-        FavoritesViewController(),
-        AboutViewController()
-    ]
+//    private lazy var assetViewController: [UIViewController] = [
+//        MyNFTViewController(),
+//        FavoritesViewController(),
+//        AboutViewController()
+//    ]
     
     // MARK: - Layout elements
     
@@ -69,12 +70,13 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     private lazy var websiteLabel: UILabel = {
         let websiteLabel = UILabel()
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
+        websiteLabel.accessibilityIdentifier = "websiteLabel"
         let tapAction = UITapGestureRecognizer(target: self, action: #selector(websiteDidTap(_:)))
         websiteLabel.isUserInteractionEnabled = true
         websiteLabel.addGestureRecognizer(tapAction)
-        websiteLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.24]) // "JoaquinPhoenix.com"
+        websiteLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.24])
         websiteLabel.font = UIFont.systemFont(ofSize: 15)
-        websiteLabel.textColor = .customBlue
+        websiteLabel.textColor = .blue
         return websiteLabel
     }()
     
@@ -89,17 +91,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         return profileAssetsTable
     }()
     
-    // MARK: - Init
-    
-    init(presenter: ProfilePresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -109,28 +100,44 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         setupView()
         setConstraints()
         presenter?.viewDidLoad()
+
+    }
+    
+    // MARK: - Init
+
+    init(presenter: ProfilePresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Actions
     
     @objc
     private func didTapEditButton() {
-        
-        let editProfileViewController = EditProfileViewController()
-        editProfileViewController.modalPresentationStyle = .popover
-        self.present(editProfileViewController, animated: true)
+        presenter?.didTapEditButton()
     }
     
     @objc
     private func websiteDidTap(_ sender: UITapGestureRecognizer) {
+      self.present(WebsiteViewController(webView: nil, websiteURL: websiteLabel.text), animated: true)
     }
     
     // MARK: - Methods
     
-    func updateProfileScreen(profile: ProfileResult) {
-        
+    func showViewController(_ vc: UIViewController) {
+        present(vc, animated: true)
+    }
+    
+    func updateProfileScreen(profile: Profile) {
+        let imageUrlString = profile.avatar
+        let imageUrl = URL(string: imageUrlString)
         avatarImage.kf.setImage(
-            with: profile.avatarURL,
+            with: imageUrl,
             placeholder: UIImage(named: "ProfilePhoto"),
             options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
         
@@ -138,9 +145,9 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         descriptionLabel.text = profile.description
         websiteLabel.text = profile.website
         let nftsCountLabel = profileAssetsTable.cellForRow(at: [0, 0]) as? ProfileAssetsCell
-        nftsCountLabel?.assetValueLabel.text = profile.nfts
+        nftsCountLabel?.assetValueLabel.text = "(\(String(profile.nfts.count)))"
         let likesCountLabel = profileAssetsTable.cellForRow(at: [0, 1]) as? ProfileAssetsCell
-        likesCountLabel?.assetValueLabel.text = profile.likes
+        likesCountLabel?.assetValueLabel.text = "(\(String(profile.likes.count)))"
     }
     
     func showNoInternetView() {
@@ -222,6 +229,14 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        navigationController?.pushViewController(assetViewController[indexPath.row], animated: true)
+//        navigationController?.pushViewController(assetViewController[indexPath.row], animated: true)
+        switch indexPath.row {
+        case 0: let viewController = MyNFTViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        case 1: let viewController = FavoritesViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        default:
+            return
+        }
     }
 }
