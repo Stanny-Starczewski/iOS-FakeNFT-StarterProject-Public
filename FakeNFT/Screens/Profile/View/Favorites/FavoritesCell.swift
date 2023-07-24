@@ -14,6 +14,7 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     static let reuseIdentifier = "FavoritesCell"
     
     //MARK: - Layout elements
+    
     var nftImage: UIImageView = {
         let nftImage = UIImageView()
         nftImage.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +64,7 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     }()
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         addImage()
@@ -75,6 +77,7 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     }
     
     // MARK: - Public Methods
+    
 //    func configureCell(with model: Model) {
 //        nftImage.kf.setImage(with: URL(string: model.image))
 //        nftName.text = model.name
@@ -85,6 +88,7 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
 //    }
     
     // MARK: - Private Methods
+    
     @objc
     private func didTapFavoriteButton(sender: FavoriteButton) {
         sender.isFavorite.toggle()
@@ -92,6 +96,7 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     }
     
     // MARK: - Layout methods
+    
     private func addImage() {
         contentView.addSubview(nftImage)
         nftImage.image = UIImage(named: "UserImagePlaceholder")

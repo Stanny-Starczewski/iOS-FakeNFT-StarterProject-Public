@@ -11,10 +11,12 @@ import WebKit
 final class WebsiteViewController: UIViewController, WKUIDelegate {
     
     // MARK: - Properties
+    
     private var webView: WKWebView?
     private var websiteURL: String?
     
     // MARK: - Lifecycle
+    
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)

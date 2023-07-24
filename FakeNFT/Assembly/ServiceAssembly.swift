@@ -8,13 +8,13 @@
 import Foundation
 
 protocol ServiceAssemblyProtocol {
-    func makeNetworkService() -> CartNetworkServiceProtocol
+//    func makeNetworkService() -> CartNetworkServiceProtocol
 }
 
 final class ServiceAssembly: ServiceAssemblyProtocol {
     
-    func makeNetworkService() -> CartNetworkServiceProtocol {
-        CartNetworkService()
-    }
+//    func makeNetworkService() -> CartNetworkServiceProtocol {
+//        CartNetworkService()
+//    }
     
 }
