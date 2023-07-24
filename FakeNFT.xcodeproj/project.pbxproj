@@ -428,6 +428,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		0ACE4C332A6EF253005B819C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0A10362E2A67E5310093A4B8 /* UIBlockingProgressHUD.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		3F478ECD29DB473000F6D39E /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +474,7 @@
 				0AA3BB2C2A645CDC00A3FA10 /* Core */,
 				3F6806C929CBBCAF00B4F915 /* Models */,
 				3F6806C729CBBC5B00B4F915 /* Presentation */,
+				0ACE4C332A6EF253005B819C /* Helpers */,
 				3F6806C629CBBC4E00B4F915 /* Services */,
 				0AA3BB2E2A645D1300A3FA10 /* Resources */,
 				0AA3BB2D2A645CEC00A3FA10 /* Extensions */,
@@ -496,7 +505,6 @@
 				0AA3BB2F2A645F5A00A3FA10 /* CartRequests.swift */,
 				0ACE4C062A6BAE4D005B819C /* CartSortService.swift */,
 				0AA3BB312A64617300A3FA10 /* CartNetworkService.swift */,
-				0A10362E2A67E5310093A4B8 /* UIBlockingProgressHUD.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
