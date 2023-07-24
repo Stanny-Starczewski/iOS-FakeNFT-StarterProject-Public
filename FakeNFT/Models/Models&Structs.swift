@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Kingfisher
 
 struct Nft: Codable {
     let createdAt: String
@@ -22,7 +21,6 @@ struct Nft: Codable {
         return URL(string: previewUrl)
     }
 }
-
 
 struct User: Codable {
     let avatar: String
@@ -53,7 +51,7 @@ struct Currency: Codable {
 }
 
 struct Order: Codable {
-    let nfts: [Int]
+    let nfts: [String]
     let id: String
 }
 
