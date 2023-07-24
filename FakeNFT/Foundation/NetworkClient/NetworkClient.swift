@@ -41,6 +41,14 @@ struct DefaultNetworkClient: NetworkClient {
                 return
             }
 
+            if response.statusCode == 429 {
+                let retryAfter = response.allHeaderFields["Retry-After"] as? TimeInterval ?? 2.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + retryAfter) {
+                    self.send(request: request, onResponse: onResponse)
+                }
+                return
+            }
+
             guard 200 ..< 300 ~= response.statusCode else {
                 onResponse(.failure(NetworkClientError.httpStatusCode(response.statusCode)))
                 return
@@ -48,13 +56,10 @@ struct DefaultNetworkClient: NetworkClient {
 
             if let data = data {
                 onResponse(.success(data))
-                return
             } else if let error = error {
                 onResponse(.failure(NetworkClientError.urlRequestError(error)))
-                return
             } else {
-                assertionFailure("Unexpected condition!")
-                return
+                onResponse(.failure(NetworkClientError.urlSessionError))
             }
         }
 
