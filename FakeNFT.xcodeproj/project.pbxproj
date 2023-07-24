@@ -54,7 +54,7 @@
 		A3A2CE0D2A6EA50400627603 /* ScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE0C2A6EA50400627603 /* ScreenAssembly.swift */; };
 		A3A2CE0F2A6EA59500627603 /* AlertAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE0E2A6EA59500627603 /* AlertAssembly.swift */; };
 		A3A2CE112A6EA5BF00627603 /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */; };
-		A3A2CE142A6EAFC100627603 /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE132A6EAFC100627603 /* WebsiteViewController.swift */; };
+		A3A2CE182A6EFD9A00627603 /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE172A6EFD9A00627603 /* WebsiteViewController.swift */; };
 		A3F5E1932A59804D00BB5812 /* GetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */; };
 		A3F5E1952A5ADB7200BB5812 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */; };
 		A3F5E1982A5AE67300BB5812 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */; };
@@ -136,10 +136,10 @@
 		8814251B2A52E97500AADB89 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A3A2CDF92A6834DB00627603 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		A3A2CE092A6E7C4100627603 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesCell.swift; path = ../../../../../../../../.Trash/FakeNFT/FakeNFT/Screens/Profile/View/Favorites/FavoritesCell.swift; sourceTree = "<group>"; };
-		A3A2CE0C2A6EA50400627603 /* ScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenAssembly.swift; path = ../../../../../ScreenAssembly.swift; sourceTree = "<group>"; };
-		A3A2CE0E2A6EA59500627603 /* AlertAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertAssembly.swift; path = ../../../../../AlertAssembly.swift; sourceTree = "<group>"; };
-		A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceAssembly.swift; path = ../../../../../ServiceAssembly.swift; sourceTree = "<group>"; };
-		A3A2CE132A6EAFC100627603 /* WebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebsiteViewController.swift; path = ../../../../../../../../WebsiteViewController.swift; sourceTree = "<group>"; };
+		A3A2CE0C2A6EA50400627603 /* ScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAssembly.swift; sourceTree = "<group>"; };
+		A3A2CE0E2A6EA59500627603 /* AlertAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAssembly.swift; sourceTree = "<group>"; };
+		A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
+		A3A2CE172A6EFD9A00627603 /* WebsiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebsiteViewController.swift; sourceTree = "<group>"; };
 		A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileRequest.swift; sourceTree = "<group>"; };
 		A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
@@ -484,7 +484,7 @@
 		A3A2CE122A6EAF8D00627603 /* ProfileWebsite */ = {
 			isa = PBXGroup;
 			children = (
-				A3A2CE132A6EAFC100627603 /* WebsiteViewController.swift */,
+				A3A2CE172A6EFD9A00627603 /* WebsiteViewController.swift */,
 			);
 			path = ProfileWebsite;
 			sourceTree = "<group>";
@@ -746,7 +746,7 @@
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				A3A2CDFA2A6834DB00627603 /* EditProfilePresenter.swift in Sources */,
 				A3A2CE112A6EA5BF00627603 /* ServiceAssembly.swift in Sources */,
-				A3A2CE142A6EAFC100627603 /* WebsiteViewController.swift in Sources */,
+				A3A2CE182A6EFD9A00627603 /* WebsiteViewController.swift in Sources */,
 				0AAF02E82A5296C200924CE0 /* CartViewController.swift in Sources */,
 				A3A2CE0A2A6E7C4100627603 /* FavoritesCell.swift in Sources */,
 				A3F5E19C2A5B218700BB5812 /* GetNFTByIdRequest.swift in Sources */,
