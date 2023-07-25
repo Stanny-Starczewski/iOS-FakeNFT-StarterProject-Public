@@ -8,6 +8,8 @@ final class StatUserPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UINavigationBar.appearance().tintColor = .appBlack
+        view.tintColor = . appBlack
         let model = StatUserPageModel()
         viewModel = StatUserPageViewModel(model: model)
         viewModel.onChange = configure
@@ -176,7 +178,10 @@ final class StatUserPageViewController: UIViewController {
         
         let backButton = UIBarButtonItem()
         backButton.title = ""
+        backButton.tintColor = .appBlack
         navigationItem.backBarButtonItem = backButton
+        navigationItem.titleView?.backgroundColor = .appBlack
+        navigationController?.navigationBar.tintColor = .appBlack
         navigationController?.pushViewController(viewController, animated: true)
     }
 
@@ -191,6 +196,8 @@ final class StatUserPageViewController: UIViewController {
 
         avatarView.layer.cornerRadius = 35
         avatarView.layer.masksToBounds = true
+        navigationItem.titleView?.backgroundColor = .appBlack
+        navigationController?.navigationBar.tintColor = .appBlack
         
         NSLayoutConstraint.activate([
             avatarView.widthAnchor.constraint(equalToConstant: 70),
