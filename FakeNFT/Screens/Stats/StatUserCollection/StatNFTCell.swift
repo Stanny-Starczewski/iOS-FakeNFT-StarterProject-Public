@@ -59,6 +59,7 @@ final class StatNFTCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .appBlack
+        label.font = .medium10
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -72,7 +73,7 @@ extension StatNFTCell {
         ratingView.set(length: nft?.rating ?? 0)
         
         if let price = nft?.price {
-            priceLabel.text = String(price)
+            priceLabel.text = String(price) + " ETH"
         } else {
             priceLabel.text = "?"
         }

@@ -16,6 +16,10 @@ final class WebViewService: UIViewController {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.backgroundColor = .appWhite
+        webView.tintColor = .appWhite
+        webView.backgroundColor = .clear
+        webView.isOpaque = false
+        webView.scrollView.backgroundColor = .appWhite
         return webView
     }()
 
@@ -61,9 +65,15 @@ final class WebViewService: UIViewController {
         webView.navigationDelegate = self
         webView.addSubview(progressView)
         webView.backgroundColor = .appWhite
+       
         view.addSubview(webView)
+        webView.backgroundColor = .appWhite
+        webView.tintColor = .appWhite
+        webView.backgroundColor = .clear
+        webView.isOpaque = false
 
         setupView()
+        webView.scrollView.backgroundColor = .appWhite
     }
 
     override func viewWillAppear(_ animated: Bool) {
