@@ -95,7 +95,7 @@ final class StatUserPageViewController: UIViewController {
         stackView.spacing = 8
         stackView.alignment = .center
 
-        let iconImageView = UIImageView(image: UIImage(named: "rightArrow"))
+        let iconImageView = UIImageView(image: UIImage(named: "icon-forward"))
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
