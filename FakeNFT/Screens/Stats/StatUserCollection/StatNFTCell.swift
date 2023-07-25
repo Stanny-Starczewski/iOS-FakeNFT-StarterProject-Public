@@ -68,6 +68,7 @@ final class StatNFTCell: UICollectionViewCell {
 extension StatNFTCell {
     func configure(with nft: Nft?) {
         nameLabel.text = nft?.name
+        nameLabel.font = .bold17
         ratingView.set(length: nft?.rating ?? 0)
         
         if let price = nft?.price {
@@ -129,14 +130,13 @@ private extension StatNFTCell {
             ratingView.heightAnchor.constraint(equalToConstant: 12),
             
             nameLabel.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 6),
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             nameLabel.heightAnchor.constraint(equalToConstant: 22),
             
             bucketButton.widthAnchor.constraint(equalToConstant: 40),
             bucketButton.heightAnchor.constraint(equalToConstant: 40),
-          //  bucketButton.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 0),
             bucketButton.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor,constant: 12),
-            bucketButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            bucketButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),

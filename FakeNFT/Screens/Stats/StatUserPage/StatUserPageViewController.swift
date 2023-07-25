@@ -123,7 +123,7 @@ final class StatUserPageViewController: UIViewController {
         guard  let validUrl = URL(string: user.avatar) else {return}
         let imageSize = CGSize(width: 70, height: 70)
         let placeholderSize = CGSize(width: 70, height: 70)
-        let processor = RoundCornerImageProcessor(cornerRadius: imageSize.width / 2)
+        let processor = RoundCornerImageProcessor(radius: Radius.heightFraction(0.5))
         let options: KingfisherOptionsInfo = [
             .processor(processor),
             .scaleFactor(UIScreen.main.scale),

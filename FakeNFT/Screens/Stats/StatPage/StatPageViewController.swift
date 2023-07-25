@@ -53,8 +53,6 @@ final class StatPageViewController: UIViewController {
         table.dataSource = self
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = .appLightGrey
-            //  table.sectionIndexColor = .appLightGrey
-        //table.sectionIndexBackgroundColor = .appLightGrey
         return table
     }()
     
@@ -91,14 +89,12 @@ final class StatPageViewController: UIViewController {
     }
     
     func showLoader(isShow: Bool) {
-        DispatchQueue.main.async {
             if isShow {
                 self.view.isUserInteractionEnabled = false
                 ProgressHUD.show()
             } else {
                 self.view.isUserInteractionEnabled = true
                 ProgressHUD.dismiss()
-            }
         }
     }
 }

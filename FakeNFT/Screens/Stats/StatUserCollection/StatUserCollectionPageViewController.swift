@@ -45,7 +45,7 @@ final class StatUserCollectionPageViewController: UIViewController {
         collectionView.reloadData()
     }
     
-    // настройка коллекции
+  
     private func setupCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor.appWhite
@@ -79,7 +79,7 @@ final class StatUserCollectionPageViewController: UIViewController {
     }
     
     func showLoader(isShow: Bool) {
-        DispatchQueue.main.async {
+
             if isShow {
                 self.view.isUserInteractionEnabled = false
                 ProgressHUD.show()
@@ -87,7 +87,7 @@ final class StatUserCollectionPageViewController: UIViewController {
                 self.view.isUserInteractionEnabled = true
                 ProgressHUD.dismiss()
             }
-        }
+
     }
 }
 
@@ -127,7 +127,7 @@ extension StatUserCollectionPageViewController: UICollectionViewDelegateFlowLayo
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
-        UIEdgeInsets(top: 10, left: 16, bottom: 16, right: 16)
+        UIEdgeInsets(top: 20, left: 16, bottom: 16, right: 16)
     }
     
     func collectionView(
