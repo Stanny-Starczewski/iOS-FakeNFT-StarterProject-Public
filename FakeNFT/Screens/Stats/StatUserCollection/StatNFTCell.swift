@@ -92,13 +92,13 @@ extension StatNFTCell {
 
 private extension StatNFTCell {
     @objc func likeTapped() {
-        print("likeTapped")
+      
         likeButton.setImage(UIImage(named: "likeIcon"), for: .normal)
        
     }
     
     @objc func bucketTapped() {
-        print("buckeTapped")
+   
     }
     
 }
@@ -134,7 +134,8 @@ private extension StatNFTCell {
             
             bucketButton.widthAnchor.constraint(equalToConstant: 40),
             bucketButton.heightAnchor.constraint(equalToConstant: 40),
-            bucketButton.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 0),
+          //  bucketButton.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 0),
+            bucketButton.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor,constant: 12),
             bucketButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
