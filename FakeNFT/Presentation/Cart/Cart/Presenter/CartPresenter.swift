@@ -110,12 +110,12 @@ extension CartPresenter: CartPresenterProtocol {
     }
     
     func viewIsReady() {
-        UIBlockingProgressHUD.show()
+        view?.showProgressHUB()
         networkService.getCart { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let nftItems):
-                UIBlockingProgressHUD.dismiss()
+                view?.dismissProgressHUB()
                 self.nftItems = nftItems
                 if nftItems.isEmpty {
                     view?.showEmptyCart()
@@ -123,7 +123,7 @@ extension CartPresenter: CartPresenterProtocol {
                     applySortType()
                 }
             case .failure(let error):
-                UIBlockingProgressHUD.dismiss()
+                view?.dismissProgressHUB()
                 let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }

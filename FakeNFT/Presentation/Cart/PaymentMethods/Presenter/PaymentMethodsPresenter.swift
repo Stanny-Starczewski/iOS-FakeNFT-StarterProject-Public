@@ -56,16 +56,16 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
     }
     
     func viewIsReady() {
-        UIBlockingProgressHUD.show()
+        view?.showProgressHUB()
         networkService.getCurrencies { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let currencies):
-                UIBlockingProgressHUD.dismiss()
+                view?.dismissProgressHUB()
                 self.currencies = currencies
                 self.view?.updateUI()
             case .failure(let error):
-                UIBlockingProgressHUD.dismiss()
+                view?.dismissProgressHUB()
                 let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }

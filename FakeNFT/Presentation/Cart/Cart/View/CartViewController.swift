@@ -11,6 +11,8 @@ protocol CartViewProtocol: AnyObject {
     func updateUI()
     func showViewController(_ vc: UIViewController)
     func showEmptyCart()
+    func showProgressHUB()
+    func dismissProgressHUB()
 }
 
 final class CartViewController: UIViewController {
@@ -188,6 +190,14 @@ extension CartViewController: CartViewProtocol {
     
     func showViewController(_ vc: UIViewController) {
         present(vc, animated: true)
+    }
+    
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
+        UIBlockingProgressHUD.dismiss()
     }
 }
 

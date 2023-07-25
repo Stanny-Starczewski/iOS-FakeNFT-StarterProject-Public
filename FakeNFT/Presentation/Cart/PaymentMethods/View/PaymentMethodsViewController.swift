@@ -10,6 +10,8 @@ import UIKit
 protocol PaymentMethodsViewProtocol: AnyObject {
     func updateUI()
     func showViewController(_ vc: UIViewController)
+    func showProgressHUB()
+    func dismissProgressHUB()
 }
 
 final class PaymentMethodsViewController: UIViewController {
@@ -172,6 +174,14 @@ extension PaymentMethodsViewController: PaymentMethodsViewProtocol {
     
     func showViewController(_ vc: UIViewController) {
         present(vc, animated: true)
+    }
+    
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
+        UIBlockingProgressHUD.dismiss()
     }
 }
 
