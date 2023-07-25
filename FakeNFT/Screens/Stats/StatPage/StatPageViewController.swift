@@ -79,8 +79,8 @@ final class StatPageViewController: UIViewController {
             self.viewModel.setSortedByName()
         }))
         
-        alert.addAction(UIAlertAction(title: "По количеству токенов", style: .default, handler: { (_)in
-            self.viewModel.setSortedByCount()
+        alert.addAction(UIAlertAction(title: "По рейтингу", style: .default, handler: { (_)in
+            self.viewModel.setSortedByRating()
         }))
         
         alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel))

@@ -65,8 +65,9 @@ final class StatPageViewModel {
         switch sortType {
         case .byName:
             return users.sorted { $0.name < $1.name }
-        case .byCount:
-            return users.sorted { $0.nfts.count > $1.nfts.count }
+        case .byRating:
+            return users.sorted { Int($0.rating) ?? 0 > Int($1.rating) ?? 0 }
+            
         }
     }
 
@@ -75,9 +76,9 @@ final class StatPageViewModel {
         sortType = .byName
     }
 
-    func setSortedByCount() {
-        UserDefaults.standard.set(SortType.byCount.rawValue, forKey: "usersSortType")
-        sortType = .byCount
+    func setSortedByRating() {
+        UserDefaults.standard.set(SortType.byRating.rawValue, forKey: "usersSortType")
+        sortType = .byRating
     }
 
     private func sortUsers() {

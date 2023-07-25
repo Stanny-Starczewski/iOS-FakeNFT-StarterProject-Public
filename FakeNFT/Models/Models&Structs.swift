@@ -4,7 +4,7 @@ import Kingfisher
 
 enum SortType: String {
     case byName = "BYNAME"
-    case byCount = "BYCOUNT"
+    case byRating = "BYRATING"
 }
 
 
@@ -31,6 +31,7 @@ struct User: Codable {
     let website: String
     let nfts: [String]
     let rating: String
+    //let rating: Int
     let id: String
 }
 
