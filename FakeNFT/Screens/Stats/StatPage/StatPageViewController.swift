@@ -10,7 +10,7 @@ final class StatPageViewController: UIViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -52,9 +52,9 @@ final class StatPageViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.backgroundColor = .appWhite
-        table.sectionIndexColor = .appLightGrey
-        table.sectionIndexBackgroundColor = .appLightGrey
+        table.backgroundColor = .appLightGrey
+            //  table.sectionIndexColor = .appLightGrey
+        //table.sectionIndexBackgroundColor = .appLightGrey
         return table
     }()
     
@@ -131,6 +131,7 @@ extension StatPageViewController: UITableViewDataSource {
         let user = viewModel.users[indexPath.row]
         let cellViewModel = UserViewCellViewModel(user: user, cellIndex: indexPath.row)
         userCell.configure(with: cellViewModel)
+        userCell.backgroundColor = .appWhite
         
         return userCell
     }

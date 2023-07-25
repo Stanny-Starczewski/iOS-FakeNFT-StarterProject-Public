@@ -62,7 +62,7 @@ final class UserViewCell: UITableViewCell {
 
     private lazy var backView: UIView = {
         let view = UIView()
-        view.backgroundColor = .appWhite
+        view.backgroundColor = .appLightGrey
         view.layer.cornerRadius = 12
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
