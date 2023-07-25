@@ -15,7 +15,7 @@ protocol ServiceAssemblyProtocol {
 final class ServiceAssembly: ServiceAssemblyProtocol {
     
     func makeNetworkService() -> CartNetworkServiceProtocol {
-        CartNetworkService()
+        NetworkService()
     }
     
     func makeCartSortService() -> CartSortServiceProtocol {

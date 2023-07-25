@@ -14,7 +14,7 @@ protocol CartNetworkServiceProtocol {
     func paymentWithIdCurrency(id: String, _ completion: @escaping (Result<PaymentStatus, Error>) -> Void)
 }
 
-final class CartNetworkService {
+final class NetworkService {
     
     // MARK: - Properties
     
@@ -25,6 +25,8 @@ final class CartNetworkService {
     init(client: NetworkClient = DefaultNetworkClient()) {
         self.client = client
     }
+    
+    // MARK: - Private methods
     
     private func fetchNftsIdInCart(_ completion: @escaping (Result<NftsInCart, Error>) -> Void) {
         let request = GetOrdersRequest()
@@ -43,7 +45,7 @@ final class CartNetworkService {
         let group = DispatchGroup()
         nftsInCart.nfts.forEach {
             group.enter()
-            client.send(request: NftByIdRequest(id: $0), type: NftItem.self) { result in
+            client.send(request: GetNftByIdRequest(id: $0), type: NftItem.self) { result in
                 switch result {
                 case .success(let nftItem):
                     nftItems.append(nftItem)
@@ -59,10 +61,9 @@ final class CartNetworkService {
     }
 }
 
-// MARK: - NetworkServiceProtocol
+// MARK: - CartNetworkServiceProtocol
 
-extension CartNetworkService: CartNetworkServiceProtocol {
-    
+extension NetworkService: CartNetworkServiceProtocol {
     func getCart(_ completion: @escaping (Result<[NftItem], Error>) -> Void) {
         fetchNftsIdInCart { [weak self] result in
             switch result {

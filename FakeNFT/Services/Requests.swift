@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Cart Requests
+
 struct GetOrdersRequest: NetworkRequest {
     var endpoint: URL? { URL(string: "\(Config.baseUrl)/orders/1") }
 }
@@ -21,7 +23,7 @@ struct ChangeOrdersRequest: NetworkRequest {
     }
 }
 
-struct NftByIdRequest: NetworkRequest {
+struct GetNftByIdRequest: NetworkRequest {
     let id: String
     var endpoint: URL? { URL(string: "\(Config.baseUrl)/nft/\(id)") }
     
@@ -42,3 +44,5 @@ struct PaymentWithIdCurrencyRequest: NetworkRequest {
         self.id = id
     }
 }
+
+// TODO: 1.1 Сюда можно добавить реквесты других эпиков
