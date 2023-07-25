@@ -189,7 +189,7 @@ final class StatUserPageViewController: UIViewController {
         view.addSubview(siteButton)
         view.addSubview(collectionButton)
 
-        avatarView.layer.cornerRadius = avatarView.frame.width / 2
+        avatarView.layer.cornerRadius = 35
         avatarView.layer.masksToBounds = true
         
         NSLayoutConstraint.activate([
