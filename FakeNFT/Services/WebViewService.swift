@@ -65,7 +65,8 @@ final class WebViewService: UIViewController {
         webView.navigationDelegate = self
         webView.addSubview(progressView)
         webView.backgroundColor = .appWhite
-       
+        view.backgroundColor = .appWhite
+        view.tintColor = .appBlack
         view.addSubview(webView)
         webView.backgroundColor = .appWhite
         webView.tintColor = .appWhite

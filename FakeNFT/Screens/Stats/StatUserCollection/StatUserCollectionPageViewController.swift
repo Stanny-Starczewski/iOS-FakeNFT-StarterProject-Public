@@ -79,7 +79,6 @@ final class StatUserCollectionPageViewController: UIViewController {
     }
     
     func showLoader(isShow: Bool) {
-
             if isShow {
                 self.view.isUserInteractionEnabled = false
                 ProgressHUD.show()
@@ -87,7 +86,6 @@ final class StatUserCollectionPageViewController: UIViewController {
                 self.view.isUserInteractionEnabled = true
                 ProgressHUD.dismiss()
             }
-
     }
 }
 
