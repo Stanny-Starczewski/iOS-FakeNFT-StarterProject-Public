@@ -85,7 +85,7 @@ final class StatPageViewModel {
         guard let sortType = sortType else {
             return
         }
-        users = getSorted(users: users, by: sortType)
+        users = getSorted(users: users, by: sortType )
     }
 }
 

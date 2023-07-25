@@ -136,7 +136,7 @@ private extension StatNFTCell {
             
             bucketButton.widthAnchor.constraint(equalToConstant: 40),
             bucketButton.heightAnchor.constraint(equalToConstant: 40),
-            bucketButton.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor,constant: 12),
+            bucketButton.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor,constant: 0),
             bucketButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
