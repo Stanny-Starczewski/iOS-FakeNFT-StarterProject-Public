@@ -24,7 +24,9 @@ final class StatPageViewController: UIViewController {
         navigationItem.backBarButtonItem = backButton
         navigationItem.rightBarButtonItem = menuButton
         let model = StatPageModel()
+       
         viewModel = StatPageViewModel(model: model)
+        
         viewModel.onChange = { [weak self] in
             self?.updateTable()
         }
