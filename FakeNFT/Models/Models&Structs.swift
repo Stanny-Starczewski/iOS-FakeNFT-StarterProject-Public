@@ -82,6 +82,13 @@ struct Profile: Codable {
     let id: String
 }
 
+struct ProfilePut: Codable {
+    let name: String
+    let avatar: String
+    let description: String
+    let website: String
+}
+
 enum SortAttribute {
     case name
     case nftCount

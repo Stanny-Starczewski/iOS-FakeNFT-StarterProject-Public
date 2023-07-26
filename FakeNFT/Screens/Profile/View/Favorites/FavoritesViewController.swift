@@ -7,14 +7,24 @@
 
 import UIKit
 
-final class FavoritesViewController: UIViewController {
+protocol FavoritesViewControllerProtocol {
+    
+    func updateUI()
+    func showViewController(_ vc: UIViewController)
+    func showEmptyCart()
+    func showNoInternetView()
+    func showProgressHUB()
+    func dismissProgressHUB()
+    
+}
+
+final class FavoritesViewController: UIViewController, FavoritesViewControllerProtocol {
+    
+    // MARK: - Properties
+    
+    private var presenter: FavoritesPresenterProtocol
     
     // MARK: - Layout elements
-    
-    private var nftImage: [String] = Array(0..<3).map { "\($0)" }
-    private var nftName: [String] = [ "Lilo", "Spring", "April"]
-    private var nftPrice: [String] = [ "1,78 ETH", "1,99 ETH", "2,99 ETH" ]
-    private var nftRating: [Int] = [ 3, 4, 5 ]
     
     private lazy var backButton = UIBarButtonItem(
         image: UIImage(named: "Backward"),
@@ -44,6 +54,17 @@ final class FavoritesViewController: UIViewController {
         return favoriteNFTCollection
     }()
     
+    // MARK: - Init
+    
+    init(presenter: FavoritesPresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -53,7 +74,10 @@ final class FavoritesViewController: UIViewController {
         setupView()
         setConstraints()
         addCollection()
+        presenter.viewIsReady()
     }
+    
+    // MARK: - Layout methods
     
     private func addCollection() {
         view.addSubview(favoriteNFTCollection)
@@ -73,9 +97,37 @@ final class FavoritesViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - Layout methods
+    // MARK: - Methods
+    
+    func updateUI() {
+        favoriteNFTCollection.reloadSections(IndexSet(integer: 0))
+    }
+    
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
+        UIBlockingProgressHUD.dismiss()
+    }
+    
+    func showViewController(_ vc: UIViewController) {
+        present(vc, animated: true)
+    }
+    
+    func showEmptyCart() {
+        favoriteNFTCollection.isHidden = true
+        emptyLabel.isHidden = false
+        navigationItem.title = ""
+    }
+    
+    func showNoInternetView() {
+        navigationController?.pushViewController(NoInternetViewController(), animated: true)
+        self.navigationController?.navigationBar.isHidden = true
+    }
     
     private func setupNavBar() {
+        navigationItem.title = "Избранные NFT"
         navigationController?.navigationBar.tintColor = .appBlack
         navigationItem.leftBarButtonItem = backButton
     }
@@ -94,47 +146,27 @@ final class FavoritesViewController: UIViewController {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+
 extension FavoritesViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-   //     guard let likedNFTs = likedNFTs else { return 0 }
-   //     return likedNFTs.count
-        return 3
+        presenter.numberOfRowsInSection(section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      //  let cell: FavoritesCell = collectionView.dequeueReusableCell(indexPath: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoritesCell.reuseIdentifier, for: indexPath) as? FavoritesCell
-       // cell.backgroundColor = .white
         
-        let image = UIImage(named: nftImage[indexPath.row])
-        cell?.nftImage.image = image
-        cell?.nftRating.setStarsRating(rating: nftRating[indexPath.row])
-        cell?.nftName.text = nftName[indexPath.row]
-        cell?.nftPriceValue.text = nftPrice[indexPath.row]
-//        guard let likedNFTs = likedNFTs,
-//              !likedNFTs.isEmpty else { return FavoritesCell() }
-//        let likedNFT = likedNFTs[indexPath.row]
-//
-//        let model = FavoritesCell.Model(
-//            image: likedNFT.images.first ?? "",
-//            name: likedNFT.name,
-//            rating: likedNFT.rating,
-//            price: likedNFT.price,
-//            isFavorite: true,
-//            id: likedNFT.id
-//        )
-//        cell.tapAction = { [unowned viewModel] in
-//            viewModel.favoriteUnliked(id: likedNFT.id)
-//        }
-//        cell.configureCell(with: model)
+        let cell: FavoritesCell = collectionView.dequeueReusableCell(indexPath: indexPath)
+        cell.configure(with: presenter.cellForItem(at: indexPath))
         
-        return cell ?? UICollectionViewCell()
+        return cell
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

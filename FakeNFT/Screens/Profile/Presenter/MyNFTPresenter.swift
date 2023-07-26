@@ -7,75 +7,133 @@
 
 import Foundation
 
-protocol MyNFTPresenterProtocol {
-    var view: MyNFTViewControllerProtocol? { get set }
-    func viewDidLoad()
+protocol MyNFTPresenterProtocol: AnyObject {
+    var count: Int { get }
+    var amount: Float { get }
+    func viewIsReady()
+    func numberOfRowsInSection(_ section: Int) -> Int
+    func cellForRow(at indexPath: IndexPath) -> MyNFTCell
+    func didTapSortButton()
 }
 
 final class MyNFTPresenter {
     
     // MARK: - Properties
     
-    let networkClient = DefaultNetworkClient()
-    
     weak var view: MyNFTViewControllerProtocol?
     
-    private(set) var myNFTs: [NFTNetworkModel]?
+    private let alertAssembly: AlertAssemblyProtocol
+    private let screenAssembly: ScreenAssemblyProtocol
+    private let networkService: NetworkServiceProtocol
+    private let cartSortService: CartSortServiceProtocol
     
-    private(set) var authors: [String: String] = [:]
+    // MARK: - Data Store
     
-    // MARK: - Methods
+    private lazy var nftItems: [NFTNetworkModel] = []
     
-    func getMyNFTs(nftIDs: [String]) {
-        var loadedNFTs: [NFTNetworkModel] = []
-        
-        nftIDs.forEach { id in
-            networkClient.send(request: GetNFTByIdRequest(id: id), type: NFTNetworkModel.self) { [self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let nft):
-                        loadedNFTs.append(nft)
-                        if loadedNFTs.count == nftIDs.count {
-                            self.getAuthors(nfts: loadedNFTs)
-                            self.myNFTs? = loadedNFTs
-                        }
-                    case .failure:
-                        self.view?.showNoInternetView()
-                        UIBlockingProgressHUD.dismiss()
-                    }
-                }
-            }
-        }
-    }
+    // MARK: - Init
     
-    func getAuthors(nfts: [NFTNetworkModel]) {
-        var authorsSet: Set<String> = []
-        nfts.forEach { nft in
-            authorsSet.insert(nft.author)
-        }
-        let semaphore = DispatchSemaphore(value: 0)
-        authorsSet.forEach { author in
-            networkClient.send(request: GetAuthorByIdRequest(id: author), type: AuthorNetworkModel.self) { [self] result in
-                switch result {
-                case .success(let author):
-                    authors.updateValue(author.name, forKey: author.id)
-                    if authors.count == authorsSet.count { semaphore.signal() }
-                case .failure(let error):
-                    assertionFailure(error.localizedDescription)
-                    return
-                }
-            }
-        }
-        semaphore.wait()
+    init(
+        alertAssembly: AlertAssemblyProtocol,
+        screenAssembly: ScreenAssemblyProtocol,
+        networkService: NetworkServiceProtocol,
+        cartSortService: CartSortServiceProtocol
+    ) {
+        self.alertAssembly = alertAssembly
+        self.screenAssembly = screenAssembly
+        self.networkService = networkService
+        self.cartSortService = cartSortService
     }
 }
 
 // MARK: - MyNFTPresenterProtocol
 
 extension MyNFTPresenter: MyNFTPresenterProtocol {
-    
-    func viewDidLoad() {
-        getMyNFTs(nftIDs: [])
+    var count: Int {
+        nftItems.count
     }
     
+    var amount: Float {
+        nftItems.reduce(0) { $0 + $1.price }
+    }
+    
+    func viewIsReady() {
+        view?.showProgressHUB()
+        networkService.getCart { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let nftItems):
+                view?.dismissProgressHUB()
+                self.nftItems = nftItems
+                if nftItems.isEmpty {
+                    view?.showEmptyCart()
+                } else {
+                    applySortType()
+                }
+            case .failure(let error):
+                view?.dismissProgressHUB()
+                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                self.view?.showViewController(alert)
+            }
+        }
+    }
+    
+    private func sortByPrice() {
+        nftItems.sort { $0.price < $1.price }
+        view?.updateUI()
+        cartSortService.saveSortType(.byPrice)
+    }
+    
+    private func sortByRating() {
+        nftItems.sort { $0.rating < $1.rating }
+        view?.updateUI()
+        cartSortService.saveSortType(.byRating)
+    }
+    
+    private func sortByName() {
+        nftItems.sort { $0.name < $1.name }
+        view?.updateUI()
+        cartSortService.saveSortType(.byName)
+    }
+    
+    private func applySortType() {
+        switch cartSortService.loadSortType() {
+        case .byPrice:
+            sortByPrice()
+        case .byRating:
+            sortByRating()
+        case .byName:
+            sortByName()
+        }
+    }
+    
+    func numberOfRowsInSection(_ section: Int) -> Int {
+        nftItems.count
+    }
+    
+    func cellForRow(at indexPath: IndexPath) -> MyNFTCell {
+        let cell = MyNFTCell()
+        cell.configure(with: nftItems[indexPath.row])
+        return cell
+    }
+    
+    func didTapSortButton() {
+        let sortAlert = alertAssembly.makeSortingAlert { [weak self] in
+            self?.sortByPrice()
+        } ratingAction: { [weak self] in
+            self?.sortByRating()
+        } nameAction: { [weak self] in
+            self?.sortByName()
+        }
+        
+        view?.showViewController(sortAlert)
+    }
+}
+
+// MARK: - SortType
+
+enum SortType: Int {
+    case byName
+    case byPrice
+    case byRating
 }

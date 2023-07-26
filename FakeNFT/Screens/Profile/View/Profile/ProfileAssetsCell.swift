@@ -53,7 +53,7 @@ final class ProfileAssetsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup UI
+    // MARK: - Layout methods
     
     private func setupView() {
         backgroundColor = .appWhite
@@ -63,8 +63,6 @@ final class ProfileAssetsCell: UITableViewCell {
         addSubview(forwardButton)
         
     }
-    
-    // MARK: - Setting Constraints
     
     private func setConstraints() {
         NSLayoutConstraint.activate([

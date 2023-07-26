@@ -9,11 +9,13 @@ import UIKit
 
 final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     
-    var tapAction: (() -> Void)?
+    // MARK: - Properties
     
     static let reuseIdentifier = "FavoritesCell"
     
-    //MARK: - Layout elements
+    var currentIndexPath: IndexPath?
+    
+    // MARK: - Layout elements
     
     var nftImage: UIImageView = {
         let nftImage = UIImageView()
@@ -58,12 +60,13 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     
     var nftFavorite: UIButton = {
         let nftFavorite = UIButton()
+        nftFavorite.setImage(UIImage(named: "Heart Filled"), for: .normal)
         nftFavorite.translatesAutoresizingMaskIntoConstraints = false
-    //    nftFavorite.addTarget(self, action: #selector(self().didTapFavoriteButton(sender:)), for: .touchUpInside)
+        nftFavorite.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
         return nftFavorite
     }()
     
-    // MARK: - Lifecycle
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -76,23 +79,12 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public Methods
-    
-//    func configureCell(with model: Model) {
-//        nftImage.kf.setImage(with: URL(string: model.image))
-//        nftName.text = model.name
-//        nftRating.setStarsRating(rating: model.rating)
-//        nftPriceValue.text = "\(model.price) ETH"
-//        nftFavorite.isFavorite = model.isFavorite
-//        nftFavorite.nftID = model.id
-//    }
-    
-    // MARK: - Private Methods
+    // MARK: - Actions
     
     @objc
-    private func didTapFavoriteButton(sender: FavoriteButton) {
-        sender.isFavorite.toggle()
-        if let tapAction = tapAction { tapAction() }
+    private func didTapFavoriteButton() {
+        print("Test")
+        guard let currentIndexPath else { return }
     }
     
     // MARK: - Layout methods
@@ -129,5 +121,20 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
             nftRating.heightAnchor.constraint(equalToConstant: 12)
         ])
     }
+    
+    // MARK: - Methods
+    
+    func configure(with item: NFTNetworkModel) {
+        nftName.text = item.name
+        nftPriceValue.text = String(format: "%.2f ETH", item.price)
+        nftRating.setStarsRating(rating: item.rating)
+        guard
+            let imageUrlString = item.images.first,
+            let imageUrl = URL(string: imageUrlString)
+        else { return }
+        nftImage.kf.indicatorType = .activity
+        nftImage.kf.setImage(with: imageUrl) { [weak self] _ in
+            self?.nftImage.kf.indicatorType = .none
+        }
+    }
 }
-

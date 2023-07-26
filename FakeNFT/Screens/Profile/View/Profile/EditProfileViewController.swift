@@ -10,6 +10,7 @@ import Kingfisher
 
 protocol EditProfileViewControllerProtocol: AnyObject {
     func setData(profile: Profile)
+ //   func putData()
 }
 
 final class EditProfileViewController: UIViewController {
@@ -147,13 +148,13 @@ final class EditProfileViewController: UIViewController {
         setupView()
         setConstraints()
         presenter?.setData()
-        
     }
     
     // MARK: - Actions
     
     @objc
     private func closeDidTap(_ sender: UIButton) {
+     //   putData()
         dismiss(animated: true)
     }
     
@@ -162,7 +163,7 @@ final class EditProfileViewController: UIViewController {
         loadImageLabel.isHidden = false
     }
     
-    // MARK: - Setup UI
+    // MARK: - Layout methods
     
     private func setupView() {
         view.backgroundColor = .appWhite
@@ -178,8 +179,6 @@ final class EditProfileViewController: UIViewController {
         view.addSubview(websiteLabel)
         view.addSubview(websiteTextField)
     }
-    
-    // MARK: - Setting Constraints
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -261,16 +260,34 @@ extension EditProfileViewController: UITextViewDelegate {
 }
 
 extension EditProfileViewController: EditProfileViewControllerProtocol {
+    
     func setData(profile: Profile) {
         
-        //        avatarImage.kf.setImage(
-        //            with: profile?.avatarURL,
-        //            placeholder: UIImage(named: "ProfilePhoto"),
-        //            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
+        let imageUrlString = profile.avatar
+        let imageUrl = URL(string: imageUrlString)
+        avatarImage.kf.setImage(
+            with: imageUrl,
+            placeholder: UIImage(named: "ProfilePhoto"),
+            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
         
         nameTextField.text = profile.name
         descriptionTextField.text = profile.description
         websiteTextField.text = profile.website
-        
     }
+    
+//    func putData() {
+//        guard let name = nameTextField.text, !name.isEmpty,
+//              let avatar = loadImageLabel.text,
+//              let description = descriptionTextField.text, !description.isEmpty,
+//              let website = websiteTextField.text, !website.isEmpty
+//
+//        else { return }
+//
+//        presenter?.putProfileData(
+//            name: name,
+//            avatar: avatar,
+//            description: description,
+//            website: website
+//        )
+//    }
 }

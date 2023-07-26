@@ -1,15 +1,27 @@
 import Foundation
 
-protocol ProfilePresenterProtocol {
-   // var view: ProfileViewControllerProtocol? { get set }
+protocol ProfilePresenterProtocol: AnyObject {
     func viewDidLoad()
     func didTapEditButton()
+    func didTapMyNFTScreen()
+    func didTapFavoritesScreen()
 }
 
 final class ProfilePresenter {
     
+    // MARK: - Properties
+    
     weak var view: ProfileViewControllerProtocol?
     private var profile: Profile?
+    private let screenAssembly: ScreenAssembly
+    
+    // MARK: - Init
+    
+    init(view: ProfileViewControllerProtocol? = nil, profile: Profile? = nil, screenAssembly: ScreenAssembly) {
+        self.view = view
+        self.profile = profile
+        self.screenAssembly = screenAssembly
+    }
     
     // MARK: - Methods
     
@@ -25,7 +37,6 @@ final class ProfilePresenter {
                 case .success(let profile):
                     self?.profile = profile
                     self?.view?.updateProfileScreen(profile: profile)
-                    print(profile)
                 case .failure(let error):
                     print(error)
                     self?.view?.showNoInternetView()
@@ -36,9 +47,19 @@ final class ProfilePresenter {
     }
     
     func didTapEditButton() {
-        let editProfileViewController = EditProfileViewController()
-//        self.navigationController?.pushViewController(editProfileViewController, animated: true)
-        view?.showViewController(editProfileViewController)
+        guard let profile else { return }
+        let editProfileViewController = screenAssembly.makeEditProfileScreen(profile: profile)
+        view?.showModalTypeViewController(editProfileViewController)
+    }
+    
+    func didTapMyNFTScreen() {
+        let myNFTViewController = screenAssembly.makeMyNFTScreen()
+        view?.showNavigationTypeViewController(myNFTViewController)
+    }
+    
+    func didTapFavoritesScreen() {
+        let favoritesViewController = screenAssembly.makeFavoritesScreen()
+        view?.showNavigationTypeViewController(favoritesViewController)
     }
 }
 

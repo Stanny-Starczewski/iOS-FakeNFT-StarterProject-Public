@@ -10,6 +10,8 @@ import UIKit
 protocol ScreenAssemblyProtocol {
     func makeProfileScreen() -> UIViewController
     func makeEditProfileScreen(profile: Profile) -> UIViewController
+    func makeMyNFTScreen() -> UIViewController
+    func makeFavoritesScreen() -> UIViewController
     func makeCatalogScreen() -> UIViewController
     func makeCartScreen() -> UIViewController
 //    func makeRemoveItemScreen(with item: NftItem, delegate: RemoveItemDelegate) -> UIViewController
@@ -37,6 +39,14 @@ final class ScreenAssembly {
 // MARK: - ScreenAssemblyProtocol
 
 extension ScreenAssembly: ScreenAssemblyProtocol {
+
+    func makeProfileScreen() -> UIViewController {
+        let presenter = ProfilePresenter(screenAssembly: self)
+        let vc = ProfileViewController(presenter: presenter)
+        presenter.view = vc
+        return vc
+    }
+    
     func makeEditProfileScreen(profile: Profile) -> UIViewController {
         let view = EditProfileViewController()
         let presenter = EditProfilePresenter(view: view, profile: profile)
@@ -44,19 +54,28 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         return view
     }
     
-    func makeProfileScreen() -> UIViewController {
-        let presenter = ProfilePresenter()
-        let vc = ProfileViewController(presenter: presenter)
+    func makeMyNFTScreen() -> UIViewController {
+        let presenter = MyNFTPresenter(
+            alertAssembly: alertAssembly,
+            screenAssembly: self,
+            networkService: serviceAssembly.makeNetworkService(),
+            cartSortService: serviceAssembly.makeCartSortService()
+        )
+        let vc = MyNFTViewController(presenter: presenter)
         presenter.view = vc
         return vc
     }
     
-//    func makeEditProfileScreen() -> UIViewController {
-//        let presenter = EditProfilePresenter(view: view, profileData: Profile)
-//        let vc = EditProfileViewController(presenter: presenter)
-//        presenter.view = vc
-//        return vc
-//    }
+    func makeFavoritesScreen() -> UIViewController {
+        let presenter = FavoritesPresenter(
+            alertAssembly: alertAssembly,
+            screenAssembly: self,
+            networkService: serviceAssembly.makeNetworkService()
+        )
+        let vc = FavoritesViewController(presenter: presenter)
+        presenter.view = vc
+        return vc
+    }
     
     func makeCatalogScreen() -> UIViewController {
         let presenter = CatalogPresenter()

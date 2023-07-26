@@ -7,11 +7,13 @@
 
 import UIKit
 
-final class MyNFTCell: UITableViewCell {
+final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Properties
     
     static let reuseIdentifier = "MyNFTCell"
+    
+    var currentIndexPath: IndexPath?
     
     // MARK: - Layout elements
     
@@ -105,7 +107,7 @@ final class MyNFTCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup UI
+    // MARK: - Lyout methods
     
     private func setupView() {
         backgroundColor = .appWhite
@@ -124,8 +126,6 @@ final class MyNFTCell: UITableViewCell {
         myNFTPriceStack.addArrangedSubview(myNFTPriceValueLabel)
         
     }
-    
-    // MARK: - Setting Constraints
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -146,8 +146,25 @@ final class MyNFTCell: UITableViewCell {
             myNFTRating.heightAnchor.constraint(equalToConstant: 12),
             
             myNFTPriceStack.centerYAnchor.constraint(equalTo: centerYAnchor),
-            myNFTPriceStack.leadingAnchor.constraint(equalTo: myNFTStack.trailingAnchor)
+            myNFTPriceStack.leadingAnchor.constraint(equalTo: myNFTStack.trailingAnchor, constant: -39)
             
         ])
+    }
+    
+    // MARK: - Methods
+    
+    func configure(with item: NFTNetworkModel) {
+        myNFTNameLabel.text = item.name
+        myNFTPriceValueLabel.text = String(format: "%.2f ETH", item.price)
+        myNFTAuthorLabel.text = "от \(item.author)"
+        myNFTRating.setStarsRating(rating: item.rating)
+        guard
+            let imageUrlString = item.images.first,
+            let imageUrl = URL(string: imageUrlString)
+        else { return }
+        myNFTImage.kf.indicatorType = .activity
+        myNFTImage.kf.setImage(with: imageUrl) { [weak self] _ in
+            self?.myNFTImage.kf.indicatorType = .none
+        }
     }
 }

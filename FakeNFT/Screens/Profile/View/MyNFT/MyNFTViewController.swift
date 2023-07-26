@@ -9,24 +9,19 @@ import UIKit
 import Kingfisher
 
 protocol MyNFTViewControllerProtocol: AnyObject {
-  //  var presenter: MyNFTPresenterProtocol? { get set }
+    func updateUI()
+    func showViewController(_ vc: UIViewController)
+    func showEmptyCart()
     func showNoInternetView()
+    func showProgressHUB()
+    func dismissProgressHUB()
 }
 
 final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
     // MARK: - Properties
     
-    private var presenter: MyNFTPresenterProtocol?
-    
-    private var nftImage: [String] = Array(0..<3).map { "\($0)" }
-    private var nftName: [String] = [ "Lilo", "Spring", "April"]
-    private var nftPrice: [String] = [ "1,78 ETH", "1,99 ETH", "2,99 ETH" ]
-    private var nftRating: [Int] = [ 3, 4, 5 ]
-//
-    private var nftIDs = true
-//
-//    private(set) var myNFTs: []
+    private var presenter: MyNFTPresenterProtocol
     
     // MARK: - Layout elements
     
@@ -48,6 +43,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         let myNFTTable = UITableView()
         myNFTTable.translatesAutoresizingMaskIntoConstraints = false
         myNFTTable.register(MyNFTCell.self, forCellReuseIdentifier: MyNFTCell.reuseIdentifier)
+        myNFTTable.backgroundColor = .appWhite
         myNFTTable.dataSource = self
         myNFTTable.delegate = self
         myNFTTable.separatorStyle = .none
@@ -64,24 +60,27 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         emptyLabel.textColor = .appBlack
         return emptyLabel
     }()
-
-    // MARK: - Life Cycle
     
-//    init(presenter: MyNFTPresenterProtocol) {
-//        self.presenter = presenter
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    // MARK: - Init
+    
+    init(presenter: MyNFTPresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
-        presenter?.viewDidLoad()
-      //  updateNFT(nfts: [])
+        setupNavBar()
+        addMainView()
+        presenter.viewIsReady()
+        
     }
     
     // MARK: - Actions
@@ -93,15 +92,32 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
     @objc
     private func didTapSortButton() {
-   
+        presenter.didTapSortButton()
     }
     
     // MARK: - Methods
     
-    func updateNFT(nfts: [NFTNetworkModel]) {
-   //     self.myNFTs = nfts
-        myNFTTable.reloadData()
+    func updateUI() {
+        myNFTTable.reloadSections(IndexSet(integer: 0), with: .automatic)
+    }
+    
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
         UIBlockingProgressHUD.dismiss()
+    }
+    
+    func showViewController(_ vc: UIViewController) {
+        present(vc, animated: true)
+    }
+    
+    func showEmptyCart() {
+        myNFTTable.isHidden = true
+        emptyLabel.isHidden = false
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.title = ""
     }
     
     func showNoInternetView() {
@@ -109,23 +125,11 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    private func setupNavBar(emptyNFTs: Bool) {
+    private func setupNavBar() {
         navigationController?.navigationBar.tintColor = .appBlack
         navigationItem.leftBarButtonItem = backButton
-        if !emptyNFTs {
-            navigationItem.rightBarButtonItem = filterButton
-            navigationItem.title = "Мои NFT"
-        }
-    }
-    
-    private func setupView() {
-        if nftIDs == true {
-            setupNavBar(emptyNFTs: false)
-            addMainView()
-        } else {
-            setupNavBar(emptyNFTs: true)
-            addEmptyView()
-        }
+        navigationItem.rightBarButtonItem = filterButton
+        navigationItem.title = "Мои NFT"
     }
     
     private func addMainView() {
@@ -138,7 +142,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
             myNFTTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             myNFTTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             myNFTTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            myNFTTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -39)
+            myNFTTable.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             
         ])
     }
@@ -159,28 +163,14 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
 
 extension MyNFTViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let myNFTs = myNFTs else { return 0 }
-//        return myNFTs.count
-        3
+        presenter.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: MyNFTCell.reuseIdentifier) as? MyNFTCell
-        
-//        let myNFT = myNFTs?[indexPath.row]
-//        cell?.myNFTImage.kf.setImage(with: URL(string: myNFT?.images[0] ?? ""))
-//        cell?.myNFTNameLabel.text = myNFT?.name
-//        cell?.myNFTRating.setStarsRating(rating: myNFT?.rating ?? 3)
-//        cell?.myNFTPriceValueLabel.text = "\(myNFT?.price ?? 0) ETH"
-        
-        let image = UIImage(named: nftImage[indexPath.row])
-        cell?.myNFTImage.image = image
-        cell?.myNFTRating.setStarsRating(rating: nftRating[indexPath.row])
-        cell?.myNFTNameLabel.text = nftName[indexPath.row]
-        cell?.myNFTPriceValueLabel.text = nftPrice[indexPath.row]
-        cell?.selectionStyle = .none
-        return cell ?? UITableViewCell()
+        let cell = presenter.cellForRow(at: indexPath)
+        cell.currentIndexPath = indexPath
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

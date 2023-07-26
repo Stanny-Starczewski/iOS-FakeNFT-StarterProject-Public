@@ -43,4 +43,3 @@ final class WebsiteViewController: UIViewController, WKUIDelegate {
         webView?.load(myRequest)
     }
 }
-

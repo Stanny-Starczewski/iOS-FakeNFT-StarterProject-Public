@@ -2,14 +2,14 @@ import UIKit
 import Kingfisher
 
 protocol ProfileViewControllerProtocol: AnyObject {
-  //  var presenter: ProfilePresenterProtocol? { get set }
     func updateProfileScreen(profile: Profile)
     func showNoInternetView()
-    func showViewController(_ vc: UIViewController)
+    func showModalTypeViewController(_ vc: UIViewController)
+    func showNavigationTypeViewController(_ vc: UIViewController)
 }
 
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
-
+    
     // MARK: - Properties
     
     private var presenter: ProfilePresenterProtocol?
@@ -19,12 +19,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         "Избранные NFT",
         "О разработчике"
     ]
-    
-//    private lazy var assetViewController: [UIViewController] = [
-//        MyNFTViewController(),
-//        FavoritesViewController(),
-//        AboutViewController()
-//    ]
     
     // MARK: - Layout elements
     
@@ -59,7 +53,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 18
         descriptionLabel.attributedText = NSAttributedString(string: "",
-                                                             attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle: paragraphStyle]) 
+                                                             attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)
         descriptionLabel.textColor = .appBlack
@@ -100,17 +94,17 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         setupView()
         setConstraints()
         presenter?.viewDidLoad()
-
+        
     }
     
     // MARK: - Init
-
+    
     init(presenter: ProfilePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-
+        
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -124,13 +118,17 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     
     @objc
     private func websiteDidTap(_ sender: UITapGestureRecognizer) {
-      self.present(WebsiteViewController(webView: nil, websiteURL: websiteLabel.text), animated: true)
+        self.present(WebsiteViewController(webView: nil, websiteURL: websiteLabel.text), animated: true)
     }
     
     // MARK: - Methods
     
-    func showViewController(_ vc: UIViewController) {
+    func showModalTypeViewController(_ vc: UIViewController) {
         present(vc, animated: true)
+    }
+    
+    func showNavigationTypeViewController(_ vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func updateProfileScreen(profile: Profile) {
@@ -155,7 +153,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    // MARK: - Setup UI
+    // MARK: - Layout methods
     
     private func setupNavBar() {
         navigationController?.navigationBar.tintColor = .appBlack
@@ -171,8 +169,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         view.addSubview(websiteLabel)
         view.addSubview(profileAssetsTable)
     }
-    
-    // MARK: - Setting Constraints
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -229,11 +225,11 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        navigationController?.pushViewController(assetViewController[indexPath.row], animated: true)
+        //        navigationController?.pushViewController(assetViewController[indexPath.row], animated: true)
         switch indexPath.row {
-        case 0: let viewController = MyNFTViewController()
-            navigationController?.pushViewController(viewController, animated: true)
-        case 1: let viewController = FavoritesViewController()
+        case 0: presenter?.didTapMyNFTScreen()
+        case 1: presenter?.didTapFavoritesScreen()
+        case 2: let viewController = AboutViewController()
             navigationController?.pushViewController(viewController, animated: true)
         default:
             return

@@ -56,7 +56,11 @@ struct NftsInCart: Codable {
     let nfts: [String]
 }
 
-struct NFTNetworkModel: Codable {
+struct NftsFavorites: Codable {
+    let likes: [String]
+}
+
+struct NFTNetworkModel: Codable, Equatable {
     let createdAt: String
     let name: String
     let images: [String]
@@ -68,6 +72,6 @@ struct NFTNetworkModel: Codable {
 }
 
 struct AuthorNetworkModel: Codable {
-    let name: String
+    let name: [String]
     let id: String
 }

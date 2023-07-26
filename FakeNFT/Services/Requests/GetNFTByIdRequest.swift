@@ -7,14 +7,11 @@
 
 import Foundation
 
-struct GetNFTByIdRequest: NetworkRequest {
-    private let id: String
+struct GetNftByIdRequest: NetworkRequest {
+    let id: String
+    var endpoint: URL? { URL(string: "\(Config.baseUrl)/nft/\(id)") }
     
     init(id: String) {
         self.id = id
-    }
-    
-    var endpoint: URL? {
-        URL(string: "https://64a03f83ed3c41bdd7a72309.mockapi.io/api/v1/nft/\(id)")
     }
 }
