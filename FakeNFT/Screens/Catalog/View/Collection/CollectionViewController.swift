@@ -148,7 +148,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
             case .loaded:
                 UIProgressHUD.dismiss()
             case .failed:
-                self.alertPresenter.preparingAlertWithRepeat(alertText: viewModel.mainLoadErrorDescription) {
+                self.alertPresenter.preparingAlertWithRepeat(alertText: self.viewModel.mainLoadErrorDescription) {
                     self.viewModel.loadNFTForCollection()
                     self.viewModel.getAuthorURL()
                 }
@@ -168,7 +168,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         
         viewModel.$authorModel.observe { [weak self] _ in
             guard let self = self else { return }
-            self.authorLink.text = viewModel.authorModel.name
+            self.authorLink.text = self.viewModel.authorModel.name
         }
         viewModel.$mainLoadErrorDescription.observe { [weak self] _ in
             guard let self = self else { return }
@@ -180,12 +180,12 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         
         viewModel.$addToCartErrorDescription.observe { [weak self] _ in
             guard let self = self else { return }
-            self.alertPresenter.preparingDataAndDisplay(alertText: viewModel.addToCartErrorDescription)
+            self.alertPresenter.preparingDataAndDisplay(alertText: self.viewModel.addToCartErrorDescription)
         }
         
         viewModel.$addToFavoritesErrorDescription.observe { [weak self] _ in
             guard let self = self else { return }
-            self.alertPresenter.preparingDataAndDisplay(alertText: viewModel.addToFavoritesErrorDescription)
+            self.alertPresenter.preparingDataAndDisplay(alertText: self.viewModel.addToFavoritesErrorDescription)
         }
     }
 }
