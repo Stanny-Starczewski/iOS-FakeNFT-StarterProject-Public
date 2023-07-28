@@ -122,7 +122,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
 
 private extension CollectionNFTCell {
     func setupView() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .appWhite
         
         [nftImageView, heartButton, ratingStackView, priceAndCartButtonHorizontalStackView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
