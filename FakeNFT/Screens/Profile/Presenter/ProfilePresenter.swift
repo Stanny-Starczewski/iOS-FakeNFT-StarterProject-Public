@@ -48,7 +48,7 @@ final class ProfilePresenter {
     
     func didTapEditButton() {
         guard let profile else { return }
-        let editProfileViewController = screenAssembly.makeEditProfileScreen(profile: profile)
+        let editProfileViewController = screenAssembly.makeEditProfileScreen(profile: profile, delegate: self)
         view?.showModalTypeViewController(editProfileViewController)
     }
     
@@ -58,7 +58,7 @@ final class ProfilePresenter {
     }
     
     func didTapFavoritesScreen() {
-        let favoritesViewController = screenAssembly.makeFavoritesScreen()
+        let favoritesViewController = screenAssembly.makeFavoritesScreen(delegate: self)
         view?.showNavigationTypeViewController(favoritesViewController)
     }
 }
@@ -70,5 +70,53 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     func viewDidLoad() {
         getProfileData()
     }
-    
+}
+
+// MARK: - EditProfileDelegate
+
+extension ProfilePresenter: EditProfileDelegate {
+    func updateProfile(_ profile: Profile) {
+        self.profile = profile
+        view?.updateProfileScreen(profile: profile)
+    }
+}
+
+// MARK: - FavoritesDelegate
+
+extension ProfilePresenter: FavoritesDelegate {
+    func didDeleteItem(at id: String) {
+        guard
+            let profile,
+            let deletedIndex = profile.likes.firstIndex(of: id)
+        else { return }
+        
+        var likes = profile.likes
+        likes.remove(at: deletedIndex)
+        
+        let newProfile = Profile(
+            name: profile.name,
+            avatar: profile.avatar,
+            description: profile.description,
+            website: profile.website,
+            nfts: profile.nfts,
+            likes: likes,
+            id: profile.id
+        )
+        view?.updateProfileScreen(profile: newProfile)
+        let networkClient = DefaultNetworkClient()
+        let request = PutProfileRequest(dto: newProfile)
+        UIBlockingProgressHUD.show()
+        networkClient.send(request: request, type: Profile.self) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let profile):
+                    print(profile)
+                    UIBlockingProgressHUD.dismiss()
+                case .failure(let error):
+                    print(error)
+                    UIBlockingProgressHUD.dismiss()
+                }
+            }
+        }
+    }
 }

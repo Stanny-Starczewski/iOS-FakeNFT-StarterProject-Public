@@ -8,8 +8,6 @@
 import Foundation
 
 protocol MyNFTPresenterProtocol: AnyObject {
-    var count: Int { get }
-    var amount: Float { get }
     func viewIsReady()
     func numberOfRowsInSection(_ section: Int) -> Int
     func cellForRow(at indexPath: IndexPath) -> MyNFTCell
@@ -49,17 +47,9 @@ final class MyNFTPresenter {
 // MARK: - MyNFTPresenterProtocol
 
 extension MyNFTPresenter: MyNFTPresenterProtocol {
-    var count: Int {
-        nftItems.count
-    }
-    
-    var amount: Float {
-        nftItems.reduce(0) { $0 + $1.price }
-    }
-    
     func viewIsReady() {
         view?.showProgressHUB()
-        networkService.getCart { [weak self] result in
+        networkService.getMyNFT { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let nftItems):

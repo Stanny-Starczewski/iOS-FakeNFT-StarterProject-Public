@@ -10,7 +10,6 @@ import Kingfisher
 
 protocol EditProfileViewControllerProtocol: AnyObject {
     func setData(profile: Profile)
- //   func putData()
 }
 
 final class EditProfileViewController: UIViewController {
@@ -18,7 +17,7 @@ final class EditProfileViewController: UIViewController {
     // MARK: - Properties
     
     var presenter: EditProfilePresenterProtocol?
-
+    
     // MARK: - Layout elements
     
     private lazy var closeButton: UIButton = {
@@ -154,7 +153,11 @@ final class EditProfileViewController: UIViewController {
     
     @objc
     private func closeDidTap(_ sender: UIButton) {
-     //   putData()
+        guard let name = nameTextField.text, !name.isEmpty,
+              let description = descriptionTextField.text, !description.isEmpty,
+              let website = websiteTextField.text, !website.isEmpty
+        else { return }
+        presenter?.updateProfile(name: name, description: description, website: website)
         dismiss(animated: true)
     }
     
@@ -192,41 +195,41 @@ final class EditProfileViewController: UIViewController {
             avatarImage.widthAnchor.constraint(equalToConstant: 70),
             avatarImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 94),
             avatarImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-
+            
             changeAvatarLabel.heightAnchor.constraint(equalToConstant: 70),
             changeAvatarLabel.widthAnchor.constraint(equalToConstant: 70),
             changeAvatarLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 94),
             changeAvatarLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-
+            
             loadImageLabel.topAnchor.constraint(equalTo: changeAvatarLabel.bottomAnchor, constant: 4),
             loadImageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadImageLabel.heightAnchor.constraint(equalToConstant: 44),
             loadImageLabel.widthAnchor.constraint(equalToConstant: 250),
-
+            
             nameLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 24),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-
+            
             nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
             nameTextField.heightAnchor.constraint(equalToConstant: 46),
             nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-
+            
             descriptionLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 22),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-
+            
             descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             descriptionTextField.heightAnchor.constraint(equalToConstant: 132),
             descriptionTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             descriptionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-
+            
             websiteLabel.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 24),
             websiteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-
+            
             websiteTextField.topAnchor.constraint(equalTo: websiteLabel.bottomAnchor, constant: 8),
             websiteTextField.heightAnchor.constraint(equalToConstant: 46),
             websiteTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             websiteTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
-
+            
         ])
     }
 }
@@ -274,20 +277,4 @@ extension EditProfileViewController: EditProfileViewControllerProtocol {
         descriptionTextField.text = profile.description
         websiteTextField.text = profile.website
     }
-    
-//    func putData() {
-//        guard let name = nameTextField.text, !name.isEmpty,
-//              let avatar = loadImageLabel.text,
-//              let description = descriptionTextField.text, !description.isEmpty,
-//              let website = websiteTextField.text, !website.isEmpty
-//
-//        else { return }
-//
-//        presenter?.putProfileData(
-//            name: name,
-//            avatar: avatar,
-//            description: description,
-//            website: website
-//        )
-//    }
 }

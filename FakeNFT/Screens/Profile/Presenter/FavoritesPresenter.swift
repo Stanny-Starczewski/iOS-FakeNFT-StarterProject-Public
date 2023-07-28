@@ -11,6 +11,11 @@ protocol FavoritesPresenterProtocol: AnyObject {
     func viewIsReady()
     func numberOfRowsInSection(_ section: Int) -> Int
     func cellForItem(at indexPath: IndexPath) -> NFTNetworkModel
+    func didTapDeleteItem(at indexPath: IndexPath)
+}
+
+protocol FavoritesDelegate: AnyObject {
+    func didDeleteItem(at id: String)
 }
 
 final class FavoritesPresenter: FavoritesPresenterProtocol {
@@ -22,6 +27,7 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     private let alertAssembly: AlertAssemblyProtocol
     private let screenAssembly: ScreenAssemblyProtocol
     private let networkService: NetworkServiceProtocol
+    private weak var delegate: FavoritesDelegate?
     
     // MARK: - Data Store
     
@@ -32,11 +38,13 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     init(
         alertAssembly: AlertAssemblyProtocol,
         screenAssembly: ScreenAssemblyProtocol,
-        networkService: NetworkServiceProtocol
+        networkService: NetworkServiceProtocol,
+        delegate: FavoritesDelegate
     ) {
         self.alertAssembly = alertAssembly
         self.screenAssembly = screenAssembly
         self.networkService = networkService
+        self.delegate = delegate
     }
     
     // MARK: - Methods
@@ -70,5 +78,12 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
                 self.view?.showViewController(alert)
             }
         }
+    }
+    
+    func didTapDeleteItem(at indexPath: IndexPath) {
+        let deletedItem = nftItems[indexPath.item]
+        delegate?.didDeleteItem(at: deletedItem.id)
+        nftItems.remove(at: indexPath.item)
+        view?.updateUI()
     }
 }

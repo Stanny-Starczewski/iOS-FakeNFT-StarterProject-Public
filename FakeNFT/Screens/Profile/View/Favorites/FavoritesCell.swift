@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol FavoritesCellDelegate: AnyObject {
+    func didTapDeleteItem(at indexPath: IndexPath)
+}
+
 final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - Properties
     
     static let reuseIdentifier = "FavoritesCell"
+    
+    weak var delegate: FavoritesCellDelegate?
     
     var currentIndexPath: IndexPath?
     
@@ -58,7 +64,7 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
         return nftPriceValue
     }()
     
-    var nftFavorite: UIButton = {
+    lazy var nftFavorite: UIButton = {
         let nftFavorite = UIButton()
         nftFavorite.setImage(UIImage(named: "Heart Filled"), for: .normal)
         nftFavorite.translatesAutoresizingMaskIntoConstraints = false
@@ -83,8 +89,8 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     
     @objc
     private func didTapFavoriteButton() {
-        print("Test")
         guard let currentIndexPath else { return }
+        delegate?.didTapDeleteItem(at: currentIndexPath)
     }
     
     // MARK: - Layout methods

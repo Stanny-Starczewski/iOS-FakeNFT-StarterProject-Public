@@ -9,13 +9,11 @@ import UIKit
 
 protocol ScreenAssemblyProtocol {
     func makeProfileScreen() -> UIViewController
-    func makeEditProfileScreen(profile: Profile) -> UIViewController
+    func makeEditProfileScreen(profile: Profile, delegate: EditProfileDelegate) -> UIViewController
     func makeMyNFTScreen() -> UIViewController
-    func makeFavoritesScreen() -> UIViewController
+    func makeFavoritesScreen(delegate: FavoritesDelegate) -> UIViewController
     func makeCatalogScreen() -> UIViewController
     func makeCartScreen() -> UIViewController
-//    func makeRemoveItemScreen(with item: NftItem, delegate: RemoveItemDelegate) -> UIViewController
-//    func makePaymentMethodsScreen() -> UIViewController
     func makeStatsScreen() -> UIViewController
 }
 
@@ -47,9 +45,9 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         return vc
     }
     
-    func makeEditProfileScreen(profile: Profile) -> UIViewController {
+    func makeEditProfileScreen(profile: Profile, delegate: EditProfileDelegate) -> UIViewController {
         let view = EditProfileViewController()
-        let presenter = EditProfilePresenter(view: view, profile: profile)
+        let presenter = EditProfilePresenter(view: view, profile: profile, delegate: delegate)
         view.presenter = presenter
         return view
     }
@@ -66,11 +64,12 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         return vc
     }
     
-    func makeFavoritesScreen() -> UIViewController {
+    func makeFavoritesScreen(delegate: FavoritesDelegate) -> UIViewController {
         let presenter = FavoritesPresenter(
             alertAssembly: alertAssembly,
             screenAssembly: self,
-            networkService: serviceAssembly.makeNetworkService()
+            networkService: serviceAssembly.makeNetworkService(),
+            delegate: delegate
         )
         let vc = FavoritesViewController(presenter: presenter)
         presenter.view = vc
@@ -90,31 +89,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         presenter.view = vc
         return vc
     }
-//
-//    func makeRemoveItemScreen(with item: NftItem, delegate: RemoveItemDelegate) -> UIViewController {
-//        let presenter = RemoveItemPresenter(item: item, delegate: delegate)
-//        let vc = RemoveItemViewController(presenter: presenter)
-//        presenter.view = vc
-//        return vc
-//    }
-//
-//    func makePaymentMethodsScreen() -> UIViewController {
-//        let presenter = PaymentMethodsPresenter(
-//            currencyService: FakeConvertService(),
-//            screenAssembly: self
-//        )
-//        let vc = PaymentMethodsViewController(presenter: presenter)
-//        presenter.view = vc
-//        return vc
-//    }
-//
-//    func makePaymentResultScreen() -> UIViewController {
-//        let presenter = PaymentResultPresenter()
-//        let vc = PaymentResultViewController(presenter: presenter)
-//        presenter.view = vc
-//        return vc
-//    }
-//
+
     func makeStatsScreen() -> UIViewController {
         let presenter = StatsPresenter()
         let vc = StatsViewController(presenter: presenter)

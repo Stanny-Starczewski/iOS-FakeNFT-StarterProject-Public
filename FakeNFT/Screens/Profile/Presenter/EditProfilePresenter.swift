@@ -8,8 +8,13 @@
 import Foundation
 
 protocol EditProfilePresenterProtocol: AnyObject {
-    init(view: EditProfileViewControllerProtocol, profile: Profile)
+    init(view: EditProfileViewControllerProtocol, profile: Profile, delegate: EditProfileDelegate)
     func setData()
+    func updateProfile(name: String, description: String, website: String)
+}
+
+protocol EditProfileDelegate: AnyObject {
+    func updateProfile(_ profile: Profile)
 }
 
 final class EditProfilePresenter: EditProfilePresenterProtocol {
@@ -18,12 +23,14 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
     
     var profile: Profile
     weak var view: EditProfileViewControllerProtocol?
+    private weak var delegate: EditProfileDelegate?
     
     // MARK: - Init
     
-    init(view: EditProfileViewControllerProtocol, profile: Profile) {
+    init(view: EditProfileViewControllerProtocol, profile: Profile, delegate: EditProfileDelegate) {
         self.view = view
         self.profile = profile
+        self.delegate = delegate
     }
     
     // MARK: - Methods
@@ -32,40 +39,31 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
         self.view?.setData(profile: profile)
     }
     
-    //    public func putProfileData(name: String, avatar: String, description: String, website: String) {
-    //        UIBlockingProgressHUD.show()
-    //
-    //      //  print(name, avatar, description, website)
-    //
-    //        let networkClient = DefaultNetworkClient()
-    //
-    //        let request = PutProfileRequest(
-    //            name: name,
-    //            avatar: avatar,
-    //            description: description,
-    //            website: website
-    //        )
-    //
-    //        networkClient.send(request: request, type: ProfilePut.self) { [weak self] result in
-    //            DispatchQueue.main.async {
-    //                switch result {
-    //                case .success(let profile):
-    //                    print(profile)
-    //                    self?.fillSelfFromResponse(response: profile)
-    //                    UIBlockingProgressHUD.dismiss()
-    //                case .failure(let error):
-    //                    print(error)
-    //                    UIBlockingProgressHUD.dismiss()
-    //                }
-    //            }
-    //        }
-    //    }
-    //
-    //    func fillSelfFromResponse(response: ProfilePut) {
-    //        self.avatarURL = URL(string: response.avatar)
-    //        self.name = response.name
-    //        self.description = response.description
-    //        self.website = response.website
-    //     //   self.id = response.id
-    //    }
+    public func updateProfile(name: String, description: String, website: String) {
+        let profile = Profile(
+            name: name,
+            avatar: profile.avatar,
+            description: description,
+            website: website,
+            nfts: profile.nfts,
+            likes: profile.likes,
+            id: profile.id
+        )
+        delegate?.updateProfile(profile)
+        let networkClient = DefaultNetworkClient()
+        let request = PutProfileRequest(dto: profile)
+        UIBlockingProgressHUD.show()
+        networkClient.send(request: request, type: Profile.self) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let profile):
+                    print(profile)
+                    UIBlockingProgressHUD.dismiss()
+                case .failure(let error):
+                    print(error)
+                    UIBlockingProgressHUD.dismiss()
+                }
+            }
+        }
+    }
 }

@@ -146,6 +146,14 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     }
 }
 
+// MARK: - FavoritesCellDelegate
+
+extension FavoritesViewController: FavoritesCellDelegate {
+    func didTapDeleteItem(at indexPath: IndexPath) {
+        presenter.didTapDeleteItem(at: indexPath)
+    }
+}
+
 // MARK: - UICollectionViewDataSource
 
 extension FavoritesViewController: UICollectionViewDataSource {
@@ -161,7 +169,8 @@ extension FavoritesViewController: UICollectionViewDataSource {
         
         let cell: FavoritesCell = collectionView.dequeueReusableCell(indexPath: indexPath)
         cell.configure(with: presenter.cellForItem(at: indexPath))
-        
+        cell.currentIndexPath = indexPath
+        cell.delegate = self
         return cell
     }
 }

@@ -72,6 +72,6 @@ struct NFTNetworkModel: Codable, Equatable {
 }
 
 struct AuthorNetworkModel: Codable {
-    let name: [String]
+    let name: String
     let id: String
 }
