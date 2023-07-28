@@ -167,7 +167,7 @@ extension MyNFTViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         let cell = presenter.cellForRow(at: indexPath)
         cell.currentIndexPath = indexPath
         return cell
@@ -180,4 +180,8 @@ extension MyNFTViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension MyNFTViewController: UITableViewDelegate {}
+extension MyNFTViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}

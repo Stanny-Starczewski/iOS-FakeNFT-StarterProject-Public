@@ -27,7 +27,7 @@ final class ProfilePresenter {
     
     func getProfileData() {
         
-        UIBlockingProgressHUD.show()
+        view?.showProgressHUB()
         
         let networkClient = DefaultNetworkClient()
         
@@ -41,7 +41,7 @@ final class ProfilePresenter {
                     print(error)
                     self?.view?.showNoInternetView()
                 }
-                UIBlockingProgressHUD.dismiss()
+                self?.view?.dismissProgressHUB()
             }
         }
     }
@@ -105,16 +105,17 @@ extension ProfilePresenter: FavoritesDelegate {
         view?.updateProfileScreen(profile: newProfile)
         let networkClient = DefaultNetworkClient()
         let request = PutProfileRequest(dto: newProfile)
-        UIBlockingProgressHUD.show()
+        view?.showProgressHUB()
         networkClient.send(request: request, type: Profile.self) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let profile):
                     print(profile)
-                    UIBlockingProgressHUD.dismiss()
+                    self?.getProfileData()
+                    self?.view?.dismissProgressHUB()
                 case .failure(let error):
                     print(error)
-                    UIBlockingProgressHUD.dismiss()
+                    self?.view?.dismissProgressHUB()
                 }
             }
         }

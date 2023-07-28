@@ -52,16 +52,16 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
         delegate?.updateProfile(profile)
         let networkClient = DefaultNetworkClient()
         let request = PutProfileRequest(dto: profile)
-        UIBlockingProgressHUD.show()
+        view?.showProgressHUB()
         networkClient.send(request: request, type: Profile.self) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let profile):
                     print(profile)
-                    UIBlockingProgressHUD.dismiss()
+                    self?.view?.dismissProgressHUB()
                 case .failure(let error):
                     print(error)
-                    UIBlockingProgressHUD.dismiss()
+                    self?.view?.dismissProgressHUB()
                 }
             }
         }

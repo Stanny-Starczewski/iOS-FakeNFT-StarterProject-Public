@@ -6,6 +6,8 @@ protocol ProfileViewControllerProtocol: AnyObject {
     func showNoInternetView()
     func showModalTypeViewController(_ vc: UIViewController)
     func showNavigationTypeViewController(_ vc: UIViewController)
+    func showProgressHUB()
+    func dismissProgressHUB()
 }
 
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
@@ -131,6 +133,14 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
+        UIBlockingProgressHUD.dismiss()
+    }
+    
     func updateProfileScreen(profile: Profile) {
         let imageUrlString = profile.avatar
         let imageUrl = URL(string: imageUrlString)
@@ -225,7 +235,6 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //        navigationController?.pushViewController(assetViewController[indexPath.row], animated: true)
         switch indexPath.row {
         case 0: presenter?.didTapMyNFTScreen()
         case 1: presenter?.didTapFavoritesScreen()

@@ -84,6 +84,10 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
         let deletedItem = nftItems[indexPath.item]
         delegate?.didDeleteItem(at: deletedItem.id)
         nftItems.remove(at: indexPath.item)
-        view?.updateUI()
+        if nftItems.isEmpty {
+            view?.showEmptyCart()
+        } else {
+            view?.updateUI()
+        }
     }
 }

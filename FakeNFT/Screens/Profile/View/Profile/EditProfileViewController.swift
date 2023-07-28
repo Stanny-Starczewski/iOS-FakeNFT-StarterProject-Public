@@ -10,6 +10,8 @@ import Kingfisher
 
 protocol EditProfileViewControllerProtocol: AnyObject {
     func setData(profile: Profile)
+    func showProgressHUB()
+    func dismissProgressHUB()
 }
 
 final class EditProfileViewController: UIViewController {
@@ -167,6 +169,14 @@ final class EditProfileViewController: UIViewController {
     }
     
     // MARK: - Layout methods
+    
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
+        UIBlockingProgressHUD.dismiss()
+    }
     
     private func setupView() {
         view.backgroundColor = .appWhite
