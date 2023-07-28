@@ -32,14 +32,11 @@
 		3F6806A329CBBAF200B4F915 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6806A129CBBAF200B4F915 /* LaunchScreen.storyboard */; };
 		3F6806AE29CBBAF200B4F915 /* ExampleUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6806AD29CBBAF200B4F915 /* ExampleUnitTests.swift */; };
 		3F6806B829CBBAF200B4F915 /* FakeNFTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6806B729CBBAF200B4F915 /* FakeNFTUITests.swift */; };
-		3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6806CA29CBBCC700B4F915 /* ExampleNetworkModel.swift */; };
 		3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6806D029CBBE6B00B4F915 /* NetworkClient.swift */; };
 		3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6806D229CBBE9600B4F915 /* NetworkRequest.swift */; };
 		3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6806D429CBBEC700B4F915 /* NetworkTask.swift */; };
-		3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6806D629CBC50A00B4F915 /* CellsReusingUtils.swift */; };
 		3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C38A29D242E90081F015 /* ProductDetailsTableViewCell.swift */; };
 		3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39029D2453B0081F015 /* ExampleRequest.swift */; };
-		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
 		3FC8C39729D24D9D0081F015 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3FC8C39629D24D9D0081F015 /* .swiftlint.yml */; };
 		881425112A52C08300AADB89 /* StatUserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425102A52C08300AADB89 /* StatUserPage.swift */; };
 		881425132A52E0B300AADB89 /* Models&Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881425122A52E0B300AADB89 /* Models&Structs.swift */; };
@@ -58,6 +55,8 @@
 		A3A2CE112A6EA5BF00627603 /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */; };
 		A3A2CE182A6EFD9A00627603 /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE172A6EFD9A00627603 /* WebsiteViewController.swift */; };
 		A3A2CE1A2A6EFF3B00627603 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A2CE192A6EFF3B00627603 /* FavoritesCell.swift */; };
+		A3DEE3612A74400700057858 /* CellsReusingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEE3602A74400700057858 /* CellsReusingUtils.swift */; };
+		A3DEE3632A74402100057858 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEE3622A74402100057858 /* DateFormatters+Presets.swift */; };
 		A3F5E1932A59804D00BB5812 /* GetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */; };
 		A3F5E1952A5ADB7200BB5812 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */; };
 		A3F5E1982A5AE67300BB5812 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */; };
@@ -119,14 +118,11 @@
 		3F6806AD29CBBAF200B4F915 /* ExampleUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUnitTests.swift; sourceTree = "<group>"; };
 		3F6806B329CBBAF200B4F915 /* FakeNFTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FakeNFTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6806B729CBBAF200B4F915 /* FakeNFTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNFTUITests.swift; sourceTree = "<group>"; };
-		3F6806CA29CBBCC700B4F915 /* ExampleNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleNetworkModel.swift; sourceTree = "<group>"; };
 		3F6806D029CBBE6B00B4F915 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		3F6806D229CBBE9600B4F915 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		3F6806D429CBBEC700B4F915 /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
-		3F6806D629CBC50A00B4F915 /* CellsReusingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsReusingUtils.swift; sourceTree = "<group>"; };
 		3FC8C38A29D242E90081F015 /* ProductDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		3FC8C39029D2453B0081F015 /* ExampleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRequest.swift; sourceTree = "<group>"; };
-		3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
 		3FC8C39629D24D9D0081F015 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		881425102A52C08300AADB89 /* StatUserPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUserPage.swift; sourceTree = "<group>"; };
 		881425122A52E0B300AADB89 /* Models&Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models&Structs.swift"; sourceTree = "<group>"; };
@@ -145,6 +141,8 @@
 		A3A2CE102A6EA5BF00627603 /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
 		A3A2CE172A6EFD9A00627603 /* WebsiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebsiteViewController.swift; sourceTree = "<group>"; };
 		A3A2CE192A6EFF3B00627603 /* FavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
+		A3DEE3602A74400700057858 /* CellsReusingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsReusingUtils.swift; sourceTree = "<group>"; };
+		A3DEE3622A74402100057858 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
 		A3F5E1922A59804D00BB5812 /* GetProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileRequest.swift; sourceTree = "<group>"; };
 		A3F5E1942A5ADB7200BB5812 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		A3F5E1972A5AE67300BB5812 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				A3FE08422A5872570078D7BE /* Andrei_Kashin_Decomposition_03_ios_teamwork_1.md */,
-				3F68069F29CBBAF200B4F915 /* Assets.xcassets */,
 				3F6806A129CBBAF200B4F915 /* LaunchScreen.storyboard */,
 				3F6806A429CBBAF200B4F915 /* Info.plist */,
 			);
@@ -356,12 +353,13 @@
 		3F68069529CBBAF100B4F915 /* FakeNFT */ = {
 			isa = PBXGroup;
 			children = (
-				A3A2CE0B2A6EA4E300627603 /* Assembly */,
 				0AAF02DC2A52912300924CE0 /* App */,
-				3F478ECD29DB473000F6D39E /* DesignSystem */,
-				3F6806CE29CBBD1B00B4F915 /* Foundation */,
+				A3A2CE0B2A6EA4E300627603 /* Assembly */,
+				3F6806CE29CBBD1B00B4F915 /* Core */,
 				3F6806C929CBBCAF00B4F915 /* Models */,
-				3F6806C729CBBC5B00B4F915 /* Screens */,
+				3F6806C729CBBC5B00B4F915 /* Presentation */,
+				A3DEE3642A74406A00057858 /* Resources */,
+				A3DEE35E2A743FB900057858 /* Extensions */,
 				3F6806C629CBBC4E00B4F915 /* Services */,
 				0AAF02DB2A52911100924CE0 /* Supporting Files */,
 			);
@@ -389,12 +387,12 @@
 			children = (
 				3FC8C38F29D245250081F015 /* Requests */,
 				A3505C9C2A705EE000A2E0D9 /* NetworkService.swift */,
-				A3505C9E2A71233000A2E0D9 /* CartSortService.swift */,
+				A3DEE35D2A743F7100057858 /* CartSortService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		3F6806C729CBBC5B00B4F915 /* Screens */ = {
+		3F6806C729CBBC5B00B4F915 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				0AAF02E22A52964D00924CE0 /* Stats */,
@@ -404,7 +402,7 @@
 				3F6806C829CBBC8100B4F915 /* ProductDetails */,
 				0AAF02DD2A5291CA00924CE0 /* TabBarController.swift */,
 			);
-			path = Screens;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		3F6806C829CBBC8100B4F915 /* ProductDetails */ = {
@@ -420,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				881425172A52E71E00AADB89 /* Protocols.swift */,
-				3F6806D829CC979D00B4F915 /* Network */,
 				881425122A52E0B300AADB89 /* Models&Structs.swift */,
 				881425142A52E5AA00AADB89 /* CurrencyService.swift */,
 				881425192A52E7B800AADB89 /* NFTModels.swift */,
@@ -429,30 +426,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		3F6806CE29CBBD1B00B4F915 /* Foundation */ = {
+		3F6806CE29CBBD1B00B4F915 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3F6806CF29CBBDB100B4F915 /* NetworkClient */,
-				3F6806D629CBC50A00B4F915 /* CellsReusingUtils.swift */,
-				3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */,
+				3F6806CF29CBBDB100B4F915 /* Network */,
 			);
-			path = Foundation;
+			path = Core;
 			sourceTree = "<group>";
 		};
-		3F6806CF29CBBDB100B4F915 /* NetworkClient */ = {
+		3F6806CF29CBBDB100B4F915 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				3F6806D029CBBE6B00B4F915 /* NetworkClient.swift */,
 				3F6806D229CBBE9600B4F915 /* NetworkRequest.swift */,
 				3F6806D429CBBEC700B4F915 /* NetworkTask.swift */,
-			);
-			path = NetworkClient;
-			sourceTree = "<group>";
-		};
-		3F6806D829CC979D00B4F915 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				3F6806CA29CBBCC700B4F915 /* ExampleNetworkModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -485,6 +472,40 @@
 				A3A2CE172A6EFD9A00627603 /* WebsiteViewController.swift */,
 			);
 			path = ProfileWebsite;
+			sourceTree = "<group>";
+		};
+		A3DEE35D2A743F7100057858 /* CartSortService */ = {
+			isa = PBXGroup;
+			children = (
+				A3505C9E2A71233000A2E0D9 /* CartSortService.swift */,
+			);
+			path = CartSortService;
+			sourceTree = "<group>";
+		};
+		A3DEE35E2A743FB900057858 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A3DEE35F2A743FED00057858 /* Foundation */,
+				3F478ECD29DB473000F6D39E /* DesignSystem */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A3DEE35F2A743FED00057858 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				A3DEE3602A74400700057858 /* CellsReusingUtils.swift */,
+				A3DEE3622A74402100057858 /* DateFormatters+Presets.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		A3DEE3642A74406A00057858 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F68069F29CBBAF200B4F915 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A3F5E1962A5AE5FF00BB5812 /* NoInternet */ = {
@@ -724,15 +745,16 @@
 				881425152A52E5AA00AADB89 /* CurrencyService.swift in Sources */,
 				0AAF03062A529E9D00924CE0 /* CartViewProtocol.swift in Sources */,
 				A3F5E1932A59804D00BB5812 /* GetProfileRequest.swift in Sources */,
+				A3DEE3612A74400700057858 /* CellsReusingUtils.swift in Sources */,
 				8814251A2A52E7B800AADB89 /* NFTModels.swift in Sources */,
 				0AAF03082A529EF300924CE0 /* StatsPresenter.swift in Sources */,
 				A3FE08382A5860B20078D7BE /* MyNFTViewController.swift in Sources */,
 				0AAF030C2A529F0900924CE0 /* StatsViewProtocol.swift in Sources */,
 				A3FE084B2A5881D40078D7BE /* AboutViewController.swift in Sources */,
 				A3FE083C2A5861E40078D7BE /* MyNFTCell.swift in Sources */,
-				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
+				A3DEE3632A74402100057858 /* DateFormatters+Presets.swift in Sources */,
 				A3F5E1952A5ADB7200BB5812 /* UIBlockingProgressHUD.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
@@ -741,7 +763,6 @@
 				A3505C9D2A705EE000A2E0D9 /* NetworkService.swift in Sources */,
 				A3FE08452A58755A0078D7BE /* StarRatingStack.swift in Sources */,
 				A3FE08362A58458D0078D7BE /* EditProfileViewController.swift in Sources */,
-				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				A3A2CDFA2A6834DB00627603 /* EditProfilePresenter.swift in Sources */,
 				A3A2CE112A6EA5BF00627603 /* ServiceAssembly.swift in Sources */,
 				A3505C9B2A7059AC00A2E0D9 /* FavoritesPresenter.swift in Sources */,
@@ -755,7 +776,6 @@
 				881425132A52E0B300AADB89 /* Models&Structs.swift in Sources */,
 				881425182A52E71E00AADB89 /* Protocols.swift in Sources */,
 				8814251C2A52E97500AADB89 /* Config.swift in Sources */,
-				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				0AAF02F62A529AF100924CE0 /* CatalogPresenter.swift in Sources */,
 				0AAF02FA2A529BCD00924CE0 /* CatalogPresenterProtocol.swift in Sources */,
 				A3F5E1982A5AE67300BB5812 /* NoInternetViewController.swift in Sources */,
