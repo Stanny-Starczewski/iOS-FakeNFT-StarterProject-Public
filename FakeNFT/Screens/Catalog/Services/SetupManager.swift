@@ -14,6 +14,8 @@ final class SetupManager {
         }
     }
     
+    private init() {}
+    
     private enum Keys: String {
         case sortType
     }

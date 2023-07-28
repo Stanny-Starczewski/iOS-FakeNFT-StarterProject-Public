@@ -157,7 +157,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
             }
         }
         
-        viewModel.$loadingInProgress.observe { _ in
+        viewModel.$loadingInProgress.observe { [unowned self] _ in
             if self.viewModel.loadingInProgress {
                 UIProgressHUD.show()
             } else {
