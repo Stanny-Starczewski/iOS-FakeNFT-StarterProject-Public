@@ -119,11 +119,3 @@ extension MyNFTPresenter: MyNFTPresenterProtocol {
         view?.showViewController(sortAlert)
     }
 }
-
-// MARK: - SortType
-
-enum SortType: Int {
-    case byName
-    case byPrice
-    case byRating
-}

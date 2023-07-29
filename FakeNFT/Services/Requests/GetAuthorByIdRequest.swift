@@ -6,12 +6,3 @@
 //
 
 import Foundation
-
-struct GetAuthorByIdRequest: NetworkRequest {
-    let id: String
-    var endpoint: URL? { URL(string: "\(Config.baseUrl)/users/\(id)") }
-    
-    init(id: String) {
-        self.id = id
-    }
-}

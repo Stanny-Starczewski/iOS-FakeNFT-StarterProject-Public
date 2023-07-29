@@ -6,9 +6,3 @@
 //
 
 import Foundation
-
-struct GetProfileRequest: NetworkRequest {
-    var endpoint: URL? {
-        URL(string: "\(Config.baseUrl)/profile/1")
-    }
-}

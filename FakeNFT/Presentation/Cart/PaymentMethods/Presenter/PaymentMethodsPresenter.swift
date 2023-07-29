@@ -23,7 +23,7 @@ final class PaymentMethodsPresenter {
     
     weak var view: PaymentMethodsViewProtocol?
     
-    private let networkService: CartNetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     
     private let screenAssembly: ScreenAssemblyProtocol
     
@@ -38,7 +38,7 @@ final class PaymentMethodsPresenter {
     // MARK: - Life Cycle
     
     init(
-        networkService: CartNetworkServiceProtocol,
+        networkService: NetworkServiceProtocol,
         screenAssembly: ScreenAssemblyProtocol,
         alertAssembly: AlertAssemblyProtocol
     ) {

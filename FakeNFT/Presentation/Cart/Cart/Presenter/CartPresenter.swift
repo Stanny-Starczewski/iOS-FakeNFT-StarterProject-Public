@@ -29,7 +29,7 @@ final class CartPresenter {
     
     private let alertAssembly: AlertAssemblyProtocol
     private let screenAssembly: ScreenAssemblyProtocol
-    private let networkService: CartNetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     private let cartSortService: CartSortServiceProtocol
     
     // MARK: - Data Store
@@ -41,7 +41,7 @@ final class CartPresenter {
     init(
         alertAssembly: AlertAssemblyProtocol,
         screenAssembly: ScreenAssemblyProtocol,
-        networkService: CartNetworkServiceProtocol,
+        networkService: NetworkServiceProtocol,
         cartSortService: CartSortServiceProtocol
     ) {
         self.alertAssembly = alertAssembly

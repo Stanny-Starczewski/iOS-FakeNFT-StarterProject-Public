@@ -45,4 +45,29 @@ struct PaymentWithIdCurrencyRequest: NetworkRequest {
     }
 }
 
-// TODO: 1.1 Сюда можно добавить реквесты других эпиков
+struct GetAuthorByIdRequest: NetworkRequest {
+    let id: String
+    var endpoint: URL? { URL(string: "\(Config.baseUrl)/users/\(id)") }
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+
+struct GetProfileRequest: NetworkRequest {
+    var endpoint: URL? {
+        URL(string: "\(Config.baseUrl)/profile/1")
+    }
+}
+
+struct PutProfileRequest: NetworkRequest {
+    var endpoint: URL? {
+        URL(string: "\(Config.baseUrl)/profile/1")
+    }
+    var httpMethod: HttpMethod { .put }
+    var dto: Encodable?
+    
+    init(dto: Encodable) {
+        self.dto = dto
+    }
+}
