@@ -47,6 +47,7 @@ final class AuthorViewController: UIViewController, UIGestureRecognizerDelegate 
     @objc
     private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
+        tabBarController?.tabBar.isHidden = false
     }
     
     private func loadPage() {
