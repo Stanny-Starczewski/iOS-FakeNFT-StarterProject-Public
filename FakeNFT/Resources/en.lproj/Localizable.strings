@@ -5,3 +5,16 @@
   Created by Anton Vikhlyaev on 29.07.2023.
   
 */
+
+"sortingAlertTitle"="Sorting";
+"sortingAlertByPriceText"="By price";
+"sortingAlertByRatingText"="By rating";
+"sortingAlertByNameText"="By title";
+"sortingAlertByFirstNameText"="By name";
+"sortingAlertByNumberOfNFTsText"="By number of NFTs";
+"sortingAlertCloseText"="Close";
+"errorAlertTitle"="Oops! We have a error.";
+"errorAlertRepeatTitle"="Error!";
+"errorAlertOkAction"="OK";
+"errorAlertCancelAction"="Close";
+"errorAlertRepeatAction"="Try again";

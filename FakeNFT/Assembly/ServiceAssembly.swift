@@ -13,7 +13,7 @@ protocol ServiceAssemblyProtocol {
 }
 
 final class ServiceAssembly: ServiceAssemblyProtocol {
-    
+
     func makeNetworkService() -> NetworkServiceProtocol {
         NetworkService()
     }

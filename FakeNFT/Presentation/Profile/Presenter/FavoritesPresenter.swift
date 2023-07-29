@@ -24,7 +24,7 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     
     var view: FavoritesViewControllerProtocol?
     
-    private let alertAssembly: AlertAssemblyProtocol
+    private let alertBuilder: AlertBuilderProtocol
     private let screenAssembly: ScreenAssemblyProtocol
     private let networkService: NetworkServiceProtocol
     private weak var delegate: FavoritesDelegate?
@@ -36,12 +36,12 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     // MARK: - Init
     
     init(
-        alertAssembly: AlertAssemblyProtocol,
+        alertBuilder: AlertBuilderProtocol,
         screenAssembly: ScreenAssemblyProtocol,
         networkService: NetworkServiceProtocol,
         delegate: FavoritesDelegate
     ) {
-        self.alertAssembly = alertAssembly
+        self.alertBuilder = alertBuilder
         self.screenAssembly = screenAssembly
         self.networkService = networkService
         self.delegate = delegate
@@ -74,7 +74,7 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
                 }
             case .failure(let error):
                 view?.dismissProgressHUB()
-                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
         }

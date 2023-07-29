@@ -26,13 +26,13 @@ final class ScreenAssembly {
     
     private let serviceAssembly: ServiceAssemblyProtocol
     
-    private let alertAssembly: AlertAssemblyProtocol
+    private let alertBuilder: AlertBuilderProtocol
     
     // MARK: - Life Cycle
     
-    init(serviceAssembly: ServiceAssemblyProtocol, alertAssembly: AlertAssemblyProtocol) {
+    init(serviceAssembly: ServiceAssemblyProtocol, alertBuilder: AlertBuilderProtocol) {
         self.serviceAssembly = serviceAssembly
-        self.alertAssembly = alertAssembly
+        self.alertBuilder = alertBuilder
     }
     
 }
@@ -56,7 +56,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     
     func makeMyNFTScreen() -> UIViewController {
         let presenter = MyNFTPresenter(
-            alertAssembly: alertAssembly,
+            alertBuilder: alertBuilder,
             screenAssembly: self,
             networkService: serviceAssembly.makeNetworkService(),
             cartSortService: serviceAssembly.makeCartSortService()
@@ -68,7 +68,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     
     func makeFavoritesScreen(delegate: FavoritesDelegate) -> UIViewController {
         let presenter = FavoritesPresenter(
-            alertAssembly: alertAssembly,
+            alertBuilder: alertBuilder,
             screenAssembly: self,
             networkService: serviceAssembly.makeNetworkService(),
             delegate: delegate
@@ -89,7 +89,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     
     func makeCartScreen() -> UIViewController {
         let presenter = CartPresenter(
-            alertAssembly: alertAssembly,
+            alertBuilder: alertBuilder,
             screenAssembly: self,
             networkService: serviceAssembly.makeNetworkService(),
             cartSortService: serviceAssembly.makeCartSortService()
@@ -110,7 +110,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         let presenter = PaymentMethodsPresenter(
             networkService: serviceAssembly.makeNetworkService(),
             screenAssembly: self,
-            alertAssembly: alertAssembly
+            alertBuilder: alertBuilder
         )
         let vc = PaymentMethodsViewController(presenter: presenter)
         presenter.view = vc

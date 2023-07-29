@@ -5,3 +5,17 @@
   Created by Anton Vikhlyaev on 29.07.2023.
   
 */
+
+"sortingAlertTitle"="Сортировка";
+"sortingAlertByPriceText"="По цене";
+"sortingAlertByRatingText"="По рейтингу";
+"sortingAlertByNameText"="По названию";
+"sortingAlertByFirstNameText"="По имени";
+"sortingAlertByNumberOfNFTsText"="По количеству NFT";
+"sortingAlertCloseText"="Закрыть";
+"errorAlertTitle"="Упс! У нас ошибка.";
+"errorAlertRepeatTitle"="Произошла ошибка!";
+"errorAlertOkAction"="OK";
+"errorAlertCancelAction"="Закрыть";
+"errorAlertRepeatAction"="Еще раз";
+

@@ -1,5 +1,5 @@
 //
-//  AlertAssembly.swift
+//  alertBuilder.swift
 //  FakeNFT
 //
 //  Created by Anton Vikhlyaev on 14.07.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol AlertAssemblyProtocol {
+protocol AlertBuilderProtocol {
     func makeSortingAlert(
         priceAction: @escaping () -> Void,
         ratingAction: @escaping () -> Void,
@@ -18,22 +18,27 @@ protocol AlertAssemblyProtocol {
         with message: String
     ) -> UIAlertController
     
-    func makeRepaymentAlert(
+    func makeErrorAlertWithRepeatAction(
         with message: String,
         _ handler: @escaping () -> Void
     ) -> UIAlertController
 }
 
-final class AlertAssembly: AlertAssemblyProtocol {
+final class AlertBuilder: AlertBuilderProtocol {
     
     // MARK: - Constants
     
     private struct Constants {
-        static let sortingAlertTitle = "Сортировка"
-        static let sortingAlertAtPriceText = "По цене"
-        static let sortingAlertAtRatingText = "По рейтингу"
-        static let sortingAlertAtNameText = "По названию"
-        static let sortingAlertCloseText = "Закрыть"
+        static let sortingAlertTitle = Localization.sortingAlertTitle
+        static let sortingAlertAtPriceText = Localization.sortingAlertByPriceText
+        static let sortingAlertAtRatingText = Localization.sortingAlertByRatingText
+        static let sortingAlertAtNameText = Localization.sortingAlertByNameText
+        static let sortingAlertCloseText = Localization.sortingAlertCloseText
+        static let errorAlertTitle = Localization.errorAlertTitle
+        static let errorAlertRepeatTitle = Localization.errorAlertRepeatTitle
+        static let errorAlertOkAction = Localization.errorAlertOkAction
+        static let errorAlertCancelAction = Localization.errorAlertCancelAction
+        static let errorAlertRepeatAction = Localization.errorAlertRepeatAction
     }
     
     // MARK: - Methods
@@ -48,33 +53,28 @@ final class AlertAssembly: AlertAssemblyProtocol {
             message: nil,
             preferredStyle: .actionSheet
         )
-        
         let atPriceAction = UIAlertAction(
             title: Constants.sortingAlertAtPriceText,
             style: .default
         ) { _ in
             priceAction()
         }
-        
         let atRatingAction = UIAlertAction(
             title: Constants.sortingAlertAtRatingText,
             style: .default
         ) { _ in
             ratingAction()
         }
-        
         let atNameAction = UIAlertAction(
             title: Constants.sortingAlertAtNameText,
             style: .default
         ) { _ in
             nameAction()
         }
-        
         let closeAction = UIAlertAction(
             title: Constants.sortingAlertCloseText,
             style: .cancel
         )
-        
         sortAlert.addAction(atPriceAction)
         sortAlert.addAction(atRatingAction)
         sortAlert.addAction(atNameAction)
@@ -84,27 +84,36 @@ final class AlertAssembly: AlertAssemblyProtocol {
     
     func makeErrorAlert(with message: String) -> UIAlertController {
         let errorAlert = UIAlertController(
-            title: "Error",
+            title: Constants.errorAlertTitle,
             message: message,
             preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        let okAction = UIAlertAction(title: Constants.errorAlertOkAction, style: .cancel)
         errorAlert.addAction(okAction)
         return errorAlert
     }
     
-    func makeRepaymentAlert(with message: String, _ handler: @escaping () -> Void) -> UIAlertController {
-        let repaymentAlert = UIAlertController(
-            title: "Error",
+    func makeErrorAlertWithRepeatAction(
+        with message: String,
+        _ handler: @escaping () -> Void
+    ) -> UIAlertController {
+        let repeatAlert = UIAlertController(
+            title: Constants.errorAlertRepeatTitle,
             message: message,
             preferredStyle: .alert
         )
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let tryAgainAction = UIAlertAction(title: "Try Again", style: .default) { _ in
+        let cancelAction = UIAlertAction(
+            title: Constants.errorAlertCancelAction,
+            style: .cancel
+        )
+        let repeatAction = UIAlertAction(
+            title: Constants.errorAlertRepeatAction,
+            style: .default
+        ) { _ in
             handler()
         }
-        repaymentAlert.addAction(cancelAction)
-        repaymentAlert.addAction(tryAgainAction)
-        return repaymentAlert
+        repeatAlert.addAction(cancelAction)
+        repeatAlert.addAction(repeatAction)
+        return repeatAlert
     }
 }

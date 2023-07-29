@@ -27,7 +27,7 @@ final class PaymentMethodsPresenter {
     
     private let screenAssembly: ScreenAssemblyProtocol
     
-    private let alertAssembly: AlertAssemblyProtocol
+    private let alertBuilder: AlertBuilderProtocol
     
     private var selectedCurrency: Currency?
     
@@ -40,11 +40,11 @@ final class PaymentMethodsPresenter {
     init(
         networkService: NetworkServiceProtocol,
         screenAssembly: ScreenAssemblyProtocol,
-        alertAssembly: AlertAssemblyProtocol
+        alertBuilder: AlertBuilderProtocol
     ) {
         self.networkService = networkService
         self.screenAssembly = screenAssembly
-        self.alertAssembly = alertAssembly
+        self.alertBuilder = alertBuilder
     }
 }
 
@@ -66,7 +66,7 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
                 self.view?.updateUI()
             case .failure(let error):
                 view?.dismissProgressHUB()
-                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
         }
@@ -99,7 +99,7 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
                 paymentResultViewController.modalPresentationStyle = .fullScreen
                 view?.showViewController(paymentResultViewController)
             case .failure(let error):
-                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
         }
@@ -110,7 +110,7 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
 
 extension PaymentMethodsPresenter: PaymentResultDelegate {
     func didTapTryAgain() {
-        let alert = alertAssembly.makeRepaymentAlert(with: "Your payment did not go through") { [weak self] in
+        let alert = alertBuilder.makeErrorAlertWithRepeatAction(with: "Your payment did not go through") { [weak self] in
             self?.didTapPaymentButton()
         }
         view?.showViewController(alert)

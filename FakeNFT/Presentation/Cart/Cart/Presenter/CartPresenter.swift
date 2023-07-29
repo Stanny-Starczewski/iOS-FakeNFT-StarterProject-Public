@@ -27,7 +27,7 @@ final class CartPresenter {
     
     // MARK: - Services
     
-    private let alertAssembly: AlertAssemblyProtocol
+    private let alertBuilder: AlertBuilderProtocol
     private let screenAssembly: ScreenAssemblyProtocol
     private let networkService: NetworkServiceProtocol
     private let cartSortService: CartSortServiceProtocol
@@ -39,12 +39,12 @@ final class CartPresenter {
     // MARK: - Life Cycle
     
     init(
-        alertAssembly: AlertAssemblyProtocol,
+        alertBuilder: AlertBuilderProtocol,
         screenAssembly: ScreenAssemblyProtocol,
         networkService: NetworkServiceProtocol,
         cartSortService: CartSortServiceProtocol
     ) {
-        self.alertAssembly = alertAssembly
+        self.alertBuilder = alertBuilder
         self.screenAssembly = screenAssembly
         self.networkService = networkService
         self.cartSortService = cartSortService
@@ -57,7 +57,7 @@ final class CartPresenter {
         networkService.updateCart(nftsInCart: nftInCart) { [weak self] error in
             guard let self else { return }
             if let error {
-                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
         }
@@ -124,7 +124,7 @@ extension CartPresenter: CartPresenterProtocol {
                 }
             case .failure(let error):
                 view?.dismissProgressHUB()
-                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
         }
@@ -141,7 +141,7 @@ extension CartPresenter: CartPresenterProtocol {
     }
     
     func didTapSortButton() {
-        let sortAlert = alertAssembly.makeSortingAlert { [weak self] in
+        let sortAlert = alertBuilder.makeSortingAlert { [weak self] in
             self?.sortByPrice()
         } ratingAction: { [weak self] in
             self?.sortByRating()

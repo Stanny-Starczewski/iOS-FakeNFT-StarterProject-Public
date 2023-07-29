@@ -20,7 +20,7 @@ final class MyNFTPresenter {
     
     weak var view: MyNFTViewControllerProtocol?
     
-    private let alertAssembly: AlertAssemblyProtocol
+    private let alertBuilder: AlertBuilderProtocol
     private let screenAssembly: ScreenAssemblyProtocol
     private let networkService: NetworkServiceProtocol
     private let cartSortService: CartSortServiceProtocol
@@ -32,12 +32,12 @@ final class MyNFTPresenter {
     // MARK: - Init
     
     init(
-        alertAssembly: AlertAssemblyProtocol,
+        alertBuilder: AlertBuilderProtocol,
         screenAssembly: ScreenAssemblyProtocol,
         networkService: NetworkServiceProtocol,
         cartSortService: CartSortServiceProtocol
     ) {
-        self.alertAssembly = alertAssembly
+        self.alertBuilder = alertBuilder
         self.screenAssembly = screenAssembly
         self.networkService = networkService
         self.cartSortService = cartSortService
@@ -62,7 +62,7 @@ extension MyNFTPresenter: MyNFTPresenterProtocol {
                 }
             case .failure(let error):
                 view?.dismissProgressHUB()
-                let alert = self.alertAssembly.makeErrorAlert(with: error.localizedDescription)
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showViewController(alert)
             }
         }
@@ -108,7 +108,7 @@ extension MyNFTPresenter: MyNFTPresenterProtocol {
     }
     
     func didTapSortButton() {
-        let sortAlert = alertAssembly.makeSortingAlert { [weak self] in
+        let sortAlert = alertBuilder.makeSortingAlert { [weak self] in
             self?.sortByPrice()
         } ratingAction: { [weak self] in
             self?.sortByRating()

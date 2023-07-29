@@ -9,10 +9,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let serviceAssembly: ServiceAssemblyProtocol = ServiceAssembly()
-        let alertAssembly: AlertAssemblyProtocol = AlertAssembly()
+        let alertBuilder: AlertBuilderProtocol = AlertBuilder()
         let screenAssembly: ScreenAssemblyProtocol = ScreenAssembly(
             serviceAssembly: serviceAssembly,
-            alertAssembly: alertAssembly
+            alertBuilder: alertBuilder
         )
         
         let tabBarController = TabBarController(screenAssembly: screenAssembly)
