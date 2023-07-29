@@ -18,25 +18,24 @@ final class ProfileAssetsCell: UITableViewCell {
     var assetLabel: UILabel = {
         var assetLabel = UILabel()
         assetLabel.translatesAutoresizingMaskIntoConstraints = false
-        assetLabel.font = .boldSystemFont(ofSize: 17)
-        assetLabel.textColor = .appBlack
+        assetLabel.font = .bold17
+        assetLabel.textColor = Image.appBlack.color
         return assetLabel
     }()
     
     var assetValueLabel: UILabel = {
         var assetValue = UILabel()
         assetValue.translatesAutoresizingMaskIntoConstraints = false
-        assetValue.font = .boldSystemFont(ofSize: 17)
-        assetValue.textColor = .appBlack
+        assetValue.font = .bold17
+        assetValue.textColor = Image.appBlack.color
         return assetValue
     }()
     
     var forwardButton: UIImageView = {
         var forwardButton = UIImageView()
         forwardButton.translatesAutoresizingMaskIntoConstraints = false
-        forwardButton.image = UIImage(systemName: "chevron.forward")
-        forwardButton.tintColor = .appBlack
-        forwardButton.preferredSymbolConfiguration = UIImage.SymbolConfiguration(font: .boldSystemFont(ofSize: 17))
+        forwardButton.image = Image.iconForward.image
+        forwardButton.tintColor = Image.appBlack.color
         return forwardButton
     }()
     
@@ -56,7 +55,7 @@ final class ProfileAssetsCell: UITableViewCell {
     // MARK: - Layout methods
     
     private func setupView() {
-        backgroundColor = .appWhite
+        backgroundColor = Image.appWhite.color
         
         addSubview(assetLabel)
         addSubview(assetValueLabel)

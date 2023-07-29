@@ -36,7 +36,7 @@ final class PaymentMethodsViewController: UIViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(Constants.backButtonImage, for: .normal)
-        button.tintColor = .appBlack
+        button.tintColor = Image.appBlack.color
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -46,7 +46,7 @@ final class PaymentMethodsViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.titleLabelText
         label.textAlignment = .center
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.font = .bold17
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +58,7 @@ final class PaymentMethodsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.bounces = false
         collectionView.allowsMultipleSelection = false
-        collectionView.backgroundColor = .appWhite
+        collectionView.backgroundColor = Image.appBlack.color
         collectionView.register(PaymentMethodsCell.self)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -66,7 +66,7 @@ final class PaymentMethodsViewController: UIViewController {
     
     private lazy var bottomView: UIView = {
         let view = UIView()
-        view.backgroundColor = .appLightGrey
+        view.backgroundColor = Image.appLightGrey.color
         view.layer.cornerRadius = Constants.bottomViewCornerRadius
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +77,7 @@ final class PaymentMethodsViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.descriptionLabelText
         label.font = .regular13
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -87,7 +87,7 @@ final class PaymentMethodsViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.agreementLinkLabelText
         label.font = .regular13
-        label.textColor = .customBlue
+        label.textColor = Image.customBlue.color
         label.numberOfLines = 1
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(gestureRecognizer)
@@ -97,11 +97,11 @@ final class PaymentMethodsViewController: UIViewController {
     
     private lazy var paymentButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .appBlack
+        button.backgroundColor = Image.appBlack.color
         button.layer.cornerRadius = 16
         button.setTitle(Constants.paymentButtonText, for: .normal)
         button.titleLabel?.font = .bold17
-        button.tintColor = .appWhite
+        button.tintColor = Image.appWhite.color
         button.addTarget(self, action: #selector(paymentButtonTapped), for: .touchUpInside)
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +132,7 @@ final class PaymentMethodsViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(backButton)
         view.addSubview(titleLabel)
         view.addSubview(collectionView)

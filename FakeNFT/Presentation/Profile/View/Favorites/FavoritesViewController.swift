@@ -37,8 +37,8 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
         let emptyLabel = UILabel()
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
         emptyLabel.text = "У Вас ещё нет избранных NFT"
-        emptyLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        emptyLabel.textColor = .appBlack
+        emptyLabel.font = .bold17
+        emptyLabel.textColor = Image.appBlack.color
         return emptyLabel
     }()
     
@@ -128,12 +128,12 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     
     private func setupNavBar() {
         navigationItem.title = "Избранные NFT"
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationItem.leftBarButtonItem = backButton
     }
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(emptyLabel)
     }
     

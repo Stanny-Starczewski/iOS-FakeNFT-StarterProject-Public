@@ -6,7 +6,7 @@ final class StatPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -54,7 +54,7 @@ final class StatPageViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.backgroundColor = .appLightGrey
+        table.backgroundColor = Image.appLightGrey.color
         return table
     }()
     
@@ -65,7 +65,7 @@ final class StatPageViewController: UIViewController {
             target: self,
             action: #selector(openMenu)
         )
-        menuButton.tintColor = .appBlack
+        menuButton.tintColor = Image.appBlack.color
         return menuButton
     }()
 
@@ -128,7 +128,7 @@ extension StatPageViewController: UITableViewDataSource {
         let user = viewModel.users[indexPath.row]
         let cellViewModel = UserViewCellViewModel(user: user, cellIndex: indexPath.row)
         userCell.configure(with: cellViewModel)
-        userCell.backgroundColor = .appWhite
+        userCell.backgroundColor = Image.appWhite.color
         
         return userCell
     }

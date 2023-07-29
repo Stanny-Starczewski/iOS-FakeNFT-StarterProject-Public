@@ -22,8 +22,8 @@ final class AboutViewController: UIViewController {
         let emptyLabel = UILabel()
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
         emptyLabel.text = "Здесь будет информация о разработчике"
-        emptyLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        emptyLabel.textColor = .appBlack
+        emptyLabel.font = .bold17
+        emptyLabel.textColor = Image.appBlack.color
         return emptyLabel
     }()
     
@@ -47,13 +47,13 @@ final class AboutViewController: UIViewController {
     // MARK: - Layout methods
     
     private func setupNavBar() {
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationItem.leftBarButtonItem = backButton
         navigationItem.title = "О разработчике"
     }
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appBlack.color
         view.addSubview(emptyLabel)
     }
     

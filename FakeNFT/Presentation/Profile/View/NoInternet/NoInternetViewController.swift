@@ -15,8 +15,8 @@ final class NoInternetViewController: UIViewController {
         let noInternetLabel = UILabel()
         noInternetLabel.translatesAutoresizingMaskIntoConstraints = false
         noInternetLabel.text = "Нет интернета"
-        noInternetLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        noInternetLabel.textColor = .appBlack
+        noInternetLabel.font = .bold17
+        noInternetLabel.textColor = Image.appBlack.color
         return noInternetLabel
     }()
     
@@ -32,7 +32,7 @@ final class NoInternetViewController: UIViewController {
     // MARK: - Layout methods
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(noInternetLabel)
     }
     

@@ -20,7 +20,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
     
     private lazy var heartButton: UIButton = {
         let heartButton = UIButton(type: .custom)
-        heartButton.setImage(UIImage.Icons.inactiveLike, for: .normal)
+        heartButton.setImage(Image.iconHeart.image, for: .normal)
         heartButton.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         return heartButton
     }()
@@ -53,7 +53,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
     
     private lazy var cartButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage.Icons.filledBasket, for: .normal)
+        button.setImage(Image.iconCartDelete.image, for: .normal)
         button.addTarget(self, action: #selector(didTapCartButton), for: .touchUpInside)
         return button
     }()
@@ -98,10 +98,10 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
         
         ratingStackView.setupRating(rating: model.rating)
         
-        let orderIcon = model.isOrdered ? UIImage.Icons.filledBasket : UIImage.Icons.emptyBasket
+        let orderIcon = model.isOrdered ? Image.iconCartDelete.image : Image.iconCartAdd.image
         cartButton.setImage(orderIcon, for: .normal)
         
-        let heathIcon = model.isLiked ? UIImage.Icons.activeLike : UIImage.Icons.inactiveLike
+        let heathIcon = model.isLiked ? Image.iconHeartFilled.image : Image.iconHeart.image
         heartButton.setImage(heathIcon, for: .normal)
     }
     
@@ -122,7 +122,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
 
 private extension CollectionNFTCell {
     func setupView() {
-        contentView.backgroundColor = .appWhite
+        contentView.backgroundColor = Image.appWhite.color
         
         [nftImageView, heartButton, ratingStackView, priceAndCartButtonHorizontalStackView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false

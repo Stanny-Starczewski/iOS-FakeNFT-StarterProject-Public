@@ -47,8 +47,8 @@ final class EditProfileViewController: UIViewController {
         changeAvatarLabel.layer.masksToBounds = true
         changeAvatarLabel.text = "Сменить фото"
         changeAvatarLabel.numberOfLines = 0
-        changeAvatarLabel.font = .systemFont(ofSize: 10)
-        changeAvatarLabel.textColor = .appWhite
+        changeAvatarLabel.font = .medium10
+        changeAvatarLabel.textColor = Image.appWhite.color
         changeAvatarLabel.textAlignment = .center
         let tapAction = UITapGestureRecognizer(target: self, action: #selector(changeAvatarDidTap(_:)))
         changeAvatarLabel.isUserInteractionEnabled = true
@@ -61,7 +61,7 @@ final class EditProfileViewController: UIViewController {
         loadImageLabel.translatesAutoresizingMaskIntoConstraints = false
         loadImageLabel.layer.cornerRadius = 16
         loadImageLabel.layer.masksToBounds = true
-        loadImageLabel.backgroundColor = .appWhite
+        loadImageLabel.backgroundColor = Image.appWhite.color
         loadImageLabel.text = "Загрузить изображение"
         loadImageLabel.font = .systemFont(ofSize: 17)
         loadImageLabel.textAlignment = .center
@@ -73,8 +73,8 @@ final class EditProfileViewController: UIViewController {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.attributedText = NSAttributedString(string: "Имя", attributes: [.kern: 0.35])
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        nameLabel.textColor = .appBlack
+        nameLabel.font = .bold22
+        nameLabel.textColor = Image.appBlack.color
         return nameLabel
     }()
     
@@ -83,8 +83,8 @@ final class EditProfileViewController: UIViewController {
         nameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: nameTextField.frame.height))
         nameTextField.leftViewMode = .always
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.font = .systemFont(ofSize: 17)
-        nameTextField.backgroundColor = .appLightGrey
+        nameTextField.font = .regular17
+        nameTextField.backgroundColor = Image.appLightGrey.color
         nameTextField.layer.cornerRadius = 12
         nameTextField.layer.masksToBounds = true
         nameTextField.clearButtonMode = .whileEditing
@@ -97,8 +97,8 @@ final class EditProfileViewController: UIViewController {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.attributedText = NSAttributedString(string: "Описание", attributes: [.kern: 0.35])
-        descriptionLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        descriptionLabel.textColor = .appBlack
+        descriptionLabel.font = .bold22
+        descriptionLabel.textColor = Image.appBlack.color
         return descriptionLabel
     }()
     
@@ -108,7 +108,7 @@ final class EditProfileViewController: UIViewController {
         descriptionTextField.leftViewMode = .always
         descriptionTextField.translatesAutoresizingMaskIntoConstraints = false
         descriptionTextField.font = .systemFont(ofSize: 17)
-        descriptionTextField.backgroundColor = .appLightGrey
+        descriptionTextField.backgroundColor = Image.appLightGrey.color
         descriptionTextField.layer.cornerRadius = 12
         descriptionTextField.layer.masksToBounds = true
         descriptionTextField.clearButtonMode = .whileEditing
@@ -122,7 +122,7 @@ final class EditProfileViewController: UIViewController {
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
         websiteLabel.attributedText = NSAttributedString(string: "Сайт", attributes: [.kern: 0.35])
         websiteLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        websiteLabel.textColor = .appBlack
+        websiteLabel.textColor = Image.appBlack.color
         return websiteLabel
     }()
     
@@ -132,7 +132,7 @@ final class EditProfileViewController: UIViewController {
         websiteTextField.leftViewMode = .always
         websiteTextField.translatesAutoresizingMaskIntoConstraints = false
         websiteTextField.font = .systemFont(ofSize: 17)
-        websiteTextField.backgroundColor = .appLightGrey
+        websiteTextField.backgroundColor = Image.appLightGrey.color
         websiteTextField.layer.cornerRadius = 12
         websiteTextField.layer.masksToBounds = true
         websiteTextField.clearButtonMode = .whileEditing
@@ -179,7 +179,7 @@ final class EditProfileViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         
         view.addSubview(closeButton)
         view.addSubview(avatarImage)

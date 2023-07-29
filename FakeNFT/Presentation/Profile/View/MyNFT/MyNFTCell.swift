@@ -39,8 +39,8 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     var myNFTNameLabel: UILabel = {
         let myNFTNameLabel = UILabel()
         myNFTNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTNameLabel.font = .boldSystemFont(ofSize: 17)
-        myNFTNameLabel.textColor = .appBlack
+        myNFTNameLabel.font = .bold17
+        myNFTNameLabel.textColor = Image.appBlack.color
         myNFTNameLabel.text = "Lilo"
         return myNFTNameLabel
     }()
@@ -54,8 +54,8 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     var myNFTAuthorLabel: UILabel = {
         let myNFTAuthorLabel = UILabel()
         myNFTAuthorLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTAuthorLabel.font = .systemFont(ofSize: 13)
-        myNFTAuthorLabel.textColor = .appBlack
+        myNFTAuthorLabel.font = .regular13
+        myNFTAuthorLabel.textColor = Image.appBlack.color
         myNFTAuthorLabel.text = "от John Doe"
         return myNFTAuthorLabel
     }()
@@ -73,18 +73,18 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     var myNFTPriceLabel: UILabel = {
         let myNFTPriceLabel = UILabel()
         myNFTPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTPriceLabel.font = .systemFont(ofSize: 13)
+        myNFTPriceLabel.font = .regular13
         myNFTPriceLabel.text = "Цена"
-        myNFTPriceLabel.textColor = .appBlack
+        myNFTPriceLabel.textColor = Image.appBlack.color
         return myNFTPriceLabel
     }()
     
     var myNFTPriceValueLabel: UILabel = {
         let myNFTPriceValueLabel = UILabel()
         myNFTPriceValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTPriceValueLabel.font = .boldSystemFont(ofSize: 17)
+        myNFTPriceValueLabel.font = .bold17
         myNFTPriceValueLabel.text = "1,78 ETH"
-        myNFTPriceValueLabel.textColor = .appBlack
+        myNFTPriceValueLabel.textColor = Image.appBlack.color
         return myNFTPriceValueLabel
     }()
     
@@ -110,7 +110,7 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     // MARK: - Lyout methods
     
     private func setupView() {
-        backgroundColor = .appWhite
+        backgroundColor = Image.appWhite.color
         
         contentView.addSubview(myNFTImage)
         myNFTImage.addSubview(myNFTFavoriteButton)

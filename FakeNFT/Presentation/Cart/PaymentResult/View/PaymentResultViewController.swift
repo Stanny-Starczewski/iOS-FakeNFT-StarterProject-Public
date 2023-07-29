@@ -42,7 +42,7 @@ final class PaymentResultViewController: UIViewController {
         label.text = Constants.successLabelText
         label.font = .bold22
         label.textAlignment = .center
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -52,10 +52,10 @@ final class PaymentResultViewController: UIViewController {
         let button = UIButton(type: .system)
         button.isHidden = false
         button.setTitle(Constants.successButtonText, for: .normal)
-        button.backgroundColor = .appBlack
+        button.backgroundColor = Image.appBlack.color
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .bold17
-        button.tintColor = .appWhite
+        button.tintColor = Image.appWhite.color
         button.addTarget(self, action: #selector(successResultButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -75,7 +75,7 @@ final class PaymentResultViewController: UIViewController {
         label.text = Constants.failureLabelText
         label.font = .bold22
         label.textAlignment = .center
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -85,10 +85,10 @@ final class PaymentResultViewController: UIViewController {
         let button = UIButton(type: .system)
         button.isHidden = false
         button.setTitle(Constants.failureButtonText, for: .normal)
-        button.backgroundColor = .appBlack
+        button.backgroundColor = Image.appBlack.color
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .bold17
-        button.tintColor = .appWhite
+        button.tintColor = Image.appWhite.color
         button.addTarget(self, action: #selector(failureResultButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -118,7 +118,7 @@ final class PaymentResultViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
     }
     
     // MARK: - Actions

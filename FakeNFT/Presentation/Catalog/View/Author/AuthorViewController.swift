@@ -14,7 +14,7 @@ final class AuthorViewController: UIViewController, UIGestureRecognizerDelegate 
     
     private lazy var backButton: UIBarButtonItem = {
         let backButton = UIBarButtonItem(
-            image: UIImage.Icons.backward,
+            image: Image.iconBack.image,
             style: .plain,
             target: self,
             action: #selector(didTapBackButton)
@@ -77,7 +77,7 @@ final class AuthorViewController: UIViewController, UIGestureRecognizerDelegate 
 
 private extension AuthorViewController {
     func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         tabBarController?.tabBar.isHidden = true
         
         webView.translatesAutoresizingMaskIntoConstraints = false

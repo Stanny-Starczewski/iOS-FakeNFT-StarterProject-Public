@@ -13,7 +13,7 @@ final class PaymentMethodsCell: UICollectionViewCell, ReuseIdentifying {
     
     private lazy var wrapperView: UIView = {
         let view = UIView()
-        view.backgroundColor = .appLightGrey
+        view.backgroundColor = Image.appLightGrey.color
         view.layer.cornerRadius = 12
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,7 @@ final class PaymentMethodsCell: UICollectionViewCell, ReuseIdentifying {
     private lazy var currencyNameLabel: UILabel = {
         let label = UILabel()
         label.font = .regular13
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -37,7 +37,7 @@ final class PaymentMethodsCell: UICollectionViewCell, ReuseIdentifying {
     private lazy var currencyShortNameLabel: UILabel = {
         let label = UILabel()
         label.font = .regular13
-        label.textColor = .customGreen
+        label.textColor = Image.customGreen.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,7 +74,7 @@ final class PaymentMethodsCell: UICollectionViewCell, ReuseIdentifying {
     func setSelected(_ selected: Bool) {
         if selected {
             wrapperView.layer.borderWidth = 1
-            wrapperView.layer.borderColor = UIColor.appBlack.cgColor
+            wrapperView.layer.borderColor = Image.appBlack.color.cgColor
         } else {
             wrapperView.layer.borderWidth = 0
         }

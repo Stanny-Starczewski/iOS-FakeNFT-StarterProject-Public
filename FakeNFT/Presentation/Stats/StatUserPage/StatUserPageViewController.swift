@@ -8,8 +8,8 @@ final class StatUserPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().tintColor = .appBlack
-        view.tintColor = . appBlack
+        UINavigationBar.appearance().tintColor = Image.appBlack.color
+        view.tintColor = Image.appBlack.color
         let model = StatUserPageModel()
         viewModel = StatUserPageViewModel(model: model)
         viewModel.onChange = configure
@@ -26,7 +26,7 @@ final class StatUserPageViewController: UIViewController {
         }
         viewModel.getUser(userId: userId)
         setupAppearance()
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
     }
 
     init(userId: String) {
@@ -39,7 +39,7 @@ final class StatUserPageViewController: UIViewController {
     }
     private lazy var nameView: UILabel = {
         let label = UILabel()
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.font = .bold22
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -56,7 +56,7 @@ final class StatUserPageViewController: UIViewController {
     private lazy var descriptionView: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.font = .regular13
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -65,12 +65,12 @@ final class StatUserPageViewController: UIViewController {
     private lazy var siteButton: UIButton = {
         let button = UIButton()
         button.setTitle("Перейти на сайт пользователя", for: .normal)
-        button.setTitleColor(.appBlack, for: .normal)
+        button.setTitleColor(Image.appBlack.color, for: .normal)
         button.titleLabel?.font = .regular15
         button.layer.cornerRadius = 17
         button.clipsToBounds = true
         button.tintColor = .clear
-        button.layer.borderColor = UIColor.appBlack.cgColor
+        button.layer.borderColor = Image.appBlack.color.cgColor
         button.layer.borderWidth = 1.0
         button.backgroundColor = .clear
         button.addTarget(self, action: #selector(openWebView), for: .touchUpInside)
@@ -80,7 +80,7 @@ final class StatUserPageViewController: UIViewController {
     private lazy var collectionButtonLabel: UILabel = {
         let label = UILabel()
         label.text = "Коллекция NFT"
-        label.textColor = UIColor.appBlack
+        label.textColor = Image.appBlack.color
         label.font = .bold17
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
@@ -155,7 +155,7 @@ final class StatUserPageViewController: UIViewController {
         nameView.font = .bold22
         descriptionView.text = user.description
         collectionButtonLabel.text = "Коллекция NFT (\(user.nfts.count))"
-        collectionButtonLabel.tintColor = UIColor.appBlack
+        collectionButtonLabel.tintColor = Image.appBlack.color
         collectionButtonLabel.font = .bold17
     }
 
@@ -178,15 +178,15 @@ final class StatUserPageViewController: UIViewController {
         
         let backButton = UIBarButtonItem()
         backButton.title = ""
-        backButton.tintColor = .appBlack
+        backButton.tintColor = Image.appBlack.color
         navigationItem.backBarButtonItem = backButton
-        navigationItem.titleView?.backgroundColor = .appBlack
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationItem.titleView?.backgroundColor = Image.appBlack.color
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func setupAppearance() {
-        view.backgroundColor = UIColor.appWhite
+        view.backgroundColor = Image.appWhite.color
 
         view.addSubview(avatarView)
         view.addSubview(nameView)
@@ -196,8 +196,8 @@ final class StatUserPageViewController: UIViewController {
 
         avatarView.layer.cornerRadius = 35
         avatarView.layer.masksToBounds = true
-        navigationItem.titleView?.backgroundColor = .appBlack
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationItem.titleView?.backgroundColor = Image.appBlack.color
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
         
         NSLayoutConstraint.activate([
             avatarView.widthAnchor.constraint(equalToConstant: 70),

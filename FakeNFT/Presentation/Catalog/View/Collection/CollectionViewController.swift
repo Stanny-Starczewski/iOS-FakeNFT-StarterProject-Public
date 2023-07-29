@@ -6,7 +6,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
     // MARK: - UI properties
 
     private lazy var backButton = UIBarButtonItem(
-        image: UIImage.Icons.backward,
+        image: Image.iconBack.image,
         style: .plain,
         target: self,
         action: #selector(didTapBackButton)
@@ -196,7 +196,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
 
 private extension CollectionViewController {
     func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         
         [coverImage, collectionNameLabel, fullDescriptionVerticalStackView, nftCollectionView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -225,7 +225,7 @@ private extension CollectionViewController {
     
     func setupNavBar() {
         navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     

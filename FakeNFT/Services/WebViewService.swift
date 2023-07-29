@@ -14,19 +14,19 @@ final class WebViewService: UIViewController {
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.backgroundColor = .appWhite
-        webView.tintColor = .appWhite
+        webView.backgroundColor = Image.appWhite.color
+        webView.tintColor = Image.appWhite.color
         webView.backgroundColor = .clear
         webView.isOpaque = false
-        webView.scrollView.backgroundColor = .appWhite
+        webView.scrollView.backgroundColor = Image.appWhite.color
         return webView
     }()
 
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .bar)
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.progressTintColor = .appWhite
-        progressView.trackTintColor = .appLightGrey
+        progressView.progressTintColor = Image.appWhite.color
+        progressView.trackTintColor = Image.appLightGrey.color
         progressView.setProgress(0.0, animated: false)
         return progressView
     }()
@@ -63,17 +63,16 @@ final class WebViewService: UIViewController {
 
         webView.navigationDelegate = self
         webView.addSubview(progressView)
-        webView.backgroundColor = .appWhite
-        view.backgroundColor = .appWhite
-        view.tintColor = .appBlack
+        webView.backgroundColor = Image.appWhite.color
+        view.backgroundColor = Image.appWhite.color
+        view.tintColor = Image.appBlack.color
         view.addSubview(webView)
-        webView.backgroundColor = .appWhite
-        webView.tintColor = .appWhite
+        webView.tintColor = Image.appWhite.color
         webView.backgroundColor = .clear
         webView.isOpaque = false
 
         setupView()
-        webView.scrollView.backgroundColor = .appWhite
+        webView.scrollView.backgroundColor = Image.appWhite.color
     }
 
     override func viewWillAppear(_ animated: Bool) {

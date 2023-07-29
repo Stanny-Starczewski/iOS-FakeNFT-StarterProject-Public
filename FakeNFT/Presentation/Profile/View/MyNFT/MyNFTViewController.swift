@@ -43,7 +43,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         let myNFTTable = UITableView()
         myNFTTable.translatesAutoresizingMaskIntoConstraints = false
         myNFTTable.register(MyNFTCell.self, forCellReuseIdentifier: MyNFTCell.reuseIdentifier)
-        myNFTTable.backgroundColor = .appWhite
+        myNFTTable.backgroundColor = Image.appWhite.color
         myNFTTable.dataSource = self
         myNFTTable.delegate = self
         myNFTTable.separatorStyle = .none
@@ -56,8 +56,8 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         let emptyLabel = UILabel()
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
         emptyLabel.text = "У Вас ещё нет NFT"
-        emptyLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        emptyLabel.textColor = .appBlack
+        emptyLabel.font = .bold17
+        emptyLabel.textColor = Image.appBlack.color
         return emptyLabel
     }()
     
@@ -126,14 +126,14 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     }
     
     private func setupNavBar() {
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = filterButton
         navigationItem.title = "Мои NFT"
     }
     
     private func addMainView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         
         view.addSubview(myNFTTable)
         
@@ -149,7 +149,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
     private func addEmptyView() {
         
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(emptyLabel)
         
         NSLayoutConstraint.activate([

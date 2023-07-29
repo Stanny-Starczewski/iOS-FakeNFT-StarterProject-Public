@@ -37,7 +37,7 @@ final class RemoveItemViewController: UIViewController {
         label.font = .regular13
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,8 +45,8 @@ final class RemoveItemViewController: UIViewController {
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(Constants.deleteButtonText, for: .normal)
-        button.backgroundColor = .appBlack
-        button.tintColor = .customRed
+        button.backgroundColor = Image.appBlack.color
+        button.tintColor = Image.customRed.color
         button.layer.cornerRadius = 12
         button.titleLabel?.font = .regular17
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
@@ -57,8 +57,8 @@ final class RemoveItemViewController: UIViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(Constants.backButtonText, for: .normal)
-        button.backgroundColor = .appBlack
-        button.tintColor = .appWhite
+        button.backgroundColor = Image.appBlack.color
+        button.tintColor = Image.appWhite.color
         button.layer.cornerRadius = 12
         button.titleLabel?.font = .regular17
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)

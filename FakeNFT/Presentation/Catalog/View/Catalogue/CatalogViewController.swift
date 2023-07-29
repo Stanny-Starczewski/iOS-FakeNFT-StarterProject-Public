@@ -6,6 +6,7 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = Image.appWhite.color
         tableView.register(CollectionListCell.self)
         tableView.rowHeight = 187
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
@@ -17,7 +18,7 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
     }()
     
     private lazy var sortButton = UIBarButtonItem(
-        image: UIImage.Icons.filter,
+        image: Image.iconSort.image,
         style: .plain,
         target: catalogueViewModel,
         action: #selector(CatalogueViewModel.sortCollections)
@@ -89,9 +90,9 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
 
 extension CatalogViewController {
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(tableView)
-        tabBarController?.tabBar.barTintColor = .appWhite
+        tabBarController?.tabBar.barTintColor = Image.appWhite.color
         setupConstraints()
     }
 }
@@ -113,7 +114,7 @@ extension CatalogViewController {
 extension CatalogViewController {
     private func setupNavBar() {
         navigationItem.rightBarButtonItem = sortButton
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
     }
 }
 extension CatalogViewController: UITableViewDataSource {

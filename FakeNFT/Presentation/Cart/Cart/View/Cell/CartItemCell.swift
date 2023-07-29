@@ -41,7 +41,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .bold17
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -57,7 +57,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
         let label = UILabel()
         label.text = "Цена"
         label.font = .regular13
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,14 +67,14 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
         label.text = "0 ETH"
         label.numberOfLines = 1
         label.font = .bold17
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var deleteItemButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage(named: "icon-cart-delete")?.withTintColor(.appBlack), for: .normal)
+        button.setBackgroundImage(UIImage(named: "icon-cart-delete")?.withTintColor(Image.appBlack.color), for: .normal)
         button.addTarget(self, action: #selector(deleteItemButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -96,7 +96,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     private func setupCell() {
         selectionStyle = .none
-        backgroundColor = .appWhite
+        backgroundColor = Image.appWhite.color
         contentView.addSubview(wrapperView)
         wrapperView.addSubview(itemImageView)
         wrapperView.addSubview(itemNameLabel)

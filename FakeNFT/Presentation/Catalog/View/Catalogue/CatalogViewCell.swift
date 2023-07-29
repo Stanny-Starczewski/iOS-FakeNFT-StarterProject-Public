@@ -15,7 +15,7 @@ final class CollectionListCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var collectionNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.textAlignment = .left
         label.font = UIFont.bold17
         return label
@@ -45,6 +45,7 @@ final class CollectionListCell: UITableViewCell, ReuseIdentifying {
     // MARK: - Setup UI
     
     private func setupView() {
+        backgroundColor = Image.appWhite.color
         addSubview(categoryImageView)
         addSubview(collectionNameLabel)
         [categoryImageView, collectionNameLabel].forEach {

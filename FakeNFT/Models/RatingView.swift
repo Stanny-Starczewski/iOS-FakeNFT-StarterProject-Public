@@ -30,8 +30,8 @@ final class RatingView: UIView {
 
         for index in 0..<maximumStars {
             stackView.arrangedSubviews[index].tintColor = index < length
-            ? .customYellow
-            : .appLightGrey
+            ? Image.customYellow.color
+            : Image.appLightGrey.color
         }
     }
 
@@ -42,7 +42,7 @@ final class RatingView: UIView {
 
         for _ in 0..<maximumStars {
             let starImageView = UIImageView(image: starImage)
-            starImageView.tintColor = .appLightGrey
+            starImageView.tintColor = Image.appLightGrey.color
             stackView.addArrangedSubview(starImageView)
 
             NSLayoutConstraint.activate([

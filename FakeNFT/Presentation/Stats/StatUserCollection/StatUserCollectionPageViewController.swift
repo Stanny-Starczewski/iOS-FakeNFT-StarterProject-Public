@@ -28,7 +28,7 @@ final class StatUserCollectionPageViewController: UIViewController {
         viewModel.getUserNfts { [weak self] active in
             self?.showLoader(isShow: active)
         }
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         setupCollectionView()
     }
     
@@ -46,7 +46,7 @@ final class StatUserCollectionPageViewController: UIViewController {
   
     private func setupCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor.appWhite
+        collectionView.backgroundColor = Image.appWhite.color
         
         view.addSubview(collectionView)
         let safeArea = view.safeAreaLayoutGuide
@@ -64,7 +64,7 @@ final class StatUserCollectionPageViewController: UIViewController {
         if viewModel.nftsIds == nil || viewModel.nftsIds?.isEmpty == true {
             let emptyLabel = UILabel()
             emptyLabel.text = "Коллекция пуста"
-            emptyLabel.textColor = UIColor.appBlack
+            emptyLabel.textColor = Image.appBlack.color
             emptyLabel.textAlignment = .center
             emptyLabel.translatesAutoresizingMaskIntoConstraints = false
             collectionView.addSubview(emptyLabel)

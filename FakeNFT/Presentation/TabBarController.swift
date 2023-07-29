@@ -8,16 +8,16 @@ final class TabBarController: UITabBarController {
         case cart
         case stats
         
-        var iconName: String {
+        var image: UIImage {
             switch self {
             case .profile:
-                return "person.crop.circle.fill"
+                return Image.iconProfile.image
             case .catalog:
-                return "rectangle.stack.fill"
+                return Image.iconCatalog.image
             case .cart:
-                return "bag.fill"
+                return Image.iconCart.image
             case .stats:
-                return "flag.2.crossed.fill"
+                return Image.iconStats.image
             }
         }
         
@@ -57,11 +57,14 @@ final class TabBarController: UITabBarController {
     // MARK: - Setup UI
     
     private func setupTabBar() {
-        tabBar.backgroundColor = .appWhite
-        tabBar.barTintColor = .appWhite
-        tabBar.unselectedItemTintColor = .appBlack
-        tabBar.backgroundImage = UIImage()
-        tabBar.shadowImage = UIImage()
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = Image.appWhite.color
+        appearance.shadowColor = Image.appWhite.color
+        appearance.stackedLayoutAppearance.selected.iconColor = Image.customBlue.color
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Image.customBlue.color]
+        tabBar.standardAppearance = appearance
+        tabBar.unselectedItemTintColor = Image.appBlack.color
+        tabBar.tintColor = Image.appBlack.color
     }
     
     private func setupTabItems() {
@@ -91,7 +94,7 @@ final class TabBarController: UITabBarController {
         
         viewControllers?.enumerated().forEach {
             $1.tabBarItem.title = dataSource[$0].title
-            $1.tabBarItem.image = UIImage(systemName: dataSource[$0].iconName)
+            $1.tabBarItem.image = dataSource[$0].image
             $1.tabBarItem.tag = $0
         }
     }

@@ -23,7 +23,7 @@ final class StatNFTCell: UICollectionViewCell {
         let button = UIButton()
         button.setImage(UIImage(named: "noLikeIcon"), for: .normal)
         
-        button.tintColor = .appLightGrey
+        button.tintColor = Image.appLightGrey.color
         button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -33,7 +33,7 @@ final class StatNFTCell: UICollectionViewCell {
     private lazy var bucketButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "addToCart"), for: .normal)
-        button.tintColor = UIColor.appBlack
+        button.tintColor = Image.appBlack.color
         button.addTarget(self, action: #selector(bucketTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -44,13 +44,13 @@ final class StatNFTCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 12
         view.clipsToBounds = true
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         return view
     }()
     private var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -58,7 +58,7 @@ final class StatNFTCell: UICollectionViewCell {
     private var priceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.font = .medium10
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -44,8 +44,8 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.text = "" // "Joaquin Phoenix"
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        nameLabel.textColor = .appBlack
+        nameLabel.font = .bold22
+        nameLabel.textColor = Image.appBlack.color
         return nameLabel
     }()
     
@@ -57,8 +57,8 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         descriptionLabel.attributedText = NSAttributedString(string: "",
                                                              attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = UIFont.systemFont(ofSize: 13)
-        descriptionLabel.textColor = .appBlack
+        descriptionLabel.font = .regular13
+        descriptionLabel.textColor = Image.appBlack.color
         descriptionLabel.textAlignment = .left
         return descriptionLabel
     }()
@@ -166,12 +166,12 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     // MARK: - Layout methods
     
     private func setupNavBar() {
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationItem.rightBarButtonItem = editButton
     }
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         
         view.addSubview(avatarImage)
         view.addSubview(nameLabel)
@@ -219,7 +219,7 @@ extension ProfileViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileAssetsCell.reuseIdentifier)  as? ProfileAssetsCell
         
-        cell?.backgroundColor = .appWhite
+        cell?.backgroundColor = Image.appWhite.color
         cell?.assetLabel.text = assetLabel[indexPath.row]
         cell?.assetValueLabel.text = ""
         return cell ?? UITableViewCell()

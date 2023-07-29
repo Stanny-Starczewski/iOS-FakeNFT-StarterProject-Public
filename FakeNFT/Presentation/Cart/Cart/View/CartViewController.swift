@@ -32,7 +32,7 @@ final class CartViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.emptyCartLabelText
         label.textAlignment = .center
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.font = .bold17
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -40,7 +40,7 @@ final class CartViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
-        tableView.backgroundColor = .appWhite
+        tableView.backgroundColor = Image.appWhite.color
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(
             top: 20,
@@ -55,7 +55,7 @@ final class CartViewController: UIViewController {
     
     private lazy var bottomView: UIView = {
         let view = UIView()
-        view.backgroundColor = .appLightGrey
+        view.backgroundColor = Image.appLightGrey.color
         view.layer.cornerRadius = Constants.bottomViewCornerRadius
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +66,7 @@ final class CartViewController: UIViewController {
         let label = UILabel()
         label.text = "0 NFT"
         label.font = .regular15
-        label.textColor = .appBlack
+        label.textColor = Image.appBlack.color
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -76,7 +76,7 @@ final class CartViewController: UIViewController {
         let label = UILabel()
         label.text = "0 ETH"
         label.font = .bold17
-        label.textColor = .customGreen
+        label.textColor = Image.customGreen.color
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -92,11 +92,11 @@ final class CartViewController: UIViewController {
     
     private lazy var paymentButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .appBlack
+        button.backgroundColor = Image.appBlack.color
         button.layer.cornerRadius = 16
         button.setTitle(Constants.paymentButtonText, for: .normal)
         button.titleLabel?.font = .bold17
-        button.tintColor = .appWhite
+        button.tintColor = Image.appWhite.color
         button.addTarget(self, action: #selector(paymentButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -137,7 +137,7 @@ final class CartViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupView() {
-        view.backgroundColor = .appWhite
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(emptyCartLabel)
         view.addSubview(tableView)
         view.addSubview(bottomView)
@@ -152,7 +152,7 @@ final class CartViewController: UIViewController {
             action: #selector(sortButtonTapped)
         )
         navigationItem.rightBarButtonItem = sortButton
-        navigationController?.navigationBar.tintColor = .appBlack
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
     }
     
     private func setDelegates() {

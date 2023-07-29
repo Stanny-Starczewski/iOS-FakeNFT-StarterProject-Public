@@ -1,8 +1,8 @@
 import UIKit
 
 final class RatingStackView: UIStackView {
-    private let fillStarImage: UIImage? = UIImage.Icons.filledStar
-    private let emptyStarImage: UIImage? = UIImage.Icons.emptyStar
+    private let fillStarImage: UIImage? = Image.iconStarFilled.image
+    private let emptyStarImage: UIImage? = Image.iconStar.image
     
     init(countOfStars: Int) {
         super.init(frame: .zero)
