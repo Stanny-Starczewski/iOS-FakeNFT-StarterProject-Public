@@ -70,7 +70,6 @@
 		0A9960E92A751FDA0080D56F /* AuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9960DB2A751FDA0080D56F /* AuthorViewController.swift */; };
 		0A9960EA2A751FDA0080D56F /* Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9960DD2A751FDA0080D56F /* Names.swift */; };
 		0A9960EB2A751FDA0080D56F /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9960DE2A751FDA0080D56F /* Observation.swift */; };
-		0A9960EC2A751FDA0080D56F /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9960DF2A751FDA0080D56F /* AlertPresenter.swift */; };
 		0A9960ED2A751FDA0080D56F /* CatalogViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9960E12A751FDA0080D56F /* CatalogViewCell.swift */; };
 		0A9960EE2A751FDA0080D56F /* CatalogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9960E22A751FDA0080D56F /* CatalogViewModel.swift */; };
 		0A9960EF2A751FDA0080D56F /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9960E32A751FDA0080D56F /* CatalogViewController.swift */; };
@@ -189,7 +188,6 @@
 		0A9960DB2A751FDA0080D56F /* AuthorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorViewController.swift; sourceTree = "<group>"; };
 		0A9960DD2A751FDA0080D56F /* Names.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Names.swift; sourceTree = "<group>"; };
 		0A9960DE2A751FDA0080D56F /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
-		0A9960DF2A751FDA0080D56F /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		0A9960E12A751FDA0080D56F /* CatalogViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogViewCell.swift; sourceTree = "<group>"; };
 		0A9960E22A751FDA0080D56F /* CatalogViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogViewModel.swift; sourceTree = "<group>"; };
 		0A9960E32A751FDA0080D56F /* CatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
@@ -546,7 +544,6 @@
 				0A9960D92A751FDA0080D56F /* Author */,
 				0A9960DC2A751FDA0080D56F /* Enum */,
 				0A9960DE2A751FDA0080D56F /* Observation.swift */,
-				0A9960DF2A751FDA0080D56F /* AlertPresenter.swift */,
 				0A9960E02A751FDA0080D56F /* Catalogue */,
 			);
 			path = View;
@@ -593,10 +590,10 @@
 		0A99610E2A7520D00080D56F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0A9961122A7520D00080D56F /* Requests */,
 				0A99610F2A7520D00080D56F /* CollectionProtocol.swift */,
 				0A9961102A7520D00080D56F /* CatalogProtocol.swift */,
 				0A9961112A7520D00080D56F /* CollectionDataProvider.swift */,
-				0A9961122A7520D00080D56F /* Requests */,
 				0A9961142A7520D00080D56F /* CatalogDataProvider.swift */,
 				0A9961152A7520D00080D56F /* SetupManager.swift */,
 			);
@@ -1108,7 +1105,6 @@
 				0A1F7F062A7532020039E077 /* AlertMaker.swift in Sources */,
 				0A1F7EE42A752D830039E077 /* ProfileAssetsCell.swift in Sources */,
 				0A1F7EE62A752D830039E077 /* WebsiteViewController.swift in Sources */,
-				0A9960EC2A751FDA0080D56F /* AlertPresenter.swift in Sources */,
 				0AA3BB322A64617300A3FA10 /* NetworkService.swift in Sources */,
 				0A99611F2A7520D00080D56F /* SetupManager.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,

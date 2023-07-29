@@ -82,7 +82,7 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
     }()
     
     private var viewModel: CollectionViewModel
-    private var alertPresenter: AlertPresenter
+    private var alertBuilder: AlertBuilderProtocol
     
     private let collectionConfig = UICollectionView.Config(
         cellCount: 3,
@@ -96,9 +96,9 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         
     // MARK: - Initialization
 
-    init(viewModel: CollectionViewModel, alertPresenter: AlertPresenter = AlertPresenter()) {
+    init(viewModel: CollectionViewModel, alertBuilder: AlertBuilderProtocol = AlertBuilder()) {
         self.viewModel = viewModel
-        self.alertPresenter = alertPresenter
+        self.alertBuilder = alertBuilder
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -112,7 +112,6 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         setupView()
         bindViewModel()
         setupValuesForUIElements()
-        alertPresenter.delegate = self
         viewModel.loadNFTForCollection()
         viewModel.getAuthorURL()
     }
@@ -148,10 +147,11 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
             case .loaded:
                 UIBlockingProgressHUD.dismiss()
             case .failed:
-                self.alertPresenter.preparingAlertWithRepeat(alertText: self.viewModel.mainLoadErrorDescription) {
+                let alert = self.alertBuilder.makeErrorAlertWithRepeatAction(with: self.viewModel.mainLoadErrorDescription) {
                     self.viewModel.loadNFTForCollection()
                     self.viewModel.getAuthorURL()
                 }
+                self.present(alert, animated: true)
             default:
                 break 
             }
@@ -172,20 +172,23 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         }
         viewModel.$mainLoadErrorDescription.observe { [weak self] _ in
             guard let self = self else { return }
-            self.alertPresenter.preparingAlertWithRepeat(alertText: viewModel.mainLoadErrorDescription) {
+            let alert = self.alertBuilder.makeErrorAlertWithRepeatAction(with: viewModel.mainLoadErrorDescription) {
                 self.viewModel.loadNFTForCollection()
                 self.viewModel.getAuthorURL()
             }
+            self.present(alert, animated: true)
         }
         
         viewModel.$addToCartErrorDescription.observe { [weak self] _ in
             guard let self = self else { return }
-            self.alertPresenter.preparingDataAndDisplay(alertText: self.viewModel.addToCartErrorDescription)
+            let alert = self.alertBuilder.makeErrorAlert(with: self.viewModel.addToCartErrorDescription)
+            self.present(alert, animated: true)
         }
         
         viewModel.$addToFavoritesErrorDescription.observe { [weak self] _ in
             guard let self = self else { return }
-            self.alertPresenter.preparingDataAndDisplay(alertText: self.viewModel.addToFavoritesErrorDescription)
+            let alert = self.alertBuilder.makeErrorAlert(with: self.viewModel.addToFavoritesErrorDescription)
+            self.present(alert, animated: true)
         }
     }
 }
@@ -319,9 +322,3 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         collectionConfig.cellSpacing
     }
 }
-
-extension CollectionViewController: AlertPresenterDelegate {
-     func showAlert(alert: UIAlertController) {
-         present(alert, animated: true)
-     }
- }

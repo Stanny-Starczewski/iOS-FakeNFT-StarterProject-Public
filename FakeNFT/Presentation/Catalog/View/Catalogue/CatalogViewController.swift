@@ -26,7 +26,7 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
     
     private var catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider())
     private var setupManager = SetupManager.shared
-    private var alertPresenter: AlertPresenterProtocol?
+    private var alertBuilder: AlertBuilderProtocol?
     
     // MARK: - Initialization
 
@@ -53,7 +53,7 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         UIBlockingProgressHUD.show()
         catalogueViewModel.getCollections()
         
-        alertPresenter = AlertPresenter(delegate: self)
+        alertBuilder = AlertBuilder()
     }
     
     private func observeViewModel() {
@@ -64,9 +64,11 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         }
         catalogueViewModel.$errorDescription.observe { [weak self] _ in
             UIBlockingProgressHUD.dismiss()
-            self?.alertPresenter?.preparingAlertWithRepeat(alertText: self?.catalogueViewModel.errorDescription ?? "") {
-                self?.catalogueViewModel.getCollections()
-            }
+            guard let self, let alertBuilder else { return }
+            let alert = alertBuilder.makeErrorAlertWithRepeatAction(with: self.catalogueViewModel.errorDescription, {
+                self.catalogueViewModel.getCollections()
+            })
+            self.present(alert, animated: true)
         }
     }
     
@@ -143,9 +145,3 @@ extension CatalogViewController: UITableViewDelegate {
         navigationController?.pushViewController(collectionVC, animated: true)
     }
 }
-
-extension CatalogViewController: AlertPresenterDelegate {
-     func showAlert(alert: UIAlertController) {
-         present(alert, animated: true)
-     }
- }
