@@ -49,7 +49,7 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         setupView()
         setupNavBar()
         
-        UIProgressHUD.show()
+        UIBlockingProgressHUD.show()
         catalogueViewModel.getCollections()
         
         alertPresenter = AlertPresenter(delegate: self)
@@ -59,10 +59,10 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         catalogueViewModel.$collections.observe { [weak self] _ in
             guard let self = self else { return }
             self.tableView.reloadData()
-            UIProgressHUD.dismiss()
+            UIBlockingProgressHUD.dismiss()
         }
         catalogueViewModel.$errorDescription.observe { [weak self] _ in
-            UIProgressHUD.dismiss()
+            UIBlockingProgressHUD.dismiss()
             self?.alertPresenter?.preparingAlertWithRepeat(alertText: self?.catalogueViewModel.errorDescription ?? "") {
                 self?.catalogueViewModel.getCollections()
             }

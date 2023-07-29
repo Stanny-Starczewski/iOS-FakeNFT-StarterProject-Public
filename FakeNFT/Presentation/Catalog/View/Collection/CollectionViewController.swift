@@ -144,9 +144,9 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
             
             switch loadingState {
             case .loading:
-                UIProgressHUD.show()
+                UIBlockingProgressHUD.show()
             case .loaded:
-                UIProgressHUD.dismiss()
+                UIBlockingProgressHUD.dismiss()
             case .failed:
                 self.alertPresenter.preparingAlertWithRepeat(alertText: self.viewModel.mainLoadErrorDescription) {
                     self.viewModel.loadNFTForCollection()
@@ -160,9 +160,9 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         viewModel.$loadingInProgress.observe { [weak self] _ in
             guard let self = self else { return }
             if self.viewModel.loadingInProgress {
-                UIProgressHUD.show()
+                UIBlockingProgressHUD.show()
             } else {
-                UIProgressHUD.dismiss()
+                UIBlockingProgressHUD.dismiss()
             }
         }
         

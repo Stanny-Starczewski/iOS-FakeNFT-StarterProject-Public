@@ -63,9 +63,9 @@ final class AuthorViewController: UIViewController, UIGestureRecognizerDelegate 
         viewModel.$loadingInProgress.observe { [weak self] _ in
             guard let self = self else { return }
             if self.viewModel.loadingInProgress {
-                UIProgressHUD.show()
+                UIBlockingProgressHUD.show()
             } else {
-                UIProgressHUD.dismiss()
+                UIBlockingProgressHUD.dismiss()
             }
         }
     }

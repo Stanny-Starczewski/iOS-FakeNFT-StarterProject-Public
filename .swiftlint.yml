@@ -1,7 +1,7 @@
 excluded:
   - Pods
-  - ChatUnitTests
-  - ChatUITests
+  - FakeNFTTests
+  - FakeNFTUITests
   - DerivedData
   - vendor
 
