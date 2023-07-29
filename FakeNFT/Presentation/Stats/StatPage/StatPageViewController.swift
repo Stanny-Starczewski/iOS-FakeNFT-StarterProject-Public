@@ -60,7 +60,7 @@ final class StatPageViewController: UIViewController {
     
     private lazy var menuButton: UIBarButtonItem = {
         let menuButton = UIBarButtonItem(
-            image: UIImage(named: "sort-icon"),
+            image: UIImage(named: "icon-sort"),
             style: .plain,
             target: self,
             action: #selector(openMenu)
@@ -116,7 +116,6 @@ extension StatPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.users.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)

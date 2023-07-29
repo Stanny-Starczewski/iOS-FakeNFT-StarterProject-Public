@@ -1,11 +1,9 @@
-
 import Foundation
 
-enum SortType: String {
+enum StatSortType: String {
     case byName = "BYNAME"
     case byRating = "BYRATING"
 }
-
 
 struct Nft: Codable {
     let createdAt: String

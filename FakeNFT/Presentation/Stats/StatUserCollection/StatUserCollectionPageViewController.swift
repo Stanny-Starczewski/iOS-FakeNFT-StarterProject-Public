@@ -13,7 +13,6 @@ final class StatUserCollectionPageViewController: UIViewController {
         return collectionView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.onChange = { [weak self] in
@@ -44,7 +43,6 @@ final class StatUserCollectionPageViewController: UIViewController {
     private func change() {
         collectionView.reloadData()
     }
-    
   
     private func setupCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +91,6 @@ extension StatUserCollectionPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.nfts.count
     }
-    
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -144,4 +141,3 @@ extension StatUserCollectionPageViewController: UICollectionViewDelegateFlowLayo
         return 20
     }
 }
-

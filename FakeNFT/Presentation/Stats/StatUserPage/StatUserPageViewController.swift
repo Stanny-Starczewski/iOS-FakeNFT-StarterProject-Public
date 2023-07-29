@@ -172,7 +172,7 @@ final class StatUserPageViewController: UIViewController {
     @objc
     private func openNFTCollection() {
         let collectionModel = StatUserCollectionPageModel()
-        let collectionViewModel = StatUserCollectionPageViewModel(model: collectionModel, ids: viewModel.user?.nfts.compactMap({Int($0)}))
+        let collectionViewModel = StatUserCollectionPageViewModel(model: collectionModel, ids: viewModel.user?.nfts.compactMap({ Int($0) }))
         let viewController = StatUserCollectionPageViewController(viewModel: collectionViewModel)
         viewController.title = "Коллекция NFT"
         

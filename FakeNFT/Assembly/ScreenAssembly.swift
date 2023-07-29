@@ -125,9 +125,6 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     }
     
     func makeStatsScreen() -> UIViewController {
-        let presenter = StatsPresenter()
-        let vc = StatsViewController(presenter: presenter)
-        presenter.view = vc
-        return vc
+        StatPageViewController()
     }
 }

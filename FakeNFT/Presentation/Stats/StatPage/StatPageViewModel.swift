@@ -12,7 +12,7 @@ final class StatPageViewModel {
         }
     }
 
-    var sortType: SortType? {
+    var sortType: StatSortType? {
         didSet {
             saveSortType()
             sortUsers()
@@ -33,8 +33,8 @@ final class StatPageViewModel {
         UserDefaults.standard.set(sortType.rawValue, forKey: Config.usersSortTypeKey)
     }
 
-    func loadSortType() -> SortType {
-        SortType(rawValue: UserDefaults.standard.string(forKey: Config.usersSortTypeKey) ?? "BYRATING")!
+    func loadSortType() -> StatSortType {
+        StatSortType(rawValue: UserDefaults.standard.string(forKey: Config.usersSortTypeKey) ?? "BYRATING")!
         
     }
 
@@ -59,7 +59,7 @@ final class StatPageViewModel {
         }
     }
 
-    private func getSorted(users: [User], by sortType: SortType) -> [User] {
+    private func getSorted(users: [User], by sortType: StatSortType) -> [User] {
         switch sortType {
         case .byName:
             return users.sorted { $0.name < $1.name }
@@ -70,12 +70,12 @@ final class StatPageViewModel {
     }
 
     func setSortedByName() {
-        UserDefaults.standard.set(SortType.byName.rawValue, forKey: "usersSortType")
+        UserDefaults.standard.set(StatSortType.byName.rawValue, forKey: "usersSortType")
         sortType = .byName
     }
 
     func setSortedByRating() {
-        UserDefaults.standard.set(SortType.byRating.rawValue, forKey: "usersSortType")
+        UserDefaults.standard.set(StatSortType.byRating.rawValue, forKey: "usersSortType")
         sortType = .byRating
     }
 
@@ -85,4 +85,3 @@ final class StatPageViewModel {
         
     }
 }
-

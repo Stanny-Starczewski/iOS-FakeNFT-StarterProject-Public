@@ -13,7 +13,6 @@ final class UserViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     func configure(with viewModel: UserViewCellViewModel) {
         self.viewModel = viewModel
         indexView.text = viewModel.index

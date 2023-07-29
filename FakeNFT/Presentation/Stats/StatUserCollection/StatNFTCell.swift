@@ -78,7 +78,6 @@ extension StatNFTCell {
             priceLabel.text = "?"
         }
         
-        
         guard let url = nft?.images[0], let validUrl = URL(string: url) else {return}
         let processor = RoundCornerImageProcessor(cornerRadius: 12)
         let options: KingfisherOptionsInfo = [
@@ -136,7 +135,7 @@ private extension StatNFTCell {
             
             bucketButton.widthAnchor.constraint(equalToConstant: 40),
             bucketButton.heightAnchor.constraint(equalToConstant: 40),
-            bucketButton.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor,constant: 0),
+            bucketButton.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 0),
             bucketButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),

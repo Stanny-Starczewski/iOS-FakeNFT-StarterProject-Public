@@ -1,8 +1,5 @@
 import Foundation
-<<<<<<<< HEAD:FakeNFT/Presentation/Stats/View/StatUserPage.swift
 import Kingfisher
-========
->>>>>>>> stat:FakeNFT/Screens/Stats/StatUserPage/StatUserPageModel.swift
 
 final class StatUserPageModel {
     private let defaultNetworkClient = DefaultNetworkClient()
@@ -12,4 +9,3 @@ final class StatUserPageModel {
         defaultNetworkClient.send(request: request, type: User.self, onResponse: completion)
     }
 }
-

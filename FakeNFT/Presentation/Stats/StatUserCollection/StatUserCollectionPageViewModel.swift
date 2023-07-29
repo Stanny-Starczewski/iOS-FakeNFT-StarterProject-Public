@@ -9,7 +9,7 @@ final class StatUserCollectionPageViewModel {
     
     private(set) var nftsIds: [Int]?
     
-    private(set) var nfts: [Nft]=[] { didSet { onChange?() }}
+    private(set) var nfts: [Nft] = [] { didSet { onChange?() }}
 
     init(model: StatUserCollectionPageModel, ids: [Int]? ) {
         self.model = model
