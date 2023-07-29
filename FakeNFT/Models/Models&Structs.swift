@@ -72,13 +72,20 @@ enum CryptoCoin: String {
 }
 
 struct Profile: Codable {
-    let avatar: String
     let name: String
+    let avatar: String
     let description: String
     let website: String
-    let nfts: [Int]
-    let likes: [Int]
+    let nfts: [String]
+    let likes: [String]
     let id: String
+}
+
+struct ProfilePut: Codable {
+    let name: String
+    let avatar: String
+    let description: String
+    let website: String
 }
 
 enum SortAttribute {
