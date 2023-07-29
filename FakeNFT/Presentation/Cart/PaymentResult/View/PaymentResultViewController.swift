@@ -18,12 +18,12 @@ final class PaymentResultViewController: UIViewController {
     // MARK: - Constants
     
     private struct Constants {
-        static let positiveResultImage = UIImage(named: "Tater")
-        static let positiveResultLabelText = "Успех! Оплата прошла, поздравляем с покупкой!"
-        static let positiveResultButtonText = "Вернуться в каталог"
-        static let negativeResultImage = UIImage(named: "Zeus")
-        static let negativeResultLabelText = "Упс! Что-то пошло не так :( Попробуйте ещё раз!"
-        static let negativeResultButtonText = "Попробовать еще раз"
+        static let successImage = UIImage(named: "cart-result-image-success")
+        static let successLabelText = "Успех! Оплата прошла, поздравляем с покупкой!"
+        static let successButtonText = "Вернуться в каталог"
+        static let failureImage = UIImage(named: "cart-result-image-failure")
+        static let failureLabelText = "Упс! Что-то пошло не так :( Попробуйте ещё раз!"
+        static let failureButtonText = "Попробовать еще раз"
     }
     
     // MARK: - UI
@@ -31,7 +31,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var successResultImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = false
-        imageView.image = Constants.positiveResultImage
+        imageView.image = Constants.successImage
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -39,7 +39,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var successResultLabel: UILabel = {
         let label = UILabel()
         label.isHidden = false
-        label.text = Constants.positiveResultLabelText
+        label.text = Constants.successLabelText
         label.font = .bold22
         label.textAlignment = .center
         label.textColor = .appBlack
@@ -51,7 +51,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var successResultButton: UIButton = {
         let button = UIButton(type: .system)
         button.isHidden = false
-        button.setTitle(Constants.positiveResultButtonText, for: .normal)
+        button.setTitle(Constants.successButtonText, for: .normal)
         button.backgroundColor = .appBlack
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .bold17
@@ -64,7 +64,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var failureResultImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = false
-        imageView.image = Constants.negativeResultImage
+        imageView.image = Constants.failureImage
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -72,7 +72,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var failureResultLabel: UILabel = {
         let label = UILabel()
         label.isHidden = false
-        label.text = Constants.negativeResultLabelText
+        label.text = Constants.failureLabelText
         label.font = .bold22
         label.textAlignment = .center
         label.textColor = .appBlack
@@ -84,7 +84,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var failureResultButton: UIButton = {
         let button = UIButton(type: .system)
         button.isHidden = false
-        button.setTitle(Constants.negativeResultButtonText, for: .normal)
+        button.setTitle(Constants.failureButtonText, for: .normal)
         button.backgroundColor = .appBlack
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .bold17
