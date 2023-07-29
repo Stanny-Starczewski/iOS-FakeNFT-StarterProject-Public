@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct NftCollection: Decodable {
+struct NFTCollection: Decodable {
+    let id: String
     let createdAt: String
     let name: String
     let cover: String
-    let nfts: [Int]
+    let nfts: [String]
     let description: String
-    let author: Int
-    let id: String
+    let author: String
 }
 struct NftCollectionAuthor: Codable {
     let name: String
@@ -28,7 +28,7 @@ struct NftCollectionListItem {
     let nftsCount: Int
 }
 
-struct NftCollectionNFTItem {
+struct NFTCollectionNFTItem {
     let id: Int
     let image: String
     let rating: Int
@@ -53,5 +53,41 @@ struct NftLiked: Codable {
 }
 
 struct NftsInCart: Codable {
+    let nfts: [String]
+}
+
+struct NFTModel: Decodable {
+     let id: String
+     let createdAt: String
+     let name: String
+     let images: [String]
+     let rating: Int
+     let description: String
+     let price: Double
+     let author: String
+ }
+
+struct NFTViewModel {
+    let id: String
+    let name: String
+    let imageURL: URL
+    let rating: Int
+    let price: Double
+    let isOrdered: Bool
+    let isLiked: Bool
+}
+
+struct AuthorModel: Decodable {
+    let id: String
+    let name: String
+    let website: String
+}
+
+struct FavoritesModel: Decodable {
+    let likes: [String]
+}
+
+struct OrderModel: Decodable { 
+    let id: String
     let nfts: [String]
 }
