@@ -20,9 +20,9 @@ protocol CollectionViewModelProtocol {
     var errorMessage: String? { get }
     var updateLoadingStatus: (() -> Void)? { get set }
     var isLoading: Bool { get set }
-    var nftCollection: NftCollection? { get }
+    var nftCollection: NFTCollection? { get }
     var nftCollectionAuthor: NftCollectionAuthor? { get }
-    var nftCollectionItems: [NftCollectionNFTItem]? { get }
+    var nftCollectionItems: [NFTCollectionNFTItem]? { get }
     var nftCollectionItemsCount: Int? { get }
     var converter: CryptoConverterProtocol { get }
 
@@ -47,7 +47,7 @@ protocol CatalogViewModelProtocol {
     var updateLoadingStatus: (() -> Void)? { get set }
     var isLoading: Bool { get set }
     var nftCollection: [NFTCollection]? { get }
-    var ntfCollectionsList: [NFTCollectionListItem]? { get }
+    var ntfCollectionsList: [NftCollectionListItem]? { get }
     var model: CatalogModelProtocol { get }
     var nftCollectionsCount: Int? { get }
     func getNFTCollections()

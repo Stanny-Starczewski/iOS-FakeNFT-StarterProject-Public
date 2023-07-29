@@ -179,7 +179,7 @@ extension CartPresenter: RemoveItemDelegate {
 
 // MARK: - SortType
 
-enum SortType: Int {
+enum CartSortType: Int {
     case byName
     case byPrice
     case byRating

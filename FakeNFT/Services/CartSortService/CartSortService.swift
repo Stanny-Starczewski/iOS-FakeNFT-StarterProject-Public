@@ -8,20 +8,20 @@
 import Foundation
 
 protocol CartSortServiceProtocol {
-    func saveSortType(_ type: SortType)
-    func loadSortType() -> SortType
+    func saveSortType(_ type: CartSortType)
+    func loadSortType() -> CartSortType
 }
 
 final class CartSortService: CartSortServiceProtocol {
     
     private let key = String(describing: CartSortService.self)
     
-    func saveSortType(_ type: SortType) {
+    func saveSortType(_ type: CartSortType) {
         UserDefaults.standard.set(type.rawValue, forKey: key)
     }
     
-    func loadSortType() -> SortType {
-        SortType(rawValue: UserDefaults.standard.integer(forKey: key)) ?? .byName
+    func loadSortType() -> CartSortType {
+        CartSortType(rawValue: UserDefaults.standard.integer(forKey: key)) ?? .byName
     }
 
 }

@@ -45,9 +45,11 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     }
     
     func makeCatalogScreen() -> UIViewController {
-        let presenter = CatalogPresenter()
-        let vc = CatalogViewController(presenter: presenter)
-        presenter.view = vc
+        let vc = CatalogViewController(
+            viewModel: CatalogueViewModel(
+                provider: CatalogueDataProvider()
+            )
+        )
         return vc
     }
     

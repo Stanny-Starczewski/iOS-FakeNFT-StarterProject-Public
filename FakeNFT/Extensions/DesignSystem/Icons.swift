@@ -2,13 +2,13 @@ import UIKit
 
 extension UIImage {
     enum Icons {
-        static let backward = UIImage(named: "Backward")
-        static let filter = UIImage(named: "Filter")
-        static let filledBasket = UIImage(named: "FilledBasket")
-        static let emptyBasket = UIImage(named: "EmptyBasket")
-        static let activeLike = UIImage(named: "ActiveLike")
-        static let inactiveLike = UIImage(named: "InactiveLike")
-        static let emptyStar = UIImage(named: "EmptyStar")
-        static let filledStar = UIImage(named: "FilledStar")
+        static let backward = UIImage(named: "icon-back")
+        static let filter = UIImage(named: "icon-sort")
+        static let filledBasket = UIImage(named: "icon-cart-delete")
+        static let emptyBasket = UIImage(named: "icon-cart-add")
+        static let activeLike = UIImage(named: "icon-heart-filled")
+        static let inactiveLike = UIImage(named: "icon-heart")
+        static let emptyStar = UIImage(named: "icon-star")
+        static let filledStar = UIImage(named: "icon-star-filled")
     }
 }
