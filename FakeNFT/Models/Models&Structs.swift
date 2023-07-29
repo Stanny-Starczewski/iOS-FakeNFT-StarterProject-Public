@@ -1,11 +1,11 @@
-//
-//  Models&Structs.swift
-//  FakeNFT
-//
-//  Created by Alexander Farizanov on 03.07.2023.
-//
 
 import Foundation
+
+enum SortType: String {
+    case byName = "BYNAME"
+    case byRating = "BYRATING"
+}
+
 
 struct Nft: Codable {
     let createdAt: String
@@ -27,7 +27,7 @@ struct User: Codable {
     let name: String
     let description: String
     let website: String
-    let nfts: [Int]
+    let nfts: [String]
     let rating: String
     let id: String
 }
