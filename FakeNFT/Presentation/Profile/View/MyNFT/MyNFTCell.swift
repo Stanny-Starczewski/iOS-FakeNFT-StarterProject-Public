@@ -9,96 +9,86 @@ import UIKit
 
 final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     
+    private enum Constants {
+        static let priceLabelText = Localization.priceLabelText
+        static let authorLabelText = Localization.authorLabelText
+    }
+    
     // MARK: - Properties
-    
-    static let reuseIdentifier = "MyNFTCell"
-    
+
     var currentIndexPath: IndexPath?
     
     // MARK: - Layout elements
     
-    var myNFTImage: UIImageView = {
-        let image = UIImage(named: "0")
-        let myNFTImage = UIImageView(image: image)
-        myNFTImage.translatesAutoresizingMaskIntoConstraints = false
-        myNFTImage.layer.cornerRadius = 12
-        myNFTImage.layer.masksToBounds = true
-        return myNFTImage
+    private lazy var nftImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 12
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
     
-    var myNFTStack: UIStackView = {
-        let myNFTStack = UIStackView()
-        myNFTStack.translatesAutoresizingMaskIntoConstraints = false
-        myNFTStack.axis = .vertical
-        myNFTStack.distribution = .equalSpacing
-        myNFTStack.alignment = .leading
-        myNFTStack.spacing = 4
-        return myNFTStack
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .leading
+        stackView.spacing = 4
+        return stackView
     }()
     
-    var myNFTNameLabel: UILabel = {
-        let myNFTNameLabel = UILabel()
-        myNFTNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTNameLabel.font = .bold17
-        myNFTNameLabel.textColor = Image.appBlack.color
-        myNFTNameLabel.text = "Lilo"
-        return myNFTNameLabel
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bold17
+        label.textColor = Image.appBlack.color
+        return label
     }()
     
-    var myNFTRating: StarRatingController = {
-        let myNFTRating = StarRatingController(starsRating: 5)
-        myNFTRating.translatesAutoresizingMaskIntoConstraints = false
-        return myNFTRating
+    private lazy var ratingStackView = RatingStackView()
+    
+    private lazy var authorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .regular13
+        label.textColor = Image.appBlack.color
+        return label
     }()
     
-    var myNFTAuthorLabel: UILabel = {
-        let myNFTAuthorLabel = UILabel()
-        myNFTAuthorLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTAuthorLabel.font = .regular13
-        myNFTAuthorLabel.textColor = Image.appBlack.color
-        myNFTAuthorLabel.text = "от John Doe"
-        return myNFTAuthorLabel
+    private lazy var priceStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .leading
+        stackView.spacing = 2
+        return stackView
     }()
     
-    var myNFTPriceStack: UIStackView = {
-        let myNFTPriceStack = UIStackView()
-        myNFTPriceStack.translatesAutoresizingMaskIntoConstraints = false
-        myNFTPriceStack.axis = .vertical
-        myNFTPriceStack.distribution = .equalSpacing
-        myNFTPriceStack.alignment = .leading
-        myNFTPriceStack.spacing = 2
-        return myNFTPriceStack
+    private lazy var priceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .regular13
+        label.text = Constants.priceLabelText
+        label.textColor = Image.appBlack.color
+        return label
     }()
     
-    var myNFTPriceLabel: UILabel = {
-        let myNFTPriceLabel = UILabel()
-        myNFTPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTPriceLabel.font = .regular13
-        myNFTPriceLabel.text = "Цена"
-        myNFTPriceLabel.textColor = Image.appBlack.color
-        return myNFTPriceLabel
+    private lazy var priceValueLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bold17
+        label.textColor = Image.appBlack.color
+        return label
     }()
     
-    var myNFTPriceValueLabel: UILabel = {
-        let myNFTPriceValueLabel = UILabel()
-        myNFTPriceValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        myNFTPriceValueLabel.font = .bold17
-        myNFTPriceValueLabel.text = "1,78 ETH"
-        myNFTPriceValueLabel.textColor = Image.appBlack.color
-        return myNFTPriceValueLabel
-    }()
-    
-    var myNFTFavoriteButton: FavoriteButton = {
-        let myNFTFavoriteButton = FavoriteButton()
-        myNFTFavoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        return myNFTFavoriteButton
-    }()
+    private lazy var favoriteButton = FavoriteButton()
     
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupView()
         setConstraints()
     }
@@ -111,60 +101,55 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     
     private func setupView() {
         backgroundColor = Image.appWhite.color
+        selectionStyle = .none
         
-        contentView.addSubview(myNFTImage)
-        myNFTImage.addSubview(myNFTFavoriteButton)
-        
-        contentView.addSubview(myNFTStack)
-        myNFTStack.addArrangedSubview(myNFTNameLabel)
-        myNFTStack.addArrangedSubview(myNFTRating)
-        myNFTStack.addArrangedSubview(myNFTAuthorLabel)
-        
-        contentView.addSubview(myNFTPriceStack)
-        
-        myNFTPriceStack.addArrangedSubview(myNFTPriceLabel)
-        myNFTPriceStack.addArrangedSubview(myNFTPriceValueLabel)
-        
+        contentView.addSubview(nftImageView)
+        contentView.addSubview(contentStackView)
+        contentView.addSubview(priceStackView)
+        nftImageView.addSubview(favoriteButton)
+        contentStackView.addArrangedSubview(nameLabel)
+        contentStackView.addArrangedSubview(ratingStackView)
+        contentStackView.addArrangedSubview(authorLabel)
+        priceStackView.addArrangedSubview(priceLabel)
+        priceStackView.addArrangedSubview(priceValueLabel)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            nftImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            nftImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            nftImageView.heightAnchor.constraint(equalToConstant: 108),
+            nftImageView.widthAnchor.constraint(equalToConstant: 108),
             
-            myNFTImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            myNFTImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            myNFTImage.heightAnchor.constraint(equalToConstant: 108),
-            myNFTImage.widthAnchor.constraint(equalToConstant: 108),
+            favoriteButton.topAnchor.constraint(equalTo: nftImageView.topAnchor),
+            favoriteButton.trailingAnchor.constraint(equalTo: nftImageView.trailingAnchor),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 42),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 42),
             
-            myNFTFavoriteButton.topAnchor.constraint(equalTo: myNFTImage.topAnchor),
-            myNFTFavoriteButton.trailingAnchor.constraint(equalTo: myNFTImage.trailingAnchor),
-            myNFTFavoriteButton.heightAnchor.constraint(equalToConstant: 42),
-            myNFTFavoriteButton.widthAnchor.constraint(equalToConstant: 42),
+            contentStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 144),
+            contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -88),
+            ratingStackView.heightAnchor.constraint(equalToConstant: 12),
             
-            myNFTStack.centerYAnchor.constraint(equalTo: centerYAnchor),
-            myNFTStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 144),
-            myNFTStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -88),
-            myNFTRating.heightAnchor.constraint(equalToConstant: 12),
-            
-            myNFTPriceStack.centerYAnchor.constraint(equalTo: centerYAnchor),
-            myNFTPriceStack.leadingAnchor.constraint(equalTo: myNFTStack.trailingAnchor, constant: -39)
-            
+            priceStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            priceStackView.leadingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: -39)
         ])
     }
     
     // MARK: - Methods
     
     func configure(with item: NFTNetworkModel) {
-        myNFTNameLabel.text = item.name
-        myNFTPriceValueLabel.text = String(format: "%.2f ETH", item.price)
-        myNFTAuthorLabel.text = "от \(item.author)"
-        myNFTRating.setStarsRating(rating: item.rating)
+        nameLabel.text = item.name
+        priceValueLabel.text = String(format: "%.2f ETH", item.price)
+        authorLabel.text = "\(Constants.authorLabelText) \(item.author)"
+        ratingStackView.setupRating(rating: item.rating)
         guard
             let imageUrlString = item.images.first,
             let imageUrl = URL(string: imageUrlString)
         else { return }
-        myNFTImage.kf.indicatorType = .activity
-        myNFTImage.kf.setImage(with: imageUrl) { [weak self] _ in
-            self?.myNFTImage.kf.indicatorType = .none
+        nftImageView.kf.indicatorType = .activity
+        nftImageView.kf.setImage(with: imageUrl) { [weak self] _ in
+            self?.nftImageView.kf.indicatorType = .none
         }
     }
 }

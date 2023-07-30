@@ -15,70 +15,60 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - Properties
     
-    static let reuseIdentifier = "FavoritesCell"
-    
     weak var delegate: FavoritesCellDelegate?
-    
     var currentIndexPath: IndexPath?
     
     // MARK: - Layout elements
     
-    var nftImage: UIImageView = {
-        let nftImage = UIImageView()
-        nftImage.translatesAutoresizingMaskIntoConstraints = false
-        nftImage.layer.cornerRadius = 12
-        nftImage.layer.masksToBounds = true
-        return nftImage
+    private lazy var nftImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 12
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
     
-    var nftStack: UIStackView = {
-        let nftStack = UIStackView()
-        nftStack.translatesAutoresizingMaskIntoConstraints = false
-        nftStack.axis = .vertical
-        nftStack.distribution = .equalSpacing
-        nftStack.alignment = .leading
-        nftStack.spacing = 4
-        return nftStack
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .leading
+        stackView.spacing = 4
+        return stackView
     }()
     
-    var nftName: UILabel = {
-        let nftName = UILabel()
-        nftName.translatesAutoresizingMaskIntoConstraints = false
-        nftName.font = .boldSystemFont(ofSize: 17)
-        nftName.textColor = .black
-        return nftName
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bold17
+        label.textColor = Image.appBlack.color
+        return label
     }()
     
-    var nftRating: StarRatingController = {
-        let nftRating = StarRatingController(starsRating: 5)
-        nftRating.translatesAutoresizingMaskIntoConstraints = false
-        nftRating.spacing = 2
-        return nftRating
+    private lazy var ratingStackView = RatingStackView()
+    
+    private lazy var priceValueLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .regular15
+        return label
     }()
     
-    var nftPriceValue: UILabel = {
-        let nftPriceValue = UILabel()
-        nftPriceValue.translatesAutoresizingMaskIntoConstraints = false
-        nftPriceValue.font = .systemFont(ofSize: 15)
-        nftPriceValue.text = "0 ETH"
-        return nftPriceValue
-    }()
-    
-    lazy var nftFavorite: UIButton = {
-        let nftFavorite = UIButton()
-        nftFavorite.setImage(UIImage(named: "Heart Filled"), for: .normal)
-        nftFavorite.translatesAutoresizingMaskIntoConstraints = false
-        nftFavorite.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
-        return nftFavorite
+    private lazy var favoriteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Image.iconHeartFilled.image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
+        return button
     }()
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        addImage()
-        addFavoriteButton()
-        addNFTStack()
+        setupView()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -95,52 +85,46 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - Layout methods
     
-    private func addImage() {
-        contentView.addSubview(nftImage)
-        nftImage.image = UIImage(named: "UserImagePlaceholder")
-        NSLayoutConstraint.activate([
-            nftImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            nftImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-            nftImage.heightAnchor.constraint(equalToConstant: 80),
-            nftImage.widthAnchor.constraint(equalToConstant: 80)
-        ])
+    private func setupView() {
+        contentView.addSubview(nftImageView)
+        contentView.addSubview(favoriteButton)
+        contentView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(nameLabel)
+        contentStackView.addArrangedSubview(ratingStackView)
+        contentStackView.addArrangedSubview(priceValueLabel)
     }
     
-    private func addFavoriteButton() {
-        contentView.addSubview(nftFavorite)
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            nftFavorite.topAnchor.constraint(equalTo: nftImage.topAnchor, constant: -6),
-            nftFavorite.trailingAnchor.constraint(equalTo: nftImage.trailingAnchor, constant: 6),
-            nftFavorite.heightAnchor.constraint(equalToConstant: 42),
-            nftFavorite.widthAnchor.constraint(equalToConstant: 42)
-        ])
-    }
-    
-    private func addNFTStack() {
-        contentView.addSubview(nftStack)
-        nftStack.addArrangedSubview(nftName)
-        nftStack.addArrangedSubview(nftRating)
-        nftStack.addArrangedSubview(nftPriceValue)
-        NSLayoutConstraint.activate([
-            nftStack.centerYAnchor.constraint(equalTo: centerYAnchor),
-            nftStack.leadingAnchor.constraint(equalTo: nftImage.trailingAnchor, constant: 12),
-            nftRating.heightAnchor.constraint(equalToConstant: 12)
+            nftImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            nftImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            nftImageView.heightAnchor.constraint(equalToConstant: 80),
+            nftImageView.widthAnchor.constraint(equalToConstant: 80),
+            
+            favoriteButton.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: -6),
+            favoriteButton.trailingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 6),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 42),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 42),
+            
+            contentStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 12),
+            ratingStackView.heightAnchor.constraint(equalToConstant: 12)
         ])
     }
     
     // MARK: - Methods
     
     func configure(with item: NFTNetworkModel) {
-        nftName.text = item.name
-        nftPriceValue.text = String(format: "%.2f ETH", item.price)
-        nftRating.setStarsRating(rating: item.rating)
+        nameLabel.text = item.name
+        priceValueLabel.text = String(format: "%.2f ETH", item.price)
+        ratingStackView.setupRating(rating: item.rating)
         guard
             let imageUrlString = item.images.first,
             let imageUrl = URL(string: imageUrlString)
         else { return }
-        nftImage.kf.indicatorType = .activity
-        nftImage.kf.setImage(with: imageUrl) { [weak self] _ in
-            self?.nftImage.kf.indicatorType = .none
+        nftImageView.kf.indicatorType = .activity
+        nftImageView.kf.setImage(with: imageUrl) { [weak self] _ in
+            self?.nftImageView.kf.indicatorType = .none
         }
     }
 }
