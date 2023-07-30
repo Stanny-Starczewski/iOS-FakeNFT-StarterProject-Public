@@ -12,7 +12,6 @@
 		0A1F7ED72A752D830039E077 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F7EBE2A752D830039E077 /* EditProfilePresenter.swift */; };
 		0A1F7ED82A752D830039E077 /* MyNFTPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F7EBF2A752D830039E077 /* MyNFTPresenter.swift */; };
 		0A1F7ED92A752D830039E077 /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F7EC02A752D830039E077 /* FavoritesPresenter.swift */; };
-		0A1F7EDB2A752D830039E077 /* StarRatingStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F7EC32A752D830039E077 /* StarRatingStack.swift */; };
 		0A1F7EDC2A752D830039E077 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F7EC42A752D830039E077 /* FavoriteButton.swift */; };
 		0A1F7EDD2A752D830039E077 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F7EC72A752D830039E077 /* FavoritesCell.swift */; };
 		0A1F7EDE2A752D830039E077 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F7EC82A752D830039E077 /* FavoritesViewController.swift */; };
@@ -127,7 +126,6 @@
 		0A1F7EBE2A752D830039E077 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		0A1F7EBF2A752D830039E077 /* MyNFTPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNFTPresenter.swift; sourceTree = "<group>"; };
 		0A1F7EC02A752D830039E077 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
-		0A1F7EC32A752D830039E077 /* StarRatingStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRatingStack.swift; sourceTree = "<group>"; };
 		0A1F7EC42A752D830039E077 /* FavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		0A1F7EC72A752D830039E077 /* FavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		0A1F7EC82A752D830039E077 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +260,14 @@
 			path = CartSortService;
 			sourceTree = "<group>";
 		};
+		0A0CE6402A76DA7E002D4ADA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0A9960D72A751FDA0080D56F /* RatingStackView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		0A1F7EBB2A752D830039E077 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +292,6 @@
 		0A1F7EC12A752D830039E077 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				0A1F7EC32A752D830039E077 /* StarRatingStack.swift */,
 				0A1F7EC42A752D830039E077 /* FavoriteButton.swift */,
 			);
 			path = Components;
@@ -411,6 +416,7 @@
 		0A1F7F0A2A7571730039E077 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				3F6806D629CBC50A00B4F915 /* CellsReusingUtils.swift */,
 				0A1F7F0B2A7571730039E077 /* UICollectionView+Extension.swift */,
 			);
 			path = UIKit;
@@ -554,7 +560,6 @@
 			children = (
 				0A9960D52A751FDA0080D56F /* CollectionNFTCell.swift */,
 				0A9960D62A751FDA0080D56F /* CollectionViewModel.swift */,
-				0A9960D72A751FDA0080D56F /* RatingStackView.swift */,
 				0A9960D82A751FDA0080D56F /* CollectionViewController.swift */,
 			);
 			path = Collection;
@@ -791,6 +796,7 @@
 		3F6806C729CBBC5B00B4F915 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0A0CE6402A76DA7E002D4ADA /* Common */,
 				0A1F7EE72A7531830039E077 /* Stats */,
 				0AAF02E12A52964700924CE0 /* Cart */,
 				0AAF02E02A52964000924CE0 /* Catalog */,
@@ -816,7 +822,6 @@
 		3F6806CE29CBBD1B00B4F915 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				3F6806D629CBC50A00B4F915 /* CellsReusingUtils.swift */,
 				0A9961222A7521C10080D56F /* String+Extension.swift */,
 				3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */,
 			);
@@ -1108,7 +1113,6 @@
 				0AA3BB322A64617300A3FA10 /* NetworkService.swift in Sources */,
 				0A99611F2A7520D00080D56F /* SetupManager.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
-				0A1F7EDB2A752D830039E077 /* StarRatingStack.swift in Sources */,
 				0A1F7F032A7531830039E077 /* UserViewCellViewModel.swift in Sources */,
 				0A1F7EFD2A7531830039E077 /* StatUserPageViewModel.swift in Sources */,
 				0A99611D2A7520D00080D56F /* RequestsMap.swift in Sources */,
