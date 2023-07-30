@@ -5,7 +5,7 @@
   Created by Anton Vikhlyaev on 29.07.2023.
   
 */
-
+// Alerts
 "sortingAlertTitle"="Sorting";
 "sortingAlertByPriceText"="By price";
 "sortingAlertByRatingText"="By rating";
@@ -18,3 +18,9 @@
 "errorAlertOkAction"="OK";
 "errorAlertCancelAction"="Close";
 "errorAlertRepeatAction"="Try again";
+// My NFT
+"emptyLabelText"="You don't have NFT yet";
+"navigationBarTitleText"="My NFT";
+// My NFT Cell
+"priceLabelText"="Price";
+"authorLabelText"="by";
