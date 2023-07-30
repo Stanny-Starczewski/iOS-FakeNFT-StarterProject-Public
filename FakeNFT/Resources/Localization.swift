@@ -8,6 +8,10 @@ import Foundation
 
 // swiftlint:disable function_parameter_count identifier_name line_length type_body_length
 public enum Localization {
+  /// by
+  public static let authorLabelText = Localization.tr("Localizable", "authorLabelText", fallback: "by")
+  /// You don't have NFT yet
+  public static let emptyLabelText = Localization.tr("Localizable", "emptyLabelText", fallback: "You don't have NFT yet")
   /// Close
   public static let errorAlertCancelAction = Localization.tr("Localizable", "errorAlertCancelAction", fallback: "Close")
   /// OK
@@ -18,6 +22,10 @@ public enum Localization {
   public static let errorAlertRepeatTitle = Localization.tr("Localizable", "errorAlertRepeatTitle", fallback: "Error!")
   /// Oops! We have a error.
   public static let errorAlertTitle = Localization.tr("Localizable", "errorAlertTitle", fallback: "Oops! We have a error.")
+  /// My NFT
+  public static let navigationBarTitleText = Localization.tr("Localizable", "navigationBarTitleText", fallback: "My NFT")
+  /// Price
+  public static let priceLabelText = Localization.tr("Localizable", "priceLabelText", fallback: "Price")
   /// By name
   public static let sortingAlertByFirstNameText = Localization.tr("Localizable", "sortingAlertByFirstNameText", fallback: "By name")
   /// By title
