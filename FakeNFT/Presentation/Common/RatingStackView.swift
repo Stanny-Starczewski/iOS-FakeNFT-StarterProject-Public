@@ -1,18 +1,20 @@
 import UIKit
 
 final class RatingStackView: UIStackView {
+    
     private let fillStarImage: UIImage? = Image.iconStarFilled.image
     private let emptyStarImage: UIImage? = Image.iconStar.image
     
-    init(countOfStars: Int) {
+    init(rating: Int = 5) {
         super.init(frame: .zero)
         axis = .horizontal
         spacing = 2
+        translatesAutoresizingMaskIntoConstraints = false
         
-        for starTag in 1...countOfStars {
+        (1...rating).forEach {
             let imageView = UIImageView()
             imageView.image = emptyStarImage
-            imageView.tag = starTag
+            imageView.tag = $0
             addArrangedSubview(imageView)
         }
     }
@@ -22,8 +24,8 @@ final class RatingStackView: UIStackView {
     }
     
     func setupRating(rating: Int) {
-        for subview in subviews {
-            if let imageView = subview as? UIImageView {
+        subviews.forEach {
+            if let imageView = $0 as? UIImageView {
                 imageView.image = imageView.tag > rating ? emptyStarImage : fillStarImage
             }
         }
