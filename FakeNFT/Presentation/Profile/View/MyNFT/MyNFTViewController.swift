@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 protocol MyNFTViewControllerProtocol: AnyObject {
     func updateUI()
@@ -19,6 +18,13 @@ protocol MyNFTViewControllerProtocol: AnyObject {
 
 final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let emptyLabelText = Localization.emptyLabelText
+        static let navigationBarTitleText = Localization.navigationBarTitleText
+    }
+    
     // MARK: - Properties
     
     private var presenter: MyNFTPresenterProtocol
@@ -26,36 +32,36 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     // MARK: - Layout elements
     
     private lazy var backButton = UIBarButtonItem(
-        image: UIImage(named: "Backward"),
+        image: Image.iconBack.image,
         style: .plain,
         target: self,
         action: #selector(didTapBackButton)
     )
     
-    private lazy var filterButton = UIBarButtonItem(
-        image: UIImage(named: "Filter"),
+    private lazy var sortButton = UIBarButtonItem(
+        image: Image.iconSort.image,
         style: .plain,
         target: self,
         action: #selector(didTapSortButton)
     )
     
-    private lazy var myNFTTable: UITableView = {
-        let myNFTTable = UITableView()
-        myNFTTable.translatesAutoresizingMaskIntoConstraints = false
-        myNFTTable.register(MyNFTCell.self, forCellReuseIdentifier: MyNFTCell.reuseIdentifier)
-        myNFTTable.backgroundColor = Image.appWhite.color
-        myNFTTable.dataSource = self
-        myNFTTable.delegate = self
-        myNFTTable.separatorStyle = .none
-        myNFTTable.allowsMultipleSelection = false
-        myNFTTable.isUserInteractionEnabled = true
-        return myNFTTable
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(MyNFTCell.self)
+        tableView.backgroundColor = Image.appWhite.color
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.allowsMultipleSelection = false
+        tableView.isUserInteractionEnabled = true
+        return tableView
     }()
     
     private lazy var emptyLabel: UILabel = {
         let emptyLabel = UILabel()
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
-        emptyLabel.text = "У Вас ещё нет NFT"
+        emptyLabel.text = Constants.emptyLabelText
         emptyLabel.font = .bold17
         emptyLabel.textColor = Image.appBlack.color
         return emptyLabel
@@ -76,11 +82,10 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupNavBar()
-        addMainView()
+        setupNavigationController()
+        setupView()
+        setConstraints()
         presenter.viewIsReady()
-        
     }
     
     // MARK: - Actions
@@ -98,7 +103,9 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     // MARK: - Methods
     
     func updateUI() {
-        myNFTTable.reloadSections(IndexSet(integer: 0), with: .automatic)
+        tableView.reloadSections(
+            IndexSet(integer: 0), with: .automatic
+        )
     }
     
     func showProgressHUB() {
@@ -114,41 +121,40 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
     }
     
     func showEmptyCart() {
-        myNFTTable.isHidden = true
+        tableView.isHidden = true
         emptyLabel.isHidden = false
         navigationItem.rightBarButtonItem = nil
-        navigationItem.title = ""
+        navigationItem.title = nil
     }
     
     func showNoInternetView() {
-        navigationController?.pushViewController(NoInternetViewController(), animated: true)
+        let noInternetViewController = NoInternetViewController()
+        navigationController?.pushViewController(noInternetViewController, animated: true)
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    private func setupNavBar() {
+    private func setupNavigationController() {
         navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = filterButton
-        navigationItem.title = "Мои NFT"
+        navigationItem.rightBarButtonItem = sortButton
+        navigationItem.title = Constants.navigationBarTitleText
     }
     
-    private func addMainView() {
+    private func setupView() {
         view.backgroundColor = Image.appWhite.color
-        
-        view.addSubview(myNFTTable)
-        
+        view.addSubview(tableView)
+    }
+    
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            
-            myNFTTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            myNFTTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            myNFTTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            myNFTTable.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
     
     private func addEmptyView() {
-        
         view.backgroundColor = Image.appWhite.color
         view.addSubview(emptyLabel)
         
