@@ -25,10 +25,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
         return heartButton
     }()
     
-    private lazy var ratingStackView: RatingStackView = {
-        let stackView = RatingStackView(countOfStars: 5)
-        return stackView
-    }()
+    private lazy var ratingStackView = RatingStackView()
     
     private lazy var nftLabel: UILabel = {
         let label = UILabel()

@@ -15,8 +15,11 @@ final class FavoriteButton: UIButton {
     
     var isFavorite: Bool = true {
         didSet {
-            let imageName = self.isFavorite ? "Heart Filled" : "Heart Empty"
-            self.setImage(UIImage(named: imageName), for: .normal)
+            if isFavorite {
+                setImage(Image.iconHeartFilled.image, for: .normal)
+            } else {
+                setImage(Image.iconHeart.image, for: .normal)
+            }
         }
     }
     
@@ -24,10 +27,16 @@ final class FavoriteButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setup UI
+    
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }
