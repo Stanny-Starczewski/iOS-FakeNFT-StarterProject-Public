@@ -5,7 +5,7 @@ final class StatPageViewModel {
 
     var onChange: (() -> Void)?
     var onError: ((_ error: Error, _ retryAction: @escaping () -> Void) -> Void)?
-    
+
     private(set) var users: [User] = [] {
         didSet {
             onChange?()
@@ -22,20 +22,24 @@ final class StatPageViewModel {
 
     init(model: StatPageModel) {
         self.model = model
-       
+        self.sortType = loadSortType()
     }
 
     func saveSortType() {
-        guard let sortType = sortType else {
+        if let sortType = sortType {
+            UserDefaults.standard.set(sortType.rawValue, forKey: Config.usersSortTypeKey)
+        } else {
             UserDefaults.standard.removeObject(forKey: Config.usersSortTypeKey)
-            return
         }
-        UserDefaults.standard.set(sortType.rawValue, forKey: Config.usersSortTypeKey)
     }
 
     func loadSortType() -> StatSortType {
-        StatSortType(rawValue: UserDefaults.standard.string(forKey: Config.usersSortTypeKey) ?? "BYRATING")!
-        
+        if let rawValue = UserDefaults.standard.string(forKey: Config.usersSortTypeKey),
+           let sortType = StatSortType(rawValue: rawValue) {
+            return sortType
+        } else {
+            return .byRating
+        }
     }
 
     func getUsers(showLoader: @escaping (_ active: Bool) -> Void) {
@@ -65,23 +69,22 @@ final class StatPageViewModel {
             return users.sorted { $0.name < $1.name }
         case .byRating:
             return users.sorted { Int($0.rating) ?? 0 > Int($1.rating) ?? 0 }
-    
         }
     }
 
     func setSortedByName() {
-        UserDefaults.standard.set(StatSortType.byName.rawValue, forKey: "usersSortType")
+        UserDefaults.standard.set(StatSortType.byName.rawValue, forKey: Config.usersSortTypeKey)
         sortType = .byName
     }
 
     func setSortedByRating() {
-        UserDefaults.standard.set(StatSortType.byRating.rawValue, forKey: "usersSortType")
+        UserDefaults.standard.set(StatSortType.byRating.rawValue, forKey: Config.usersSortTypeKey)
         sortType = .byRating
     }
 
     private func sortUsers() {
-        let sortType = loadSortType()
-        users = getSorted(users: users, by: sortType )
-        
+        if let sortType = sortType {
+            users = getSorted(users: users, by: sortType)
+        }
     }
 }

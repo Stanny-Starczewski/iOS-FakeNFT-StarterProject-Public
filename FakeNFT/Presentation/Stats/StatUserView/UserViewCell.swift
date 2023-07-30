@@ -83,6 +83,7 @@ final class UserViewCell: UITableViewCell {
 }
 
 // MARK: - Appearance
+
 private extension UserViewCell {
     func setupAppearance() {
         backgroundColor = .clear

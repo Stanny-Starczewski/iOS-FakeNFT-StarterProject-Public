@@ -112,7 +112,7 @@ final class CollectionViewModel {
             group.notify(queue: .main) { [weak self] in
                 self?.loadingInProgress = false
                 self?.loadingState = .loaded
-                completion() 
+                completion()
             }
         }
     
