@@ -7,6 +7,11 @@
 Secrets.swift
 Secrets.xcconfig
 
+# SwiftGen
+Image.swift
+Localization.swift
+Fonts.swift
+
 ### macOS ###
 # General
 .DS_Store
