@@ -112,7 +112,9 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         setupView()
         bindViewModel()
         setupValuesForUIElements()
-        viewModel.loadNFTForCollection()
+        viewModel.loadNFTForCollection {
+            
+        }
         viewModel.getAuthorURL()
     }
     
@@ -148,7 +150,9 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
                 UIBlockingProgressHUD.dismiss()
             case .failed:
                 let alert = self.alertBuilder.makeErrorAlertWithRepeatAction(with: self.viewModel.mainLoadErrorDescription) {
-                    self.viewModel.loadNFTForCollection()
+                    self.viewModel.loadNFTForCollection {
+                        
+                    }
                     self.viewModel.getAuthorURL()
                 }
                 self.present(alert, animated: true)
@@ -173,7 +177,9 @@ final class CollectionViewController: UIViewController, UIGestureRecognizerDeleg
         viewModel.$mainLoadErrorDescription.observe { [weak self] _ in
             guard let self = self else { return }
             let alert = self.alertBuilder.makeErrorAlertWithRepeatAction(with: viewModel.mainLoadErrorDescription) {
-                self.viewModel.loadNFTForCollection()
+                self.viewModel.loadNFTForCollection {
+                    
+                }
                 self.viewModel.getAuthorURL()
             }
             self.present(alert, animated: true)
