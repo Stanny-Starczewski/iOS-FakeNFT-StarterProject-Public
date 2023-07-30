@@ -21,14 +21,14 @@ protocol NetworkClient {
 struct DefaultNetworkClient: NetworkClient {
     private let session: URLSession
     private let decoder: JSONDecoder
-//    private let encoder: JSONEncoder
+    private let encoder: JSONEncoder
 
     init(session: URLSession = URLSession.shared,
          decoder: JSONDecoder = JSONDecoder(),
          encoder: JSONEncoder = JSONEncoder()) {
         self.session = session
         self.decoder = decoder
-//        self.encoder = encoder
+        self.encoder = encoder
     }
 
     @discardableResult
@@ -92,12 +92,17 @@ struct DefaultNetworkClient: NetworkClient {
 
     guard let url = components.url else { return nil }
 
-    var urlRequest = URLRequest(url: url)
-    urlRequest.httpMethod = request.httpMethod.rawValue
-    urlRequest.httpBody = request.body
+        var urlRequest = URLRequest(url: endpoint)
+        urlRequest.httpMethod = request.httpMethod.rawValue
+        urlRequest.httpBody = request.body
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
 
-    urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        if let dto = request.dto,
+           let dtoEncoded = try? encoder.encode(dto) {
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = dtoEncoded
+        }
 
         return urlRequest
     }
