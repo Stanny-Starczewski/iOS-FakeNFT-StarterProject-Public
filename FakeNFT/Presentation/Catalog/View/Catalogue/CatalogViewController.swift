@@ -24,7 +24,7 @@ final class CatalogViewController: UIViewController, CatalogueViewModelDelegate 
         action: #selector(CatalogueViewModel.sortCollections)
     )
     
-    private var catalogueViewModel = CatalogueViewModel(provider: CatalogueDataProvider())
+    private var catalogueViewModel: CatalogueViewModel
     private var setupManager = SetupManager.shared
     private var alertBuilder: AlertBuilderProtocol?
     
@@ -138,7 +138,7 @@ extension CatalogViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let collection = catalogueViewModel.collections[indexPath.row]
         
-        let collectionVM = CollectionViewModel(collectionModel: collection)
+        let collectionVM = CollectionViewModel(collectionModel: collection, networkService: NetworkService())
         let collectionVC = CollectionViewController(viewModel: collectionVM)
         
         collectionVC.modalPresentationStyle = .fullScreen

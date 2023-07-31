@@ -82,7 +82,7 @@ final class CollectionNFTCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - Functions
 
-    func configure(with model: NFTViewModel, delegate: CollectionNFTCellDelegate) {
+    func configure(with model: ItemViewModel, delegate: CollectionNFTCellDelegate) {
         self.delegate = delegate
         
         nftImageView.kf.setImage(with: model.imageURL)

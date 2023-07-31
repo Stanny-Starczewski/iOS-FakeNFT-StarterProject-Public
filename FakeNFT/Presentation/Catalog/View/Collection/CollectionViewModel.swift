@@ -15,10 +15,10 @@ final class CollectionViewModel {
         nftItems.count
     }
     
-    let collectionModel: NFTCollection
+    let collectionModel: Collection
     
-    @Observable private(set) var nftItems: [NFTViewModel] = []
-    @Observable private(set) var authorModel: AuthorModel = AuthorModel(id: "", name: "", website: "")
+    @Observable private(set) var nftItems: [ItemViewModel] = []
+    @Observable private(set) var authorModel: Author = Author(id: "", name: "", website: "")
     @Observable private(set) var loadingInProgress: Bool = false
     @Observable private(set) var mainLoadErrorDescription: String = ""
     @Observable private(set) var addToCartErrorDescription: String = ""
@@ -28,12 +28,12 @@ final class CollectionViewModel {
     private var orderItems: [String] = []
     private var likedItems: [String] = []
     
-    private let collectionDataProvider: CollectionDataProviderProtocol
+    private let networkService: NetworkServiceProtocol
     
     // MARK: - Initialization
     
-    init(collectionModel: NFTCollection, collectionDataProvider: CollectionDataProviderProtocol = CollectionDataProvider()) {
-        self.collectionDataProvider = collectionDataProvider
+    init(collectionModel: Collection, networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
         self.collectionModel = collectionModel
     }
     
@@ -42,11 +42,9 @@ final class CollectionViewModel {
     func loadNFTForCollection(completion: @escaping () -> Void) {
             loadingInProgress = true
             loadingState = .loading
-            
             let group = DispatchGroup()
-            
             group.enter()
-            collectionDataProvider.getOrder { [weak self] result in
+            networkService.getOrder { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let orderModel):
@@ -63,7 +61,7 @@ final class CollectionViewModel {
             }
             
             group.enter()
-            collectionDataProvider.getFavorites { [weak self] result in
+            networkService.getFavorites { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let favoritesModel):
@@ -88,7 +86,7 @@ final class CollectionViewModel {
             let group = DispatchGroup()
             collectionModel.nfts.forEach { id in
                 group.enter()
-                collectionDataProvider.getNFT(by: id, completion: { [weak self] result in
+                networkService.getNft(by: id) { [weak self] result in
                     guard let self = self else { return }
                     DispatchQueue.main.async {
                         switch result {
@@ -107,7 +105,7 @@ final class CollectionViewModel {
                             }
                         }
                     }
-                })
+                }
             }
             group.notify(queue: .main) { [weak self] in
                 self?.loadingInProgress = false
@@ -116,25 +114,25 @@ final class CollectionViewModel {
             }
         }
     
-    private func convertToViewModel(from nftModel: NFTModel) -> NFTViewModel? {
-        guard let image = nftModel.images.first,
+    private func convertToViewModel(from item: Item) -> ItemViewModel? {
+        guard let image = item.images.first,
               let imageURL = URL(string: image) else { return nil }
         
-        let isNFTordered = orderItems.contains(nftModel.id)
-        let isNFTLiked = likedItems.contains(nftModel.id)
+        let isNFTordered = orderItems.contains(item.id)
+        let isNFTLiked = likedItems.contains(item.id)
                 
-        return NFTViewModel(id: nftModel.id,
-                            name: nftModel.name,
+        return ItemViewModel(id: item.id,
+                            name: item.name,
                             imageURL: imageURL,
-                            rating: nftModel.rating,
-                            price: nftModel.price,
+                            rating: item.rating,
+                            price: item.price,
                             isOrdered: isNFTordered,
                             isLiked: isNFTLiked)
     }
     
-    private func replaceNFT(nft: NFTViewModel, isLiked: Bool, isOrdered: Bool) {
+    private func replaceNFT(nft: ItemViewModel, isLiked: Bool, isOrdered: Bool) {
         guard let itemIndex = nftItems.firstIndex(where: { $0.id == nft.id }) else { return }
-        nftItems[itemIndex] = NFTViewModel(id: nft.id,
+        nftItems[itemIndex] = ItemViewModel(id: nft.id,
                                            name: nft.name,
                                            imageURL: nft.imageURL,
                                            rating: nft.rating,
@@ -145,7 +143,7 @@ final class CollectionViewModel {
     }
     
     func getAuthorURL() {
-        collectionDataProvider.getAuthor(by: collectionModel.author) { [weak self] result in
+        networkService.getAuthor(by: collectionModel.author) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
@@ -172,22 +170,18 @@ final class CollectionViewModel {
         }
         
         loadingInProgress = true
-        collectionDataProvider.updateOrder(with: orderItems) { [weak self] result in
+        let order = Order(nfts: orderItems)
+        networkService.updateCart(nftsInCart: order) { [weak self] error in
             guard let self else { return }
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    self.replaceNFT(nft: nftItem, isLiked: nftItem.isLiked, isOrdered: !nftItem.isOrdered)
-                    self.loadingInProgress = false
-                    self.loadingState = .loaded
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.orderItems = orderItemsBeforeAdding
-                    self.loadingState = .failed
-                    self.loadingInProgress = false
-                    self.addToCartErrorDescription = error.localizedDescription
-                }
+            if let error {
+                self.orderItems = orderItemsBeforeAdding
+                self.loadingState = .failed
+                self.loadingInProgress = false
+                self.addToCartErrorDescription = error.localizedDescription
+            } else {
+                self.replaceNFT(nft: nftItem, isLiked: nftItem.isLiked, isOrdered: !nftItem.isOrdered)
+                self.loadingInProgress = false
+                self.loadingState = .loaded
             }
         }
     }
@@ -204,20 +198,16 @@ final class CollectionViewModel {
         }
         
         loadingInProgress = true
-        collectionDataProvider.updateFavorites(with: likedItems) { [weak self] result in
+        let favorites = Favorites(likes: likedItems)
+        networkService.updateFavorites(favorites: favorites) { [weak self] error in
             guard let self else { return }
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    self.replaceNFT(nft: nftItem, isLiked: !nftItem.isLiked, isOrdered: nftItem.isOrdered)
-                    self.loadingInProgress = false
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.likedItems = favoritesBeforeAdding
-                    self.loadingInProgress = false
-                    self.addToFavoritesErrorDescription = error.localizedDescription
-                }
+            if let error {
+                self.likedItems = favoritesBeforeAdding
+                self.loadingInProgress = false
+                self.addToFavoritesErrorDescription = error.localizedDescription
+            } else {
+                self.replaceNFT(nft: nftItem, isLiked: !nftItem.isLiked, isOrdered: nftItem.isOrdered)
+                self.loadingInProgress = false
             }
         }
     }

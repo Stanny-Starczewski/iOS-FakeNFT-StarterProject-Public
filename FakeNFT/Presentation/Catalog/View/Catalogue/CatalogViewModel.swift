@@ -10,9 +10,9 @@ final class CatalogueViewModel {
     
     // MARK: - Properties
 
-    @Observable private(set) var collections: [NFTCollection] = []
+    @Observable private(set) var collections: [Collection] = []
     @Observable private(set) var errorDescription: String = ""
-    private let provider: CatalogueProviderProtocol
+    private let networkService: NetworkServiceProtocol
     private let setupManager = SetupManager.shared
     weak var delegate: CatalogueViewModelDelegate?
     private var catalogueViewModel: CatalogueViewModel?
@@ -27,8 +27,8 @@ final class CatalogueViewModel {
     
     // MARK: - Initialization
     
-    init(provider: CatalogueProviderProtocol) {
-        self.provider = provider
+    init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
     }
     
     // MARK: - Functions
@@ -78,20 +78,17 @@ final class CatalogueViewModel {
     }
     
     func getCollections() {
-        provider.getCollections { [weak self] result in
+        networkService.getCollections { [weak self] result in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let collections):
-                    self.collections = collections
-                    
-                    if let sortType = self.setupManager.sortCollectionsType {
-                        self.setSortType(sortType: SortType.getTypeByString(stringType: sortType))
-                    }
-                case .failure(let error):
-                    self.collections.removeAll()
-                    self.errorDescription = error.localizedDescription
+            switch result {
+            case .success(let collections):
+                self.collections = collections
+                if let sortType = self.setupManager.sortCollectionsType {
+                    self.setSortType(sortType: SortType.getTypeByString(stringType: sortType))
                 }
+            case .failure(let error):
+                self.collections.removeAll()
+                self.errorDescription = error.localizedDescription
             }
         }
     }

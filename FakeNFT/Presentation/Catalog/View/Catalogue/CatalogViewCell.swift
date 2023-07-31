@@ -70,7 +70,7 @@ final class CollectionListCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Configuring from DATA
     
-    func config(collectionItem: NFTCollection) {
+    func config(collectionItem: Collection) {
         let imageURL = URL(string: collectionItem.cover.encodeUrl)
         categoryImageView.kf.indicatorType = .activity
         categoryImageView.kf.setImage(with: imageURL)

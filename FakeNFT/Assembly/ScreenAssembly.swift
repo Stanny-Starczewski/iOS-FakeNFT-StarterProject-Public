@@ -14,7 +14,7 @@ protocol ScreenAssemblyProtocol {
     func makeFavoritesScreen(delegate: FavoritesDelegate) -> UIViewController
     func makeCatalogScreen() -> UIViewController
     func makeCartScreen() -> UIViewController
-    func makeRemoveItemScreen(with item: NftItem, delegate: RemoveItemDelegate) -> UIViewController
+    func makeRemoveItemScreen(with item: Item, delegate: RemoveItemDelegate) -> UIViewController
     func makePaymentMethodsScreen() -> UIViewController
     func makePaymentResultScreen(isSuccess: Bool, delegate: PaymentResultDelegate) -> UIViewController
     func makeStatsScreen() -> UIViewController
@@ -88,7 +88,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     func makeCatalogScreen() -> UIViewController {
         let vc = CatalogViewController(
             viewModel: CatalogueViewModel(
-                provider: CatalogueDataProvider()
+                networkService: serviceAssembly.makeNetworkService()
             )
         )
         return vc
@@ -106,7 +106,7 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
         return vc
     }
     
-    func makeRemoveItemScreen(with item: NftItem, delegate: RemoveItemDelegate) -> UIViewController {
+    func makeRemoveItemScreen(with item: Item, delegate: RemoveItemDelegate) -> UIViewController {
         let presenter = RemoveItemPresenter(item: item, delegate: delegate)
         let vc = RemoveItemViewController(presenter: presenter)
         presenter.view = vc
