@@ -3,6 +3,9 @@
 # Ссылки
 [Доска с задачами](https://github.com/users/NutsCraker/projects/1/views/1)
 
+# Скринкаст
+https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/assets/11814492/7d058511-f490-4c2e-9cec-a131e18f9aed
+
 # Декомпозиция экрана каталога
 
 # Эпик 1. Верстка Экрана каталога (таблица UITableView) с NFT
