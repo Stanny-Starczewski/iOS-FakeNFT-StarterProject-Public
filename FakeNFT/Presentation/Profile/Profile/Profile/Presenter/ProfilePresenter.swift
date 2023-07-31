@@ -32,19 +32,6 @@ final class ProfilePresenter {
         self.networkService = networkService
         self.alertBuilder = alertBuilder
     }
-    
-    private func updateProfile(profile: Profile) {
-        view?.updateProfileScreen(profile: profile)
-        view?.showProgressHUB()
-        networkService.updateProfile(profile: profile) { [weak self] error in
-            guard let self else { return }
-            if let error {
-                view?.dismissProgressHUB()
-                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
-                self.view?.showModalTypeViewController(alert)
-            }
-        }
-    }
 }
 
 // MARK: - ProfilePresenterProtocol
@@ -114,7 +101,16 @@ extension ProfilePresenter: FavoritesDelegate {
             likes: likes,
             id: profile.id
         )
+        view?.updateProfileScreen(profile: newProfile)
         
-        updateProfile(newProfile)
+        view?.showProgressHUB()
+        networkService.updateProfile(profile: newProfile) { [weak self] error in
+            guard let self else { return }
+            if let error {
+                view?.dismissProgressHUB()
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
+                self.view?.showModalTypeViewController(alert)
+            }
+        }
     }
 }
