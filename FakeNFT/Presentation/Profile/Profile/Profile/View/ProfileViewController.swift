@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import SafariServices
 
 protocol ProfileViewProtocol: AnyObject {
     func updateProfileScreen(profile: Profile)
@@ -116,10 +117,12 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func websiteDidTap() {
-        self.present(
-            WebsiteViewController(webView: nil, websiteURL: websiteLabel.text),
-            animated: true
-        )
+        guard
+            let urlString = websiteLabel.text,
+            let url = URL(string: urlString)
+        else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        showModalTypeViewController(safariViewController)
     }
     
     // MARK: - Layout methods
