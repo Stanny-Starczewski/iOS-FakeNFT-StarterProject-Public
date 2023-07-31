@@ -14,14 +14,14 @@ protocol RemoveItemPresenterProtocol {
 }
 
 protocol RemoveItemDelegate: AnyObject {
-    func didDeleteItem(_ item: NftItem)
+    func didDeleteItem(_ item: Item)
 }
 
 final class RemoveItemPresenter {
     
     // MARK: - Properties
     
-    private let item: NftItem
+    private let item: Item
     
     weak var view: RemoveItemViewProtocol?
     
@@ -29,7 +29,7 @@ final class RemoveItemPresenter {
     
     // MARK: - Life Cycle
     
-    init(item: NftItem, delegate: RemoveItemDelegate) {
+    init(item: Item, delegate: RemoveItemDelegate) {
         self.item = item
         self.delegate = delegate
     }

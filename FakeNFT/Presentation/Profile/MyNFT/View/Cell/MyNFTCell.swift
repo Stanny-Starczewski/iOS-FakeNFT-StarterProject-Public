@@ -132,7 +132,7 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Methods
     
-    func configure(with item: NFTNetworkModel) {
+    func configure(with item: Item) {
         nameLabel.text = item.name
         priceValueLabel.text = String(format: "%.2f ETH", item.price)
         authorLabel.text = "\(Constants.authorLabelText) \(item.author)"

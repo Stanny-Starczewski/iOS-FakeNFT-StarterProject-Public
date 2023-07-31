@@ -111,7 +111,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Configure
     
-    func configure(with item: NftItem) {
+    func configure(with item: Item) {
         itemNameLabel.text = item.name
         priceLabel.text = String(format: "%.2f ETH", item.price)
         ratingStackView.setupRating(rating: item.rating)

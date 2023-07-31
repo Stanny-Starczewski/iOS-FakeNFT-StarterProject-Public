@@ -114,7 +114,7 @@ final class FavoritesCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - Methods
     
-    func configure(with item: NFTNetworkModel) {
+    func configure(with item: Item) {
         nameLabel.text = item.name
         priceValueLabel.text = String(format: "%.2f ETH", item.price)
         ratingStackView.setupRating(rating: item.rating)

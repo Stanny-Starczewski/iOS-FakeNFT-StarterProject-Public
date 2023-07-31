@@ -10,7 +10,7 @@ import Foundation
 protocol FavoritesPresenterProtocol: AnyObject {
     func viewIsReady()
     func numberOfRowsInSection(_ section: Int) -> Int
-    func cellForItem(at indexPath: IndexPath) -> NFTNetworkModel
+    func cellForItem(at indexPath: IndexPath) -> Item
     func didTapDeleteItem(at indexPath: IndexPath)
 }
 
@@ -31,7 +31,7 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     
     // MARK: - Data Store
     
-    private lazy var nftItems: [NFTNetworkModel] = []
+    private lazy var nftItems: [Item] = []
     
     // MARK: - Init
     
@@ -53,7 +53,7 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
         nftItems.count
     }
     
-    func cellForItem(at indexPath: IndexPath) -> NFTNetworkModel {
+    func cellForItem(at indexPath: IndexPath) -> Item {
         
         nftItems[indexPath.item]
         

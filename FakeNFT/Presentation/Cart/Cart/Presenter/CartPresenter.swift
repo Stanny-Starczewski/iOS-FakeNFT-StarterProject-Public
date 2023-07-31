@@ -34,7 +34,7 @@ final class CartPresenter {
     
     // MARK: - Data Store
     
-    private lazy var nftItems: [NftItem] = []
+    private lazy var nftItems: [Item] = []
     
     // MARK: - Life Cycle
     
@@ -53,7 +53,7 @@ final class CartPresenter {
     // MARK: - Methods
     
     private func updateCart() {
-        let nftInCart = NftsInCart(nfts: nftItems.map { $0.id })
+        let nftInCart = Order(nfts: nftItems.map { $0.id })
         networkService.updateCart(nftsInCart: nftInCart) { [weak self] error in
             guard let self else { return }
             if let error {
@@ -168,7 +168,7 @@ extension CartPresenter: CartPresenterProtocol {
 // MARK: - RemoveItemDelegate
 
 extension CartPresenter: RemoveItemDelegate {
-    func didDeleteItem(_ item: NftItem) {
+    func didDeleteItem(_ item: Item) {
         guard let deletedItemIndex = nftItems.firstIndex(of: item) else { return }
         nftItems.remove(at: deletedItemIndex)
         updateCart()

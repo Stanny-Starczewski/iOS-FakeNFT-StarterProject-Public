@@ -27,7 +27,7 @@ final class MyNFTPresenter {
     
     // MARK: - Data Store
     
-    private lazy var nftItems: [NFTNetworkModel] = []
+    private lazy var nftItems: [Item] = []
     
     // MARK: - Init
     
@@ -49,7 +49,7 @@ final class MyNFTPresenter {
 extension MyNFTPresenter: MyNFTPresenterProtocol {
     func viewIsReady() {
         view?.showProgressHUB()
-        networkService.getMyNFT { [weak self] result in
+        networkService.getMyNft { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let nftItems):
