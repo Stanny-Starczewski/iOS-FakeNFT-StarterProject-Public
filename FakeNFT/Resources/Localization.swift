@@ -8,8 +8,6 @@ import Foundation
 
 // swiftlint:disable function_parameter_count identifier_name line_length type_body_length
 public enum Localization {
-  /// by
-  public static let authorLabelText = Localization.tr("Localizable", "authorLabelText", fallback: "by")
   /// User Agreement
   public static let cartAgreementLinkLabelText = Localization.tr("Localizable", "cartAgreementLinkLabelText", fallback: "User Agreement")
   /// Cancel
@@ -30,6 +28,8 @@ public enum Localization {
   public static let cartFailureLabelText = Localization.tr("Localizable", "cartFailureLabelText", fallback: "Oops! Something went wrong :( Try again!")
   /// Pay
   public static let cartPaymentButtonText = Localization.tr("Localizable", "cartPaymentButtonText", fallback: "Pay")
+  /// Price
+  public static let cartPriceLabelText = Localization.tr("Localizable", "cartPriceLabelText", fallback: "Price")
   /// Back to catalog
   public static let cartSuccessButtonText = Localization.tr("Localizable", "cartSuccessButtonText", fallback: "Back to catalog")
   /// Success! Payment passed, congratulations on your purchase!
@@ -38,10 +38,6 @@ public enum Localization {
   public static let cartTitleLabelText = Localization.tr("Localizable", "cartTitleLabelText", fallback: "Choose a payment method")
   /// To pay
   public static let cartToPayButtonText = Localization.tr("Localizable", "cartToPayButtonText", fallback: "To pay")
-  /// Developer
-  public static let developerLabelText = Localization.tr("Localizable", "developerLabelText", fallback: "Developer")
-  /// You don't have NFT yet
-  public static let emptyLabelText = Localization.tr("Localizable", "emptyLabelText", fallback: "You don't have NFT yet")
   /// Close
   public static let errorAlertCancelAction = Localization.tr("Localizable", "errorAlertCancelAction", fallback: "Close")
   /// OK
@@ -52,16 +48,36 @@ public enum Localization {
   public static let errorAlertRepeatTitle = Localization.tr("Localizable", "errorAlertRepeatTitle", fallback: "Error!")
   /// Oops! We have a error.
   public static let errorAlertTitle = Localization.tr("Localizable", "errorAlertTitle", fallback: "Oops! We have a error.")
-  /// Favorites NFT
-  public static let favoritesNftLabelText = Localization.tr("Localizable", "favoritesNftLabelText", fallback: "Favorites NFT")
-  /// My NFT
-  public static let myNftLabelText = Localization.tr("Localizable", "myNftLabelText", fallback: "My NFT")
-  /// My NFT
-  public static let navigationBarTitleText = Localization.tr("Localizable", "navigationBarTitleText", fallback: "My NFT")
   /// No internet
   public static let noInternetLabelText = Localization.tr("Localizable", "noInternetLabelText", fallback: "No internet")
+  /// by
+  public static let profileAuthorLabelText = Localization.tr("Localizable", "profileAuthorLabelText", fallback: "by")
+  /// Change photo
+  public static let profileChangeAvatarLabelText = Localization.tr("Localizable", "profileChangeAvatarLabelText", fallback: "Change photo")
+  /// Description
+  public static let profileDescriptionLabelText = Localization.tr("Localizable", "profileDescriptionLabelText", fallback: "Description")
+  /// Developer
+  public static let profileDeveloperLabelText = Localization.tr("Localizable", "profileDeveloperLabelText", fallback: "Developer")
+  /// You don't have any favorite NFTs yet
+  public static let profileEmptyFavoritesLabelText = Localization.tr("Localizable", "profileEmptyFavoritesLabelText", fallback: "You don't have any favorite NFTs yet")
+  /// You don't have NFT yet
+  public static let profileEmptyMyNFTLabelText = Localization.tr("Localizable", "profileEmptyMyNFTLabelText", fallback: "You don't have NFT yet")
+  /// Favorites NFT
+  public static let profileFavoritesNftLabelText = Localization.tr("Localizable", "profileFavoritesNftLabelText", fallback: "Favorites NFT")
+  /// Favorites NFT
+  public static let profileFavoritesTitleText = Localization.tr("Localizable", "profileFavoritesTitleText", fallback: "Favorites NFT")
+  /// Upload image
+  public static let profileLoadAvatarLabelText = Localization.tr("Localizable", "profileLoadAvatarLabelText", fallback: "Upload image")
+  /// My NFT
+  public static let profileMyNftLabelText = Localization.tr("Localizable", "profileMyNftLabelText", fallback: "My NFT")
+  /// My NFT
+  public static let profileMyNFTTitleText = Localization.tr("Localizable", "profileMyNFTTitleText", fallback: "My NFT")
+  /// Name
+  public static let profileNameLabelText = Localization.tr("Localizable", "profileNameLabelText", fallback: "Name")
   /// Price
-  public static let priceLabelText = Localization.tr("Localizable", "priceLabelText", fallback: "Price")
+  public static let profilePriceLabelText = Localization.tr("Localizable", "profilePriceLabelText", fallback: "Price")
+  /// Website
+  public static let profileWebsiteLabelText = Localization.tr("Localizable", "profileWebsiteLabelText", fallback: "Website")
   /// By name
   public static let sortingAlertByFirstNameText = Localization.tr("Localizable", "sortingAlertByFirstNameText", fallback: "By name")
   /// By title

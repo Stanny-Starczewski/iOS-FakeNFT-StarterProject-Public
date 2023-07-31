@@ -12,8 +12,8 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     // MARK: - Constants
     
     private enum Constants {
-        static let priceLabelText = Localization.priceLabelText
-        static let authorLabelText = Localization.authorLabelText
+        static let priceLabelText = Localization.profilePriceLabelText
+        static let authorLabelText = Localization.profileAuthorLabelText
     }
     
     // MARK: - Properties
@@ -85,8 +85,6 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
         return label
     }()
     
-    private lazy var favoriteButton = FavoriteButton()
-    
     // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -108,7 +106,6 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
         contentView.addSubview(nftImageView)
         contentView.addSubview(contentStackView)
         contentView.addSubview(priceStackView)
-        nftImageView.addSubview(favoriteButton)
         contentStackView.addArrangedSubview(nameLabel)
         contentStackView.addArrangedSubview(ratingStackView)
         contentStackView.addArrangedSubview(authorLabel)
@@ -122,11 +119,6 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
             nftImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             nftImageView.heightAnchor.constraint(equalToConstant: 108),
             nftImageView.widthAnchor.constraint(equalToConstant: 108),
-            
-            favoriteButton.topAnchor.constraint(equalTo: nftImageView.topAnchor),
-            favoriteButton.trailingAnchor.constraint(equalTo: nftImageView.trailingAnchor),
-            favoriteButton.heightAnchor.constraint(equalToConstant: 42),
-            favoriteButton.widthAnchor.constraint(equalToConstant: 42),
             
             contentStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 144),

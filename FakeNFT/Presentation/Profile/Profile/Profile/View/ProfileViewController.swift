@@ -15,9 +15,9 @@ final class ProfileViewController: UIViewController {
     // MARK: - Constants
     
     private enum Constants {
-        static let myNftLabelText = Localization.myNftLabelText
-        static let favoritesNftLabelText = Localization.favoritesNftLabelText
-        static let developerLabelText = Localization.developerLabelText
+        static let myNftLabelText = Localization.profileMyNftLabelText
+        static let favoritesNftLabelText = Localization.profileFavoritesNftLabelText
+        static let developerLabelText = Localization.profileDeveloperLabelText
     }
     
     // MARK: - Properties

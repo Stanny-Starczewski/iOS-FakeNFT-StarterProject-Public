@@ -21,8 +21,8 @@ final class MyNFTViewController: UIViewController {
     // MARK: - Constants
     
     private enum Constants {
-        static let emptyLabelText = Localization.emptyLabelText
-        static let navigationBarTitleText = Localization.navigationBarTitleText
+        static let emptyLabelText = Localization.profileEmptyMyNFTLabelText
+        static let navigationBarTitleText = Localization.profileMyNFTTitleText
     }
     
     // MARK: - UI
@@ -60,6 +60,7 @@ final class MyNFTViewController: UIViewController {
         emptyLabel.text = Constants.emptyLabelText
         emptyLabel.font = .bold17
         emptyLabel.textColor = Image.appBlack.color
+        emptyLabel.isHidden = true
         return emptyLabel
     }()
     

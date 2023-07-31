@@ -17,12 +17,14 @@ protocol EditProfileViewControllerProtocol: AnyObject {
 
 final class EditProfileViewController: UIViewController {
     
+    // MARK: - Constants
+    
     private enum Constants {
-        static let changeAvatarLabelText = "Сменить фото"
-        static let loadAvatarLabelText = "Загрузить изображение"
-        static let nameLabelText = "Имя"
-        static let descriptionLabelText = "Описание"
-        static let websiteLabelText = "Сайт"
+        static let changeAvatarLabelText = Localization.profileChangeAvatarLabelText
+        static let loadAvatarLabelText = Localization.profileLoadAvatarLabelText
+        static let nameLabelText = Localization.profileNameLabelText
+        static let descriptionLabelText = Localization.profileDescriptionLabelText
+        static let websiteLabelText = Localization.profileWebsiteLabelText
     }
     
     // MARK: - Properties
@@ -34,7 +36,7 @@ final class EditProfileViewController: UIViewController {
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton()
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.setImage(Image.iconClose.image, for: .normal)
+        closeButton.setImage(Image.iconClose.image.withTintColor(Image.appBlack.color), for: .normal)
         closeButton.addTarget(self, action: #selector(closeDidTap), for: .touchUpInside)
         return closeButton
     }()

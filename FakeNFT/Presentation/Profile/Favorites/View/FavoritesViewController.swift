@@ -8,7 +8,6 @@
 import UIKit
 
 protocol FavoritesViewControllerProtocol {
-    
     func updateUI()
     func showViewController(_ vc: UIViewController)
     func showEmptyCart()
@@ -20,6 +19,13 @@ protocol FavoritesViewControllerProtocol {
 
 final class FavoritesViewController: UIViewController, FavoritesViewControllerProtocol {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let emptyFavoritesLabelText = Localization.profileEmptyFavoritesLabelText
+        static let favoritesTitleText = Localization.profileFavoritesTitleText
+    }
+    
     // MARK: - Properties
     
     private var presenter: FavoritesPresenterProtocol
@@ -27,7 +33,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     // MARK: - Layout elements
     
     private lazy var backButton = UIBarButtonItem(
-        image: UIImage(named: "Backward"),
+        image: Image.iconBack.image,
         style: .plain,
         target: self,
         action: #selector(didTapBackButton)
@@ -36,7 +42,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     private lazy var emptyLabel: UILabel = {
         let emptyLabel = UILabel()
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
-        emptyLabel.text = "У Вас ещё нет избранных NFT"
+        emptyLabel.text = Constants.emptyFavoritesLabelText
         emptyLabel.font = .bold17
         emptyLabel.textColor = Image.appBlack.color
         return emptyLabel
@@ -49,6 +55,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
         )
         favoriteNFTCollection.translatesAutoresizingMaskIntoConstraints = false
         favoriteNFTCollection.register(FavoritesCell.self)
+        favoriteNFTCollection.backgroundColor = Image.appWhite.color
         favoriteNFTCollection.dataSource = self
         favoriteNFTCollection.delegate = self
         return favoriteNFTCollection
@@ -69,7 +76,6 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavBar()
         setupView()
         setConstraints()
@@ -127,7 +133,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     }
     
     private func setupNavBar() {
-        navigationItem.title = "Избранные NFT"
+        navigationItem.title = Constants.favoritesTitleText
         navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationItem.leftBarButtonItem = backButton
     }
@@ -138,7 +144,6 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     }
     
     private func setConstraints() {
-        
         NSLayoutConstraint.activate([
             emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)

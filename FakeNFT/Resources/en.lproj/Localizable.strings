@@ -38,15 +38,21 @@
 "cartFailureLabelText"="Oops! Something went wrong :( Try again!";
 "cartFailureButtonText"="Try again";
 "cartErrorAlertMessageText" = "Your payment did not go through";
-// My NFT
-"emptyLabelText"="You don't have NFT yet";
-"navigationBarTitleText"="My NFT";
-// My NFT Cell
-"priceLabelText"="Price";
-"authorLabelText"="by";
+"cartPriceLabelText"="Price";
 // No Internet
 "noInternetLabelText"="No internet";
 // Profile
-"myNftLabelText"="My NFT";
-"favoritesNftLabelText"="Favorites NFT";
-"developerLabelText"="Developer";
+"profileMyNftLabelText"="My NFT";
+"profileFavoritesNftLabelText"="Favorites NFT";
+"profileDeveloperLabelText"="Developer";
+"profileChangeAvatarLabelText"="Change photo";
+"profileLoadAvatarLabelText"="Upload image";
+"profileNameLabelText"="Name";
+"profileDescriptionLabelText"="Description";
+"profileWebsiteLabelText"="Website";
+"profileEmptyMyNFTLabelText"="You don't have NFT yet";
+"profileEmptyFavoritesLabelText" = "You don't have any favorite NFTs yet";
+"profileMyNFTTitleText"="My NFT";
+"profileFavoritesTitleText"="Favorites NFT";
+"profilePriceLabelText"="Price";
+"profileAuthorLabelText"="by";

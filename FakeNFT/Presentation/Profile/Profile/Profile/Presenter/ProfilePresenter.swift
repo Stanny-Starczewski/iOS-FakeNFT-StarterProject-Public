@@ -106,8 +106,8 @@ extension ProfilePresenter: FavoritesDelegate {
         view?.showProgressHUB()
         networkService.updateProfile(profile: newProfile) { [weak self] error in
             guard let self else { return }
+            view?.dismissProgressHUB()
             if let error {
-                view?.dismissProgressHUB()
                 let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
                 self.view?.showModalTypeViewController(alert)
             }
