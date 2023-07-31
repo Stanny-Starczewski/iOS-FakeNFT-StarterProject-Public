@@ -52,6 +52,8 @@ public enum Localization {
   public static let errorAlertTitle = Localization.tr("Localizable", "errorAlertTitle", fallback: "Oops! We have a error.")
   /// No internet
   public static let noInternetLabelText = Localization.tr("Localizable", "noInternetLabelText", fallback: "No internet")
+  /// Developer
+  public static let profileAboutTitleText = Localization.tr("Localizable", "profileAboutTitleText", fallback: "Developer")
   /// by
   public static let profileAuthorLabelText = Localization.tr("Localizable", "profileAuthorLabelText", fallback: "by")
   /// Change photo
@@ -60,6 +62,8 @@ public enum Localization {
   public static let profileDescriptionLabelText = Localization.tr("Localizable", "profileDescriptionLabelText", fallback: "Description")
   /// Developer
   public static let profileDeveloperLabelText = Localization.tr("Localizable", "profileDeveloperLabelText", fallback: "Developer")
+  /// THIS IS THIRD KOGORTA
+  public static let profileEmptyAboutLabelText = Localization.tr("Localizable", "profileEmptyAboutLabelText", fallback: "THIS IS THIRD KOGORTA")
   /// You don't have any favorite NFTs yet
   public static let profileEmptyFavoritesLabelText = Localization.tr("Localizable", "profileEmptyFavoritesLabelText", fallback: "You don't have any favorite NFTs yet")
   /// You don't have NFT yet

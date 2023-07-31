@@ -56,6 +56,8 @@
 "profileFavoritesTitleText"="Favorites NFT";
 "profilePriceLabelText"="Price";
 "profileAuthorLabelText"="by";
+"profileAboutTitleText"="Developer";
+"profileEmptyAboutLabelText"="THIS IS THIRD KOGORTA";
 // Catalog
 "catalogAuthorLabelText" = "Collection author:";
 

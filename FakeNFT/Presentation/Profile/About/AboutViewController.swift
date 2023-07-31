@@ -9,10 +9,17 @@ import UIKit
 
 final class AboutViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let aboutTitleText = Localization.profileAboutTitleText
+        static let emptyLabelText = Localization.profileEmptyAboutLabelText
+    }
+    
     // MARK: - Layout elements
     
     private lazy var backButton = UIBarButtonItem(
-        image: UIImage(named: "Backward"),
+        image: Image.iconBack.image,
         style: .plain,
         target: self,
         action: #selector(didTapBackButton)
@@ -21,7 +28,7 @@ final class AboutViewController: UIViewController {
     private lazy var emptyLabel: UILabel = {
         let emptyLabel = UILabel()
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
-        emptyLabel.text = "Здесь будет информация о разработчике"
+        emptyLabel.text = Constants.emptyLabelText
         emptyLabel.font = .bold17
         emptyLabel.textColor = Image.appBlack.color
         return emptyLabel
@@ -31,7 +38,6 @@ final class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavBar()
         setupView()
         setConstraints()
@@ -49,16 +55,15 @@ final class AboutViewController: UIViewController {
     private func setupNavBar() {
         navigationController?.navigationBar.tintColor = Image.appBlack.color
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = "О разработчике"
+        navigationItem.title = Constants.aboutTitleText
     }
     
     private func setupView() {
-        view.backgroundColor = Image.appBlack.color
+        view.backgroundColor = Image.appWhite.color
         view.addSubview(emptyLabel)
     }
     
     private func setConstraints() {
-        
         NSLayoutConstraint.activate([
             emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
