@@ -8,10 +8,12 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
+    func getProfile(_ completion: @escaping (Result<Profile, Error>) -> Void)
     func getMyNFT(_ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void)
     func getFavorites(_ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void)
     func getCart(_ completion: @escaping (Result<[NftItem], Error>) -> Void)
     func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Error?) -> Void)
+    func updateProfile(profile: Profile, _ completion: @escaping (Error?) -> Void)
     func getCurrencies(_ completion: @escaping (Result<[Currency], Error>) -> Void)
     func paymentWithIdCurrency(id: String, _ completion: @escaping (Result<PaymentStatus, Error>) -> Void)
 }
@@ -159,6 +161,22 @@ final class NetworkService {
 // MARK: - CartNetworkServiceProtocol
 
 extension NetworkService: NetworkServiceProtocol {
+    func getProfile(_ completion: @escaping (Result<Profile, Error>) -> Void) {
+        let request = GetProfileRequest()
+        client.send(request: request, type: Profile.self) { result in
+            switch result {
+            case .success(let profile):
+                DispatchQueue.main.async {
+                    completion(.success(profile))
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
     func getCart(_ completion: @escaping (Result<[NftItem], Error>) -> Void) {
         fetchNftsIdInCart { [weak self] result in
             switch result {
@@ -185,6 +203,22 @@ extension NetworkService: NetworkServiceProtocol {
     
     func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Error?) -> Void) {
         let request = ChangeOrdersRequest(dto: nftsInCart)
+        client.send(request: request) { result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }
+    }
+    
+    func updateProfile(profile: Profile, _ completion: @escaping (Error?) -> Void) {
+        let request = ChangeProfileRequest(dto: profile)
         client.send(request: request) { result in
             switch result {
             case .success:
