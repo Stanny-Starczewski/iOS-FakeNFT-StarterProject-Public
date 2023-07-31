@@ -56,3 +56,6 @@
 "profileFavoritesTitleText"="Favorites NFT";
 "profilePriceLabelText"="Price";
 "profileAuthorLabelText"="by";
+// Catalog
+"catalogAuthorLabelText" = "Collection author:";
+

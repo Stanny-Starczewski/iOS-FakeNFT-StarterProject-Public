@@ -1,13 +1,13 @@
 import Foundation
 
 enum Names {
-    static let sorting = "Сортировка"
-    static let sortByName = "По названию"
-    static let sortByNFTCount = "По количеству NFT"
-    static let close = "Закрыть"
-    static let nftCollectionAuthor = "Автор коллекции:"
-    static let errorMessageTitle = "Упс! У нас ошибка."
-    static let errorMessageTitleRepeat = "Произошла ошибка!"
-    static let errorAlertOk = "OK"
-    static let errorAlertRepeat = "Повторить"
+    static let sorting = Localization.sortingAlertTitle
+    static let sortByName = Localization.sortingAlertByNameText
+    static let sortByNFTCount = Localization.sortingAlertByNumberOfNFTsText
+    static let close = Localization.sortingAlertCloseText
+    static let nftCollectionAuthor = Localization.catalogAuthorLabelText
+    static let errorMessageTitle = Localization.errorAlertTitle
+    static let errorMessageTitleRepeat = Localization.errorAlertRepeatTitle
+    static let errorAlertOk = Localization.errorAlertOkAction
+    static let errorAlertRepeat = Localization.errorAlertRepeatAction
 }

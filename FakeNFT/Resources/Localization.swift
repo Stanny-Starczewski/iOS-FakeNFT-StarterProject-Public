@@ -38,6 +38,8 @@ public enum Localization {
   public static let cartTitleLabelText = Localization.tr("Localizable", "cartTitleLabelText", fallback: "Choose a payment method")
   /// To pay
   public static let cartToPayButtonText = Localization.tr("Localizable", "cartToPayButtonText", fallback: "To pay")
+  /// Collection author:
+  public static let catalogAuthorLabelText = Localization.tr("Localizable", "catalogAuthorLabelText", fallback: "Collection author:")
   /// Close
   public static let errorAlertCancelAction = Localization.tr("Localizable", "errorAlertCancelAction", fallback: "Close")
   /// OK

@@ -56,3 +56,5 @@
 "profileFavoritesTitleText"="Избранные NFT";
 "profilePriceLabelText"="Цена";
 "profileAuthorLabelText"="от";
+// Catalog
+"catalogAuthorLabelText" = "Автор коллекции:";
