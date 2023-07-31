@@ -6,6 +6,9 @@
 
 Доска: https://github.com/users/NutsCraker/projects/1
 
+# Скринкаст
+https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/assets/11814492/1f6caa3b-8924-4a34-927d-5f9b02754ff1
+
 **Декомпозиция эпика «Статистика»**
 
 1. Верстка таблицы со статистикой - 4 часа
