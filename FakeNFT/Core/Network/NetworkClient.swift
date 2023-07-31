@@ -40,7 +40,7 @@ struct DefaultNetworkClient: NetworkClient {
                 onResponse(.failure(NetworkClientError.urlSessionError))
                 return
             }
-
+            
             if response.statusCode == 429 {
                 let retryAfter = response.allHeaderFields["Retry-After"] as? TimeInterval ?? 2.0
                 DispatchQueue.main.asyncAfter(deadline: .now() + retryAfter) {
@@ -56,10 +56,13 @@ struct DefaultNetworkClient: NetworkClient {
 
             if let data = data {
                 onResponse(.success(data))
+                return
             } else if let error = error {
                 onResponse(.failure(NetworkClientError.urlRequestError(error)))
+                return
             } else {
-                onResponse(.failure(NetworkClientError.urlSessionError))
+                assertionFailure("Unexpected condition!")
+                return
             }
         }
 
@@ -83,25 +86,20 @@ struct DefaultNetworkClient: NetworkClient {
     // MARK: - Private
 
     private func create(request: NetworkRequest) -> URLRequest? {
-        guard let endpoint = request.endpoint else { return nil }
-        guard var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true) else { return nil }
-        
-        components.queryItems = request.queryParameters?.map { key, value in
-            URLQueryItem(name: key, value: value)
+        guard let endpoint = request.endpoint else {
+            assertionFailure("Empty endpoint")
+            return nil
         }
-        
+
         var urlRequest = URLRequest(url: endpoint)
         urlRequest.httpMethod = request.httpMethod.rawValue
-        urlRequest.httpBody = request.body
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        
+
         if let dto = request.dto,
            let dtoEncoded = try? encoder.encode(dto) {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = dtoEncoded
         }
-        
+
         return urlRequest
     }
 
