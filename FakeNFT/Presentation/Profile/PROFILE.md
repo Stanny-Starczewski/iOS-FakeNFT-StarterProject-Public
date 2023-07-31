@@ -7,6 +7,9 @@
 # Ссылки
 [Доска с задачами] (https://github.com/users/NutsCraker/projects/1/views/4)
 
+# Скринкаст
+https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/assets/11814492/e822958e-e82d-47cf-95e4-cb9c42954685
+
 # Декомпозиция экрана профиля (Andrei Kashin)
 
 # Эпик 1. Экран профиля
