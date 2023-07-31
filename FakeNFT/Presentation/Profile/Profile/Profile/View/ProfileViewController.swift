@@ -104,7 +104,7 @@ final class ProfileViewController: UIViewController {
         setupNavBar()
         setupView()
         setConstraints()
-        presenter?.viewDidLoad()
+        presenter?.viewIsReady()
     }
     
     // MARK: - Actions

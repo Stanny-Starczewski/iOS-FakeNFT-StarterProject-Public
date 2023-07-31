@@ -1,7 +1,7 @@
 import Foundation
 
 protocol ProfilePresenterProtocol: AnyObject {
-    func viewDidLoad()
+    func viewIsReady()
     func didTapEditButton()
     func didTapMyNFTScreen()
     func didTapFavoritesScreen()
@@ -13,35 +13,56 @@ final class ProfilePresenter {
     
     weak var view: ProfileViewProtocol?
     private var profile: Profile?
-    private let screenAssembly: ScreenAssembly
+    private let screenAssembly: ScreenAssemblyProtocol
+    private let networkService: NetworkServiceProtocol
+    private let alertBuilder: AlertBuilderProtocol
     
-    // MARK: - Init
+    // MARK: - Life Cycle
     
-    init(view: ProfileViewProtocol? = nil, profile: Profile? = nil, screenAssembly: ScreenAssembly) {
+    init(
+        view: ProfileViewProtocol? = nil,
+        profile: Profile? = nil,
+        screenAssembly: ScreenAssemblyProtocol,
+        networkService: NetworkServiceProtocol,
+        alertBuilder: AlertBuilderProtocol
+    ) {
         self.view = view
         self.profile = profile
         self.screenAssembly = screenAssembly
+        self.networkService = networkService
+        self.alertBuilder = alertBuilder
     }
     
-    // MARK: - Methods
-    
-    func getProfileData() {
-        
+    private func updateProfile(profile: Profile) {
+        view?.updateProfileScreen(profile: profile)
         view?.showProgressHUB()
-        
-        let networkClient = DefaultNetworkClient()
-        
-        networkClient.send(request: GetProfileRequest(), type: Profile.self) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let profile):
-                    self?.profile = profile
-                    self?.view?.updateProfileScreen(profile: profile)
-                case .failure(let error):
-                    print(error)
-                    self?.view?.showNoInternetView()
-                }
-                self?.view?.dismissProgressHUB()
+        networkService.updateProfile(profile: profile) { [weak self] error in
+            guard let self else { return }
+            if let error {
+                view?.dismissProgressHUB()
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
+                self.view?.showModalTypeViewController(alert)
+            }
+        }
+    }
+}
+
+// MARK: - ProfilePresenterProtocol
+
+extension ProfilePresenter: ProfilePresenterProtocol {
+    func viewIsReady() {
+        view?.showProgressHUB()
+        networkService.getProfile { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let profile):
+                view?.dismissProgressHUB()
+                self.profile = profile
+                self.view?.updateProfileScreen(profile: profile)
+            case .failure(let error):
+                view?.dismissProgressHUB()
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
+                self.view?.showModalTypeViewController(alert)
             }
         }
     }
@@ -60,15 +81,6 @@ final class ProfilePresenter {
     func didTapFavoritesScreen() {
         let favoritesViewController = screenAssembly.makeFavoritesScreen(delegate: self)
         view?.showNavigationTypeViewController(favoritesViewController)
-    }
-}
-
-// MARK: - ProfilePresenterProtocol
-
-extension ProfilePresenter: ProfilePresenterProtocol {
-    
-    func viewDidLoad() {
-        getProfileData()
     }
 }
 
@@ -102,22 +114,7 @@ extension ProfilePresenter: FavoritesDelegate {
             likes: likes,
             id: profile.id
         )
-        view?.updateProfileScreen(profile: newProfile)
-        let networkClient = DefaultNetworkClient()
-        let request = PutProfileRequest(dto: newProfile)
-        view?.showProgressHUB()
-        networkClient.send(request: request, type: Profile.self) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let profile):
-                    print(profile)
-                    self?.getProfileData()
-                    self?.view?.dismissProgressHUB()
-                case .failure(let error):
-                    print(error)
-                    self?.view?.dismissProgressHUB()
-                }
-            }
-        }
+        
+        updateProfile(newProfile)
     }
 }
