@@ -10,10 +10,26 @@ import Foundation
 public enum Localization {
   /// by
   public static let authorLabelText = Localization.tr("Localizable", "authorLabelText", fallback: "by")
+  /// User Agreement
+  public static let cartAgreementLinkLabelText = Localization.tr("Localizable", "cartAgreementLinkLabelText", fallback: "User Agreement")
+  /// Cancel
+  public static let cartBackButtonText = Localization.tr("Localizable", "cartBackButtonText", fallback: "Cancel")
+  /// Are you sure you want to remove the object from the cart?
+  public static let cartConfirmationText = Localization.tr("Localizable", "cartConfirmationText", fallback: "Are you sure you want to remove the object from the cart?")
+  /// Delete
+  public static let cartDeleteButtonText = Localization.tr("Localizable", "cartDeleteButtonText", fallback: "Delete")
+  /// By making a purchase, you agree to the terms
+  public static let cartDescriptionLabelText = Localization.tr("Localizable", "cartDescriptionLabelText", fallback: "By making a purchase, you agree to the terms")
+  /// Cart is empty
+  public static let cartEmptyCartLabelText = Localization.tr("Localizable", "cartEmptyCartLabelText", fallback: "Cart is empty")
+  /// Pay
+  public static let cartPaymentButtonText = Localization.tr("Localizable", "cartPaymentButtonText", fallback: "Pay")
+  /// Choose a payment method
+  public static let cartTitleLabelText = Localization.tr("Localizable", "cartTitleLabelText", fallback: "Choose a payment method")
+  /// To pay
+  public static let cartToPayButtonText = Localization.tr("Localizable", "cartToPayButtonText", fallback: "To pay")
   /// Developer
   public static let developerLabelText = Localization.tr("Localizable", "developerLabelText", fallback: "Developer")
-  /// Cart is empty
-  public static let emptyCartLabelText = Localization.tr("Localizable", "emptyCartLabelText", fallback: "Cart is empty")
   /// You don't have NFT yet
   public static let emptyLabelText = Localization.tr("Localizable", "emptyLabelText", fallback: "You don't have NFT yet")
   /// Close
@@ -34,8 +50,6 @@ public enum Localization {
   public static let navigationBarTitleText = Localization.tr("Localizable", "navigationBarTitleText", fallback: "My NFT")
   /// No internet
   public static let noInternetLabelText = Localization.tr("Localizable", "noInternetLabelText", fallback: "No internet")
-  /// To pay
-  public static let paymentButtonText = Localization.tr("Localizable", "paymentButtonText", fallback: "To pay")
   /// Price
   public static let priceLabelText = Localization.tr("Localizable", "priceLabelText", fallback: "Price")
   /// By name

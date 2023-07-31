@@ -16,9 +16,9 @@ final class RemoveItemViewController: UIViewController {
     // MARK: - Constants
     
     private struct Constants {
-        static let confirmationText = "Вы уверены, что хотите удалить объект из корзины?"
-        static let deleteButtonText = "Удалить"
-        static let backButtonText = "Вернуться"
+        static let confirmationText = Localization.cartConfirmationText
+        static let deleteButtonText = Localization.cartDeleteButtonText
+        static let backButtonText = Localization.cartBackButtonText
     }
     
     // MARK: - UI
@@ -148,8 +148,8 @@ extension RemoveItemViewController {
             itemImageView.heightAnchor.constraint(equalToConstant: 108),
             
             confirmationLabel.topAnchor.constraint(equalTo: itemImageView.bottomAnchor, constant: 12),
-            confirmationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 98),
-            confirmationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -98),
+            confirmationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+            confirmationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
             
             buttonsStackView.topAnchor.constraint(equalTo: confirmationLabel.bottomAnchor, constant: 20),
             buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 56),

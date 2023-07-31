@@ -20,8 +20,8 @@ final class CartViewController: UIViewController {
     // MARK: - Constants
     
     private struct Constants {
-        static let paymentButtonText = Localization.paymentButtonText
-        static let emptyCartLabelText = Localization.emptyCartLabelText
+        static let paymentButtonText = Localization.cartToPayButtonText
+        static let emptyCartLabelText = Localization.cartEmptyCartLabelText
     }
     
     // MARK: - UI

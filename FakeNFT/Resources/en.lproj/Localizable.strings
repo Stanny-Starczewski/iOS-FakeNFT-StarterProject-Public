@@ -24,8 +24,15 @@
 "tabCartTitle"="Cart";
 "tabStatsTitle"="Stats";
 // Cart
-"paymentButtonText"="To pay";
-"emptyCartLabelText"="Cart is empty";
+"cartToPayButtonText"="To pay";
+"cartEmptyCartLabelText"="Cart is empty";
+"cartConfirmationText"="Are you sure you want to remove the object from the cart?";
+"cartDeleteButtonText"="Delete";
+"cartBackButtonText"="Cancel";
+"cartTitleLabelText"="Choose a payment method";
+"cartPaymentButtonText"="Pay";
+"cartDescriptionLabelText"="By making a purchase, you agree to the terms";
+"cartAgreementLinkLabelText"="User Agreement";
 // My NFT
 "emptyLabelText"="You don't have NFT yet";
 "navigationBarTitleText"="My NFT";

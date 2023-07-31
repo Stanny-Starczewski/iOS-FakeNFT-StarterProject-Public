@@ -24,8 +24,15 @@
 "tabCartTitle"="Корзина";
 "tabStatsTitle"="Статистика";
 // Cart
-"paymentButtonText"="К оплате";
-"emptyCartLabelText"="Корзина пуста";
+"cartToPayButtonText"="К оплате";
+"cartEmptyCartLabelText"="Корзина пуста";
+"cartConfirmationText"="Вы уверены, что хотите удалить объект из корзины?";
+"cartDeleteButtonText"="Удалить";
+"cartBackButtonText"="Вернуться";
+"cartTitleLabelText"="Выберите способ оплаты";
+"cartPaymentButtonText"="Оплатить";
+"cartDescriptionLabelText"="Совершая покупку, вы соглашаетесь с условиями";
+"cartAgreementLinkLabelText"="Пользовательского соглашения";
 // My NFT
 "emptyLabelText"="У Вас ещё нет NFT";
 "navigationBarTitleText"="Мои NFT";

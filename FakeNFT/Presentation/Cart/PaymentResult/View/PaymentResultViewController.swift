@@ -18,12 +18,10 @@ final class PaymentResultViewController: UIViewController {
     // MARK: - Constants
     
     private struct Constants {
-        static let successImage = UIImage(named: "cart-result-image-success")
-        static let successLabelText = "Успех! Оплата прошла, поздравляем с покупкой!"
-        static let successButtonText = "Вернуться в каталог"
-        static let failureImage = UIImage(named: "cart-result-image-failure")
-        static let failureLabelText = "Упс! Что-то пошло не так :( Попробуйте ещё раз!"
-        static let failureButtonText = "Попробовать еще раз"
+        static let successLabelText = Localization.cartSuccessLabelText
+        static let successButtonText = Localization.cartSuccessButtonText
+        static let failureLabelText = Localization.cartFailureLabelText
+        static let failureButtonText = Localization.cartFailureButtonText
     }
     
     // MARK: - UI
@@ -31,7 +29,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var successResultImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = false
-        imageView.image = Constants.successImage
+        imageView.image = Image.cartResultImageSuccess.image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -64,7 +62,7 @@ final class PaymentResultViewController: UIViewController {
     private lazy var failureResultImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = false
-        imageView.image = Constants.failureImage
+        imageView.image = Image.cartResultImageFailure.image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

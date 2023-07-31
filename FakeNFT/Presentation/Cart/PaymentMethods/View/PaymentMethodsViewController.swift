@@ -19,12 +19,10 @@ final class PaymentMethodsViewController: UIViewController {
     // MARK: - Constants
     
     private struct Constants {
-        static let bottomViewCornerRadius: CGFloat = 12
-        static let backButtonImage = UIImage(named: "icon-back")
-        static let titleLabelText = "Выберите способ оплаты"
-        static let paymentButtonText = "Оплатить"
-        static let descriptionLabelText = "Совершая покупку, вы соглашаетесь с условиями"
-        static let agreementLinkLabelText = "Пользовательского соглашения"
+        static let titleLabelText = Localization.cartTitleLabelText
+        static let paymentButtonText = Localization.cartPaymentButtonText
+        static let descriptionLabelText = Localization.cartDescriptionLabelText
+        static let agreementLinkLabelText = Localization.cartAgreementLinkLabelText
     }
     
     // MARK: - Properties
@@ -35,7 +33,7 @@ final class PaymentMethodsViewController: UIViewController {
     
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(Constants.backButtonImage, for: .normal)
+        button.setImage(Image.iconBack.image, for: .normal)
         button.tintColor = Image.appBlack.color
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +56,7 @@ final class PaymentMethodsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.bounces = false
         collectionView.allowsMultipleSelection = false
-        collectionView.backgroundColor = Image.appBlack.color
+        collectionView.backgroundColor = Image.appWhite.color
         collectionView.register(PaymentMethodsCell.self)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -67,7 +65,7 @@ final class PaymentMethodsViewController: UIViewController {
     private lazy var bottomView: UIView = {
         let view = UIView()
         view.backgroundColor = Image.appLightGrey.color
-        view.layer.cornerRadius = Constants.bottomViewCornerRadius
+        view.layer.cornerRadius = 12
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
