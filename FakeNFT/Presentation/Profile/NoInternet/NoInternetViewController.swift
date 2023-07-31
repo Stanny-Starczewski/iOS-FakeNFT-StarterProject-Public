@@ -9,27 +9,32 @@ import UIKit
 
 final class NoInternetViewController: UIViewController {
     
-    // MARK: - Layout elements
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let noInternetLabelText = Localization.noInternetLabelText
+    }
+    
+    // MARK: - UI
     
     private lazy var noInternetLabel: UILabel = {
         let noInternetLabel = UILabel()
         noInternetLabel.translatesAutoresizingMaskIntoConstraints = false
-        noInternetLabel.text = "Нет интернета"
+        noInternetLabel.text = Constants.noInternetLabelText
         noInternetLabel.font = .bold17
         noInternetLabel.textColor = Image.appBlack.color
         return noInternetLabel
     }()
     
-    // MARK: - Lifecycle
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         setConstraints()
     }
     
-    // MARK: - Layout methods
+    // MARK: - Setup UI
     
     private func setupView() {
         view.backgroundColor = Image.appWhite.color
@@ -37,7 +42,6 @@ final class NoInternetViewController: UIViewController {
     }
     
     private func setConstraints() {
-        
         NSLayoutConstraint.activate([
             noInternetLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             noInternetLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
