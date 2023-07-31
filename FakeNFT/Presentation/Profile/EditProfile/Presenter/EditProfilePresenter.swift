@@ -8,7 +8,6 @@
 import Foundation
 
 protocol EditProfilePresenterProtocol: AnyObject {
-    init(view: EditProfileViewControllerProtocol, profile: Profile, delegate: EditProfileDelegate)
     func setData()
     func updateProfile(name: String, description: String, website: String)
 }
@@ -21,16 +20,24 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
     
     // MARK: - Properties
     
-    var profile: Profile
     weak var view: EditProfileViewControllerProtocol?
+    private var profile: Profile
     private weak var delegate: EditProfileDelegate?
+    private var networkService: NetworkServiceProtocol
+    private var alertBuilder: AlertBuilderProtocol
     
     // MARK: - Init
     
-    init(view: EditProfileViewControllerProtocol, profile: Profile, delegate: EditProfileDelegate) {
-        self.view = view
+    init(
+        profile: Profile,
+        networkService: NetworkServiceProtocol,
+        alertBuilder: AlertBuilderProtocol,
+        delegate: EditProfileDelegate
+    ) {
         self.profile = profile
         self.delegate = delegate
+        self.networkService = networkService
+        self.alertBuilder = alertBuilder
     }
     
     // MARK: - Methods
@@ -40,7 +47,7 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
     }
     
     public func updateProfile(name: String, description: String, website: String) {
-        let profile = Profile(
+        let newProfile = Profile(
             name: name,
             avatar: profile.avatar,
             description: description,
@@ -49,20 +56,15 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
             likes: profile.likes,
             id: profile.id
         )
-        delegate?.updateProfile(profile)
-        let networkClient = DefaultNetworkClient()
-        let request = PutProfileRequest(dto: profile)
-        view?.showProgressHUB()
-        networkClient.send(request: request, type: Profile.self) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let profile):
-                    print(profile)
-                    self?.view?.dismissProgressHUB()
-                case .failure(let error):
-                    print(error)
-                    self?.view?.dismissProgressHUB()
-                }
+        
+        delegate?.updateProfile(newProfile)
+        
+        networkService.updateProfile(profile: newProfile) { [weak self] error in
+            guard let self else { return }
+            if let error {
+                view?.dismissProgressHUB()
+                let alert = self.alertBuilder.makeErrorAlert(with: error.localizedDescription)
+                self.view?.showViewController(alert)
             }
         }
     }

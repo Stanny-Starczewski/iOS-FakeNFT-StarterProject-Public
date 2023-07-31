@@ -10,6 +10,7 @@ import Kingfisher
 
 protocol EditProfileViewControllerProtocol: AnyObject {
     func setData(profile: Profile)
+    func showViewController(_ vc: UIViewController)
     func showProgressHUB()
     func dismissProgressHUB()
 }
@@ -18,7 +19,7 @@ final class EditProfileViewController: UIViewController {
     
     // MARK: - Properties
     
-    var presenter: EditProfilePresenterProtocol?
+    private var presenter: EditProfilePresenterProtocol?
     
     // MARK: - Layout elements
     
@@ -143,9 +144,17 @@ final class EditProfileViewController: UIViewController {
     
     // MARK: - Life Cycle
     
+    init(presenter: EditProfilePresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         setConstraints()
         presenter?.setData()
@@ -176,6 +185,10 @@ final class EditProfileViewController: UIViewController {
     
     func dismissProgressHUB() {
         UIBlockingProgressHUD.dismiss()
+    }
+    
+    func showViewController(_ vc: UIViewController) {
+        present(vc, animated: true)
     }
     
     private func setupView() {

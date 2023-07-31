@@ -50,10 +50,15 @@ extension ScreenAssembly: ScreenAssemblyProtocol {
     }
     
     func makeEditProfileScreen(profile: Profile, delegate: EditProfileDelegate) -> UIViewController {
-        let view = EditProfileViewController()
-        let presenter = EditProfilePresenter(view: view, profile: profile, delegate: delegate)
-        view.presenter = presenter
-        return view
+        let presenter = EditProfilePresenter(
+            profile: profile,
+            networkService: serviceAssembly.makeNetworkService(),
+            alertBuilder: alertBuilder,
+            delegate: delegate
+        )
+        let vc = EditProfileViewController(presenter: presenter)
+        presenter.view = vc
+        return vc
     }
     
     func makeMyNFTScreen() -> UIViewController {
