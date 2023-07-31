@@ -1,7 +1,7 @@
 import UIKit
 import Kingfisher
 
-protocol ProfileViewControllerProtocol: AnyObject {
+protocol ProfileViewProtocol: AnyObject {
     func updateProfileScreen(profile: Profile)
     func showNoInternetView()
     func showModalTypeViewController(_ vc: UIViewController)
@@ -10,70 +10,65 @@ protocol ProfileViewControllerProtocol: AnyObject {
     func dismissProgressHUB()
 }
 
-final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+final class ProfileViewController: UIViewController {
+    
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let myNftLabelText = Localization.myNftLabelText
+        static let favoritesNftLabelText = Localization.favoritesNftLabelText
+        static let developerLabelText = Localization.developerLabelText
+    }
     
     // MARK: - Properties
     
     private var presenter: ProfilePresenterProtocol?
     
-    private lazy var assetLabel: [String] = [
-        "Мои NFT",
-        "Избранные NFT",
-        "О разработчике"
-    ]
-    
-    // MARK: - Layout elements
+    // MARK: - UI
     
     private lazy var editButton = UIBarButtonItem(
-        image: UIImage(named: "Edit"),
+        image: Image.iconEdit.image,
         style: .plain,
         target: self,
         action: #selector(didTapEditButton)
     )
     
     private lazy var avatarImage: UIImageView = {
-        let profilePhoto = UIImage(named: "ProfilePhoto")
-        let avatarImage = UIImageView(image: profilePhoto)
-        avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        avatarImage.layer.cornerRadius = 35
-        avatarImage.layer.masksToBounds = true
-        return avatarImage
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 35
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
     
     private lazy var nameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "" // "Joaquin Phoenix"
-        nameLabel.font = .bold22
-        nameLabel.textColor = Image.appBlack.color
-        return nameLabel
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bold22
+        label.textColor = Image.appBlack.color
+        return label
     }()
     
     private lazy var descriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 18
-        descriptionLabel.attributedText = NSAttributedString(string: "",
-                                                             attributes: [.kern: 0.08, NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = .regular13
-        descriptionLabel.textColor = Image.appBlack.color
-        descriptionLabel.textAlignment = .left
-        return descriptionLabel
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = .regular13
+        label.textColor = Image.appBlack.color
+        label.textAlignment = .left
+        return label
     }()
     
     private lazy var websiteLabel: UILabel = {
-        let websiteLabel = UILabel()
-        websiteLabel.translatesAutoresizingMaskIntoConstraints = false
-        websiteLabel.accessibilityIdentifier = "websiteLabel"
-        let tapAction = UITapGestureRecognizer(target: self, action: #selector(websiteDidTap(_:)))
-        websiteLabel.isUserInteractionEnabled = true
-        websiteLabel.addGestureRecognizer(tapAction)
-        websiteLabel.attributedText = NSAttributedString(string: "", attributes: [.kern: 0.24])
-        websiteLabel.font = UIFont.systemFont(ofSize: 15)
-        websiteLabel.textColor = .blue
-        return websiteLabel
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "websiteLabel"
+        label.font = .regular15
+        label.textColor = Image.customBlue.color
+        let tap = UITapGestureRecognizer(target: self, action: #selector(websiteDidTap))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tap)
+        return label
     }()
     
     private lazy var profileAssetsTable: UITableView = {
@@ -87,28 +82,29 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         return profileAssetsTable
     }()
     
+    private lazy var assetLabel = [
+        Constants.myNftLabelText,
+        Constants.favoritesNftLabelText,
+        Constants.developerLabelText
+    ]
+    
     // MARK: - Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupNavBar()
-        setupView()
-        setConstraints()
-        presenter?.viewDidLoad()
-        
-    }
-    
-    // MARK: - Init
     
     init(presenter: ProfilePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavBar()
+        setupView()
+        setConstraints()
+        presenter?.viewDidLoad()
     }
     
     // MARK: - Actions
@@ -119,48 +115,11 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     }
     
     @objc
-    private func websiteDidTap(_ sender: UITapGestureRecognizer) {
-        self.present(WebsiteViewController(webView: nil, websiteURL: websiteLabel.text), animated: true)
-    }
-    
-    // MARK: - Methods
-    
-    func showModalTypeViewController(_ vc: UIViewController) {
-        present(vc, animated: true)
-    }
-    
-    func showNavigationTypeViewController(_ vc: UIViewController) {
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func showProgressHUB() {
-        UIBlockingProgressHUD.show()
-    }
-    
-    func dismissProgressHUB() {
-        UIBlockingProgressHUD.dismiss()
-    }
-    
-    func updateProfileScreen(profile: Profile) {
-        let imageUrlString = profile.avatar
-        let imageUrl = URL(string: imageUrlString)
-        avatarImage.kf.setImage(
-            with: imageUrl,
-            placeholder: UIImage(named: "ProfilePhoto"),
-            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
-        
-        nameLabel.text = profile.name
-        descriptionLabel.text = profile.description
-        websiteLabel.text = profile.website
-        let nftsCountLabel = profileAssetsTable.cellForRow(at: [0, 0]) as? ProfileAssetsCell
-        nftsCountLabel?.assetValueLabel.text = "(\(String(profile.nfts.count)))"
-        let likesCountLabel = profileAssetsTable.cellForRow(at: [0, 1]) as? ProfileAssetsCell
-        likesCountLabel?.assetValueLabel.text = "(\(String(profile.likes.count)))"
-    }
-    
-    func showNoInternetView() {
-        navigationController?.pushViewController(NoInternetViewController(), animated: true)
-        self.navigationController?.navigationBar.isHidden = true
+    private func websiteDidTap() {
+        self.present(
+            WebsiteViewController(webView: nil, websiteURL: websiteLabel.text),
+            animated: true
+        )
     }
     
     // MARK: - Layout methods
@@ -182,7 +141,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
             avatarImage.heightAnchor.constraint(equalToConstant: 70),
             avatarImage.widthAnchor.constraint(equalToConstant: 70),
             avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -203,8 +161,49 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
             profileAssetsTable.heightAnchor.constraint(equalToConstant: 54 * 3),
             profileAssetsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileAssetsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            
         ])
+    }
+}
+
+// MARK: - ProfileViewProtocol
+
+extension ProfileViewController: ProfileViewProtocol {
+    func updateProfileScreen(profile: Profile) {
+        let imageUrlString = profile.avatar
+        let imageUrl = URL(string: imageUrlString)
+        avatarImage.kf.setImage(
+            with: imageUrl,
+            placeholder: UIImage(named: "ProfilePhoto"),
+            options: [.processor(RoundCornerImageProcessor(cornerRadius: 35))])
+        
+        nameLabel.text = profile.name
+        descriptionLabel.text = profile.description
+        websiteLabel.text = profile.website
+        let nftsCountLabel = profileAssetsTable.cellForRow(at: [0, 0]) as? ProfileAssetsCell
+        nftsCountLabel?.assetValueLabel.text = "(\(String(profile.nfts.count)))"
+        let likesCountLabel = profileAssetsTable.cellForRow(at: [0, 1]) as? ProfileAssetsCell
+        likesCountLabel?.assetValueLabel.text = "(\(String(profile.likes.count)))"
+    }
+    
+    func showModalTypeViewController(_ vc: UIViewController) {
+        present(vc, animated: true)
+    }
+    
+    func showNavigationTypeViewController(_ vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showNoInternetView() {
+        navigationController?.pushViewController(NoInternetViewController(), animated: true)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
+        UIBlockingProgressHUD.dismiss()
     }
 }
 
@@ -216,9 +215,7 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: ProfileAssetsCell.reuseIdentifier)  as? ProfileAssetsCell
-        
         cell?.backgroundColor = Image.appWhite.color
         cell?.assetLabel.text = assetLabel[indexPath.row]
         cell?.assetValueLabel.text = ""

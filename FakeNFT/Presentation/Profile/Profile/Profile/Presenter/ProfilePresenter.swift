@@ -11,13 +11,13 @@ final class ProfilePresenter {
     
     // MARK: - Properties
     
-    weak var view: ProfileViewControllerProtocol?
+    weak var view: ProfileViewProtocol?
     private var profile: Profile?
     private let screenAssembly: ScreenAssembly
     
     // MARK: - Init
     
-    init(view: ProfileViewControllerProtocol? = nil, profile: Profile? = nil, screenAssembly: ScreenAssembly) {
+    init(view: ProfileViewProtocol? = nil, profile: Profile? = nil, screenAssembly: ScreenAssembly) {
         self.view = view
         self.profile = profile
         self.screenAssembly = screenAssembly
