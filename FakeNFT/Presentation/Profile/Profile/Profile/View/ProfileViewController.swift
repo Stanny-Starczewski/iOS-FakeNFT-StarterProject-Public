@@ -79,6 +79,7 @@ final class ProfileViewController: UIViewController {
         profileAssetsTable.dataSource = self
         profileAssetsTable.delegate = self
         profileAssetsTable.separatorStyle = .none
+        profileAssetsTable.bounces = false
         profileAssetsTable.allowsMultipleSelection = false
         return profileAssetsTable
     }()
