@@ -18,6 +18,11 @@
 "errorAlertOkAction"="OK";
 "errorAlertCancelAction"="Закрыть";
 "errorAlertRepeatAction"="Еще раз";
+// TabBar
+"tabProfileTitle"="Профиль";
+"tabCatalogTitle"="Каталог";
+"tabCartTitle"="Корзина";
+"tabStatsTitle"="Статистика";
 // My NFT
 "emptyLabelText"="У Вас ещё нет NFT";
 "navigationBarTitleText"="Мои NFT";
@@ -26,3 +31,7 @@
 "authorLabelText"="от";
 // No Internet
 "noInternetLabelText"="Нет интернета";
+// Profile
+"myNftLabelText"="Мои NFT";
+"favoritesNftLabelText"="Избранные NFT";
+"developerLabelText"="О разработчике";

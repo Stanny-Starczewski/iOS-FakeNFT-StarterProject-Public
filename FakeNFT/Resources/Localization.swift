@@ -10,6 +10,8 @@ import Foundation
 public enum Localization {
   /// by
   public static let authorLabelText = Localization.tr("Localizable", "authorLabelText", fallback: "by")
+  /// Developer
+  public static let developerLabelText = Localization.tr("Localizable", "developerLabelText", fallback: "Developer")
   /// You don't have NFT yet
   public static let emptyLabelText = Localization.tr("Localizable", "emptyLabelText", fallback: "You don't have NFT yet")
   /// Close
@@ -22,6 +24,10 @@ public enum Localization {
   public static let errorAlertRepeatTitle = Localization.tr("Localizable", "errorAlertRepeatTitle", fallback: "Error!")
   /// Oops! We have a error.
   public static let errorAlertTitle = Localization.tr("Localizable", "errorAlertTitle", fallback: "Oops! We have a error.")
+  /// Favorites NFT
+  public static let favoritesNftLabelText = Localization.tr("Localizable", "favoritesNftLabelText", fallback: "Favorites NFT")
+  /// My NFT
+  public static let myNftLabelText = Localization.tr("Localizable", "myNftLabelText", fallback: "My NFT")
   /// My NFT
   public static let navigationBarTitleText = Localization.tr("Localizable", "navigationBarTitleText", fallback: "My NFT")
   /// No internet
@@ -45,6 +51,14 @@ public enum Localization {
   /// 
   ///   Created by Anton Vikhlyaev on 29.07.2023.
   public static let sortingAlertTitle = Localization.tr("Localizable", "sortingAlertTitle", fallback: "Sorting")
+  /// Cart
+  public static let tabCartTitle = Localization.tr("Localizable", "tabCartTitle", fallback: "Cart")
+  /// Catalog
+  public static let tabCatalogTitle = Localization.tr("Localizable", "tabCatalogTitle", fallback: "Catalog")
+  /// Profile
+  public static let tabProfileTitle = Localization.tr("Localizable", "tabProfileTitle", fallback: "Profile")
+  /// Stats
+  public static let tabStatsTitle = Localization.tr("Localizable", "tabStatsTitle", fallback: "Stats")
 }
 // swiftlint:enable function_parameter_count identifier_name line_length type_body_length superfluous_disable_command file_length implicit_return prefer_self_in_static_references
 

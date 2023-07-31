@@ -24,13 +24,13 @@ final class TabBarController: UITabBarController {
         var title: String {
             switch self {
             case .profile:
-                return "Профиль"
+                return Localization.tabProfileTitle
             case .catalog:
-                return "Каталог"
+                return Localization.tabCatalogTitle
             case .cart:
-                return "Корзина"
+                return Localization.tabCartTitle
             case .stats:
-                return "Статистика"
+                return Localization.tabStatsTitle
             }
         }
     }
@@ -62,6 +62,8 @@ final class TabBarController: UITabBarController {
         appearance.shadowColor = Image.appWhite.color
         appearance.stackedLayoutAppearance.selected.iconColor = Image.customBlue.color
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Image.customBlue.color]
+        appearance.stackedLayoutAppearance.normal.iconColor = Image.appBlack.color
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Image.appBlack.color]
         tabBar.standardAppearance = appearance
         tabBar.unselectedItemTintColor = Image.appBlack.color
         tabBar.tintColor = Image.appBlack.color

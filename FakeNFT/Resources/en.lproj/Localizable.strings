@@ -18,6 +18,11 @@
 "errorAlertOkAction"="OK";
 "errorAlertCancelAction"="Close";
 "errorAlertRepeatAction"="Try again";
+// TabBar
+"tabProfileTitle"="Profile";
+"tabCatalogTitle"="Catalog";
+"tabCartTitle"="Cart";
+"tabStatsTitle"="Stats";
 // My NFT
 "emptyLabelText"="You don't have NFT yet";
 "navigationBarTitleText"="My NFT";
@@ -26,3 +31,7 @@
 "authorLabelText"="by";
 // No Internet
 "noInternetLabelText"="No internet";
+// Profile
+"myNftLabelText"="My NFT";
+"favoritesNftLabelText"="Favorites NFT";
+"developerLabelText"="Developer";
