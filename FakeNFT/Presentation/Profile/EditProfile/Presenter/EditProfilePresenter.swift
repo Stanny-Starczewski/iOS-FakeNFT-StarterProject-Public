@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EditProfilePresenterProtocol: AnyObject {
-    func setData()
+    func viewIsReady()
     func updateProfile(name: String, description: String, website: String)
 }
 
@@ -42,8 +42,8 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
     
     // MARK: - Methods
     
-    public func setData() {
-        self.view?.setData(profile: profile)
+    public func viewIsReady() {
+        view?.setData(profile: profile)
     }
     
     public func updateProfile(name: String, description: String, website: String) {
