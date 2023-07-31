@@ -17,7 +17,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     // MARK: - Constants
     
     private enum Constants {
-        static let priceLabelText = Localization.priceLabelText
+        static let priceLabelText = Localization.cartPriceLabelText
     }
     
     // MARK: - Properties
