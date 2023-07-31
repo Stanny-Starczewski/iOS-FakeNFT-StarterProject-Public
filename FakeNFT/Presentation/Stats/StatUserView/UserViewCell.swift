@@ -20,12 +20,11 @@ final class UserViewCell: UITableViewCell {
         countView.text = viewModel.count
 
         if let avatarURL = viewModel.avatarURL {
-            let placeholderImage = UIImage(named: "avatar")
+            let placeholderImage = Image.placeholderAvatar.image
             avatarView.kf.setImage(with: avatarURL, placeholder: placeholderImage)
         } else {
-            avatarView.image = UIImage(named: "avatar")
+            avatarView.image = Image.placeholderAvatar.image
         }
-
     }
 
     override func prepareForReuse() {

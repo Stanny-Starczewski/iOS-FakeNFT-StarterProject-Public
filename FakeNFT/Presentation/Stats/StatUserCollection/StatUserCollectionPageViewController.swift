@@ -1,5 +1,4 @@
 import UIKit
-import ProgressHUD
 
 final class StatUserCollectionPageViewController: UIViewController {
     private var viewModel: StatUserCollectionPageViewModel!
@@ -78,11 +77,9 @@ final class StatUserCollectionPageViewController: UIViewController {
     
     func showLoader(isShow: Bool) {
             if isShow {
-                self.view.isUserInteractionEnabled = false
-                ProgressHUD.show()
+                UIBlockingProgressHUD.show()
             } else {
-                self.view.isUserInteractionEnabled = true
-                ProgressHUD.dismiss()
+                UIBlockingProgressHUD.dismiss()
             }
     }
 }

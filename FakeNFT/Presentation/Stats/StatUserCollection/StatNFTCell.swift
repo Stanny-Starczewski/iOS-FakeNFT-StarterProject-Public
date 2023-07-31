@@ -3,36 +3,20 @@ import Kingfisher
 
 final class StatNFTCell: UICollectionViewCell {
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupAppearance()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        configure(with: nil)
-    }
-    
-    let ratingView = RatingView()
+    // MARK: - UI
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "noLikeIcon"), for: .normal)
-        
+        button.setImage(Image.iconHeart.image, for: .normal)
         button.tintColor = Image.appLightGrey.color
         button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         return button
     }()
     
     private lazy var bucketButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "addToCart"), for: .normal)
+        button.setImage(Image.iconCartAdd.image, for: .normal)
         button.tintColor = Image.appBlack.color
         button.addTarget(self, action: #selector(bucketTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +31,7 @@ final class StatNFTCell: UICollectionViewCell {
         view.backgroundColor = Image.appWhite.color
         return view
     }()
+    
     private var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -64,13 +49,30 @@ final class StatNFTCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Life Cycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupAppearance()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        configure(with: nil)
+    }
+    
+    let ratingView = RatingStackView()
 }
 
 extension StatNFTCell {
     func configure(with nft: Nft?) {
         nameLabel.text = nft?.name
         nameLabel.font = .bold17
-        ratingView.set(length: nft?.rating ?? 0)
+        ratingView.setupRating(rating: nft?.rating ?? 0)
         
         if let price = nft?.price {
             priceLabel.text = String(price) + " ETH"
@@ -88,27 +90,23 @@ extension StatNFTCell {
         ]
         imageBackground.kf.setImage(with: validUrl, options: options)
     }
-    
 }
 
 private extension StatNFTCell {
-    @objc func likeTapped() {
-      
-        likeButton.setImage(UIImage(named: "likeIcon"), for: .normal)
-       
+    @objc
+    func likeTapped() {
+        likeButton.setImage(Image.iconHeartFilled.image, for: .normal)
     }
     
     @objc func bucketTapped() {
    
     }
-    
 }
 
 private extension StatNFTCell {
     func setupAppearance() {
         contentView.addSubview(imageBackground)
         contentView.addSubview(ratingView)
-        ratingView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
         contentView.addSubview(bucketButton)
         contentView.addSubview(priceLabel)
@@ -141,7 +139,6 @@ private extension StatNFTCell {
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             priceLabel.heightAnchor.constraint(equalToConstant: 12)
-            
         ])
     }
 }

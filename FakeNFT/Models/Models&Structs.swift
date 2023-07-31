@@ -13,11 +13,6 @@ struct Nft: Codable {
     let description: String
     let price: Double
     let id: String
-
-    func previewUrl() -> URL? {
-        guard let previewUrl = images.first else { return nil }
-        return URL(string: previewUrl)
-    }
 }
 
 struct User: Codable {
@@ -48,27 +43,6 @@ struct Currency: Codable {
     let id: String
 }
 
-struct Order: Codable {
-    let nfts: [String]
-    let id: String
-}
-
-struct Cryptocurrency {
-    let name: String
-    let shortname: CryptoCoin
-}
-
-enum CryptoCoin: String {
-    case BTC
-    case APE
-    case ADA
-    case DOGE
-    case ETH
-    case SHIB
-    case SOL
-    case USDT
-}
-
 struct Profile: Codable {
     let name: String
     let avatar: String
@@ -77,13 +51,6 @@ struct Profile: Codable {
     let nfts: [String]
     let likes: [String]
     let id: String
-}
-
-struct ProfilePut: Codable {
-    let name: String
-    let avatar: String
-    let description: String
-    let website: String
 }
 
 enum SortAttribute {

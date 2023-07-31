@@ -51,6 +51,7 @@ final class StatPageViewController: UIViewController {
         table.register(UserViewCell.self, forCellReuseIdentifier: "cell")
         table.separatorInset = .init(top: 0, left: 32, bottom: 0, right: 32)
         table.separatorStyle = .none
+        table.bounces = false
         table.delegate = self
         table.dataSource = self
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +61,7 @@ final class StatPageViewController: UIViewController {
     
     private lazy var menuButton: UIBarButtonItem = {
         let menuButton = UIBarButtonItem(
-            image: UIImage(named: "icon-sort"),
+            image: Image.iconSort.image,
             style: .plain,
             target: self,
             action: #selector(openMenu)
