@@ -24,3 +24,5 @@
 // My NFT Cell
 "priceLabelText"="Price";
 "authorLabelText"="by";
+// No Internet
+"noInternetLabelText"="No internet";

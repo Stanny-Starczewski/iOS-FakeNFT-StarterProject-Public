@@ -24,6 +24,8 @@ public enum Localization {
   public static let errorAlertTitle = Localization.tr("Localizable", "errorAlertTitle", fallback: "Oops! We have a error.")
   /// My NFT
   public static let navigationBarTitleText = Localization.tr("Localizable", "navigationBarTitleText", fallback: "My NFT")
+  /// No internet
+  public static let noInternetLabelText = Localization.tr("Localizable", "noInternetLabelText", fallback: "No internet")
   /// Price
   public static let priceLabelText = Localization.tr("Localizable", "priceLabelText", fallback: "Price")
   /// By name

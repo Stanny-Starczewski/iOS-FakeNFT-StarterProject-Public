@@ -18,7 +18,7 @@ final class MyNFTPresenter {
     
     // MARK: - Properties
     
-    weak var view: MyNFTViewControllerProtocol?
+    weak var view: MyNFTViewProtocol?
     
     private let alertBuilder: AlertBuilderProtocol
     private let screenAssembly: ScreenAssemblyProtocol

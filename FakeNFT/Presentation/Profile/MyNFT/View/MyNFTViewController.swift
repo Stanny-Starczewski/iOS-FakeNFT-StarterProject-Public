@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MyNFTViewControllerProtocol: AnyObject {
+protocol MyNFTViewProtocol: AnyObject {
     func updateUI()
     func showViewController(_ vc: UIViewController)
     func showEmptyCart()
@@ -16,7 +16,7 @@ protocol MyNFTViewControllerProtocol: AnyObject {
     func dismissProgressHUB()
 }
 
-final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
+final class MyNFTViewController: UIViewController {
     
     // MARK: - Constants
     
@@ -25,11 +25,7 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         static let navigationBarTitleText = Localization.navigationBarTitleText
     }
     
-    // MARK: - Properties
-    
-    private var presenter: MyNFTPresenterProtocol
-    
-    // MARK: - Layout elements
+    // MARK: - UI
     
     private lazy var backButton = UIBarButtonItem(
         image: Image.iconBack.image,
@@ -67,7 +63,11 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         return emptyLabel
     }()
     
-    // MARK: - Init
+    // MARK: - Properties
+    
+    private var presenter: MyNFTPresenterProtocol
+    
+    // MARK: - Life Cycle
     
     init(presenter: MyNFTPresenterProtocol) {
         self.presenter = presenter
@@ -78,14 +78,27 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life Cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
         setupView()
         setConstraints()
         presenter.viewIsReady()
+    }
+    
+    // MARK: - Setup UI
+    
+    private func setupNavigationController() {
+        navigationController?.navigationBar.tintColor = Image.appBlack.color
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = sortButton
+        navigationItem.title = Constants.navigationBarTitleText
+    }
+    
+    private func setupView() {
+        view.backgroundColor = Image.appWhite.color
+        view.addSubview(tableView)
+        view.addSubview(emptyLabel)
     }
     
     // MARK: - Actions
@@ -100,65 +113,13 @@ final class MyNFTViewController: UIViewController, MyNFTViewControllerProtocol {
         presenter.didTapSortButton()
     }
     
-    // MARK: - Methods
-    
-    func updateUI() {
-        tableView.reloadSections(
-            IndexSet(integer: 0), with: .automatic
-        )
-    }
-    
-    func showProgressHUB() {
-        UIBlockingProgressHUD.show()
-    }
-    
-    func dismissProgressHUB() {
-        UIBlockingProgressHUD.dismiss()
-    }
-    
-    func showViewController(_ vc: UIViewController) {
-        present(vc, animated: true)
-    }
-    
-    func showEmptyCart() {
-        tableView.isHidden = true
-        emptyLabel.isHidden = false
-        navigationItem.rightBarButtonItem = nil
-        navigationItem.title = nil
-    }
-    
-    func showNoInternetView() {
-        let noInternetViewController = NoInternetViewController()
-        navigationController?.pushViewController(noInternetViewController, animated: true)
-        self.navigationController?.navigationBar.isHidden = true
-    }
-    
-    private func setupNavigationController() {
-        navigationController?.navigationBar.tintColor = Image.appBlack.color
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = sortButton
-        navigationItem.title = Constants.navigationBarTitleText
-    }
-    
-    private func setupView() {
-        view.backgroundColor = Image.appWhite.color
-        view.addSubview(tableView)
-    }
-    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
-    
-    private func addEmptyView() {
-        view.backgroundColor = Image.appWhite.color
-        view.addSubview(emptyLabel)
-        
-        NSLayoutConstraint.activate([
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
@@ -189,5 +150,40 @@ extension MyNFTViewController: UITableViewDataSource {
 extension MyNFTViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - MyNFTViewControllerProtocol
+
+extension MyNFTViewController: MyNFTViewProtocol {
+    func updateUI() {
+        tableView.reloadSections(
+            IndexSet(integer: 0), with: .automatic
+        )
+    }
+    
+    func showViewController(_ vc: UIViewController) {
+        present(vc, animated: true)
+    }
+    
+    func showEmptyCart() {
+        tableView.isHidden = true
+        emptyLabel.isHidden = false
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.title = nil
+    }
+    
+    func showNoInternetView() {
+        let noInternetViewController = NoInternetViewController()
+        navigationController?.pushViewController(noInternetViewController, animated: true)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func showProgressHUB() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func dismissProgressHUB() {
+        UIBlockingProgressHUD.dismiss()
     }
 }

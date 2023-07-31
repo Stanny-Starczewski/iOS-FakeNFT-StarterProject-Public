@@ -268,12 +268,119 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		0A0CE6412A7762E7002D4ADA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7ECB2A752D830039E077 /* MyNFTCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A0CE6422A7762F3002D4ADA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A0CE6412A7762E7002D4ADA /* Cell */,
+				0A1F7ECA2A752D830039E077 /* MyNFTViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A0CE6432A77637B002D4ADA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7EBF2A752D830039E077 /* MyNFTPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0A0CE6442A7763CB002D4ADA /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				0A0CE6462A7763E9002D4ADA /* Presenter */,
+				0A0CE6472A7763F0002D4ADA /* View */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		0A0CE6452A7763D6002D4ADA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0A0CE64A2A776403002D4ADA /* Presenter */,
+				0A0CE6482A7763F9002D4ADA /* View */,
+			);
+			name = Profile;
+			path = Profile/Profile;
+			sourceTree = "<group>";
+		};
+		0A0CE6462A7763E9002D4ADA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7EBE2A752D830039E077 /* EditProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0A0CE6472A7763F0002D4ADA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7ECF2A752D830039E077 /* EditProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A0CE6482A7763F9002D4ADA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7ED02A752D830039E077 /* ProfileViewController.swift */,
+				0A0CE6492A7763FE002D4ADA /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A0CE6492A7763FE002D4ADA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7ED12A752D830039E077 /* ProfileAssetsCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A0CE64A2A776403002D4ADA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7EBD2A752D830039E077 /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0A0CE64B2A776428002D4ADA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A1F7EC72A752D830039E077 /* FavoritesCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A0CE64C2A77642F002D4ADA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A0CE64B2A776428002D4ADA /* Cell */,
+				0A1F7EC82A752D830039E077 /* FavoritesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0A1F7EBB2A752D830039E077 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				0A1F7EBC2A752D830039E077 /* Presenter */,
+				0A0CE6452A7763D6002D4ADA /* Profile */,
+				0A0CE6442A7763CB002D4ADA /* EditProfile */,
+				0A1F7EC92A752D830039E077 /* MyNFT */,
+				0A1F7EC62A752D830039E077 /* Favorites */,
 				0A1F7EC12A752D830039E077 /* Components */,
-				0A1F7EC52A752D830039E077 /* View */,
+				0A1F7ECC2A752D830039E077 /* About */,
+				0A1F7ED22A752D830039E077 /* NoInternet */,
+				0A1F7ED42A752D830039E077 /* ProfileWebsite */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -281,9 +388,6 @@
 		0A1F7EBC2A752D830039E077 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				0A1F7EBD2A752D830039E077 /* ProfilePresenter.swift */,
-				0A1F7EBE2A752D830039E077 /* EditProfilePresenter.swift */,
-				0A1F7EBF2A752D830039E077 /* MyNFTPresenter.swift */,
 				0A1F7EC02A752D830039E077 /* FavoritesPresenter.swift */,
 			);
 			path = Presenter;
@@ -297,24 +401,11 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		0A1F7EC52A752D830039E077 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0A1F7EC62A752D830039E077 /* Favorites */,
-				0A1F7EC92A752D830039E077 /* MyNFT */,
-				0A1F7ECC2A752D830039E077 /* About */,
-				0A1F7ECE2A752D830039E077 /* Profile */,
-				0A1F7ED22A752D830039E077 /* NoInternet */,
-				0A1F7ED42A752D830039E077 /* ProfileWebsite */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		0A1F7EC62A752D830039E077 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				0A1F7EC72A752D830039E077 /* FavoritesCell.swift */,
-				0A1F7EC82A752D830039E077 /* FavoritesViewController.swift */,
+				0A1F7EBC2A752D830039E077 /* Presenter */,
+				0A0CE64C2A77642F002D4ADA /* View */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -322,8 +413,8 @@
 		0A1F7EC92A752D830039E077 /* MyNFT */ = {
 			isa = PBXGroup;
 			children = (
-				0A1F7ECA2A752D830039E077 /* MyNFTViewController.swift */,
-				0A1F7ECB2A752D830039E077 /* MyNFTCell.swift */,
+				0A0CE6432A77637B002D4ADA /* Presenter */,
+				0A0CE6422A7762F3002D4ADA /* View */,
 			);
 			path = MyNFT;
 			sourceTree = "<group>";
@@ -334,16 +425,6 @@
 				0A1F7ECD2A752D830039E077 /* AboutViewController.swift */,
 			);
 			path = About;
-			sourceTree = "<group>";
-		};
-		0A1F7ECE2A752D830039E077 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				0A1F7ECF2A752D830039E077 /* EditProfileViewController.swift */,
-				0A1F7ED02A752D830039E077 /* ProfileViewController.swift */,
-				0A1F7ED12A752D830039E077 /* ProfileAssetsCell.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		0A1F7ED22A752D830039E077 /* NoInternet */ = {
