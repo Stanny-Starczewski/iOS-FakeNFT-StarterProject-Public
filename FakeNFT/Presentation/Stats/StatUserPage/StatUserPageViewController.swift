@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import SafariServices
 
 final class StatUserPageViewController: UIViewController {
     private var viewModel: StatUserPageViewModel!
@@ -161,12 +162,12 @@ final class StatUserPageViewController: UIViewController {
 
     @objc
     private func openWebView() {
-        guard let siteUrl = viewModel.user?.website, let url = URL(string: siteUrl) else {
-            return
-        }
-
-        let webView = WebViewService(url: url)
-        navigationController?.pushViewController(webView, animated: true)
+        guard
+            let urlString = viewModel.user?.website,
+            let url = URL(string: urlString)
+        else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true)
     }
 
     @objc
