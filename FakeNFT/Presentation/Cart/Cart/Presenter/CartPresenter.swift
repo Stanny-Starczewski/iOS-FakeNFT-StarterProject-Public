@@ -96,7 +96,6 @@ final class CartPresenter {
 // MARK: - CartPresenterProtocol
 
 extension CartPresenter: CartPresenterProtocol {
-    
     var isEmptyCart: Bool {
         nftItems.isEmpty
     }

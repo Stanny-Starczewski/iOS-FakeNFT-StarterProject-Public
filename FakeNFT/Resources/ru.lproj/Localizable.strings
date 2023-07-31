@@ -33,6 +33,11 @@
 "cartPaymentButtonText"="Оплатить";
 "cartDescriptionLabelText"="Совершая покупку, вы соглашаетесь с условиями";
 "cartAgreementLinkLabelText"="Пользовательского соглашения";
+"cartSuccessLabelText"="Успех! Оплата прошла, поздравляем с покупкой!";
+"cartSuccessButtonText"="Вернуться в каталог";
+"cartFailureLabelText"="Упс! Что-то пошло не так :( Попробуйте ещё раз!";
+"cartFailureButtonText"="Попробовать еще раз";
+"cartErrorAlertMessageText" = "Ваш платеж не прошел";
 // My NFT
 "emptyLabelText"="У Вас ещё нет NFT";
 "navigationBarTitleText"="Мои NFT";

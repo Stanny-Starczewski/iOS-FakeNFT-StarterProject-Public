@@ -33,6 +33,11 @@
 "cartPaymentButtonText"="Pay";
 "cartDescriptionLabelText"="By making a purchase, you agree to the terms";
 "cartAgreementLinkLabelText"="User Agreement";
+"cartSuccessLabelText"="Success! Payment passed, congratulations on your purchase!";
+"cartSuccessButtonText"="Back to catalog";
+"cartFailureLabelText"="Oops! Something went wrong :( Try again!";
+"cartFailureButtonText"="Try again";
+"cartErrorAlertMessageText" = "Your payment did not go through";
 // My NFT
 "emptyLabelText"="You don't have NFT yet";
 "navigationBarTitleText"="My NFT";

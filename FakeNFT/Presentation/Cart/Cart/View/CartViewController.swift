@@ -129,6 +129,10 @@ final class CartViewController: UIViewController {
         setConstraints()
         setDelegates()
         setupNavigationController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter.viewIsReady()
     }
     

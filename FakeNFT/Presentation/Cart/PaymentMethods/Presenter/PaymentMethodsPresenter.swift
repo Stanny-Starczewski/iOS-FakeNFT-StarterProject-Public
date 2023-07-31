@@ -19,6 +19,12 @@ protocol PaymentMethodsPresenterProtocol {
 
 final class PaymentMethodsPresenter {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let errorAlertMessageText = Localization.cartErrorAlertMessageText
+    }
+    
     // MARK: - Properties
     
     weak var view: PaymentMethodsViewProtocol?
@@ -110,7 +116,7 @@ extension PaymentMethodsPresenter: PaymentMethodsPresenterProtocol {
 
 extension PaymentMethodsPresenter: PaymentResultDelegate {
     func didTapTryAgain() {
-        let alert = alertBuilder.makeErrorAlertWithRepeatAction(with: "Your payment did not go through") { [weak self] in
+        let alert = alertBuilder.makeErrorAlertWithRepeatAction(with: Constants.errorAlertMessageText) { [weak self] in
             self?.didTapPaymentButton()
         }
         view?.showViewController(alert)

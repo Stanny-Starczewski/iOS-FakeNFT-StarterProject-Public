@@ -22,8 +22,18 @@ public enum Localization {
   public static let cartDescriptionLabelText = Localization.tr("Localizable", "cartDescriptionLabelText", fallback: "By making a purchase, you agree to the terms")
   /// Cart is empty
   public static let cartEmptyCartLabelText = Localization.tr("Localizable", "cartEmptyCartLabelText", fallback: "Cart is empty")
+  /// Your payment did not go through
+  public static let cartErrorAlertMessageText = Localization.tr("Localizable", "cartErrorAlertMessageText", fallback: "Your payment did not go through")
+  /// Try again
+  public static let cartFailureButtonText = Localization.tr("Localizable", "cartFailureButtonText", fallback: "Try again")
+  /// Oops! Something went wrong :( Try again!
+  public static let cartFailureLabelText = Localization.tr("Localizable", "cartFailureLabelText", fallback: "Oops! Something went wrong :( Try again!")
   /// Pay
   public static let cartPaymentButtonText = Localization.tr("Localizable", "cartPaymentButtonText", fallback: "Pay")
+  /// Back to catalog
+  public static let cartSuccessButtonText = Localization.tr("Localizable", "cartSuccessButtonText", fallback: "Back to catalog")
+  /// Success! Payment passed, congratulations on your purchase!
+  public static let cartSuccessLabelText = Localization.tr("Localizable", "cartSuccessLabelText", fallback: "Success! Payment passed, congratulations on your purchase!")
   /// Choose a payment method
   public static let cartTitleLabelText = Localization.tr("Localizable", "cartTitleLabelText", fallback: "Choose a payment method")
   /// To pay
