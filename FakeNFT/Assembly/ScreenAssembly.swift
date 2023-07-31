@@ -25,7 +25,6 @@ final class ScreenAssembly {
     // MARK: - Profirties
     
     private let serviceAssembly: ServiceAssemblyProtocol
-    
     private let alertBuilder: AlertBuilderProtocol
     
     // MARK: - Life Cycle
@@ -34,14 +33,17 @@ final class ScreenAssembly {
         self.serviceAssembly = serviceAssembly
         self.alertBuilder = alertBuilder
     }
-    
 }
 
 // MARK: - ScreenAssemblyProtocol
 
 extension ScreenAssembly: ScreenAssemblyProtocol {
     func makeProfileScreen() -> UIViewController {
-        let presenter = ProfilePresenter(screenAssembly: self)
+        let presenter = ProfilePresenter(
+            screenAssembly: self,
+            networkService: serviceAssembly.makeNetworkService(),
+            alertBuilder: alertBuilder
+        )
         let vc = ProfileViewController(presenter: presenter)
         presenter.view = vc
         return vc
