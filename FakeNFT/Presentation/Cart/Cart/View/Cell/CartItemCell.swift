@@ -14,6 +14,12 @@ protocol CartItemCellDelegate: AnyObject {
 
 final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let priceLabelText = Localization.priceLabelText
+    }
+    
     // MARK: - Properties
     
     var currentIndexPath: IndexPath?
@@ -46,16 +52,11 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
         return label
     }()
     
-    private lazy var ratingImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "icon-stars-0")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    private lazy var ratingStackView = RatingStackView()
     
     private lazy var priceDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Цена"
+        label.text = Constants.priceLabelText
         label.font = .regular13
         label.textColor = Image.appBlack.color
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +65,6 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 ETH"
         label.numberOfLines = 1
         label.font = .bold17
         label.textColor = Image.appBlack.color
@@ -74,7 +74,10 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var deleteItemButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage(named: "icon-cart-delete")?.withTintColor(Image.appBlack.color), for: .normal)
+        button.setBackgroundImage(
+            Image.iconCartDelete.image.withTintColor(Image.appBlack.color),
+            for: .normal
+        )
         button.addTarget(self, action: #selector(deleteItemButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -100,7 +103,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
         contentView.addSubview(wrapperView)
         wrapperView.addSubview(itemImageView)
         wrapperView.addSubview(itemNameLabel)
-        wrapperView.addSubview(ratingImageView)
+        wrapperView.addSubview(ratingStackView)
         wrapperView.addSubview(priceDescriptionLabel)
         wrapperView.addSubview(priceLabel)
         wrapperView.addSubview(deleteItemButton)
@@ -111,7 +114,7 @@ final class CartItemCell: UITableViewCell, ReuseIdentifying {
     func configure(with item: NftItem) {
         itemNameLabel.text = item.name
         priceLabel.text = String(format: "%.2f ETH", item.price)
-        ratingImageView.image = UIImage(named: "icon-stars-\(Int(item.rating))")
+        ratingStackView.setupRating(rating: item.rating)
         guard
             let imageUrlString = item.images.first,
             let imageUrl = URL(string: imageUrlString)
@@ -156,12 +159,10 @@ extension CartItemCell {
             itemNameLabel.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: 20),
             itemNameLabel.trailingAnchor.constraint(equalTo: deleteItemButton.leadingAnchor, constant: -20),
             
-            ratingImageView.topAnchor.constraint(equalTo: itemNameLabel.bottomAnchor, constant: 4),
-            ratingImageView.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: 20),
-            ratingImageView.widthAnchor.constraint(equalToConstant: 68),
-            ratingImageView.heightAnchor.constraint(equalToConstant: 12),
-            
-            priceDescriptionLabel.topAnchor.constraint(equalTo: ratingImageView.bottomAnchor, constant: 12),
+            ratingStackView.topAnchor.constraint(equalTo: itemNameLabel.bottomAnchor, constant: 4),
+            ratingStackView.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: 20),
+
+            priceDescriptionLabel.topAnchor.constraint(equalTo: ratingStackView.bottomAnchor, constant: 12),
             priceDescriptionLabel.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: 20),
             
             priceLabel.topAnchor.constraint(equalTo: priceDescriptionLabel.bottomAnchor, constant: 2),
