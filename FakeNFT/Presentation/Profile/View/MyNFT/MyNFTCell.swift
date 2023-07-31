@@ -9,6 +9,8 @@ import UIKit
 
 final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     
+    // MARK: - Constants
+    
     private enum Constants {
         static let priceLabelText = Localization.priceLabelText
         static let authorLabelText = Localization.authorLabelText
@@ -18,7 +20,7 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
 
     var currentIndexPath: IndexPath?
     
-    // MARK: - Layout elements
+    // MARK: - UI
     
     private lazy var nftImageView: UIImageView = {
         let imageView = UIImageView()
@@ -85,7 +87,7 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
     
     private lazy var favoriteButton = FavoriteButton()
     
-    // MARK: - Init
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -97,7 +99,7 @@ final class MyNFTCell: UITableViewCell, ReuseIdentifying {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lyout methods
+    // MARK: - Setup UI
     
     private func setupView() {
         backgroundColor = Image.appWhite.color
