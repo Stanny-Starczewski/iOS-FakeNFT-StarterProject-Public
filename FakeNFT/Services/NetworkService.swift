@@ -8,13 +8,19 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
+    func getCollections(_ completion: @escaping (Result<[Collection], Error>) -> Void)
+    func getOrder(_ completion: @escaping (Result<Order, Error>) -> Void)
+    func getNft(by id: String, _ completion: @escaping (Result<Item, Error>) -> Void)
+    func getAuthor(by id: String, _ completion: @escaping (Result<Author, Error>) -> Void)
     func getProfile(_ completion: @escaping (Result<Profile, Error>) -> Void)
-    func getMyNFT(_ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void)
-    func getFavorites(_ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void)
-    func getCart(_ completion: @escaping (Result<[NftItem], Error>) -> Void)
-    func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Error?) -> Void)
-    func updateProfile(profile: Profile, _ completion: @escaping (Error?) -> Void)
+    func getMyNft(_ completion: @escaping (Result<[Item], Error>) -> Void)
+    func getFavorites(_ completion: @escaping (Result<[Item], Error>) -> Void)
+    func getFavorites(_ completion: @escaping (Result<Favorites, Error>) -> Void)
+    func getCart(_ completion: @escaping (Result<[Item], Error>) -> Void)
     func getCurrencies(_ completion: @escaping (Result<[Currency], Error>) -> Void)
+    func updateCart(nftsInCart: Order, _ completion: @escaping (Error?) -> Void)
+    func updateFavorites(favorites: Favorites, _ completion: @escaping (Error?) -> Void)
+    func updateProfile(profile: Profile, _ completion: @escaping (Error?) -> Void)
     func paymentWithIdCurrency(id: String, _ completion: @escaping (Result<PaymentStatus, Error>) -> Void)
 }
 
@@ -32,24 +38,25 @@ final class NetworkService {
     
     // MARK: - Private methods
     
-    private func fetchNftsIdInCart(_ completion: @escaping (Result<NftsInCart, Error>) -> Void) {
-        let request = GetOrdersRequest()
-        client.send(request: request, type: NftsInCart.self) { result in
-            switch result {
-            case .success(let nftsInCart):
-                completion(.success(nftsInCart))
-            case .failure(let error):
-                completion(.failure(error))
+    private func handleResult<T>(_ result: Result<T, Error>, completion: @escaping (Result<T, Error>) -> Void) {
+        switch result {
+        case .success(let success):
+            DispatchQueue.main.async {
+                completion(.success(success))
+            }
+        case .failure(let failure):
+            DispatchQueue.main.async {
+                completion(.failure(failure))
             }
         }
     }
-    
-    private func fetchCart(nftsInCart: NftsInCart, _ completion: @escaping (Result<[NftItem], Error>) -> Void) {
-        var nftItems: [NftItem] = []
+
+    private func fetchCart(nftsInCart: Order, _ completion: @escaping (Result<[Item], Error>) -> Void) {
+        var nftItems: [Item] = []
         let group = DispatchGroup()
         nftsInCart.nfts.forEach {
             group.enter()
-            client.send(request: GetNftByIdRequest(id: $0), type: NftItem.self) { result in
+            getNft(by: $0) { result in
                 switch result {
                 case .success(let nftItem):
                     nftItems.append(nftItem)
@@ -64,30 +71,25 @@ final class NetworkService {
         }
     }
     
-    private func fetchNftsIdInMyNFT(_ completion: @escaping (Result<NftsInCart, Error>) -> Void) {
+    private func fetchNftsIdInMyNFT(_ completion: @escaping (Result<Order, Error>) -> Void) {
         let request = GetProfileRequest()
-        client.send(request: request, type: NftsInCart.self) { result in
-            switch result {
-            case .success(let nftsInCart):
-                completion(.success(nftsInCart))
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        client.send(request: request, type: Order.self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
         }
     }
     
-    private func fetchMyNFT(nftsInCart: NftsInCart, _ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void) {
-        var nftItems: [NFTNetworkModel] = []
+    private func fetchMyNFT(nftsInCart: Order, _ completion: @escaping (Result<[Item], Error>) -> Void) {
+        var nftItems: [Item] = []
         let group = DispatchGroup()
         nftsInCart.nfts.forEach {
             group.enter()
-            client.send(request: GetNftByIdRequest(id: $0), type: NFTNetworkModel.self) { [weak self] result in
+            client.send(request: GetNftByIdRequest(id: $0), type: Item.self) { [weak self] result in
                 switch result {
                 case .success(let nftItem):
-                    self?.fetchAuthorName(by: nftItem.author, { result in
+                    self?.getAuthor(by: nftItem.author, { result in
                         switch result {
                         case .success(let author):
-                            let newNftItem = NFTNetworkModel(
+                            let newNftItem = Item(
                                 createdAt: nftItem.createdAt,
                                 name: nftItem.name,
                                 images: nftItem.images,
@@ -113,36 +115,12 @@ final class NetworkService {
         }
     }
     
-    private func fetchAuthorName(by id: String, _ completion: @escaping (Result<AuthorNetworkModel, Error>) -> Void) {
-        let request = GetAuthorByIdRequest(id: id)
-        client.send(request: request, type: AuthorNetworkModel.self) { result in
-            switch result {
-            case .success(let author):
-                completion(.success(author))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    private func fetchNftsIdFavorites(_ completion: @escaping (Result<NftsFavorites, Error>) -> Void) {
-        let request = GetProfileRequest()
-        client.send(request: request, type: NftsFavorites.self) { result in
-            switch result {
-            case .success(let nftsInCart):
-                completion(.success(nftsInCart))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    private func fetchFavorites(nftsInCart: NftsFavorites, _ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void) {
-        var nftItems: [NFTNetworkModel] = []
+    private func fetchFavorites(nftsInCart: Favorites, _ completion: @escaping (Result<[Item], Error>) -> Void) {
+        var nftItems: [Item] = []
         let group = DispatchGroup()
         nftsInCart.likes.forEach {
             group.enter()
-            client.send(request: GetNftByIdRequest(id: $0), type: NFTNetworkModel.self) { result in
+            client.send(request: GetNftByIdRequest(id: $0), type: Item.self) { result in
                 switch result {
                 case .success(let nftItem):
                     nftItems.append(nftItem)
@@ -161,47 +139,95 @@ final class NetworkService {
 // MARK: - CartNetworkServiceProtocol
 
 extension NetworkService: NetworkServiceProtocol {
+    func getCollections(_ completion: @escaping (Result<[Collection], Error>) -> Void) {
+        let request = GetCollectionsRequest()
+        client.send(request: request, type: [Collection].self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
+        }
+    }
+    
+    func getOrder(_ completion: @escaping (Result<Order, Error>) -> Void) {
+        let request = GetOrdersRequest()
+        client.send(request: request, type: Order.self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
+        }
+    }
+    
+    func getNft(by id: String, _ completion: @escaping (Result<Item, Error>) -> Void) {
+        let request = GetNftByIdRequest(id: id)
+        client.send(request: request, type: Item.self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
+        }
+    }
+    
+    func getAuthor(by id: String, _ completion: @escaping (Result<Author, Error>) -> Void) {
+        let request = GetAuthorByIdRequest(id: id)
+        client.send(request: request, type: Author.self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
+        }
+    }
+    
     func getProfile(_ completion: @escaping (Result<Profile, Error>) -> Void) {
         let request = GetProfileRequest()
-        client.send(request: request, type: Profile.self) { result in
-            switch result {
-            case .success(let profile):
-                DispatchQueue.main.async {
-                    completion(.success(profile))
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
+        client.send(request: request, type: Profile.self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
         }
     }
     
-    func getCart(_ completion: @escaping (Result<[NftItem], Error>) -> Void) {
-        fetchNftsIdInCart { [weak self] result in
+    func getCart(_ completion: @escaping (Result<[Item], Error>) -> Void) {
+        getOrder { [weak self] result in
             switch result {
             case .success(let nftsInCart):
-                self?.fetchCart(nftsInCart: nftsInCart) { result in
-                    switch result {
-                    case .success(let nftItems):
-                        DispatchQueue.main.async {
-                            completion(.success(nftItems))
-                        }
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
-                    }
+                self?.fetchCart(nftsInCart: nftsInCart) { [weak self] result in
+                    self?.handleResult(result, completion: completion)
                 }
             case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
+                self?.handleResult(.failure(error), completion: completion)
             }
         }
     }
     
-    func updateCart(nftsInCart: NftsInCart, _ completion: @escaping (Error?) -> Void) {
+    func getMyNft(_ completion: @escaping (Result<[Item], Error>) -> Void) {
+        fetchNftsIdInMyNFT { [weak self] result in
+            switch result {
+            case .success(let nftsInCart):
+                self?.fetchMyNFT(nftsInCart: nftsInCart) { [weak self] result in
+                    self?.handleResult(result, completion: completion)
+                }
+            case .failure(let error):
+                self?.handleResult(.failure(error), completion: completion)
+            }
+        }
+    }
+    
+    func getFavorites(_ completion: @escaping (Result<[Item], Error>) -> Void) {
+        getFavorites { [weak self] result in
+            switch result {
+            case .success(let nftsInCart):
+                self?.fetchFavorites(nftsInCart: nftsInCart) { [weak self] result in
+                    self?.handleResult(result, completion: completion)
+                }
+            case .failure(let error):
+                self?.handleResult(.failure(error), completion: completion)
+            }
+        }
+    }
+    
+    func getFavorites(_ completion: @escaping (Result<Favorites, Error>) -> Void) {
+        let request = GetProfileRequest()
+        client.send(request: request, type: Favorites.self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
+        }
+    }
+    
+    func getCurrencies(_ completion: @escaping (Result<[Currency], Error>) -> Void) {
+        let request = GetCurrenciesRequest()
+        client.send(request: request, type: [Currency].self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
+        }
+    }
+    
+    func updateCart(nftsInCart: Order, _ completion: @escaping (Error?) -> Void) {
         let request = ChangeOrdersRequest(dto: nftsInCart)
         client.send(request: request) { result in
             switch result {
@@ -233,17 +259,17 @@ extension NetworkService: NetworkServiceProtocol {
         }
     }
     
-    func getCurrencies(_ completion: @escaping (Result<[Currency], Error>) -> Void) {
-        let request = GetCurrenciesRequest()
-        client.send(request: request, type: [Currency].self) { result in
+    func updateFavorites(favorites: Favorites, _ completion: @escaping (Error?) -> Void) {
+        let request = ChangeProfileRequest(dto: favorites)
+        client.send(request: request) { result in
             switch result {
-            case .success(let currencies):
+            case .success:
                 DispatchQueue.main.async {
-                    completion(.success(currencies))
+                    completion(nil)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    completion(.failure(error))
+                    completion(error)
                 }
             }
         }
@@ -251,65 +277,8 @@ extension NetworkService: NetworkServiceProtocol {
     
     func paymentWithIdCurrency(id: String, _ completion: @escaping (Result<PaymentStatus, Error>) -> Void) {
         let request = PaymentWithIdCurrencyRequest(id: id)
-        client.send(request: request, type: PaymentStatus.self) { result in
-            switch result {
-            case .success(let paymentStatus):
-                DispatchQueue.main.async {
-                    completion(.success(paymentStatus))
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }
-    }
-    
-    func getMyNFT(_ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void) {
-        fetchNftsIdInMyNFT { [weak self] result in
-            switch result {
-            case .success(let nftsInCart):
-                self?.fetchMyNFT(nftsInCart: nftsInCart) { result in
-                    switch result {
-                    case .success(let nftItems):
-                        DispatchQueue.main.async {
-                            completion(.success(nftItems))
-                        }
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
-                    }
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }
-    }
-    
-    func getFavorites(_ completion: @escaping (Result<[NFTNetworkModel], Error>) -> Void) {
-        fetchNftsIdFavorites { [weak self] result in
-            switch result {
-            case .success(let nftsInCart):
-                self?.fetchFavorites(nftsInCart: nftsInCart) { result in
-                    switch result {
-                    case .success(let nftItems):
-                        DispatchQueue.main.async {
-                            completion(.success(nftItems))
-                        }
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
-                    }
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
+        client.send(request: request, type: PaymentStatus.self) { [weak self] result in
+            self?.handleResult(result, completion: completion)
         }
     }
 }

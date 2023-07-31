@@ -1,5 +1,5 @@
 //
-//  GetNftByIdRequest.swift
+//  GetUserByIdRequest.swift
 //  FakeNFT
 //
 //  Created by Anton Vikhlyaev on 31.07.2023.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct GetNftByIdRequest: NetworkRequest {
+struct GetUserByIdRequest: NetworkRequest {
     private let id: String
-    var endpoint: URL? { URL(string: "\(Config.baseUrl)/nft/\(id)") }
+    var endpoint: URL? { URL(string: "\(Config.baseUrl)/users/\(id)") }
     
     init(id: String) {
         self.id = id
