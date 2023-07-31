@@ -85,25 +85,23 @@ struct DefaultNetworkClient: NetworkClient {
     private func create(request: NetworkRequest) -> URLRequest? {
         guard let endpoint = request.endpoint else { return nil }
         guard var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true) else { return nil }
-
-    components.queryItems = request.queryParameters?.map { key, value in
-        URLQueryItem(name: key, value: value)
-    }
-
-    guard let url = components.url else { return nil }
-
+        
+        components.queryItems = request.queryParameters?.map { key, value in
+            URLQueryItem(name: key, value: value)
+        }
+        
         var urlRequest = URLRequest(url: endpoint)
         urlRequest.httpMethod = request.httpMethod.rawValue
         urlRequest.httpBody = request.body
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-
+        
         if let dto = request.dto,
            let dtoEncoded = try? encoder.encode(dto) {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = dtoEncoded
         }
-
+        
         return urlRequest
     }
 
