@@ -12,6 +12,8 @@ public enum Localization {
   public static let authorLabelText = Localization.tr("Localizable", "authorLabelText", fallback: "by")
   /// Developer
   public static let developerLabelText = Localization.tr("Localizable", "developerLabelText", fallback: "Developer")
+  /// Cart is empty
+  public static let emptyCartLabelText = Localization.tr("Localizable", "emptyCartLabelText", fallback: "Cart is empty")
   /// You don't have NFT yet
   public static let emptyLabelText = Localization.tr("Localizable", "emptyLabelText", fallback: "You don't have NFT yet")
   /// Close
@@ -32,6 +34,8 @@ public enum Localization {
   public static let navigationBarTitleText = Localization.tr("Localizable", "navigationBarTitleText", fallback: "My NFT")
   /// No internet
   public static let noInternetLabelText = Localization.tr("Localizable", "noInternetLabelText", fallback: "No internet")
+  /// To pay
+  public static let paymentButtonText = Localization.tr("Localizable", "paymentButtonText", fallback: "To pay")
   /// Price
   public static let priceLabelText = Localization.tr("Localizable", "priceLabelText", fallback: "Price")
   /// By name

@@ -23,6 +23,9 @@
 "tabCatalogTitle"="Каталог";
 "tabCartTitle"="Корзина";
 "tabStatsTitle"="Статистика";
+// Cart
+"paymentButtonText"="К оплате";
+"emptyCartLabelText"="Корзина пуста";
 // My NFT
 "emptyLabelText"="У Вас ещё нет NFT";
 "navigationBarTitleText"="Мои NFT";

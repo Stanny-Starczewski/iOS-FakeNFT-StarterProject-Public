@@ -23,6 +23,9 @@
 "tabCatalogTitle"="Catalog";
 "tabCartTitle"="Cart";
 "tabStatsTitle"="Stats";
+// Cart
+"paymentButtonText"="To pay";
+"emptyCartLabelText"="Cart is empty";
 // My NFT
 "emptyLabelText"="You don't have NFT yet";
 "navigationBarTitleText"="My NFT";

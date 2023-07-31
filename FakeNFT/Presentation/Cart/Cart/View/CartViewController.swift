@@ -20,10 +20,8 @@ final class CartViewController: UIViewController {
     // MARK: - Constants
     
     private struct Constants {
-        static let bottomViewCornerRadius: CGFloat = 12
-        static let iconSort = UIImage(named: "icon-sort")
-        static let paymentButtonText = "К оплате"
-        static let emptyCartLabelText = "Корзина пуста"
+        static let paymentButtonText = Localization.paymentButtonText
+        static let emptyCartLabelText = Localization.emptyCartLabelText
     }
     
     // MARK: - UI
@@ -56,7 +54,7 @@ final class CartViewController: UIViewController {
     private lazy var bottomView: UIView = {
         let view = UIView()
         view.backgroundColor = Image.appLightGrey.color
-        view.layer.cornerRadius = Constants.bottomViewCornerRadius
+        view.layer.cornerRadius = 12
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -146,7 +144,7 @@ final class CartViewController: UIViewController {
     
     private func setupNavigationController() {
         let sortButton = UIBarButtonItem(
-            image: Constants.iconSort,
+            image: Image.iconSort.image,
             style: .plain,
             target: self,
             action: #selector(sortButtonTapped)
