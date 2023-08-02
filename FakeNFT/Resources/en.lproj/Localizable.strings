@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  FakeNFT
+
+  Created by Anton Vikhlyaev on 29.07.2023.
+  
+*/
+// Alerts
+"sortingAlertTitle"="Sorting";
+"sortingAlertByPriceText"="By price";
+"sortingAlertByRatingText"="By rating";
+"sortingAlertByNameText"="By title";
+"sortingAlertByFirstNameText"="By name";
+"sortingAlertByNumberOfNFTsText"="By number of NFTs";
+"sortingAlertCloseText"="Close";
+"errorAlertTitle"="Oops! We have a error.";
+"errorAlertRepeatTitle"="Error!";
+"errorAlertOkAction"="OK";
+"errorAlertCancelAction"="Close";
+"errorAlertRepeatAction"="Try again";
+// TabBar
+"tabProfileTitle"="Profile";
+"tabCatalogTitle"="Catalog";
+"tabCartTitle"="Cart";
+"tabStatsTitle"="Stats";
+// Cart
+"cartToPayButtonText"="To pay";
+"cartEmptyCartLabelText"="Cart is empty";
+"cartConfirmationText"="Are you sure you want to remove the object from the cart?";
+"cartDeleteButtonText"="Delete";
+"cartBackButtonText"="Cancel";
+"cartTitleLabelText"="Choose a payment method";
+"cartPaymentButtonText"="Pay";
+"cartDescriptionLabelText"="By making a purchase, you agree to the terms";
+"cartAgreementLinkLabelText"="User Agreement";
+"cartSuccessLabelText"="Success! Payment passed, congratulations on your purchase!";
+"cartSuccessButtonText"="Back to catalog";
+"cartFailureLabelText"="Oops! Something went wrong :( Try again!";
+"cartFailureButtonText"="Try again";
+"cartErrorAlertMessageText" = "Your payment did not go through";
+"cartPriceLabelText"="Price";
+// No Internet
+"noInternetLabelText"="No internet";
+// Profile
+"profileMyNftLabelText"="My NFT";
+"profileFavoritesNftLabelText"="Favorites NFT";
+"profileDeveloperLabelText"="Developer";
+"profileChangeAvatarLabelText"="Change photo";
+"profileLoadAvatarLabelText"="Upload image";
+"profileNameLabelText"="Name";
+"profileDescriptionLabelText"="Description";
+"profileWebsiteLabelText"="Website";
+"profileEmptyMyNFTLabelText"="You don't have NFT yet";
+"profileEmptyFavoritesLabelText" = "You don't have any favorite NFTs yet";
+"profileMyNFTTitleText"="My NFT";
+"profileFavoritesTitleText"="Favorites NFT";
+"profilePriceLabelText"="Price";
+"profileAuthorLabelText"="by";
+"profileAboutTitleText"="Developer";
+"profileEmptyAboutLabelText"="THIS IS THIRD KOGORTA";
+// Catalog
+"catalogAuthorLabelText" = "Collection author:";
+

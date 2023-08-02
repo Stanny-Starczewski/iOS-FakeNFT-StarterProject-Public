@@ -1,0 +1,62 @@
+/* 
+  Localizable.strings
+  FakeNFT
+
+  Created by Anton Vikhlyaev on 29.07.2023.
+  
+*/
+// Alerts
+"sortingAlertTitle"="Сортировка";
+"sortingAlertByPriceText"="По цене";
+"sortingAlertByRatingText"="По рейтингу";
+"sortingAlertByNameText"="По названию";
+"sortingAlertByFirstNameText"="По имени";
+"sortingAlertByNumberOfNFTsText"="По количеству NFT";
+"sortingAlertCloseText"="Закрыть";
+"errorAlertTitle"="Упс! У нас ошибка.";
+"errorAlertRepeatTitle"="Произошла ошибка!";
+"errorAlertOkAction"="OK";
+"errorAlertCancelAction"="Закрыть";
+"errorAlertRepeatAction"="Еще раз";
+// TabBar
+"tabProfileTitle"="Профиль";
+"tabCatalogTitle"="Каталог";
+"tabCartTitle"="Корзина";
+"tabStatsTitle"="Статистика";
+// Cart
+"cartToPayButtonText"="К оплате";
+"cartEmptyCartLabelText"="Корзина пуста";
+"cartConfirmationText"="Вы уверены, что хотите удалить объект из корзины?";
+"cartDeleteButtonText"="Удалить";
+"cartBackButtonText"="Вернуться";
+"cartTitleLabelText"="Выберите способ оплаты";
+"cartPaymentButtonText"="Оплатить";
+"cartDescriptionLabelText"="Совершая покупку, вы соглашаетесь с условиями";
+"cartAgreementLinkLabelText"="Пользовательского соглашения";
+"cartSuccessLabelText"="Успех! Оплата прошла, поздравляем с покупкой!";
+"cartSuccessButtonText"="Вернуться в каталог";
+"cartFailureLabelText"="Упс! Что-то пошло не так :( Попробуйте ещё раз!";
+"cartFailureButtonText"="Попробовать еще раз";
+"cartErrorAlertMessageText" = "Ваш платеж не прошел";
+"cartPriceLabelText"="Цена";
+// No Internet
+"noInternetLabelText"="Нет интернета";
+// Profile
+"profileMyNftLabelText"="Мои NFT";
+"profileFavoritesNftLabelText"="Избранные NFT";
+"profileDeveloperLabelText"="О разработчике";
+"profileChangeAvatarLabelText"="Сменить фото";
+"profileLoadAvatarLabelText"="Загрузить изображение";
+"profileNameLabelText"="Имя";
+"profileDescriptionLabelText"="Описание";
+"profileWebsiteLabelText"="Сайт";
+"profileEmptyMyNFTLabelText"="У Вас ещё нет NFT";
+"profileEmptyFavoritesLabelText" = "У Вас ещё нет избранных NFT";
+"profileMyNFTTitleText"="Мои NFT";
+"profileFavoritesTitleText"="Избранные NFT";
+"profilePriceLabelText"="Цена";
+"profileAuthorLabelText"="от";
+"profileAboutTitleText"="О разработчике";
+"profileEmptyAboutLabelText"="Здесь будет информация о разработчике";
+// Catalog
+"catalogAuthorLabelText" = "Автор коллекции:";

@@ -2,7 +2,22 @@
 
 # Ссылки
 
-[Дизайн Figma](https://www.figma.com/file/k1LcgXHGTHIeiCv4XuPbND/FakeNFT-(YP)?node-id=96-5542&t=YdNbOI8EcqdYmDeg-0)
+[Дизайн Figma](https://www.figma.com/file/k1LcgXHGTHIeiCv4XuPbND/FakeNFT-(YP)?node-id=96-5542&t=YdNbOI8EcqdYmDeg-0)<br>
+[Описание эпика Профиль](https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/blob/cb52579f488b0c189f534b7d26035fcc89c2df00/FakeNFT/Presentation/Profile/PROFILE.md)<br>
+[Описание эпика Каталог](https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/blob/cb52579f488b0c189f534b7d26035fcc89c2df00/FakeNFT/Presentation/Catalog/CATALOG.md)<br>
+[Описание эпика Корзина](https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/blob/cb52579f488b0c189f534b7d26035fcc89c2df00/FakeNFT/Presentation/Cart/CART.md)<br>
+[Описание эпика Статистика](https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/blob/cb52579f488b0c189f534b7d26035fcc89c2df00/FakeNFT/Presentation/Stats/STATS.md)
+
+# Скринкасты
+https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/assets/11814492/974700f1-3b6a-4a2d-91c3-2094b662ab5e
+
+https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/assets/11814492/2227b1cf-7700-4e60-a599-434d661973ac
+
+https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/assets/11814492/81ab5d48-8d6c-4446-8701-b16a1d8944d2
+
+https://github.com/NutsCraker/iOS-FakeNFT-StarterProject-Public/assets/11814492/4843b7e2-ec82-4a83-9ab4-feb5a8f28585
+
+
 
 # Назначение и цели приложения
 
